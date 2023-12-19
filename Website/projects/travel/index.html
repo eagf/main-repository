@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Reisbureau</title>
+</head>
+
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">Dream destination</h2>
+            <div class="toggle"></div>
+        </header>
+        <video id="video" src="./img/beach.mp4" muted loop autoplay></video>
+
+        <div class="overlay"></div>
+
+        <div class="text">
+            <h2>Ontdek. Beleef. Geniet.</h2>
+            <h3>Laat ons jouw droomreis waarmaken.</h3>
+            <p>Stel je voor: zachte bries, azuurblauwe wateren, zonsondergang, zand tussen je tenen, ruisende golven.
+                Jouw toekomstige reisavontuur begint hier.</p>
+            <a href="./reizen.html">Plan je reis</a>
+        </div>
+
+        <ul class="social">
+            <li><a href="#"><img src="./img/facebook.png" alt=""></a></li>
+            <li><a href="#"><img src="./img/x.png" alt=""></a></li>
+            <li><a href="#"><img src="./img/instagram.png" alt=""></a></li>
+        </ul>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <li><a id="active" href="./index.html">Home</a></li>
+            <li><a href="./reizen.html">Reizen</a></li>
+            <li><a href="./updates.html">Updates</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <script>
+        const menuToggle = document.querySelector('.toggle')
+        const showcase = document.querySelector('.showcase')
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active')
+            showcase.classList.toggle('active')
+        })
+    </script>
+</body>
+
+</html>

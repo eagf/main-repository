@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js"></script>
+    <title>Updates</title>
+</head>
+
+<body>
+    <header class="menu-top">
+        <a href="./index.html">Home</a>
+        <a href="./reizen.html">Reizen</a>
+        <a href="./updates.html">Updates</a>
+        <a id="active" href="./contact.html">Contact</a>
+        <h2 class="logo">Dream destination</h2>
+    </header>
+    <video id="video" src="./img/plane.mp4" muted loop autoplay></video>
+    <div class="page-content" id="contact-content">
+        <p>Neem contact met ons op voor al uw reisbehoeften!</p>
+        <form action="mailto:info@reisbureau.nl" method="post" enctype="text/plain">
+            <label for="name">Naam:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">E-mail:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="message">Bericht:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+            <input type="submit" value="Verzenden">
+        </form>
+        <p>U kunt ook contact met ons opnemen via:</p>
+        <p>Adres: 123 Nepstraat, Nepstad</p>
+        <p>Telefoon: 1-800-NEP-TRAVEL</p>
+        <ul class="social" id="social-contact">
+            <li><a href="#"><img src="./img/facebook.png" alt=""></a></li>
+            <li><a href="#"><img src="./img/x.png" alt=""></a></li>
+            <li><a href="#"><img src="./img/instagram.png" alt=""></a></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

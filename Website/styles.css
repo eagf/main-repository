@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600;800;1000&display=swap');
+
+:root {
+    --main-color: #016DB6;
+    --line-width-profile: 1.5vw;
+    --line-width-header: 1.6vw;
+    --line-width-below-header: 0.8vw;
+}
+
+@media (min-width: 1200px) {
+    :root {
+        --line-width-profile: 18px;
+        --line-width-header: 21px;
+        --line-width-below-header: 10.5px;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: 0.8s;
+}
+
+.hidden.visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+@media(prefers-reduced-motion) {
+    .hidden {
+        transition: none;
+    }
+}
+
+p,
+h2,
+h3 {
+    margin: 0;
+}
+
+h2 {
+    margin-bottom: 2rem;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
+}
+
+div#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 40px;
+    background-color: #fff;
+}
+
+/* Header ================================================ */
+
+header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 25vw;
+    max-height: 250px;
+    margin-bottom: 2rem;
+}
+
+/* Left side header ------------------------------------- */
+
+header #header-left-div {
+    padding: var(--line-width-profile);
+    background-color: var(--main-color);
+}
+
+/* Elias Ferket Photo */
+
+#header-left-div #elias-ferket-img {
+    height: 100%;
+}
+
+/* Right side header ------------------------------------ */
+
+header #header-right-div {
+    display: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+#header-right-div #header-text-div {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1vw;
+    height: 100%;
+    width: 100%;
+}
+
+/* Elias Ferket title */
+
+#header-text-div #title-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2vw;
+    padding-top: 0.5vw;
+    height: 100%;
+    width: 100%;
+}
+
+#title-div .title-text {
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    font-size: 6vw;
+}
+
+@media (min-width: 1200px) {
+    #title-div .title-text {
+        font-size: 68px;
+    }
+}
+
+@media (max-width: 600px) {
+    #title-div .title-text {
+        font-size: 35px;
+    }
+}
+
+/* Hyperlink in right header */
+
+#header-right-div #header-nav {
+    display: flex;
+    align-items: flex-end;
+    padding-right: 1vw;
+}
+
+#header-nav #linkedIn {
+    padding: 0.5vw 1vw;
+    background: url('./img/linkedIn.PNG') no-repeat center center;
+    background-size: cover;
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
+    border-radius: 6px;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    transition: 0.3s;
+}
+
+#header-nav #linkedIn:hover {
+    background-color: var(--main-color);
+    width: 35px;
+    height: 35px;
+}
+
+#header-nav #projects {
+    padding: 0.5vw 1vw;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5vw;
+    transition: 0.3s;
+}
+
+#header-nav #projects:hover {
+    background-color: #fff;
+    color: var(--main-color);
+    transform: translateY(-2px);
+}
+
+@media (min-width: 1200px) {
+    #header-nav #projects {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 600px) {
+    #header-nav #projects {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    #header-nav #projects {
+        font-size: 12px;
+    }
+
+    #title-div .title-text {
+        font-size: 30px;
+    }
+
+    #header-nav #projects {
+        background: url('./img/projects.PNG') no-repeat center center;
+        background-size: cover;
+        background-color: var(--main-color);
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 5px;
+    }
+
+    #header-nav #projects:hover {
+        background-color: var(--main-color);
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Line under Header */
+
+#header-line-div {
+    display: flex;
+    height: var(--line-width-header);
+    width: 100%;
+    height: var(--line-width-header);
+    background-color: var(--main-color);
+    animation: slideRightLine 1.5s ease-out;
+}
+
+@keyframes slideRightLine {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* below header ========================================= */
+
+body #below-header {
+    width: 100%;
+}
+
+h2 {
+    color: var(--main-color);
+    font-weight: 800;
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 700px) {
+    .columns {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+#below-header .line-in-between {
+    width: 100%;
+    margin: 2rem 0;
+    height: var(--line-width-below-header);
+    background-color: var(--main-color);
+}
+
+/* General info ----------------------------------------- */
+
+#below-header #general-info {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+/* ICT skills ------------------------------------------- */
+
+#below-header #ict-skills {
+    display: flex;
+    flex-direction: column;
+}
+
+.columns.ict-skills {
+    margin-bottom: 1.5rem;
+}
+
+#ict-skills h3 {
+    margin-bottom: 1rem;
+}
+
+#programming-languages,
+#frameworks {
+    width: 46%;
+}
+
+@media (max-width: 700px) {
+
+    #programming-languages,
+    #frameworks {
+        width: 100%;
+    }
+
+    #frameworks {
+        margin-top: 1rem;
+    }
+}
+
+.ict-skills-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+}
+
+.ict-skills-row p {
+    width: 50%;
+}
+
+/* Sliders */
+
+.knob-slider {
+    width: 50%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    max-width: 200px;
+}
+
+.knob-slider img {
+    height: 25px;
+    left: 0;
+    object-fit: contain;
+}
+
+.knob-slider .background-slider {
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+    left: -100%;
+    transition: 2s;
+}
+
+.knob-slider .background-slider.level1.active {
+    left: -80.5%;
+}
+
+.knob-slider .background-slider.level2.active {
+    left: -66%;
+}
+
+.knob-slider .background-slider.level3.active {
+    left: -51.5%;
+}
+
+.knob-slider .background-slider.level4.active {
+    left: -37%;
+}
+
+.knob-slider .background-slider.level5.active {
+    left: -22.5%;
+}
+
+.knob-slider .background-slider.level6.active {
+    left: -8%;
+}
+
+.knob-slider .bar-slider {
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+
+.knob-slider .knob {
+    z-index: 3;
+    position: absolute;
+    transition: 2s;
+}
+
+.knob-slider .knob.level1.active {
+    left: 14.5%;
+}
+
+.knob-slider .knob.level2.active {
+    left: 29%;
+}
+
+.knob-slider .knob.level3.active {
+    left: 43.5%;
+}
+
+.knob-slider .knob.level4.active {
+    left: 58%;
+}
+
+.knob-slider .knob.level5.active {
+    left: 72.5%;
+}
+
+.knob-slider .knob.level6.active {
+    left: 87%;
+}
+
+/* Education and experience ---------------------------- */
+
+#education,
+#experience {
+    width: 46%;
+}
+
+@media (max-width: 700px) {
+
+    #education,
+    #experience {
+        width: 100%;
+    }
+
+    #experience {
+        margin-top: 1rem;
+    }
+}
+
+.education-experience-description {
+    vertical-align: top;
+    padding: 0;
+}
+
+.education-experience-duration {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.education-experience-duration p {
+    margin: 0;
+}
+
+.education-experience-description h3 {
+    margin: 0;
+}
+
+.light {
+    margin: 0;
+    font-weight: 300;
+}
+
+.small {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* Skills ---------------------------------------------- */
+
+.skills-row .skills-title {
+    vertical-align: top;
+    padding-right: 60px;
+}
+
+.skills-row .skills-title h3 {
+    margin-bottom: 1rem;
+}
+
+.skills-row .skills-description p {
+    margin-bottom: 1rem;
+}
+
+.skills-row .skills-description {
+    vertical-align: top;
+    padding-top: 4px;
+}

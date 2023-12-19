@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js"></script>
+    <title>Meer info</title>
+</head>
+<video id="video" src="./img/plane.mp4" muted loop autoplay></video>
+
+<body>
+    <header class="menu-top">
+        <a href="./index.html">Home</a>
+        <a href="./reizen.html">Reizen</a>
+        <a href="./updates.html">Updates</a>
+        <a href="./contact.html">Contact</a>
+        <h2 class="logo">Dream destination</h2>
+    </header>
+
+    <div class="page-content" id="meerInfo-content">
+
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const index = parseInt(urlParams.get('index'));
+            invullenMeerInfo(index);
+        </script>
+
+        <div id="meerInfoBestemming">
+        </div>
+
+        <div id="weather-content">
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+[
+    {
+        "bestemming": "Maldiven",
+        "afbeelding": "./img/1.jpg",
+        "startdatum": "01/02/2024",
+        "einddatum": "10/02/2024",
+        "latitude": 3.2028,
+        "longitude": 73.2207
+    },
+    {
+        "bestemming": "Italië",
+        "afbeelding": "./img/5.jpg",
+        "startdatum": "15/05/2024",
+        "einddatum": "25/05/2024",
+        "latitude": 41.8719,
+        "longitude": 12.5674
+    },
+    {
+        "bestemming": "Thailand",
+        "afbeelding": "./img/3.jpg",
+        "startdatum": "01/07/2024",
+        "einddatum": "15/07/2024",
+        "latitude": 15.8700,
+        "longitude": 100.9925
+    },
+    {
+        "bestemming": "Zwitserland",
+        "afbeelding": "./img/7.jpg",
+        "startdatum": "05/09/2024",
+        "einddatum": "15/09/2024",
+        "latitude": 46.8182,
+        "longitude": 8.2275
+    },
+    {
+        "bestemming": "Japan",
+        "afbeelding": "./img/2.jpg",
+        "startdatum": "01/11/2024",
+        "einddatum": "10/11/2024",
+        "latitude": 36.2048,
+        "longitude": 138.2529
+    },
+    {
+        "bestemming": "Frankrijk",
+        "afbeelding": "./img/6.jpg",
+        "startdatum": "20/03/2024",
+        "einddatum": "30/03/2024",
+        "latitude": 46.6033,
+        "longitude": 1.8883
+    },
+    {
+        "bestemming": "Australië",
+        "afbeelding": "./img/4.jpg",
+        "startdatum": "05/06/2024",
+        "einddatum": "20/06/2024",
+        "latitude": -25.2744,
+        "longitude": 133.7751
+    },
+    {
+        "bestemming": "Griekenland",
+        "afbeelding": "./img/8.jpg",
+        "startdatum": "10/08/2024",
+        "einddatum": "25/08/2024",
+        "latitude": 39.0742,
+        "longitude": 21.8243
+    },
+    {
+        "bestemming": "Costa Rica",
+        "afbeelding": "./img/9.jpg",
+        "startdatum": "15/09/2024",
+        "einddatum": "25/09/2024",
+        "latitude": 9.7489,
+        "longitude": -83.7534
+    },
+    {
+        "bestemming": "Zuid-Afrika",
+        "afbeelding": "./img/10.jpg",
+        "startdatum": "01/12/2024",
+        "einddatum": "15/12/2024",
+        "latitude": -30.5595,
+        "longitude": 22.9375
+    }
+]

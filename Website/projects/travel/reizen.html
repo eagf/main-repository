@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Reizen</title>
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <header class="menu-top">
+        <a href="./index.html">Home</a>
+        <a id="active" href="./reizen.html">Reizen</a>
+        <a href="./updates.html">Updates</a>
+        <a href="./contact.html">Contact</a>
+        <h2 class="logo">Dream destination</h2>
+    </header>
+    <video id="video" src="./img/plane.mp4" muted loop autoplay></video>
+    <div class="page-content">
+        <div class="grid-container">
+            <script>
+                // Automatisch invullen grid
+
+                const gridContainer = document.querySelector('.grid-container');
+
+                async function leesBestemmingen() {
+                    const response = await fetch("./bestemmingen.json");
+                    const bestemmingen = await response.json();
+                    invullenGridItems(bestemmingen);
+                }
+
+                function invullenGridItems(bestemmingen) {
+
+                    bestemmingen.forEach((item, index) => {
+                        const gridItem = document.createElement('div');
+                        gridItem.classList.add('grid-item');
+
+                        const title = document.createElement('h3');
+                        title.textContent = item.bestemming;
+
+                        const image = document.createElement('img');
+                        image.src = item.afbeelding;
+                        image.alt = item.bestemming;
+
+                        const date = document.createElement('p');
+                        date.textContent = `${item.startdatum} - ${item.einddatum}`;
+
+                        const button = document.createElement('button');
+                        button.textContent = 'Meer info';
+                        button.setAttribute('onclick', `openMeerInfo(${index})`);
+
+                        gridItem.appendChild(title);
+                        gridItem.appendChild(image);
+                        gridItem.appendChild(date);
+                        gridItem.appendChild(button);
+
+                        gridContainer.appendChild(gridItem);
+                    });
+                }
+
+                function openMeerInfo(index) {
+                    window.location.href = `./meerInfo.html?index=${index}`;
+                }
+
+                leesBestemmingen();
+
+            </script>
+            
+        </div>
+    </div>
+</body>
+
+</html>
