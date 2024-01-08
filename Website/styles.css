@@ -49,8 +49,8 @@ body {
     justify-content: center;
     margin: 0;
     padding: 0;
+    width: 100vw;
     width: 100%;
-    min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
     background-color: #fff;
 }
@@ -70,7 +70,7 @@ div#container {
 header {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    max-width: 100%;
     height: 25vw;
     max-height: 250px;
     margin-bottom: 2rem;
@@ -79,14 +79,16 @@ header {
 /* Left side header ------------------------------------- */
 
 header #header-left-div {
-    padding: var(--line-width-profile);
+    border: var(--line-width-profile) solid var(--main-color);
     background-color: var(--main-color);
+    width: fit-content;
 }
 
 /* Elias Ferket Photo */
 
 #header-left-div #elias-ferket-img {
     height: 100%;
+    width: auto;
 }
 
 /* Right side header ------------------------------------ */
@@ -132,6 +134,7 @@ header #header-right-div {
     #header-right-div #header-text-div {
         padding-bottom: 10px;
     }
+
     #title-div .title-text {
         font-size: 48px;
     }
@@ -192,6 +195,7 @@ header #header-right-div {
         height: 50px;
         width: 50px;
     }
+
     #header-nav #projects {
         height: 30px;
         padding: 10px 20px;
@@ -203,10 +207,12 @@ header #header-right-div {
     #title-div .title-text {
         font-size: 36px;
     }
+
     #header-nav #linkedIn {
         height: 41px;
         width: 41px;
     }
+
     #header-nav #projects {
         height: 25px;
         padding: 8px 12px;
