@@ -82,6 +82,7 @@ header #header-left-div {
     border: var(--line-width-profile) solid var(--main-color);
     background-color: var(--main-color);
     width: 35vw;
+    max-width: 220px;
     overflow: hidden;
 }
 
@@ -89,6 +90,7 @@ header #header-left-div {
 
 #header-left-div #elias-ferket-img {
     width: 100%;
+    max-width: 220px;
 }
 
 /* Right side header ------------------------------------ */
