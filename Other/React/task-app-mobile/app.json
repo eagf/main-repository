@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "task-app-mobile",
-    "slug": "task-app-mobile",
+    "name": "task-app",
+    "slug": "snack-8d2781b6-ca81-4e48-8878-10c6a9db47b1",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,17 +21,10 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.eliasferket.taskappmobile",
-      "softwareKeyboardLayoutMode" : "pan"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "d83f2df4-0a0c-4f38-997a-15d61db7f422"
-      }
     }
   }
 }
