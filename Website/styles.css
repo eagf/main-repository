@@ -70,10 +70,10 @@ div#container {
 header {
     display: flex;
     flex-direction: row;
+    width: 100%;
     max-width: 100%;
     height: 25vw;
     max-height: 250px;
-    margin-bottom: 2rem;
 }
 
 /* Left side header ------------------------------------- */
@@ -81,14 +81,14 @@ header {
 header #header-left-div {
     border: var(--line-width-profile) solid var(--main-color);
     background-color: var(--main-color);
-    width: fit-content;
+    width: 35vw;
+    overflow: hidden;
 }
 
 /* Elias Ferket Photo */
 
 #header-left-div #elias-ferket-img {
-    height: 100%;
-    width: auto;
+    width: 100%;
 }
 
 /* Right side header ------------------------------------ */
@@ -315,6 +315,7 @@ header #header-right-div {
 
 body #below-header {
     width: 100%;
+    margin-top: 2rem;
 }
 
 h2 {
