@@ -21,7 +21,7 @@ const observedCheck = new IntersectionObserver((elements) => {
         console.log(element);
         if (element.isIntersecting) {
             element.target.classList.add('visible');
-        } 
+        }
     })
 })
 
