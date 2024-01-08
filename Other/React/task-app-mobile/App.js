@@ -74,6 +74,8 @@ export default function App() {
   const [taskPrio, setTaskPrio] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [heightStatus, setHeightStatus] = useState('small');
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
 
   // Modal-menu
 
@@ -245,6 +247,29 @@ export default function App() {
     setShowDatePicker(true);
   };
 
+  const handleDatePicked = (event, selectedDate) => {
+    if (event.type === 'set') {
+      setShowDatePicker(false);
+      if (selectedDate) {
+        setTaskDate(selectedDate);
+        setShowTimePicker(true);
+      }
+    } else {
+      setShowDatePicker(false);
+    }
+  };
+
+  const handleTimePicked = (event, selectedTime) => {
+    if (event.type === 'set') {
+      setShowTimePicker(false);
+      if (selectedTime) {
+        setTaskTime(selectedTime);
+      }
+    } else {
+      setShowTimePicker(false);
+    }
+  };
+
   // Force update Flatlist
 
   const sortedTasks = useMemo(() => sortTasks(tasks), [tasks]);
@@ -275,6 +300,13 @@ export default function App() {
         addTask={addTask}
         togglePrio={togglePrio}
         taskPrio={taskPrio}
+        taskDate={taskDate}
+        taskTime={taskTime}
+        showDatePicker={showDatePicker}
+        showTimePicker={showTimePicker}
+        setShowDatePicker={setShowDatePicker}
+        handleDatePicked={handleDatePicked}
+        handleTimePicked={handleTimePicked}
       />
 
       {/* Takenlijst --------------------------------------------------------------- */}

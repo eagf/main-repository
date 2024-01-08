@@ -1,36 +1,24 @@
+// Input.js
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Image, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+
 import styles from '../styles';
 
-const Input = ({ taskText, setTaskText, addTask, togglePrio, taskPrio }) => {
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
-  const [taskDate, setTaskDate] = useState('');
-  const [taskTime, setTaskTime] = useState('');
-
-  const handleDatePicked = (event, selectedDate) => {
-    if (event.type === 'set') {
-      setShowDatePicker(false);
-      if (selectedDate) {
-        setTaskDate(selectedDate);
-        setShowTimePicker(true);
-      }
-    } else {
-      setShowDatePicker(false);
-    }
-  };
-
-  const handleTimePicked = (event, selectedTime) => {
-    if (event.type === 'set') {
-      setShowTimePicker(false);
-      if (selectedTime) {
-        setTaskTime(selectedTime);
-      }
-    } else {
-      setShowTimePicker(false);
-    }
-  };
+const Input = ({
+  taskText,
+  setTaskText,
+  addTask,
+  togglePrio,
+  taskPrio,
+  taskDate,
+  taskTime,
+  showDatePicker,
+  showTimePicker,
+  setShowDatePicker,
+  handleDatePicked,
+  handleTimePicked
+}) => {
 
   return (
     <View style={styles.inputContainer}>
@@ -50,8 +38,8 @@ const Input = ({ taskText, setTaskText, addTask, togglePrio, taskPrio }) => {
               taskDate && !taskTime
                 ? require('../assets/dateSet.png')
                 : taskDate && taskTime
-                ? require('../assets/dateTimeSet.png')
-                : require('../assets/dateTime.png')
+                  ? require('../assets/dateTimeSet.png')
+                  : require('../assets/dateTime.png')
             }
             style={styles.dateTimeImage}
           />

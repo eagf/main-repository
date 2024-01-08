@@ -16,17 +16,22 @@ const styles = StyleSheet.create({
   // Header ------------------------------------------------------------------------------
 
   headerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: '#4CAF50',
     width: '100%',
-    paddingVertical: 15,
-    paddingHorizontal: 40,
+    paddingVertical: 10,
+    paddingRight: 20,
+    paddingLeft: 10,
   },
   titleApp: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#fff',
-    textTransform: 'uppercase',
-    textAlign: 'center',
+    height: 50,
+    width: 240,
+    resizeMode: 'center',
+  },
+  modalOpenButton: {
   },
 
   // Input -------------------------------------------------------------------------------
@@ -171,12 +176,6 @@ const styles = StyleSheet.create({
 
   // Menu and menuoptions -----------------------------------------------------------------------
 
-  modalOpenButton: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    margin: 7,
-  },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
