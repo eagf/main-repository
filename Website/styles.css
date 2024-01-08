@@ -347,7 +347,6 @@ h2 {
 /* ICT skills ------------------------------------------- */
 
 #below-header #ict-skills {
-    z-index: 50;
     display: flex;
     flex-direction: column;
 }
