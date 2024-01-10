@@ -144,28 +144,28 @@ header {
     #index-container .header-img-container {
         padding-top: 1.8em;
     }
-    
+
     .header-img-container {
         height: auto;
         align-content: center;
     }
-    
+
     .header-img-container a {
         height: auto;
     }
-    
+
     .header-img {
         height: 3em;
     }
-    
+
     .header-img:hover {
         height: 3.2em;
     }
-    
+
     .header-listitem.active {
         font-size: 1.2vw;
     }
-    
+
     .header-link {
         font-size: 1vw;
     }
@@ -263,14 +263,14 @@ header {
     text-align: center;
     box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.2);
     /* animation: growAndShrink 4s infinite; */
-    transition: 
-    background-color 0.2s, 
-    border-color 0.2s, 
-    border 0.2s, 
-    padding 0.2s, 
-    border-radius 0.2s,
-    font-size 0.2s,
-    transform 0.4s;
+    transition:
+        background-color 0.2s,
+        border-color 0.2s,
+        border 0.2s,
+        padding 0.2s,
+        border-radius 0.2s,
+        font-size 0.2s,
+        transform 0.4s;
 }
 
 #button-container a:hover {
@@ -289,15 +289,17 @@ header {
 
 @keyframes shrinkAndRestore {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
+
     50% {
-      transform: scale(0.6);
+        transform: scale(0.6);
     }
+
     100% {
-      transform: scale(1);
+        transform: scale(1);
     }
-  }
+}
 
 /* @keyframes growAndShrink {
     0% {
@@ -311,7 +313,7 @@ header {
     }
   } */
 
-  
+
 /* #button1 {
     animation-delay: 0s;
 }
@@ -381,19 +383,22 @@ header {
     }
 
     #index-container .header-img-container {
-       align-self: flex-start;
-       padding-left: 1em;
+        align-self: flex-start;
+        padding-left: 1em;
     }
 
     #img-container {
         padding-top: 5vh;
     }
+
     #left-wrapper h1 {
         font-size: 8vw;
     }
+
     #left-wrapper h3 {
         font-size: 5vw;
     }
+
     #button-container a {
         font-size: 4vw;
     }
@@ -427,15 +432,26 @@ header {
 
 /* Documenten <-----------------------------------  */
 
-#documenten-container {}
+#documenten-container {
+    margin-top: 20px;
+}
 
 #documenten-grid-container {
-    max-width: 100%;
-    height: max-content;
-    margin: 0 auto;
     display: grid;
-    padding: 20px;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.grid-item {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.grid-item:hover {
+    background-color: #e0e0e0;
 }
 
 /* Contact <-----------------------------------  */

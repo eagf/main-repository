@@ -427,16 +427,7 @@ header {
 
 /* Documenten <-----------------------------------  */
 
-#documenten-container {}
 
-#documenten-grid-container {
-    max-width: 100%;
-    height: max-content;
-    margin: 0 auto;
-    display: grid;
-    padding: 20px;
-    gap: 1rem;
-}
 
 /* Contact <-----------------------------------  */
 

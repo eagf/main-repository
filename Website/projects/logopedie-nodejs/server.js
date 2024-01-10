@@ -1,33 +1,33 @@
-// server.js
+"use strict";
+
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
-const fs = require('fs').promises;
 
 const app = express();
 const port = 3000;
 
-// Serve static files (including your HTML file)
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public')); // Assuming your server.js and documenten folder are in the same directory.
 
-// Serve API endpoint for file list
-app.get('/files', async (req, res) => {
-    try {
-        const files = await getFilesList();
-        res.json(files);
-    } catch (error) {
-        console.error('Error fetching file list:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'documenten.html'));
 });
 
-// Helper function to fetch the list of files
-async function getFilesList() {
-    const filesFolder = path.join(__dirname, 'files');
-    const fileNames = await fs.readdir(filesFolder);
-    return fileNames;
-}
+app.get('/files', (req, res) => {
+  // Read the contents of the "documenten" folder
+  const documentenFolderPath = path.join(__dirname, 'documenten');
+  
+  fs.readdir(documentenFolderPath, (err, files) => {
+    if (err) {
+      console.error('Error reading directory:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
 
-// Start the server
+    res.json(files);
+  });
+});
+
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
