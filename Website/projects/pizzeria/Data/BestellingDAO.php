@@ -2,15 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Data;
-
-use Data\BaseDAO;
-use \PDO;
-
-use Business\ProductService;
-
-use Entities\Bestelling;
-use Entities\Klant;
+require_once('Data/autoloader.php');
 
 class BestellingDAO extends BaseDAO
 {

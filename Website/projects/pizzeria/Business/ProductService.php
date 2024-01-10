@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Business;
-
-use Data\ProductDAO;
-use Entities\Product;
+require_once('Data/autoloader.php');
 
 class ProductService
 {

@@ -1,9 +1,9 @@
 <?php
 
 declare(strict_types=1);
-
+require_once('Data/autoloader.php');
 session_start();
 
-spl_autoload_register();
+
 
 include("Presentation/infoPresentation.php");

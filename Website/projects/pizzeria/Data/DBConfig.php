@@ -1,6 +1,6 @@
 <?php
 
-namespace Data;
+require_once('Data/autoloader.php');
 
 class DBConfig
 {

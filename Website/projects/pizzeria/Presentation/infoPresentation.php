@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+require_once('Data/autoloader.php');
 ?>
 
 <!DOCTYPE HTML>

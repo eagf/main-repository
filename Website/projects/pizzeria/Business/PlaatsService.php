@@ -2,11 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Business;
-
-use Data\PlaatsDAO;
-use Entities\Klant;
-use Entities\Plaats;
+require_once('Data/autoloader.php');
 
 class PlaatsService
 {

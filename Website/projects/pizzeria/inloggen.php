@@ -2,20 +2,8 @@
 
 declare(strict_types=1);
 
+require_once('Data/autoloader.php');
 session_start();
-
-spl_autoload_register();
-
-use Business\KlantService;
-use Business\PlaatsService;
-
-use Exceptions\KlantBestaatAlException;
-use Exceptions\OngeldigEmailadresException;
-use Exceptions\WachtwoordenKomenNietOvereenException;
-use Exceptions\NietInDatabaseException;
-use Exceptions\WachtwoordIncorrectException;
-
-use Entities\Plaats;
 
 $error = "";
 $klantSrv = new KlantService();

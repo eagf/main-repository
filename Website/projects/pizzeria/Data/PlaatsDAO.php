@@ -2,14 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Data;
-
-use Data\BaseDAO;
-use \PDO;
-
-use Exceptions\NietInDatabaseException;
-
-use Entities\Plaats;
+require_once('Data/autoloader.php');
 
 class PlaatsDAO extends BaseDAO
 {

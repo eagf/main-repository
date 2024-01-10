@@ -2,15 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Data;
-
-use Data\DBConfig;
-
-/*
-Ofwel zonder namespace/use:
 
 require_once __DIR__ . "/DBConfig.php";
-*/
+
 
 /**
  * A Base class where other DAO classes can inherit from.

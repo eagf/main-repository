@@ -1,12 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Data;
-
-use Data\BaseDAO;
-use \PDO;
-
-use Entities\Product;
+require_once('Data/autoloader.php');
 
 class ProductDAO extends BaseDAO
 {

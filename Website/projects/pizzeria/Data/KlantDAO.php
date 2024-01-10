@@ -2,19 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Data;
-
-use Data\BaseDAO;
-use \PDO;
-
-use Exceptions\NietInDatabaseException;
-use Exceptions\KlantBestaatAlException;
-use Exceptions\OngeldigEmailadresException;
-use Exceptions\WachtwoordenKomenNietOvereenException;
-use Exceptions\WachtwoordIncorrectException;
-
-use Entities\Klant;
-use Entities\Plaats;
+require_once('Data/autoloader.php');
 
 class KlantDAO extends BaseDAO
 {

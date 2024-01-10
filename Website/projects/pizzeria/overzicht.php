@@ -2,13 +2,8 @@
 
 declare(strict_types=1);
 
+require_once('Data/autoloader.php');
 session_start();
-
-spl_autoload_register();
-
-use Business\ProductService;
-use Business\KlantService;
-use Business\PlaatsService;
 
 $error = "";
 $productSrv = new ProductService();
