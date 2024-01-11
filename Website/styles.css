@@ -81,17 +81,20 @@ header {
 header #header-left-div {
     border: var(--line-width-profile) solid var(--main-color);
     background-color: var(--main-color);
-    width: 35vw;
-    max-width: 220px;
+    flex: 1;
+    /* width: 100%;
+    max-width: 220px; */
     overflow: hidden;
+    background: url("./img/EliasFerket.jpg") no-repeat top center;
+    background-size: cover;
 }
 
 /* Elias Ferket Photo */
 
-#header-left-div #elias-ferket-img {
+/* #header-left-div #elias-ferket-img {
     width: 100%;
     max-width: 220px;
-}
+} */
 
 /* Right side header ------------------------------------ */
 
@@ -100,7 +103,8 @@ header #header-right-div {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
+    flex: 3;
 }
 
 #header-right-div #header-text-div {
@@ -108,7 +112,8 @@ header #header-right-div {
     flex-direction: row;
     padding-bottom: 15px;
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
+    flex: 2;
     transition: 0.3s;
 }
 
@@ -125,6 +130,7 @@ header #header-right-div {
 }
 
 #title-div .title-text {
+    width: 100%;
     font-weight: 500;
     margin: 0;
     padding: 0;
@@ -146,6 +152,7 @@ header #header-right-div {
 
 #header-right-div #header-nav {
     display: flex;
+    flex: 1;
     align-items: flex-end;
     padding-right: 1vw;
 }
@@ -221,7 +228,7 @@ header #header-right-div {
     }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
     #title-div .title-text {
         font-size: 36px;
     }
@@ -238,46 +245,14 @@ header #header-right-div {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
     #title-div .title-text {
-        font-size: 22px;
+        font-size: 23px;
     }
 
     #header-nav #projects {
-        padding: 5px 5px;
-        background: url('./img/projects.png') no-repeat center center;
-        background-size: cover;
-        background-color: var(--main-color);
-        text-indent: -9999px;
-        overflow: hidden;
-        width: 30px;
-        height: 30px;
-    }
-
-    #header-nav #projects:hover {
-        background: url('./img/projectsBlue.png') no-repeat center center;
-        background-size: cover;
-        background-color: #fff;
-        width: 35px;
-        height: 35px;
-    }
-
-    .icon-button {
-        padding: 5px 5px;
-        width: 30px;
-        height: 30px;
-    }
-
-    .icon-button:hover {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-@media (max-width: 400px) {
-    #header-nav #projects {
-        padding: 3px 3px;
+        padding: 2px 2px;
         background: url('./img/projects.png') no-repeat center center;
         background-size: cover;
         background-color: var(--main-color);
@@ -296,16 +271,16 @@ header #header-right-div {
     }
 
     .icon-button {
-        padding: 3px 3px;
+        padding: 2px 2px;
         width: 25px;
         height: 25px;
+        margin-right: 7px;
     }
 
     .icon-button:hover {
         width: 30px;
         height: 30px;
     }
-
 }
 
 /* Line under Header */
