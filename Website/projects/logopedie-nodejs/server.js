@@ -15,7 +15,6 @@ app.get('/file-titles', (req, res) => {
       console.error(err);
       return res.status(500).json({ error: 'Internal Server Error' });
     }
-
     const fileTitles = files.map(file => path.parse(file).name);
     res.json(fileTitles);
   });
