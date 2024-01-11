@@ -432,11 +432,11 @@ header {
 
 /* Documenten <-----------------------------------  */
 
-#documenten-container {
+#files-container {
     margin-top: 20px;
 }
 
-#documenten-grid-container {
+#files-grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 16px;

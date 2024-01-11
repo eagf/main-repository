@@ -1,36 +1,26 @@
-"use strict";
-
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = 3000; // Choose a port number
 
-app.use(express.static('public')); // Assuming your server.js and documenten folder are in the same directory.
+app.use(express.static('public'));
 
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'documenten.html'));
-// });
+app.get('/file-titles', (req, res) => {
+  const filesDir = path.join(__dirname, 'files');
 
-app.get('https://eliasferket.com/project/logopedie-nodejs/documenten/', (req, res) => {
-    // Read the contents of the "documenten" folder
-    const documentenFolderPath = path.join(__dirname, 'documenten');
+  fs.readdir(filesDir, (err, files) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
 
-    fs.readdir(documentenFolderPath, (err, files) => {
-        if (err) {
-            console.error('Error reading directory:', err);
-            res.status(500).json({ error: 'Internal Server Error' });
-            return;
-        }
-
-        // Set the Content-Type header to application/json
-        res.setHeader('Content-Type', 'application/json');
-
-        res.json(files);
-    });
+    const fileTitles = files.map(file => path.parse(file).name);
+    res.json(fileTitles);
+  });
 });
 
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is listening at http://localhost:${port}`);
 });
