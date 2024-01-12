@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import CookieConsent from './components/CookieConsent';
+import RecipeSubmit from './components/RecipeSubmit';
+import RecipeListUser from './components/RecipeListUser';
+import LoginRegister from './components/LoginRegister';
+import Logout from './components/Logout';
 
-function App() {
+import './styles/Navbar.css';
+
+
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <CookieConsent />
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Submit Recipe</Link>
+            </li>
+            <li>
+              <Link to="/recipes">View Recipes</Link>
+            </li>
+          </ul>
+          <Link to={isLoggedIn ? "/logout" : "/login"}>{isLoggedIn ? "Logout" : "Login / Register"}</Link>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<RecipeSubmit />} />
+          <Route path="/recipes" element={<RecipeListUser />} />
+          <Route path="/login" element={<LoginRegister setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
