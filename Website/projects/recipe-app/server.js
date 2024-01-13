@@ -73,26 +73,33 @@ async function initializeServer() {
                 const token = req.headers.authorization.split(' ')[1];
                 const decoded = jwt.verify(token, 'your_secret_key');
                 const userID = decoded.userId;
+                const searchTerm = req.query.searchTerm || '';
         
-                const [recipes] = await db.query(
-                    'SELECT r.recipeID, r.recipeName, r.cookingSteps, GROUP_CONCAT(i.ingredientName) as ingredients ' +
-                    'FROM recipes r ' +
-                    'LEFT JOIN recipe_ingredients ri ON r.recipeID = ri.recipeID ' +
-                    'LEFT JOIN ingredients i ON ri.ingredientID = i.ingredientID ' +
-                    'WHERE r.userID = ? ' +
-                    'GROUP BY r.recipeID', [userID]
-                );
-
-                // Format the ingredients
-                const formattedRecipes = recipes.map(recipe => {
-                    return {
-                        ...recipe,
-                        ingredients: recipe.ingredients ? recipe.ingredients.split(',') : []
-                    };
-                });
-
+                let query = 'SELECT r.recipeID, r.recipeName, r.cookingSteps, GROUP_CONCAT(i.ingredientName) as ingredients ' +
+                            'FROM recipes r ' +
+                            'LEFT JOIN recipe_ingredients ri ON r.recipeID = ri.recipeID ' +
+                            'LEFT JOIN ingredients i ON ri.ingredientID = i.ingredientID ' +
+                            'WHERE r.userID = ? ';
+        
+                let queryParams = [userID];
+        
+                if (searchTerm !== '') {
+                    query += 'AND LOWER(i.ingredientName) = LOWER(?) ';
+                    queryParams.push(searchTerm.trim());
+                }
+        
+                query += 'GROUP BY r.recipeID';
+        
+                const [recipes] = await db.query(query, queryParams);
+        
+                const formattedRecipes = recipes.map(recipe => ({
+                    ...recipe,
+                    ingredients: recipe.ingredients ? recipe.ingredients.split(',') : []
+                }));
+        
                 res.status(200).json(formattedRecipes);
             } catch (err) {
+                console.error('Error fetching recipes:', err.message);
                 return res.status(500).send('Error processing request');
             }
         });
