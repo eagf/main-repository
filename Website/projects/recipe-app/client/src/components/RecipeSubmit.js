@@ -19,7 +19,6 @@ const RecipeSubmit = () => {
     const [cookingSteps, setCookingSteps] = useState('');
     const [confirmationMessage, setConfirmationMessage] = useState('');
 
-
     const handleAddIngredient = () => {
         setIngredients([...ingredients, '']);
     };
@@ -54,6 +53,9 @@ const RecipeSubmit = () => {
             setTimeout(() => setConfirmationMessage(''), 5000);
         } catch (error) {
             console.error('Error submitting recipe:', error.response ? error.response.data : error);
+            if (error.response && error.response.status === 401) {
+                window.location.href = '/login';
+            }
         }
     };
 

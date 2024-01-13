@@ -1,9 +1,13 @@
 /* Navbar.css */
 nav {
+    display: flex;
+    flex-direction: row;
     background-color: #333;
     color: white;
     padding: 10px 20px;
     text-align: center;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 nav ul {
@@ -29,11 +33,38 @@ nav ul li a:hover, nav ul li a:active {
 }
 
 @media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+    }
     nav ul {
         flex-direction: column;
     }
-
     nav ul li {
         margin: 10px 0;
+    }
+}
+
+nav .auth-link {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff; 
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-left: auto; 
+}
+
+nav .auth-link:hover, nav .auth-link:focus {
+    background-color: #0056b3; 
+    color: white;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    nav .auth-link {
+        width: 40%; 
     }
 }

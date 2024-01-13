@@ -54,7 +54,7 @@ const LoginRegister = ({ setIsLoggedIn }) => {
                 {!isLogin && <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Name" required />}
                 <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
             </form>
-            <button onClick={() => setIsLogin(!isLogin)}>
+            <button className="toggle-button" onClick={() => setIsLogin(!isLogin)}>
                 {isLogin ? 'Go to Register' : 'Go to Login'}
             </button>
         </div>

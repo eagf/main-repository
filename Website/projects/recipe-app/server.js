@@ -15,6 +15,7 @@ app.use(cookieParser());
 async function initializeServer() {
     try {
         // MySQL connection
+
         const db = await mysql.createConnection({
             host: 'localhost',
             user: 'root',
@@ -24,7 +25,8 @@ async function initializeServer() {
 
         console.log('Connected to MySQL');
 
-        // Define routes
+        // Submit a recipe
+
         app.post('/api/recipes', async (req, res) => {
             try {
                 const authHeader = req.headers.authorization;
@@ -37,21 +39,17 @@ async function initializeServer() {
                 const userID = decoded.userId;
 
                 const { recipeName, ingredients, cookingSteps } = req.body;
-                // Insert recipe into 'recipes' table
                 const [recipeResult] = await db.query('INSERT INTO recipes (recipeName, cookingSteps, userID) VALUES (?, ?, ?)', [recipeName, cookingSteps, userID]);
                 const recipeID = recipeResult.insertId;
 
-                // Process each ingredient
-                for (const ingredient of ingredients) {
+                
+                for (const ingredient of ingredients) { // Process each ingredient
                     let ingredientID;
 
-                    // Check if ingredient already exists
-                    const [existing] = await db.query('SELECT ingredientID FROM ingredients WHERE ingredientName = ? ', [ingredient]);
-                    if (existing.length > 0) {
-                        // Ingredient exists, use its ID
+                    const [existing] = await db.query('SELECT ingredientID FROM ingredients WHERE ingredientName = ? ', [ingredient]); // Check if ingredient already exists
+                    if (existing.length > 0) {// Ingredient exists, use its ID
                         ingredientID = existing[0].ingredientID;
-                    } else {
-                        // Ingredient does not exist, insert new ingredient
+                    } else { // Ingredient does not exist, insert new ingredient
                         const [newIngredientResult] = await db.query('INSERT INTO ingredients (ingredientName) VALUES (?)', [ingredient]);
                         ingredientID = newIngredientResult.insertId;
                     }
@@ -67,6 +65,8 @@ async function initializeServer() {
                 res.status(500).send('Error processing request');
             }
         });
+
+        // Get all the recipes from one user
 
         app.get('/api/recipes', async (req, res) => {
             try {
@@ -96,6 +96,40 @@ async function initializeServer() {
                 return res.status(500).send('Error processing request');
             }
         });
+
+        // Get a specific recipe
+
+        app.get('/api/recipes/:id', async (req, res) => {
+            try {
+                const { id } = req.params;
+                const token = req.headers.authorization.split(' ')[1];
+                const decoded = jwt.verify(token, 'your_secret_key');
+                const userID = decoded.userId;
+        
+                // Fetch the specific recipe that belongs to the logged-in user
+                const [recipes] = await db.query(
+                    'SELECT r.recipeID, r.recipeName, r.cookingSteps, GROUP_CONCAT(i.ingredientName) as ingredients ' +
+                    'FROM recipes r ' +
+                    'LEFT JOIN recipe_ingredients ri ON r.recipeID = ri.recipeID ' +
+                    'LEFT JOIN ingredients i ON ri.ingredientID = i.ingredientID ' +
+                    'WHERE r.userID = ? AND r.recipeID = ? ' +
+                    'GROUP BY r.recipeID', [userID, id]
+                );
+        
+                if (recipes.length > 0) {
+                    const recipe = recipes[0];
+                    recipe.ingredients = recipe.ingredients ? recipe.ingredients.split(',') : [];
+                    res.status(200).json(recipe);
+                } else {
+                    res.status(404).send('Recipe not found');
+                }
+            } catch (err) {
+                console.error('Error fetching recipe:', err.message);
+                res.status(500).send('Error processing request');
+            }
+        });
+
+        // Delete a recipe
 
         app.delete('/api/recipes/:id', async (req, res) => {
             try {
@@ -162,6 +196,7 @@ async function initializeServer() {
                 const validPassword = await bcrypt.compare(password, user.password);
                 if (validPassword) {
                     const token = jwt.sign({ userId: user.userID }, 'your_secret_key', { expiresIn: '1h' });
+                    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
                     res.send({ token: token }); // Send the token
                 } else {
                     res.status(401).send('Invalid email or password');
@@ -173,28 +208,14 @@ async function initializeServer() {
             }
         });
 
-
-        app.get('/some-protected-route', (req, res) => {
-            try {
-                const token = req.cookies.token;
-                const decoded = jwt.verify(token, 'your_secret_key');
-                // Proceed if token is valid
-            } catch (error) {
-                res
-                    .status(401).send('Unauthorized: Invalid token');
-            }
-        });
-
         // Logout
 
         app.post('/api/logout', (req, res) => {
-            // If you have server-side session management or token blacklisting, handle it here.
-            // For JWT, usually, you just need to instruct the client to clear the token.
-
             res.send('Logged out successfully');
         });
 
         // Start server
+
         const PORT = process.env.PORT || 3001;
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);

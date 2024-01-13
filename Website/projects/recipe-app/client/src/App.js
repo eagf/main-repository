@@ -5,10 +5,9 @@ import RecipeSubmit from './components/RecipeSubmit';
 import RecipeListUser from './components/RecipeListUser';
 import LoginRegister from './components/LoginRegister';
 import Logout from './components/Logout';
+import RecipeDetail from './components/RecipeDetail';
 
 import './styles/Navbar.css';
-
-
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,6 +20,7 @@ const App = () => {
   }, []);
 
   return (
+
     <Router>
       <div className="App">
         <CookieConsent />
@@ -33,7 +33,9 @@ const App = () => {
               <Link to="/recipes">View Recipes</Link>
             </li>
           </ul>
-          <Link to={isLoggedIn ? "/logout" : "/login"}>{isLoggedIn ? "Logout" : "Login / Register"}</Link>
+          <Link to={isLoggedIn ? "/logout" : "/login"} className="auth-link">
+            {isLoggedIn ? "User" : "Login / Register"}
+          </Link>
         </nav>
 
         <Routes>
@@ -41,9 +43,11 @@ const App = () => {
           <Route path="/recipes" element={<RecipeListUser />} />
           <Route path="/login" element={<LoginRegister setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
         </Routes>
       </div>
     </Router>
+
   );
 }
 

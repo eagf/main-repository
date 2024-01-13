@@ -36,24 +36,22 @@ const RecipeListUser = () => {
             setRecipes(recipes.filter(recipe => recipe.recipeID !== recipeID));
         } catch (error) {
             console.error('Error deleting recipe', error);
-        }
+        };
     };
 
     return (
         <div className="recipe-list">
             {recipes.map(recipe => (
                 <div key={recipe.recipeID} className="recipe-grid">
-                    <
-                        h3>{recipe.recipeName}</h3>
+                    <h3>{recipe.recipeName}</h3>
                     <ul>
                         {recipe.ingredients.map((ingredient, index) => (
                             <li key={index}>{ingredient}</li>
                         ))}
                     </ul>
                     <p>{recipe.cookingSteps}</p>
-                    <button onClick={() => handleDelete(recipe.recipeID)} className="delete-button">
-                        Delete
-                    </button>
+                    <button onClick={() => navigate(`/recipes/${recipe.recipeID}`)} className="view-details-button">View Details</button>
+                    <button onClick={() => handleDelete(recipe.recipeID)} className="delete-button">Delete</button>
                 </div>
             ))}
         </div>

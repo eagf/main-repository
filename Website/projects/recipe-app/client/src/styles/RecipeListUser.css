@@ -45,3 +45,25 @@
         grid-template-columns: 1fr;
     }
 }
+
+.view-details-button {
+    background-color: #28a745; 
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 10px; 
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view-details-button:hover {
+    background-color: #218838; 
+}
+
+@media (max-width: 600px) {
+    .view-details-button {
+        width: 100%; 
+        margin-bottom: 10px; 
+    }
+}
