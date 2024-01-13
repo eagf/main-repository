@@ -1,19 +1,48 @@
 /* Logout.css */
 
 .logout-container {
+    max-width: 400px;
+    margin: auto;
     text-align: center;
-    margin-top: 20px;
+    padding: 20px;
+}
+
+.logout-container h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.delete-all-recipes-button, .logout-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 10px;
+    transition: background-color 0.3s;
 }
 
 .logout-button {
-    background-color: #ff4d4d;
+    background-color: #007bff;
     color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .logout-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-all-recipes-button {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.delete-all-recipes-button:hover {
     background-color: #cc0000;
+}
+
+@media (max-width: 600px) {
+    .logout-container {
+        width: calc(100% - 40px);
+    }
 }

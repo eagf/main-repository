@@ -2,14 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import '../styles/RecipeDetail.css';
 
 const RecipeDetail = () => {
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/login');
+        } 
+    }, [navigate, token]);
+
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useState(null);
-
-    const token = localStorage.getItem('token');
 
     useEffect(() => {
         const fetchRecipe = async () => {

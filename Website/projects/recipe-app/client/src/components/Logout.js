@@ -1,34 +1,53 @@
-// Logout.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/Logout.css';
 
-
 const Logout = ({ setIsLoggedIn }) => {
-
     const navigate = useNavigate();
+    const [userName, setUserName] = useState('');
+
+    useEffect(() => {
+        // Retrieve the user's name from localStorage
+        const name = localStorage.getItem('userName');
+        if (name) {
+            setUserName(name);
+        }
+    }, []);
 
     const handleLogout = async () => {
         try {
-            // Call the logout endpoint
             await axios.post('http://localhost:3001/api/logout');
-
-            // Clear the token from localStorage
             localStorage.removeItem('token');
-            setIsLoggedIn(false); // Update login state
-
-            // Redirect or update UI as needed
+            localStorage.removeItem('userName'); // Remove userName from localStorage
+            setIsLoggedIn(false);
             console.log('Logged out successfully');
-            navigate('/login'); // Redirect to LoginRegister page
+            navigate('/login');
         } catch (error) {
             console.error('Logout failed:', error.response ? error.response.data : error.message);
         }
     };
 
+    const handleDeleteAllRecipes = async () => {
+        const confirmDelete = window.confirm("Are you sure you want to delete all your recipes?");
+        if (confirmDelete) {
+            try {
+                // Replace with your API endpoint to delete all recipes
+                await axios.delete('http://localhost:3001/api/delete-all-recipes', {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                });
+                console.log('All recipes deleted successfully');
+            } catch (error) {
+                console.error('Error deleting recipes', error.response ? error.response.data : error.message);
+            }
+        }
+    };
+
     return (
         <div className="logout-container">
+            <h2>Welcome, {userName}!</h2>
+            <button onClick={handleDeleteAllRecipes} className="delete-all-recipes-button">Delete All My Recipes</button>
             <button onClick={handleLogout} className="logout-button">Logout</button>
         </div>
     );
