@@ -1,15 +1,16 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const cookieParser = require('cookie-parser');
+
 app.use(cookieParser());
 
 async function initializeServer() {
