@@ -10,25 +10,24 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const RecipeDetail = () => {
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-
-    useEffect(() => {
-        if (!token) {
-            navigate('/login');
-        } 
-    }, [navigate, token]);
-
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useState(null);
 
     useEffect(() => {
         const fetchRecipe = async () => {
             try {
+                const token = localStorage.getItem('token');
                 const response = await axios.get(`${apiUrl}/api/recipes/${recipeId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setRecipe(response.data);
             } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    // JWT is expired or invalid
+                    localStorage.removeItem('token');
+                    // Update the login state and/or redirect to login
+                    navigate('/login');
+                }
                 console.error('Error fetching recipe details', error);
             }
         };

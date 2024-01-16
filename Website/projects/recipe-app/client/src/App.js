@@ -22,7 +22,6 @@ const App = () => {
   }, []);
 
   return (
-//  basename="/projects/recipe-app"
     <Router basename={apiUrl}>
       <div className="App">
         <CookieConsent />

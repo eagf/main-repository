@@ -24,7 +24,7 @@ const LoginRegister = ({ setIsLoggedIn }) => {
             const endpoint = isLogin ? `${apiUrl}/api/login` : `${apiUrl}/api/register`;
             const userData = isLogin ? { email, password } : { email, name, password };
 
-            const response = await axios.post(`http://localhost:3001${endpoint}`, userData);
+            const response = await axios.post(`${endpoint}`, userData);
 
             if (isLogin) {
                 if (response.data.token) {

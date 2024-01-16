@@ -15,6 +15,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// app.use(cors({
+//     origin: 'https://eliasferket.com/projects/recipe-app'
+// }));
+
 app.use(express.static(path.join(__dirname, 'build')));
 
 async function initializeServer() {
@@ -32,6 +36,8 @@ async function initializeServer() {
         const db = await mysql.createConnection(dbConfig);
         console.log('Connected to MySQL');
 
+        console.log('Server is running out of: ', __dirname);
+
         // Submit a recipe
 
         app.post('/api/recipes', async (req, res) => {
@@ -42,7 +48,12 @@ async function initializeServer() {
                 }
 
                 const token = authHeader.split(' ')[1];
-                const decoded = jwt.verify(token, 'your_secret_key');
+                let decoded;
+                try {
+                    decoded = jwt.verify(token, 'your_secret_key');
+                } catch (err) {
+                    return res.status(401).send('Invalid or expired token.');
+                }
                 const userID = decoded.userId;
 
                 const { recipeName, ingredients, cookingSteps } = req.body;

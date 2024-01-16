@@ -14,7 +14,7 @@ const RecipeSubmit = () => {
         if (!token) {
             navigate('/login');
         }
-    }, [navigate, token]);
+    }, []);
 
     const [recipeName, setRecipeName] = useState('');
     const [ingredients, setIngredients] = useState(['']);
@@ -54,10 +54,13 @@ const RecipeSubmit = () => {
             // Optionally, clear the message after a few seconds
             setTimeout(() => setConfirmationMessage(''), 5000);
         } catch (error) {
-            console.error('Error submitting recipe:', error.response ? error.response.data : error);
             if (error.response && error.response.status === 401) {
-                window.location.href = '/login';
+                // JWT is expired or invalid
+                localStorage.removeItem('token');
+                // Update the login state and/or redirect to login
+                navigate('/login');
             }
+            console.error('Error submitting recipe:', error.response ? error.response.data : error);
         }
     };
 

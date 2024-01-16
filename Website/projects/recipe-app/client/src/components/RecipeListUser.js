@@ -13,13 +13,15 @@ const RecipeListUser = () => {
     useEffect(() => {
         if (!token) {
             navigate('/login');
-        } else {
-            fetchRecipes();
         }
-    }, [navigate, token]);
+    }, []);
 
     const [recipes, setRecipes] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+        fetchRecipes('');
+    }, []);
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -37,6 +39,12 @@ const RecipeListUser = () => {
             });
             setRecipes(response.data);
         } catch (error) {
+            if (error.response && error.response.status === 401) {
+                // JWT is expired or invalid
+                localStorage.removeItem('token');
+                // Update the login state and/or redirect to login
+                navigate('/login');
+            }
             console.error('Error fetching recipes', error);
         }
     };
