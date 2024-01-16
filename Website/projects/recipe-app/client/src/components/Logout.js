@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../styles/Logout.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Logout = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
     const [userName, setUserName] = useState('');
@@ -18,7 +20,7 @@ const Logout = ({ setIsLoggedIn }) => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:3001/api/logout');
+            await axios.post(`${apiUrl}/api/logout`);
             localStorage.removeItem('token');
             localStorage.removeItem('userName'); // Remove userName from localStorage
             setIsLoggedIn(false);
@@ -34,7 +36,7 @@ const Logout = ({ setIsLoggedIn }) => {
         if (confirmDelete) {
             try {
                 // Replace with your API endpoint to delete all recipes
-                await axios.delete('http://localhost:3001/api/delete-all-recipes', {
+                await axios.delete(`${apiUrl}/api/delete-all-recipes`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });
                 console.log('All recipes deleted successfully');

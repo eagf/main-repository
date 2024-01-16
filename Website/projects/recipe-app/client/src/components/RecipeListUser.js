@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../styles/RecipeListUser.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const RecipeListUser = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
@@ -29,7 +31,7 @@ const RecipeListUser = () => {
 
     const fetchRecipes = async (currentSearchTerm) => {
         try {
-            const response = await axios.get('http://localhost:3001/api/recipes', {
+            const response = await axios.get(`${apiUrl}/api/recipes`, {
                 headers: { Authorization: `Bearer ${token}` },
                 params: { searchTerm: currentSearchTerm }
             });
@@ -43,7 +45,7 @@ const RecipeListUser = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this recipe?");
         if (confirmDelete) {
             try {
-                await axios.delete(`http://localhost:3001/api/recipes/${recipeID}`);
+                await axios.delete(`${apiUrl}/api/recipes/${recipeID}`);
                 setRecipes(recipes.filter(recipe => recipe.recipeID !== recipeID));
             } catch (error) {
                 console.error('Error deleting recipe', error);

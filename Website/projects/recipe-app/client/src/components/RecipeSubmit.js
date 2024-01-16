@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../styles/RecipeSubmit.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const RecipeSubmit = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
@@ -32,7 +34,7 @@ const RecipeSubmit = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post('http://localhost:3001/api/recipes', {
+            await axios.post(`${apiUrl}/api/recipes`, {
                 recipeName,
                 ingredients,
                 cookingSteps

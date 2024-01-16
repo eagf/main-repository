@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../styles/LoginRegister.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const LoginRegister = ({ setIsLoggedIn }) => {
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState('');
@@ -19,7 +21,7 @@ const LoginRegister = ({ setIsLoggedIn }) => {
         setErrorMessage(''); // Reset error message
 
         try {
-            const endpoint = isLogin ? '/api/login' : '/api/register';
+            const endpoint = isLogin ? `${apiUrl}/api/login` : `${apiUrl}/api/register`;
             const userData = isLogin ? { email, password } : { email, name, password };
 
             const response = await axios.post(`http://localhost:3001${endpoint}`, userData);

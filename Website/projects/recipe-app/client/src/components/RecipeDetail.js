@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../styles/RecipeDetail.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const RecipeDetail = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
@@ -22,7 +24,7 @@ const RecipeDetail = () => {
     useEffect(() => {
         const fetchRecipe = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/api/recipes/${recipeId}`, {
+                const response = await axios.get(`${apiUrl}/api/recipes/${recipeId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setRecipe(response.data);
