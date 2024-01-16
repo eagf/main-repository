@@ -15,8 +15,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-// Serve static files from the React build directory
-// Update the path as per your directory structure
 app.use(express.static(path.join(__dirname, 'build')));
 
 async function initializeServer() {
