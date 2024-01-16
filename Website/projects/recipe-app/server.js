@@ -1,4 +1,7 @@
+require('dotenv').config();
+
 const express = require('express');
+const path = require('path');
 const mysql = require('mysql2/promise');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
@@ -12,17 +15,24 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// Serve static files from the React build directory
+// Update the path as per your directory structure
+app.use(express.static(path.join(__dirname, 'build')));
+
+
 async function initializeServer() {
     try {
+
         // MySQL connection
 
-        const db = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'recipe-db'
-        });
+        const dbConfig = {
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASS,
+            database: process.env.DB_NAME
+        };
 
+        const db = await mysql.createConnection(dbConfig);
         console.log('Connected to MySQL');
 
         // Submit a recipe
@@ -155,27 +165,27 @@ async function initializeServer() {
         });
 
         // Endpoint to delete all recipes of the logged-in user
-        
+
         app.delete('/api/delete-all-recipes', async (req, res) => {
             try {
                 const authHeader = req.headers.authorization;
                 if (!authHeader || !authHeader.startsWith('Bearer ')) {
                     return res.status(401).send('Access denied. No token provided.');
                 }
-        
+
                 const token = authHeader.split(' ')[1];
                 const decoded = jwt.verify(token, 'your_secret_key');
                 const userID = decoded.userId;
-        
+
                 // First delete entries from the recipe_ingredients table
                 await db.query(
                     'DELETE ri FROM recipe_ingredients ri JOIN recipes r ON ri.recipeID = r.recipeID WHERE r.userID = ?',
                     [userID]
                 );
-        
+
                 // Then delete from recipes table
                 await db.query('DELETE FROM recipes WHERE userID = ?', [userID]);
-        
+
                 res.status(200).send('All recipes deleted successfully');
             } catch (err) {
                 if (err.name === 'JsonWebTokenError') {
@@ -251,6 +261,11 @@ async function initializeServer() {
 
         app.post('/api/logout', (req, res) => {
             res.send('Logged out successfully');
+        });
+
+        // Serve the React application for any other route not handled by your API
+        app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, 'build', 'index.html'));
         });
 
         // Start server
