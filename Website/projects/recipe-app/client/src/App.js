@@ -20,8 +20,8 @@ const App = () => {
   }, []);
 
   return (
-
-    <Router>
+//  basename="/projects/recipe-app"
+    <Router >
       <div className="App">
         <CookieConsent />
         <nav>
