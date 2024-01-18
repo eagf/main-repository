@@ -35,7 +35,8 @@ const RecipeListUser = () => {
         try {
             const response = await axios.get(`${apiUrl}/api/recipes`, {
                 headers: { Authorization: `Bearer ${token}` },
-                params: { searchTerm: currentSearchTerm }
+                params: { searchTerm: currentSearchTerm },
+                withCredentials: true // cookies
             });
             setRecipes(response.data);
         } catch (error) {

@@ -9,7 +9,8 @@ import RecipeDetail from './components/RecipeDetail';
 
 import './styles/Navbar.css';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
+const apiUrl = process.env.REACT_APP_API_URL;
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,7 +23,7 @@ const App = () => {
   }, []);
 
   return (
-    <Router basename={apiUrl}>
+    <Router basename={baseUrl}>
       <div className="App">
         <CookieConsent />
         <nav>

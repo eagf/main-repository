@@ -18,7 +18,8 @@ const RecipeDetail = () => {
             try {
                 const token = localStorage.getItem('token');
                 const response = await axios.get(`${apiUrl}/api/recipes/${recipeId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}` },
+                    withCredentials: true // cookies
                 });
                 setRecipe(response.data);
             } catch (error) {
