@@ -2,6 +2,14 @@
 
 <?php
 
+session_start();
+
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: http://localhost:3000'); // Allow requests from your React app domain
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS'); // Make sure to include OPTIONS
+header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
 // Load .env file
 if (file_exists(__DIR__ . '/.env')) {
     $lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

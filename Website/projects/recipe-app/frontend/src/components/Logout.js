@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,10 @@ const Logout = ({ setIsLoggedIn }) => {
 
     const handleLogout = async () => {
         try {
-            await axios.post(`${apiUrl}/api/logout`);
+            await axios.post(`${apiUrl}/api/logout.php`, {}, {
+                withCredentials: true,
+            });
+            localStorage.removeItem('sessionToken');
             setIsLoggedIn(false);
             console.log('Logged out successfully');
             navigate('/login');

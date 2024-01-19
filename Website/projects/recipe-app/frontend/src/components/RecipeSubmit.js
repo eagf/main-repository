@@ -34,7 +34,7 @@ const RecipeSubmit = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post(`${apiUrl}/api/recipes`, {
+            await axios.post(`${apiUrl}/api/recipes.php`, {
                 recipeName,
                 ingredients,
                 cookingSteps

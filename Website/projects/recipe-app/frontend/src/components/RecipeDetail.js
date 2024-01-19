@@ -17,7 +17,7 @@ const RecipeDetail = () => {
         const fetchRecipe = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`${apiUrl}/api/recipes/${recipeId}`, {
+                const response = await axios.get(`${apiUrl}/api/recipes.php/${recipeId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                     withCredentials: true // cookies
                 });

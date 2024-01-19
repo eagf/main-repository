@@ -8,13 +8,6 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const RecipeListUser = () => {
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-
-    useEffect(() => {
-        if (!token) {
-            navigate('/login');
-        }
-    }, []);
 
     const [recipes, setRecipes] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -33,17 +26,14 @@ const RecipeListUser = () => {
 
     const fetchRecipes = async (currentSearchTerm) => {
         try {
-            const response = await axios.get(`${apiUrl}/api/recipes`, {
-                headers: { Authorization: `Bearer ${token}` },
+            const response = await axios.get(`${apiUrl}/api/recipes.php`, {
                 params: { searchTerm: currentSearchTerm },
-                withCredentials: true // cookies
+                withCredentials: true // Important for sessions
             });
             setRecipes(response.data);
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                // JWT is expired or invalid
-                localStorage.removeItem('token');
-                // Update the login state and/or redirect to login
+                // Session is expired or invalid
                 navigate('/login');
             }
             console.error('Error fetching recipes', error);
@@ -54,13 +44,16 @@ const RecipeListUser = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this recipe?");
         if (confirmDelete) {
             try {
-                await axios.delete(`${apiUrl}/api/recipes/${recipeID}`);
+                await axios.delete(`${apiUrl}/api/recipes.php/${recipeID}`, {
+                    withCredentials: true // Important for sessions
+                });
                 setRecipes(recipes.filter(recipe => recipe.recipeID !== recipeID));
             } catch (error) {
                 console.error('Error deleting recipe', error);
             }
         }
     };
+    
     return (
         <div>
             <div className="search-bar">

@@ -24,14 +24,20 @@ const LoginRegister = ({ setIsLoggedIn }) => {
             const endpoint = isLogin ? `${apiUrl}/api/login.php` : `${apiUrl}/api/register.php`;
             const userData = isLogin ? { email, password } : { email, name, password };
 
+            const sessionToken = localStorage.getItem('sessionToken');
+
             const response = await axios.post(`${endpoint}`, userData, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionToken}` // Send session token in the Authorization header
                 }
             });
 
             if (isLogin) {
                 if (response.data) {
+                    // Store the session token (userID) in local storage
+                    localStorage.setItem('sessionToken', response.data.sessionToken);
+    
                     setIsLoggedIn(true);
                     navigate('/');
                 } else {

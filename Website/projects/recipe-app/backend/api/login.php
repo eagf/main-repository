@@ -3,7 +3,9 @@
 <?php
 
 require_once __DIR__ . '/../config.php';
-session_start(); // Start the session
+
+session_start();
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: http://localhost:3000'); // Allow requests from your React app domain
 header('Access-Control-Allow-Credentials: true');
@@ -49,14 +51,20 @@ try {
 
     // Compare the provided password with the stored hashed password
     $validPassword = password_verify($password, $user['password']);
+
     if ($validPassword) {
-        // Store user data in the session
-        $_SESSION['userID'] = $user['userID'];
+        // Use the userID as the session token
+        $sessionToken = $user['userID']; // Directly using userID as the token
         
-        send_json(200, ['message' => 'Logged in successfully']); 
+        // Store the token (userID) in the session
+        $_SESSION['sessionToken'] = $sessionToken;
+        
+        // Send the token to the client
+        send_json(200, ['message' => 'Logged in successfully', 'sessionToken' => $sessionToken]);
     } else {
         send_json(401, ['error' => 'Invalid email or password']);
     }
+    
 } catch (Exception $e) {
     send_json(500, ['error' => $e->getMessage()]);
 }
