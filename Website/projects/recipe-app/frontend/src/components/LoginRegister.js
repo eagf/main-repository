@@ -7,7 +7,7 @@ import '../styles/LoginRegister.css';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const LoginRegister = ({ setIsLoggedIn }) => {
+const LoginRegister = ({setIsLoggedIn}) => {
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,36 +24,30 @@ const LoginRegister = ({ setIsLoggedIn }) => {
             const endpoint = isLogin ? `${apiUrl}/api/login.php` : `${apiUrl}/api/register.php`;
             const userData = isLogin ? { email, password } : { email, name, password };
 
-            const sessionToken = localStorage.getItem('sessionToken');
-
-            const response = await axios.post(`${endpoint}`, userData, {
+            const response = await axios.post(endpoint, userData, {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${sessionToken}` // Send session token in the Authorization header
-                }
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true
             });
 
-            if (isLogin) {
-                if (response.data) {
-                    // Store the session token (userID) in local storage
+            if (response.data) {
+                if (response.data.sessionToken) {
                     localStorage.setItem('sessionToken', response.data.sessionToken);
-    
                     setIsLoggedIn(true);
+                    console.log('Login complete.');
                     navigate('/');
                 } else {
-                    setErrorMessage('Login failed. Please try again.');
+                    console.log('Registration complete.');
                 }
             } else {
-                // For registration
-                console.log('Registered successfully, please log in');
-                // Optionally redirect to login page or automatically log in the user
-                setIsLoggedIn(false); // In case of registration, stay on the login page
-
+                setErrorMessage('Login/Registration failed. Please try again.');
             }
         } catch (error) {
-            setErrorMessage(error.response ? error.response.data : 'Something went wrong. Please try again.');
+            setErrorMessage(error.response ? error.response.data.error : 'Something went wrong. Please try again.');
         }
     };
+
 
     return (
         <div className="login-register-container">

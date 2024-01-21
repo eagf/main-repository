@@ -16,6 +16,10 @@ const RecipeListUser = () => {
         fetchRecipes('');
     }, []);
 
+    useEffect(() => {
+        fetchRecipes(searchTerm);
+    }, [searchTerm])
+
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
     };
@@ -26,33 +30,32 @@ const RecipeListUser = () => {
 
     const fetchRecipes = async (currentSearchTerm) => {
         try {
-            const response = await axios.get(`${apiUrl}/api/recipes.php`, {
+            const response = await axios.get(`${apiUrl}/api/get_recipes.php`, {
                 params: { searchTerm: currentSearchTerm },
-                withCredentials: true // Important for sessions
+                withCredentials: true
             });
             setRecipes(response.data);
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                // Session is expired or invalid
                 navigate('/login');
             }
             console.error('Error fetching recipes', error);
         }
     };
 
-    const handleDelete = async (recipeID) => {
-        const confirmDelete = window.confirm("Are you sure you want to delete this recipe?");
-        if (confirmDelete) {
+    const handleRemove = async (recipeID) => {
+        const confirmRemove = window.confirm("Are you sure you want to remove this recipe?");
+        if (confirmRemove) {
             try {
-                await axios.delete(`${apiUrl}/api/recipes.php/${recipeID}`, {
-                    withCredentials: true // Important for sessions
+                await axios.post(`${apiUrl}/api/remove_recipe.php`, { id: recipeID }, {
+                    withCredentials: true
                 });
                 setRecipes(recipes.filter(recipe => recipe.recipeID !== recipeID));
             } catch (error) {
-                console.error('Error deleting recipe', error);
+                console.error('Error removing recipe', error);
             }
         }
-    };
+    };    
     
     return (
         <div>
@@ -83,7 +86,7 @@ const RecipeListUser = () => {
                             </ul>
                             <p>{recipe.cookingSteps}</p>
                             <button onClick={() => navigate(`/recipes/${recipe.recipeID}`)} className="view-details-button">View Details</button>
-                            <button onClick={() => handleDelete(recipe.recipeID)} className="delete-button">Delete</button>
+                            <button onClick={() => handleRemove(recipe.recipeID)} className="remove-button">Remove</button>
                         </div>
                     ))
                 ) : (

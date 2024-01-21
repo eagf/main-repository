@@ -1,15 +1,11 @@
-// backend/api/login.php
-
 <?php
 
 require_once __DIR__ . '/../config.php';
 
-session_start();
-
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: http://localhost:3000'); // Allow requests from your React app domain
+header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS'); // Make sure to include OPTIONS
+header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
 // Function to send a JSON response
@@ -33,7 +29,6 @@ $data = json_decode($rawData, true);
 $email = $data['email'] ?? '';
 $password = $data['password'] ?? '';
 
-
 if (!$email || !$password) {
     send_json(400, ['error' => 'Email and password are required']);
 }
@@ -53,13 +48,8 @@ try {
     $validPassword = password_verify($password, $user['password']);
 
     if ($validPassword) {
-        // Use the userID as the session token
-        $sessionToken = $user['userID']; // Directly using userID as the token
-        
-        // Store the token (userID) in the session
-        $_SESSION['sessionToken'] = $sessionToken;
-        
-        // Send the token to the client
+        $sessionToken = $user['userID'];
+        $_SESSION['userID'] = $sessionToken;
         send_json(200, ['message' => 'Logged in successfully', 'sessionToken' => $sessionToken]);
     } else {
         send_json(401, ['error' => 'Invalid email or password']);

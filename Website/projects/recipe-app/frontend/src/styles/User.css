@@ -1,4 +1,4 @@
-/* Logout.css */
+/* User.css */
 
 .logout-container {
     max-width: 400px;
@@ -13,7 +13,7 @@
     color: #333;
 }
 
-.delete-all-recipes-button, .logout-button {
+.logout-button {
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
@@ -30,15 +30,6 @@
 
 .logout-button:hover {
     background-color: #0056b3;
-}
-
-.delete-all-recipes-button {
-    background-color: #ff4d4d;
-    color: white;
-}
-
-.delete-all-recipes-button:hover {
-    background-color: #cc0000;
 }
 
 @media (max-width: 600px) {

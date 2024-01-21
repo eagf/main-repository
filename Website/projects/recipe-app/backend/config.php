@@ -1,13 +1,11 @@
-// backend/config.php
-
 <?php
 
 session_start();
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: http://localhost:3000'); // Allow requests from your React app domain
+header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS'); // Make sure to include OPTIONS
+header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
 // Load .env file
@@ -39,7 +37,6 @@ try {
     $db = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
     // Set the PDO error mode to exception
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected to MySQL successfully";
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }

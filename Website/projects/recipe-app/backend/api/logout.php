@@ -1,5 +1,3 @@
-// backend/api/logout.php
-
 <?php
 
 session_start();
@@ -7,8 +5,8 @@ session_start();
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization');
+header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
 // Function to send a JSON response
 function send_json($status_code, $data) {
@@ -23,9 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     send_json(200, []);
 }
 
-// Destroy the session and clear the session data
-session_unset(); // Remove all session variables
-session_destroy(); // Destroy the session
+try {
+    if (!isset($_SESSION["userID"])) {
+        send_json(401, ['error' => 'User not logged in']);
+    }
 
-send_json(200, ['message' => 'Logged out successfully']);
+    // Destroy the session and clear the session data
+    unset($_SESSION["userID"]);
+    session_unset(); // Remove all session variables
+    session_destroy(); // Destroy the session
+
+    send_json(200, ['message' => 'Logged out successfully']);
+
+} catch (Exception $e) {
+    send_json(500, ['error' => 'An error occurred while logging out: ' . $e->getMessage()]);
+}
+
 ?>

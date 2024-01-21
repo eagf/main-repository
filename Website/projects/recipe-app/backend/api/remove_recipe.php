@@ -22,44 +22,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 if (!isset($_SESSION['userID'])) {
-    error_log('No session userID found');
     send_json(401, ['error' => 'Unauthorized access. Please login.']);
     exit;
 }
 
 $userID = $_SESSION['userID'];
 
-// Get the recipe ID from the URL parameter
-$recipeID = isset($_GET['id']) ? $_GET['id'] : null;
+// Read data from the request body
+$data = json_decode(file_get_contents("php://input"), true);
+$recipeID = $data['id'] ?? null;
 
 if (!$recipeID) {
     send_json(400, ['error' => 'Recipe ID is required']);
+    exit;
 }
 
 try {
-    // Start transaction
-    $db->beginTransaction();
-
-    // Delete from recipe_ingredients table
-    $stmt = $db->prepare('DELETE FROM recipe_ingredients WHERE recipeID = :recipeID');
+    $stmt = $db->prepare('SELECT removed FROM recipes WHERE recipeID = :recipeID AND userID = :userID');
     $stmt->bindParam(':recipeID', $recipeID);
+    $stmt->bindParam(':userID', $userID);
     $stmt->execute();
+    $recipe = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Delete from recipes table
-    $stmt = $db->prepare('DELETE FROM recipes WHERE recipeID = :recipeID AND userID = :userID');
+    if (!$recipe) {
+        send_json(404, ['error' => 'Recipe not found']);
+        exit;
+    }
+
+    // Toggle the removed status
+    $newRemovedStatus = $recipe['removed'] == 0 ? 1 : 0;
+
+    $stmt = $db->prepare('UPDATE recipes SET removed = :removed WHERE recipeID = :recipeID AND userID = :userID');
+    $stmt->bindParam(':removed', $newRemovedStatus, PDO::PARAM_INT);
     $stmt->bindParam(':recipeID', $recipeID);
     $stmt->bindParam(':userID', $userID);
     $stmt->execute();
 
-    // Commit transaction
-    $db->commit();
+    send_json(200, ['message' => 'Recipe removed status toggled successfully', 'newRemovedStatus' => $newRemovedStatus]);
 
-    send_json(200, ['message' => 'Recipe deleted successfully']);
-
-} catch (Exception $e) {
-    // Rollback transaction
-    $db->rollBack();
-
+} catch (PDOException $e) {
     send_json(500, ['error' => $e->getMessage()]);
 }
 

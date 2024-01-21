@@ -16,17 +16,14 @@ const RecipeDetail = () => {
     useEffect(() => {
         const fetchRecipe = async () => {
             try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`${apiUrl}/api/recipes.php/${recipeId}`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                    withCredentials: true // cookies
+                const response = await axios.get(`${apiUrl}/api/get_recipe.php`, {
+                    params: { id: recipeId },
+                    withCredentials: true
                 });
                 setRecipe(response.data);
             } catch (error) {
                 if (error.response && error.response.status === 401) {
-                    // JWT is expired or invalid
-                    localStorage.removeItem('token');
-                    // Update the login state and/or redirect to login
+                    localStorage.removeItem('sessionToken');
                     navigate('/login');
                 }
                 console.error('Error fetching recipe details', error);

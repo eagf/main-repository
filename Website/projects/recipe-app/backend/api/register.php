@@ -1,15 +1,11 @@
-// backend/api/register.php
-
 <?php
 
 require_once __DIR__ . '/../config.php';
 
-session_start();
-
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: http://localhost:3000'); // Allow requests from your React app domain
+header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS'); // Make sure to include OPTIONS
+header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
 // Function to send a JSON response

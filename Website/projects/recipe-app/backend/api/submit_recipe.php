@@ -1,15 +1,11 @@
-// backend/api/submit_recipe.php
-
 <?php
 
 require_once __DIR__ . '/../config.php';
 
-session_start();
-
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: http://localhost:3000'); // Allow requests from your React app domain
+header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS'); // Make sure to include OPTIONS
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
 // Function to send a JSON response
@@ -25,13 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     send_json(200, []);
 }
 
+session_start();
 if (!isset($_SESSION['userID'])) {
-    // User is not logged in
     send_json(401, ['error' => 'Unauthorized access. Please login.']);
     exit;
 }
 
-$userID = $_SESSION['userID']; // Get the user ID from the session
+$userID = $_SESSION['userID'];
 
 $recipeName = $_POST['recipeName'] ?? '';
 $ingredients = $_POST['ingredients'] ?? [];
@@ -39,24 +35,25 @@ $cookingSteps = $_POST['cookingSteps'] ?? '';
 
 if (!$recipeName || !$ingredients || !$cookingSteps) {
     send_json(400, ['error' => 'Recipe name, ingredients and cooking steps are required.']);
+    exit;
 }
 
 try {
+    $db->beginTransaction();
+
     // Insert recipe into recipes table
     $stmt = $db->prepare('INSERT INTO recipes (recipeName, cookingSteps, userID) VALUES (?, ?, ?)');
     $stmt->execute([$recipeName, $cookingSteps, $userID]);
     $recipeID = $db->lastInsertId();
 
     // Process each ingredient
-    foreach ($ingredients as $ingredient) {
+    foreach ($ingredients as $index => $ingredient) {
         $stmt = $db->prepare('SELECT ingredientID FROM ingredients WHERE ingredientName = ?');
         $stmt->execute([$ingredient]);
         $existing = $stmt->fetch();
 
-        if ($existing) {
-            // Ingredient exists, use its ID
-            $ingredientID = $existing['ingredientID'];
-        } else {
+        $ingredientID = $existing ? $existing['ingredientID'] : null;
+        if (!$ingredientID) {
             // Ingredient does not exist, insert new ingredient
             $stmt = $db->prepare('INSERT INTO ingredients (ingredientName) VALUES (?)');
             $stmt->execute([$ingredient]);
@@ -68,8 +65,12 @@ try {
         $stmt->execute([$recipeID, $ingredientID]);
     }
 
-    send_json(200, ['message' => 'Recipe added successfully']);
+    $db->commit();
+    send_json(200, ['message' => 'Recipe added successfully', 'recipeID' => $recipeID]);
+
 } catch (PDOException $e) {
+    $db->rollBack();
     send_json(500, ['error' => $e->getMessage()]);
 }
+
 ?>

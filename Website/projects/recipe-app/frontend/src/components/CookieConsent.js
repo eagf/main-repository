@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/CookieConsent.css';
 
 const CookieConsent = () => {
-    const [show, setShow] = useState(true); // State to toggle visibility
+    const [show, setShow] = useState(false);
 
-    if (!show) return null;
+    useEffect(() => {
+        const consent = localStorage.getItem('cookieConsent');
+        if (consent !== 'accepted') {
+            setShow(true);
+        }
+    }, []);
 
     const handleAccept = () => {
-        // Handle cookie acceptance logic
+        localStorage.setItem('cookieConsent', 'accepted');
         setShow(false);
     };
 
@@ -15,6 +20,8 @@ const CookieConsent = () => {
         // Handle cookie rejection logic
         setShow(false);
     };
+
+    if (!show) return null;
 
     return (
         <div className="cookie-consent-container">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,13 +8,6 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const RecipeSubmit = () => {
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-
-    useEffect(() => {
-        if (!token) {
-            navigate('/login');
-        }
-    }, []);
 
     const [recipeName, setRecipeName] = useState('');
     const [ingredients, setIngredients] = useState(['']);
@@ -34,14 +27,16 @@ const RecipeSubmit = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post(`${apiUrl}/api/recipes.php`, {
-                recipeName,
-                ingredients,
-                cookingSteps
-            }, {
+            const formData = new URLSearchParams();
+            formData.append('recipeName', recipeName);
+            ingredients.forEach((ingredient, index) => formData.append(`ingredients[${index}]`, ingredient));
+            formData.append('cookingSteps', cookingSteps);
+    
+            const response = await axios.post(`${apiUrl}/api/submit_recipe.php`, formData, {
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                withCredentials: true,
             });
             // Reset form fields
             setRecipeName('');
@@ -55,9 +50,7 @@ const RecipeSubmit = () => {
             setTimeout(() => setConfirmationMessage(''), 5000);
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                // JWT is expired or invalid
-                localStorage.removeItem('token');
-                // Update the login state and/or redirect to login
+                localStorage.removeItem('sessionToken');
                 navigate('/login');
             }
             console.error('Error submitting recipe:', error.response ? error.response.data : error);
