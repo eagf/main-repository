@@ -1,5 +1,10 @@
 /* RecipeSubmit.css */
 
+:root {
+    --primary-color: #8EC009;
+    --primary-color-hover: #218838;
+}
+
 .submit-div {
     display: flex;
     flex-direction: column;
@@ -28,7 +33,7 @@
 
 .recipe-submit-form input[type="text"]:focus,
 .recipe-submit-form textarea:focus {
-    border-color: #007bff;
+    border-color: var(--primary-color);
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
 }
@@ -42,7 +47,7 @@
 
 
 .recipe-submit-form button {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     padding: 10px 15px;
@@ -52,7 +57,7 @@
 }
 
 .recipe-submit-form button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-color-hover);
 }
 
 .confirmation-message {
@@ -67,8 +72,12 @@
     margin-bottom: 10px;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #28a745;
+    background-color: var(--primary-color);
     width: fit-content;
+}
+
+.recipes-button:hover {
+    background-color: var(--primary-color-hover);
 }
 
 @media (max-width: 600px) {

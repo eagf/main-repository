@@ -60,10 +60,10 @@ const RecipeListUser = () => {
                 console.error('Error removing recipe', error);
             }
         }
-    };   
-    
+    };
+
     return (
-        <div>
+        <div className='recipeListUser-div'>
             <div className="search-bar">
                 <input
                     type="text"
@@ -78,25 +78,26 @@ const RecipeListUser = () => {
                 />
                 <button onClick={() => navigate('/')} className="add-button">+</button>
             </div>
-
-            <div className="recipe-list">
-                {recipes.length > 0 ? (
-                    recipes.map(recipe => (
-                        <div key={recipe.recipeID} className="recipe-grid">
-                            <h3>{recipe.recipeName}</h3>
-                            <ul>
-                                {recipe.ingredients.map((ingredient, index) => (
-                                    <li key={index}>{ingredient}</li>
-                                ))}
-                            </ul>
-                            <p>{recipe.cookingSteps}</p>
-                            <button onClick={() => navigate(`/recipes/${recipe.recipeID}`)} className="view-details-button">View Details</button>
-                            <button onClick={() => handleRemove(recipe.recipeID)} className="remove-button">Remove</button>
-                        </div>
-                    ))
-                ) : (
-                    <p>No recipes found with the given ingredients.</p>
-                )}
+            <div className='recipe-grid-div'>
+                <div className='recipe-grid'>
+                    {recipes.length > 0 ? (
+                        recipes.map(recipe => (
+                            <div key={recipe.recipeID} className="recipe-grid-item">
+                                <h3>{recipe.recipeName}</h3>
+                                <ul>
+                                    {recipe.ingredients.map((ingredient, index) => (
+                                        <li key={index}>{ingredient}</li>
+                                    ))}
+                                </ul>
+                                <p>{recipe.cookingSteps}</p>
+                                <button onClick={() => navigate(`/recipes/${recipe.recipeID}`)} className="view-details-button">View Details</button>
+                                <button onClick={() => handleRemove(recipe.recipeID)} className="remove-button">Remove</button>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No recipes found with the given ingredients.</p>
+                    )}
+                </div>
             </div>
         </div >
     );

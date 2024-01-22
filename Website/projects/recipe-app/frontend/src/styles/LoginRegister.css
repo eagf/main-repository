@@ -1,5 +1,10 @@
 /* LoginRegister.css */
 
+:root {
+    --primary-color: #8EC009;
+    --primary-color-hover: #218838;
+}
+
 .login-register-container {
     max-width: 550px;
     margin: 20px auto;
@@ -25,12 +30,12 @@
 .login-register-container input[type="password"]:focus,
 .login-register-container input[type="email"]:focus {
     outline: none;
-    border: 1px solid #007bff;
+    border: 1px solid var(--primary-color);
 }
 
 
 .login-register-container button {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     cursor: pointer;
@@ -38,7 +43,7 @@
 }
 
 .login-register-container button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-color-hover);
 }
 
 .error-message {
@@ -55,7 +60,7 @@
 
 .login-register-container button.toggle-button {
     background-color: transparent;
-    color: #007bff; 
+    color: var(--primary-color); 
     border: none;
     cursor: pointer;
 }

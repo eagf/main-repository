@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,15 +21,26 @@ const RecipeSubmit = () => {
     const [ingredients, setIngredients] = useState(['']);
     const [cookingSteps, setCookingSteps] = useState('');
     const [confirmationMessage, setConfirmationMessage] = useState('');
+    const lastIngredientRef = useRef(null); 
 
     const handleAddIngredient = () => {
         setIngredients([...ingredients, '']);
+        setTimeout(() => {
+            lastIngredientRef.current?.focus(); 
+        }, 0);
     };
 
     const handleIngredientChange = (index, event) => {
         const newIngredients = [...ingredients];
         newIngredients[index] = event.target.value;
         setIngredients(newIngredients);
+    };
+
+    const handleKeyDown = (event, index) => {
+        if (event.key === 'Enter' && index === ingredients.length - 1) {
+            event.preventDefault(); 
+            handleAddIngredient();
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -81,6 +92,8 @@ const RecipeSubmit = () => {
                         value={ingredient}
                         onChange={e => handleIngredientChange(index, e)}
                         placeholder="Ingredient"
+                        onKeyDown={e => handleKeyDown(e, index)}
+                        ref={index === ingredients.length - 1 ? lastIngredientRef : null}  // Set the ref to the last ingredient input
                     />
                 ))}
                 <button type="button" onClick={handleAddIngredient}>+</button>

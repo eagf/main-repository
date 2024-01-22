@@ -1,5 +1,12 @@
 /* User.css */
 
+:root {
+    --primary-color: #8EC009;
+    --primary-color-hover: #218838;
+    --remove-color: #ff0000;
+    --remove-color-hover: #cc0000;
+}
+
 .logout-container {
     max-width: 400px;
     margin: auto;
@@ -24,12 +31,17 @@
 }
 
 .logout-button {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
 }
 
 .logout-button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-color-hover);
+}
+
+.buttons-div {
+    display: flex;
+    flex-direction: column;
 }
 
 @media (max-width: 600px) {

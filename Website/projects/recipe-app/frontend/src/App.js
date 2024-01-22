@@ -9,6 +9,7 @@ import RecipeListUser from './components/RecipeListUser';
 import LoginRegister from './components/LoginRegister';
 import User from './components/User';
 import RecipeDetail from './components/RecipeDetail';
+import RemovedListUser from './components/RemovedListUser';
 
 import './styles/Navbar.css';
 import logo from './assets/img/logo.png';
@@ -59,6 +60,7 @@ const App = () => {
           <Route path="/login" element={<LoginRegister setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} />
           <Route path="/user" element={<User setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} />
           <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
+          <Route path="/removedRecipes" element={<RemovedListUser />} />
         </Routes>
       </div>
     </Router>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,10 +31,17 @@ const User = ({ setIsLoggedIn }) => {
         }
     };
 
+    const handleLink = async () => {
+        navigate('/removedRecipes');
+    }
+
     return (
         <div className="logout-container">
             <h2>Welcome!</h2>
-            <button onClick={handleLogout} className="logout-button">Logout</button>
+            <div className='buttons-div'>
+                <button onClick={handleLogout} className="logout-button">Logout</button>
+                <button onClick={handleLink} className="logout-button">Removed recipes</button>
+            </div>
         </div>
     );
 };
