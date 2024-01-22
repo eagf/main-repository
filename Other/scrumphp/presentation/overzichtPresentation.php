@@ -17,13 +17,6 @@
 
 <body>
     <?php include 'includes/header.php'; ?>
-    <script>
-        var KICKASSVERSION='2.0';
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.src = '//hi.kickassapp.com/kickass.js';
-        document.body.appendChild(s);
-    </script>
     <div class="wrapper">
         <section id="spotlight">
             <h1>Aanbevolen voor jou</h1>
