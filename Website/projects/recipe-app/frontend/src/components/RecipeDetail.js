@@ -10,6 +10,15 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const RecipeDetail = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const sessionToken = localStorage.getItem('sessionToken');
+
+        if (!sessionToken) {
+            navigate('/login');
+        }
+    }, []);
+    
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useState(null);
 

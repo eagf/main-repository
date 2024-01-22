@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+
 import CookieConsent from './components/CookieConsent';
 import RecipeSubmit from './components/RecipeSubmit';
 import RecipeListUser from './components/RecipeListUser';
@@ -10,6 +11,8 @@ import User from './components/User';
 import RecipeDetail from './components/RecipeDetail';
 
 import './styles/Navbar.css';
+import logo from './assets/img/logo.png';
+import user from './assets/img/user.png';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
@@ -26,7 +29,7 @@ const App = () => {
       setIsLoggedIn(false);
     }
   }, []);
-  
+
   useEffect(() => {
     if (isLoggedIn) {
       setButtonUserTo("/user");
@@ -42,16 +45,9 @@ const App = () => {
       <div className="App">
         <CookieConsent />
         <nav>
-          <ul>
-            <li>
-              <Link to="/">Submit Recipe</Link>
-            </li>
-            <li>
-              <Link to="/recipes">View Recipes</Link>
-            </li>
-          </ul>
+        <Link to="/recipes"><img src={logo} alt='Logo' /></Link>
           <Link to={buttonUserTo} className="auth-link">
-            {buttonUserText}
+          <img src={user} alt='User' />
           </Link>
         </nav>
 

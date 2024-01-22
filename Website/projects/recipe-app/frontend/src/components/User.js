@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,14 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const User = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const sessionToken = localStorage.getItem('sessionToken');
+
+        if (!sessionToken) {
+            navigate('/login');
+        }
+    }, []);
 
     const handleLogout = async () => {
         try {

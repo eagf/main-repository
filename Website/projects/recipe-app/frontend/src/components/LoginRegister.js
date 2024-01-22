@@ -1,5 +1,5 @@
 // LoginRegister.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,13 +8,21 @@ import '../styles/LoginRegister.css';
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const LoginRegister = ({setIsLoggedIn}) => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const sessionToken = localStorage.getItem('sessionToken');
+
+        if (!sessionToken) {
+            navigate('/login');
+        }
+    }, []);
+
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState(''); // Only needed for registration
     const [errorMessage, setErrorMessage] = useState(''); // State to handle error messages
-
-    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -32,11 +40,13 @@ const LoginRegister = ({setIsLoggedIn}) => {
             });
 
             if (response.data) {
+                // console.log('response.data = ', response.data);
+                // console.log('response.data.sessionToken = ', response.data.sessionToken);
                 if (response.data.sessionToken) {
                     localStorage.setItem('sessionToken', response.data.sessionToken);
                     setIsLoggedIn(true);
                     console.log('Login complete.');
-                    navigate('/');
+                    navigate('/recipes');
                 } else {
                     console.log('Registration complete.');
                 }

@@ -3,7 +3,6 @@
 session_start();
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -26,6 +25,8 @@ if (file_exists(__DIR__ . '/.env')) {
     }
 }
 
+header('Access-Control-Allow-Origin: ' . getenv('FRONTEND_URL'));
+
 // Database configuration
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
 define('DB_USER', getenv('DB_USER') ?: 'root');
@@ -40,4 +41,4 @@ try {
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-?>
+

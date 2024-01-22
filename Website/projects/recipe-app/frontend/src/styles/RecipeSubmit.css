@@ -1,5 +1,11 @@
 /* RecipeSubmit.css */
 
+.submit-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .recipe-submit-form {
     max-width: 550px;
     margin: 20px auto;
@@ -52,6 +58,17 @@
 .confirmation-message {
     color: green;
     margin-top: 10px;
+}
+
+.recipes-button {
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #28a745;
+    width: fit-content;
 }
 
 @media (max-width: 600px) {

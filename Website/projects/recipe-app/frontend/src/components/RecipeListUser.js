@@ -9,12 +9,17 @@ const apiUrl = process.env.REACT_APP_API_URL;
 const RecipeListUser = () => {
     const navigate = useNavigate();
 
-    const [recipes, setRecipes] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-
     useEffect(() => {
+        const sessionToken = localStorage.getItem('sessionToken');
+
+        if (!sessionToken) {
+            navigate('/login');
+        }
         fetchRecipes('');
     }, []);
+
+    const [recipes, setRecipes] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         fetchRecipes(searchTerm);
@@ -55,7 +60,7 @@ const RecipeListUser = () => {
                 console.error('Error removing recipe', error);
             }
         }
-    };    
+    };   
     
     return (
         <div>
@@ -71,7 +76,7 @@ const RecipeListUser = () => {
                         }
                     }}
                 />
-                <button onClick={handleSearchSubmit}>Search</button>
+                <button onClick={() => navigate('/')} className="add-button">+</button>
             </div>
 
             <div className="recipe-list">

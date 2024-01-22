@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,14 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const RecipeSubmit = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const sessionToken = localStorage.getItem('sessionToken');
+
+        if (!sessionToken) {
+            navigate('/login');
+        }
+    }, []);
 
     const [recipeName, setRecipeName] = useState('');
     const [ingredients, setIngredients] = useState(['']);
@@ -31,7 +39,7 @@ const RecipeSubmit = () => {
             formData.append('recipeName', recipeName);
             ingredients.forEach((ingredient, index) => formData.append(`ingredients[${index}]`, ingredient));
             formData.append('cookingSteps', cookingSteps);
-    
+
             const response = await axios.post(`${apiUrl}/api/submit_recipe.php`, formData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -58,33 +66,35 @@ const RecipeSubmit = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="recipe-submit-form">
-            <input
-                type="text"
-                value={recipeName}
-                onChange={e => setRecipeName(e.target.value)}
-                placeholder="Recipe Name"
-            />
-            {ingredients.map((ingredient, index) => (
+        <div className="submit-div">
+            <form onSubmit={handleSubmit} className="recipe-submit-form">
                 <input
-                    key={index}
                     type="text"
-                    value={ingredient}
-                    onChange={e => handleIngredientChange(index, e)}
-                    placeholder="Ingredient"
+                    value={recipeName}
+                    onChange={e => setRecipeName(e.target.value)}
+                    placeholder="Recipe Name"
                 />
-            ))}
-            <button type="button" onClick={handleAddIngredient}>+</button>
-            <textarea
-                value={cookingSteps}
-                onChange={e => setCookingSteps(e.target.value)}
-                placeholder="Cooking Steps"
-            />
-            <button type="submit">Submit Recipe</button>
+                {ingredients.map((ingredient, index) => (
+                    <input
+                        key={index}
+                        type="text"
+                        value={ingredient}
+                        onChange={e => handleIngredientChange(index, e)}
+                        placeholder="Ingredient"
+                    />
+                ))}
+                <button type="button" onClick={handleAddIngredient}>+</button>
+                <textarea
+                    value={cookingSteps}
+                    onChange={e => setCookingSteps(e.target.value)}
+                    placeholder="Cooking Steps"
+                />
+                <button type="submit">Submit Recipe</button>
 
-            {confirmationMessage && <div className="confirmation-message">{confirmationMessage}</div>}
-
-        </form>
+                {confirmationMessage && <div className="confirmation-message">{confirmationMessage}</div>}
+            </form>
+            <button onClick={() => navigate('/recipes')} className="recipes-button">Go to recipes</button>
+        </div>
     );
 };
 
