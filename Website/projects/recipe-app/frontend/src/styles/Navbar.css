@@ -1,4 +1,5 @@
 /* Navbar.css */
+
 nav {
     display: flex;
     flex-direction: row;
@@ -16,6 +17,11 @@ nav img {
     height: 50px; 
     margin-right: 20px;
     align-self: center;
+    border-radius: 10px;
+}
+
+nav img:hover {
+    background-color: #dddddd; 
 }
 
 nav ul {
@@ -41,21 +47,19 @@ nav ul li a:hover, nav ul li a:active {
 }
 
 nav .auth-link {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
     border-radius: 10px;
     color: white;
 }
 
 nav .auth-link:hover {
     background-color: #dddddd; 
-    color: white;
-    text-decoration: none;
 }
 
 nav .auth-link img {
-    
+    align-self: center; 
+    margin: 0;
+    width: 40px;
+    height: auto;
 }
 
 /* 

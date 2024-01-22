@@ -45,9 +45,11 @@ const App = () => {
       <div className="App">
         <CookieConsent />
         <nav>
-        <Link to="/recipes"><img src={logo} alt='Logo' /></Link>
+          <Link to="/recipes">
+            <img src={logo} alt='Logo' />
+          </Link>
           <Link to={buttonUserTo} className="auth-link">
-          <img src={user} alt='User' />
+            <img src={user} alt='User' />
           </Link>
         </nav>
 
