@@ -66,7 +66,7 @@ const RemovedListUser = () => {
                                 ))}
                             </ul>
                             <p>{recipe.cookingSteps}</p>
-                            <button onClick={() => handleRestore(recipe.recipeID)} className="view-details-button">
+                            <button onClick={() => handleRestore(recipe.recipeID)} className="restore-button">
                                 Restore
                             </button>
                         </div>

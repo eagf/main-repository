@@ -1,15 +1,46 @@
+/* RecipeDetail.css */
+
+:root {
+    --primary-color: #8EC009;
+    --primary-color-hover: #218838;
+    --remove-color: #ff0000;
+    --remove-color-hover: #cc0000;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #eeeeee;
+}
+
+.recipeDetail-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .recipe-detail {
-    max-width: 800px;
-    margin: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px;
     padding: 20px;
-    border: 1px solid #ddd;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.top-line-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .recipe-detail h2,
 .recipe-detail h3 {
-    color: #333;
+    margin-top: 10px;
+    color: var(--primary-color);
 }
 
 .recipe-detail ul {
@@ -19,15 +50,77 @@
 
 .recipe-detail ul li {
     padding: 5px 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.recipe-detail p {
+.remove-button,
+.save-button {
+    margin: 0 auto;
+    width: 100px;
+    background-color: var(--remove-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
     margin-top: 10px;
+}
+
+.remove-button:hover {
+    background-color: var(--remove-color-hover);
+}
+
+.save-button {
+    background-color: var(--primary-color);
+}
+
+.save-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.edit-icon {
+    font-size: 22px;
+}
+
+.return-icon {
+    font-size: 28px;
+}
+
+.edit-icon,
+.return-icon {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.edit-icon:hover,
+.return-icon:hover {
+    transform: scale(1.4);
+}
+
+.recipe-detail input[type="text"],
+.recipe-detail textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 @media (max-width: 600px) {
     .recipe-detail {
         margin: 10px;
         padding: 10px;
+    }
+
+    .recipe-detail input[type="text"],
+    .recipe-detail textarea {
+        padding: 8px;
+    }
+
+    .remove-button,
+    .save-button {
+        padding: 6px 10px;
     }
 }

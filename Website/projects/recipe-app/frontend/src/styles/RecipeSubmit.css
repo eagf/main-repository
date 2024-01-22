@@ -20,12 +20,38 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Styles for ingredient input fields and the add button */
+.ingredient-inputs {
+    display: grid;
+    grid-template-columns: 1fr auto; /* 1fr for input, auto for button */
+    gap: 10px; /* Space between input and button */
+    margin-bottom: 10px; /* Margin for the whole ingredient line */
+}
+
+.ingredient-inputs input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.ingredient-inputs button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.ingredient-inputs button:hover {
+    background-color: var(--primary-color-hover);
+}
+
 .recipe-submit-form input[type="text"],
 .recipe-submit-form textarea {
-    width: 100%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
+    width: 95%;
+    padding: 10px 10px;
     margin-bottom: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -40,13 +66,13 @@
 
 .recipe-submit-form input[type="text"]::placeholder,
 .recipe-submit-form textarea::placeholder {
-    color: #aaa; 
-    font-style: italic; 
-    font-family:Arial, Helvetica, sans-serif;
+    color: #aaa;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-
-.recipe-submit-form button {
+.recipe-submit-form button,
+.recipes-button {
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -56,33 +82,28 @@
     cursor: pointer;
 }
 
-.recipe-submit-form button:hover {
+.recipe-submit-form button:hover,
+.recipes-button:hover {
     background-color: var(--primary-color-hover);
 }
 
 .confirmation-message {
-    color: green;
+    color: var(--primary-color);
     margin-top: 10px;
+    text-align: center;
 }
 
 .recipes-button {
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: var(--primary-color);
     width: fit-content;
-}
-
-.recipes-button:hover {
-    background-color: var(--primary-color-hover);
 }
 
 @media (max-width: 600px) {
     .recipe-submit-form {
         margin: 10px;
         padding: 10px;
+    }
+
+    .ingredient-inputs button {
+        padding: 0 8px;
     }
 }

@@ -5,6 +5,9 @@
     --primary-color-hover: #218838;
     --remove-color: #ff0000;
     --remove-color-hover: #cc0000;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #eeeeee;
 }
 
 .recipeListUser-div {
@@ -23,19 +26,30 @@
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    gap: 10px;
     padding: 30px;
 }
 
 .recipe-grid-item {
-    border: 1px solid #ddd;
+    cursor: pointer;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recipe-grid-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .recipe-grid-item h3 {
     margin-top: 0;
+    color: var(--primary-color);
 }
 
 .recipe-grid-item ul {
@@ -45,6 +59,7 @@
 
 .recipe-grid-item ul li {
     padding: 5px 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .remove-button {
@@ -55,13 +70,14 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s;
 }
 
 .remove-button:hover {
     background-color: var(--remove-color-hover);
 }
 
-.view-details-button {
+.restore-button {
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -72,15 +88,8 @@
     transition: background-color 0.3s;
 }
 
-.view-details-button:hover {
+.restore-button:hover {
     background-color: var(--primary-color-hover);
-}
-
-@media (max-width: 600px) {
-    .view-details-button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
 }
 
 .search-bar {
@@ -93,9 +102,9 @@
 
 .search-bar input {
     padding: 10px;
-    margin-right: 10 px;
+    margin-right: 10px;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
 }
 
 .search-bar button {

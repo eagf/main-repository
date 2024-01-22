@@ -48,20 +48,6 @@ const RecipeListUser = () => {
         }
     };
 
-    const handleRemove = async (recipeID) => {
-        const confirmRemove = window.confirm("Are you sure you want to remove this recipe?");
-        if (confirmRemove) {
-            try {
-                await axios.post(`${apiUrl}/api/remove_recipe.php`, { id: recipeID }, {
-                    withCredentials: true
-                });
-                setRecipes(recipes.filter(recipe => recipe.recipeID !== recipeID));
-            } catch (error) {
-                console.error('Error removing recipe', error);
-            }
-        }
-    };
-
     return (
         <div className='recipeListUser-div'>
             <div className="search-bar">
@@ -82,7 +68,7 @@ const RecipeListUser = () => {
                 <div className='recipe-grid'>
                     {recipes.length > 0 ? (
                         recipes.map(recipe => (
-                            <div key={recipe.recipeID} className="recipe-grid-item">
+                            <div onClick={() => navigate(`/recipes/${recipe.recipeID}`)} key={recipe.recipeID} className="recipe-grid-item">
                                 <h3>{recipe.recipeName}</h3>
                                 <ul>
                                     {recipe.ingredients.map((ingredient, index) => (
@@ -90,8 +76,6 @@ const RecipeListUser = () => {
                                     ))}
                                 </ul>
                                 <p>{recipe.cookingSteps}</p>
-                                <button onClick={() => navigate(`/recipes/${recipe.recipeID}`)} className="view-details-button">View Details</button>
-                                <button onClick={() => handleRemove(recipe.recipeID)} className="remove-button">Remove</button>
                             </div>
                         ))
                     ) : (
