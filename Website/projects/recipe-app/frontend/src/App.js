@@ -13,14 +13,13 @@ import RemovedListUser from './components/RemovedListUser';
 
 import './styles/Navbar.css';
 import logo from './assets/img/logo.png';
-import user from './assets/img/user.png';
+import { FiUser } from "react-icons/fi";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [buttonUserTo, setButtonUserTo] = useState("");
-  const [buttonUserText, setButtonUserText] = useState("");
 
   useEffect(() => {
     const sessionToken = localStorage.getItem('sessionToken');
@@ -34,10 +33,8 @@ const App = () => {
   useEffect(() => {
     if (isLoggedIn) {
       setButtonUserTo("/user");
-      setButtonUserText("User");
     } else {
       setButtonUserTo("/login");
-      setButtonUserText("Login / Register");
     }
   }, [isLoggedIn]);
 
@@ -47,10 +44,10 @@ const App = () => {
         <CookieConsent />
         <nav>
           <Link to="/recipes">
-            <img src={logo} alt='Logo' />
+            <img src={logo} alt='Logo' className='logo-main' />
           </Link>
           <Link to={buttonUserTo} className="auth-link">
-            <img src={user} alt='User' />
+            <FiUser className="logo-user"/>
           </Link>
         </nav>
 

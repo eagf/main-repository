@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import defaultImage from '../assets/img/default.png';
+
 import '../styles/RecipeListUser.css';
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -69,6 +71,11 @@ const RecipeListUser = () => {
                     {recipes.length > 0 ? (
                         recipes.map(recipe => (
                             <div onClick={() => navigate(`/recipes/${recipe.recipeID}`)} key={recipe.recipeID} className="recipe-grid-item">
+                                <img
+                                    src={recipe.imagePath || defaultImage}
+                                    alt={recipe.altText || 'Default image'}
+                                    className="recipe-image"
+                                />
                                 <h3>{recipe.recipeName}</h3>
                                 <ul>
                                     {recipe.ingredients.map((ingredient, index) => (

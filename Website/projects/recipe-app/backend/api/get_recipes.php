@@ -8,7 +8,6 @@ header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
-// Function to send a JSON response
 function send_json($status_code, $data)
 {
     http_response_code($status_code);
@@ -16,9 +15,7 @@ function send_json($status_code, $data)
     exit;
 }
 
-// Handle preflight request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    // Exit script with a 200 status code (OK)
     send_json(200, []);
 }
 
@@ -35,14 +32,15 @@ try {
     $searchTerm = isset($_GET['searchTerm']) ? trim($_GET['searchTerm']) : '';
 
     // Build the query
-    $query = 'SELECT r.recipeID, r.recipeName, r.cookingSteps, r.removed, GROUP_CONCAT(i.ingredientName) as ingredients ' .
+    $query = 'SELECT r.recipeID, r.recipeName, r.cookingSteps, r.removed, i.imageURL, i.altText, GROUP_CONCAT(ing.ingredientName) as ingredients ' .
         'FROM recipes r ' .
         'LEFT JOIN recipe_ingredients ri ON r.recipeID = ri.recipeID ' .
-        'LEFT JOIN ingredients i ON ri.ingredientID = i.ingredientID ' .
-        'WHERE r.userID = :userID and r.removed = 0 ';
+        'LEFT JOIN ingredients ing ON ri.ingredientID = ing.ingredientID ' .
+        'LEFT JOIN images i ON r.recipeID = i.recipeID ' . 
+        'WHERE r.userID = :userID AND r.removed = 0 ';
 
     if ($searchTerm !== '') {
-        $query .= 'AND LOWER(i.ingredientName) LIKE LOWER(:searchTerm) ';
+        $query .= 'AND LOWER(ing.ingredientName) LIKE LOWER(:searchTerm) ';
         $searchTerm = '%' . $searchTerm . '%';
     }
 
@@ -60,6 +58,8 @@ try {
     // Format the recipes
     $formattedRecipes = array_map(function ($recipe) {
         $recipe['ingredients'] = $recipe['ingredients'] ? explode(',', $recipe['ingredients']) : [];
+        $recipe['imagePath'] = $recipe['imageURL'];
+        // $recipe['altText'] = $recipe['altText'];
         return $recipe;
     }, $recipes);
 
