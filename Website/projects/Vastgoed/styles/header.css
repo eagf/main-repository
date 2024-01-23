@@ -8,17 +8,20 @@
     --main-color-light: #4570b0;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: rgb(246, 246, 246);
+}
+
 body {
     font-family: "Roboto Condensed", sans-serif;
-    margin: 0;
 }
 
 #wrapper {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    background-color: rgb(246, 246, 246);
-    justify-content: space-between;
+    height: 100%;
 }
 
 header {

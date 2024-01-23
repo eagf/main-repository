@@ -1,6 +1,83 @@
 /* CSS aanbod.php */
 
+:root {
+    --main-color: #2E61B0;
+    --main-color-light: #4570b0;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.slider-text {
+    margin: 20px;
+    font-weight: normal;  
+    color: gray;
+}
+
+.slider-text.active {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--main-color);
+    border-radius: 34px;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--main-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(46px);
+    -ms-transform: translateX(46px);
+    transform: translateX(46px);
+}
+
 .grid-container {
+    max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
@@ -14,11 +91,23 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0); 
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit; 
 }
 
 .card-image {
     height: 0;
-    padding-bottom: 66.66%; /* 2/3 aspect ratio */
+    padding-bottom: 66.66%;
     background-size: cover;
     background-position: center;
 }
@@ -49,23 +138,4 @@
     color: #d35400;
     font-weight: bold;
     margin: 0;
-}
-
-.filter-container {
-    text-align: center;
-    margin: 20px;
-}
-
-.filter-container form {
-    display: inline-block;
-}
-
-.filter-container input[type="radio"],
-.filter-container label {
-    margin-right: 10px;
-}
-
-.filter-container input[type="submit"] {
-    padding: 5px 10px;
-    cursor: pointer;
 }
