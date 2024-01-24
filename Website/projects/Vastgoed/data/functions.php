@@ -1,5 +1,83 @@
 <?php
 
+function deletePand($pandID)
+{
+    try {
+        $database = new Database();
+        $db = $database->getConnection();
+
+        $db->beginTransaction();
+
+        // Step 1: Delete from kamers table (related to pand)
+        $queryDeleteKamers = "DELETE FROM kamers WHERE pandID = :pandID";
+        $stmtDeleteKamers = $db->prepare($queryDeleteKamers);
+        $stmtDeleteKamers->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeleteKamers->execute();
+
+        // Step 2: Delete from panden table
+        $queryDeletePanden = "DELETE FROM panden WHERE pandID = :pandID";
+        $stmtDeletePanden = $db->prepare($queryDeletePanden);
+        $stmtDeletePanden->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeletePanden->execute();
+
+        // Step 3: Delete from panddetails table (related to pand)
+        $queryDeletePandDetails = "DELETE FROM panddetails WHERE pandDetailID = 
+                (SELECT pandDetailID FROM panden WHERE pandID = :pandID)";
+        $stmtDeletePandDetails = $db->prepare($queryDeletePandDetails);
+        $stmtDeletePandDetails->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeletePandDetails->execute();
+
+        // Step 4: Delete from wettelijkeinformatie table (related to pand)
+        $queryDeleteWettelijkeInfo = "DELETE FROM wettelijkeinformatie WHERE wettelijkeInfoID = 
+                (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
+        $stmtDeleteWettelijkeInfo = $db->prepare($queryDeleteWettelijkeInfo);
+        $stmtDeleteWettelijkeInfo->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeleteWettelijkeInfo->execute();
+
+        // Step 5: Delete from adressen table (related to pand)
+        $queryDeleteAdressen = "DELETE FROM adressen WHERE adresID = 
+                (SELECT adresID FROM panden WHERE pandID = :pandID)";
+        $stmtDeleteAdressen = $db->prepare($queryDeleteAdressen);
+        $stmtDeleteAdressen->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeleteAdressen->execute();
+
+        // Commit transaction
+        $db->commit();
+    } catch (PDOException $exception) {
+        // Rollback transaction if any error occurs
+        $db->rollBack();
+        exit("Error: " . $exception->getMessage());
+    }
+}
+
+
+function getPandenSelect()
+{
+    try {
+        $database = new Database();
+        $db = $database->getConnection();
+
+        // Query to retrieve "panden" data
+        $query = "SELECT pandID, titel, status, type, prijs FROM panden";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Fetch and display "panden" data as options
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $pandID = $row['pandID'];
+            $titel = $row['titel'];
+            $status = $row['status'];
+            $type = $row['type'];
+            $prijs = $row['prijs'];
+
+            // Display the options with pandID as the value
+            echo "<option value='$pandID'>$titel - $status - $type - $prijs</option>";
+        }
+    } catch (PDOException $exception) {
+        exit("Error: " . $exception->getMessage());
+    }
+}
+
 function getPandDetails($pandID)
 {
     $database = new Database();
@@ -26,14 +104,22 @@ function getPandDetails($pandID)
         $stmtPand->execute();
         $pandData = $stmtPand->fetch(PDO::FETCH_ASSOC);
 
-        // Process the kamers data if it exists
-        if ($pandData && $pandData['kamers']) {
-            $kamers = array_map(function ($kamerStr) {
-                list($naam, $oppervlakte, $detail) = explode('|', $kamerStr);
-                return ['kamerNaam' => $naam, 'kamerOppervlakte' => $oppervlakte, 'kamerDetail' => $detail];
-            }, explode('||', $pandData['kamers']));
-            $pandData['kamers'] = $kamers;
+
+        // Fetch room details separately
+        $queryKamers = "SELECT * FROM kamers WHERE pandID = ?";
+        $stmtKamers = $db->prepare($queryKamers);
+        $stmtKamers->bindParam(1, $pandID);
+        $stmtKamers->execute();
+        $kamerData = $stmtKamers->fetchAll(PDO::FETCH_ASSOC);
+
+        // Group rooms by room type (kamerNaam)
+        $groupedKamers = [];
+        foreach ($kamerData as $kamer) {
+            $groupedKamers[$kamer['kamerNaam']][] = $kamer;
         }
+
+        $pandData['kamers'] = $groupedKamers;
+
 
         return $pandData;
     } catch (PDOException $exception) {

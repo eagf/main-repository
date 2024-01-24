@@ -39,6 +39,24 @@
                 <p><strong>Registratierechten of BTW:</strong> <?php echo htmlspecialchars($pandDetails['registratierechtenBTW']); ?></p>
                 <p><strong>Vrij Op:</strong> <?php echo htmlspecialchars($pandDetails['vrijOp']); ?></p>
 
+                <?php if (!empty($pandDetails['kamers'])) : ?>
+                    <div class="rooms-container">
+                        <?php foreach ($pandDetails['kamers'] as $roomType => $rooms) : ?>
+                            <h3><?php echo htmlspecialchars($roomType); ?></h3>
+                            <ul>
+                                <?php foreach ($rooms as $room) : ?>
+                                    <li>
+                                        Naam: <?php echo htmlspecialchars($room['kamerNaam']); ?>,
+                                        Oppervlakte: <?php echo htmlspecialchars($room['kamerOppervlakte']); ?> m²,
+                                        Detail: <?php echo htmlspecialchars($room['kamerDetail']); ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
+
                 <h3>Wettelijke Informatie</h3>
                 <p><strong>EPC Index:</strong> <?php echo htmlspecialchars($pandDetails['epcIndex']); ?></p>
                 <p><strong>Energie Label:</strong> <?php echo htmlspecialchars($pandDetails['energieLabel']); ?></p>

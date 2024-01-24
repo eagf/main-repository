@@ -26,8 +26,8 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 80px;
-    height: 34px;
+    width: 60px;
+    height: 24px;
 }
 
 .switch input {
@@ -44,7 +44,7 @@
     right: 0;
     bottom: 0;
     background-color: var(--main-color);
-    border-radius: 34px;
+    border-radius: 24px;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -52,8 +52,8 @@
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 16px;
+    width: 16px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -71,9 +71,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(46px);
-    -ms-transform: translateX(46px);
-    transform: translateX(46px);
+    -webkit-transform: translateX(36px);
+    -ms-transform: translateX(36px);
+    transform: translateX(36px);
 }
 
 .grid-container {

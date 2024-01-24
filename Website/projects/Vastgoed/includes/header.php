@@ -39,6 +39,11 @@ $currentPage = end($partsFileName);
                         Contact
                     </a>
                 </li>
+                <li class="<?php echo ($currentPage === 'pandInputForm.php') ? 'active' : ''; ?>">
+                    <a href="pandInputForm.php" class="header-link">
+                        +
+                    </a>
+                </li>
 
 
             </ul>
