@@ -121,12 +121,7 @@ VALUES (
         $stmtPanden->bindParam(':pandDetailID', $pandDetailID, PDO::PARAM_INT);
         $stmtPanden->bindParam(':wettelijkeInfoID', $wettelijkeInfoID, PDO::PARAM_INT);
 
-        // Execute the query for panden
-        if ($stmtPanden->execute()) {
-            echo "Nieuw pand succesvol toegevoegd.";
-        } else {
-            echo "Er is een fout opgetreden bij het toevoegen van het pand.";
-        }
+        $stmtPanden->execute();
         $pandID = $db->lastInsertId();
 
         // Bind parameters for kamers
@@ -143,17 +138,11 @@ VALUES (
             }
         }
 
-        // Execute the query for kamers
-        if ($stmtKamers->execute()) {
-            echo "Kamer details succesvol toegevoegd.";
-        } else {
-            echo "Er is een fout opgetreden bij het toevoegen van de kamer details.";
-        }
-
         // Commit transaction
         $db->commit();
-        echo "Nieuw pand en gerelateerde gegevens succesvol toegevoegd.";
+
         header("Location: ../pandInputForm.php?message=added");
+        
     } catch (PDOException $exception) {
         // Rollback transaction if any error occurs
         $db->rollBack();

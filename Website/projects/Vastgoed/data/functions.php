@@ -92,8 +92,8 @@ function getPandDetails($pandID)
                          ) as kamers
                   FROM panden p
                   LEFT JOIN adressen a ON p.adresID = a.adresID
-                  LEFT JOIN pandDetails pd ON p.pandDetailID = pd.pandDetailID
-                  LEFT JOIN wettelijkeInformatie wi ON p.wettelijkeInfoID = wi.wettelijkeInfoID
+                  LEFT JOIN panddetails pd ON p.pandDetailID = pd.pandDetailID
+                  LEFT JOIN wettelijkeinformatie wi ON p.wettelijkeInfoID = wi.wettelijkeInfoID
                   LEFT JOIN afbeeldingen af ON p.pandID = af.pandID
                   WHERE p.pandID = ?
                   GROUP BY p.pandID";
