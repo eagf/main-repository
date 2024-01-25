@@ -128,8 +128,6 @@ function getPandDetails($pandID)
 }
 
 
-
-
 function getPandenOverzicht($statusFilter)
 {
     $database = new Database();

@@ -17,9 +17,10 @@
 </head>
 
 <body>
-    <?php include("includes/header.php"); ?>
-
     <div id="wrapper">
+
+        <?php include("includes/header.php"); ?>
+
         <div class="filter-container">
             <p id="te-koop-selector" class="slider-text <?php echo $statusFilter === 'Te koop' ? 'active' : ''; ?>">Te koop</p>
             <label class="switch">

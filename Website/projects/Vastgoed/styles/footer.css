@@ -1,25 +1,15 @@
 /* CSS footer.php */
 
 footer {
+    box-sizing: border-box;
+    width: 100%;
     background-color: #e1e1e1;
     color: #333;
     text-align: center;
-    padding: 5px 0;
-    width: 100%;
+    padding: 10px 0;
 }
 
-.footer-div {
-    margin: 0 auto;
-    padding: 10px;
-}
-
-.footer-div p {
+footer p {
     margin: 5px 0;
     font-size: small;
-}
-
-@media (max-width: 600px) {
-    .footer-div {
-        padding: 10px;
-    }
 }

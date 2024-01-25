@@ -11,13 +11,15 @@
 </head>
 
 <body>
-    <?php include("includes/header.php"); ?>
-
     <div id="wrapper">
-        
+
+        <?php include("includes/header.php"); ?>
+
+
+
     </div>
 
-    <?php include 'includes/footer.php'; ?>
+    <?php include('includes/footer.php'); ?>
 </body>
 
 </html>

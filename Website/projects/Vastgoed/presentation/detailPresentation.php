@@ -11,9 +11,11 @@
 </head>
 
 <body>
-    <?php include("includes/header.php"); ?>
 
     <div id="wrapper">
+
+        <?php include("includes/header.php"); ?>
+
         <div class="pand-details-container">
             <h1 class="detail-title"><?php echo htmlspecialchars($pandDetails['titel']); ?></h1>
             <div class="detail-image-container">
@@ -77,7 +79,7 @@
             </div>
         </div>
 
-        <?php include 'includes/footer.php'; ?>
+        <?php include('includes/footer.php'); ?>
 </body>
 
 </html>

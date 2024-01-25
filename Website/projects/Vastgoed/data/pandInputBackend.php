@@ -127,12 +127,9 @@ VALUES (
         } else {
             echo "Er is een fout opgetreden bij het toevoegen van het pand.";
         }
-
-        // Assume $pandID is obtained after inserting into the panden table
         $pandID = $db->lastInsertId();
 
-        // Assuming you have already got $pandID from inserting into the panden table
-
+        // Bind parameters for kamers
         if (isset($_POST['kamerNaam']) && is_array($_POST['kamerNaam'])) {
             for ($i = 0; $i < count($_POST['kamerNaam']); $i++) {
                 $queryKamers = "INSERT INTO kamers (pandID, kamerNaam, kamerOppervlakte, kamerDetail) 

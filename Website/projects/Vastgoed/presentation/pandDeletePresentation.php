@@ -10,19 +10,25 @@
 </head>
 
 <body>
-    <?php include("includes/header.php"); ?>
-    <?php if (isset($message)) { 
-        echo "<p class='success'>".$message."</p>";
-     } ?>
-    <h2>Select Pand to Delete</h2>
-    <form action="pandDelete.php" method="GET">
-        <label for="pandID">Select a Pand:</label>
-        <select id="pandID" name="pandID">
-            <?php getPandenSelect(); ?>
-        </select>
-        <br>
-        <button type="submit">Delete Selected Pand</button>
-    </form>
+    <div id="wrapper">
+
+        <?php include("includes/header.php"); ?>
+
+        <?php if (isset($message)) {
+            echo "<p class='success'>" . $message . "</p>";
+        } ?>
+        <h2>Select Pand to Delete</h2>
+        <form action="pandDelete.php" method="GET">
+            <label for="pandID">Select a Pand:</label>
+            <select id="pandID" name="pandID">
+                <?php getPandenSelect(); ?>
+            </select>
+            <br>
+            <button type="submit">Delete Selected Pand</button>
+        </form>
+    </div>
+
+    <?php include("includes/footer.php"); ?>
 </body>
 
 </html>
