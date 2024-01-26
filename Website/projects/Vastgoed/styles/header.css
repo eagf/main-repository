@@ -36,10 +36,15 @@ header {
     text-align: center;
 }
 
+#logo-link {
+    
+}
+
 #logo {
-    height: 80px;
+    height: 120px;
     width: auto;
-    margin: 8px;
+    margin: 10px;
+    padding-left: 30px;
 }
 
 #header-nav {
@@ -103,9 +108,12 @@ header {
 }
 
 #hamburger-icon {
-    cursor: pointer;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    top: 50px;
     width: 30px; 
     height: 25px;
     display: none;
@@ -142,9 +150,15 @@ header {
         text-align: left;
     }
 
+    #logo {
+        height: 100px;
+        padding-left: 0;
+    }
+
     #header-nav {
         flex: 1; 
         justify-content: flex-end; 
+        padding: 0;
     }
     
     #header-nav ul {

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./styles/pandInput.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
+    <link rel="icon" href="./assets/logo.ico">
     <title>Select Pand to Delete</title>
 </head>
 

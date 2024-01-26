@@ -10,7 +10,7 @@ $currentPage = end($partsFileName);
     <div id="logo-and-icon-div">
         <div id="logo-div">
             <a id="logo-link" href="index.php">
-                <img id="logo" src="./assets/img/logo.png" alt="Logo Libeer">
+                <img id="logo" src="./assets/img/logo.svg" alt="Logo Libeer">
             </a>
         </div>
 

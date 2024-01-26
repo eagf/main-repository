@@ -4,7 +4,11 @@ function toggleNav() {
     const nav = document.getElementById('header-nav');
     const navUl = nav.querySelector('ul');
     const hamburger = document.getElementById('hamburger-icon');
+
     navUl.style.display = navUl.style.display === 'flex' ? 'none' : 'flex';
+    nav.style.marginTop = navUl.style.display === 'flex' ? '10px' : '0';
+    nav.style.marginBottom = navUl.style.display === 'flex' ? '10px' : '0';
+
     hamburger.classList.toggle('active');
 }
 
