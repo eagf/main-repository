@@ -112,7 +112,7 @@ input:checked+.slider:before {
     display: flex;
     overflow: hidden;
     position: relative;
-    padding-bottom: 66.66%; /* Adjust as per aspect ratio */
+    padding-bottom: 66.66%;
 }
 
 .card-image {
