@@ -14,7 +14,7 @@
 
 .slider-text {
     margin: 20px;
-    font-weight: normal;  
+    font-weight: normal;
     color: gray;
 }
 
@@ -62,15 +62,15 @@
     transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: var(--main-color);
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     -webkit-transform: translateX(36px);
     -ms-transform: translateX(36px);
     transform: translateX(36px);
@@ -83,7 +83,7 @@ input:checked + .slider:before {
     padding: 20px 0;
     width: 90%;
     max-width: 1200px;
-    margin: 0 auto; 
+    margin: 0 auto;
     flex-grow: 1;
 }
 
@@ -94,25 +94,36 @@ input:checked + .slider:before {
     border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
     transition: 0.3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card-link {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
+}
+
+.card-image-carousel {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 66.66%; /* Adjust as per aspect ratio */
 }
 
 .card-image {
-    height: 0;
-    padding-bottom: 66.66%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
+    transition: transform 0.5s ease-in-out;
 }
 
 .card-info {
@@ -124,7 +135,9 @@ input:checked + .slider:before {
     justify-content: space-between;
 }
 
-.card-title, .card-gemeente, .card-prijs {
+.card-title,
+.card-gemeente,
+.card-prijs {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -149,6 +162,4 @@ input:checked + .slider:before {
     margin: 0;
 }
 
-@media screen and (max-width: 768px) {
-
-}
+@media screen and (max-width: 768px) {}

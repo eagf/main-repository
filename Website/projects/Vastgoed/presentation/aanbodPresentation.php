@@ -8,12 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
     <link rel="icon" href="./assets/logo.ico">
     <title>Libeer vastgoed</title>
-    <script>
-        function submitForm() {
-            var status = document.getElementById('statusToggle').checked ? 'Te huur' : 'Te koop';
-            window.location.href = '?status=' + status;
-        }
-    </script>
+    <script src="scripts/aanbod.js" defer></script>
 </head>
 
 <body>
@@ -33,7 +28,13 @@
             <?php foreach ($pandenOverzicht as $pand) : ?>
                 <a href="detail.php?pandID=<?php echo htmlspecialchars((string)$pand['pandID']); ?>" class="card-link">
                     <div class="card">
-                        <div class="card-image" style="background-image: url('<?php echo htmlspecialchars($pand['afbeeldingen']); ?>');"></div>
+                        <div class="card-image-carousel">
+                            <?php
+                            $imageURLs = explode(',', $pand['afbeeldingen']);
+                            foreach ($imageURLs as $imageURL) : ?>
+                                <div class="card-image" style="background-image: url('<?php echo htmlspecialchars(trim($imageURL)); ?>');"></div>
+                            <?php endforeach; ?>
+                        </div>
                         <div class="card-info">
                             <h2 class="card-title"><?php echo htmlspecialchars($pand['titel']); ?></h2>
                             <p class="card-gemeente"><?php echo htmlspecialchars($pand['gemeente']); ?></p>
