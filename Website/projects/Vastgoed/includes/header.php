@@ -49,7 +49,7 @@ $currentPage = end($partsFileName);
                 </a>
             </li>
             <li class="<?php echo ($currentPage === 'pandInputForm.php') ? 'active' : ''; ?>">
-                <a href="pandInputForm.php" class="header-link">
+                <a href="admin.php" class="header-link">
                     Admin
                 </a>
             </li>

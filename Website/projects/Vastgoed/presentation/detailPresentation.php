@@ -20,6 +20,7 @@
         <div class="pand-details-container">
             <h1 class="detail-title"><?php echo htmlspecialchars($pandDetails['titel']); ?></h1>
             <div class="detail-carousel">
+                <div class="arrow left-arrow"></div>
                 <div class="detail-image-container">
                     <?php
                     $afbeeldingen = explode(',', $pandDetails['afbeeldingen']);
@@ -28,6 +29,7 @@
                     }
                     ?>
                 </div>
+                <div class="arrow right-arrow"></div>
             </div>
             <p class="detail-description"><?php echo nl2br(htmlspecialchars($pandDetails['tekst'])); ?></p>
             <div class="detail-info">

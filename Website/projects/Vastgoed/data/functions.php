@@ -3,12 +3,19 @@
 function deletePand($pandID)
 {
     try {
-        if ($pandID != 1 || $pandID != 2 || $pandID != 3 || $pandID != 4 || $pandID != 5) {
+        // CONTROL STILL IN CODE!!!!!!!!!!!!!!!!
+        if ($pandID > 5) {
 
             $database = new Database();
             $db = $database->getConnection();
 
             $db->beginTransaction();
+
+            // Step 0: Delete from afbeeldingen table (related to pand)
+            $queryDeleteAfbeeldingen = "DELETE FROM afbeeldingen WHERE pandID = :pandID";
+            $stmtDeleteAfbeeldingen = $db->prepare($queryDeleteAfbeeldingen);
+            $stmtDeleteAfbeeldingen->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+            $stmtDeleteAfbeeldingen->execute();
 
             // Step 1: Delete from kamers table (related to pand)
             $queryDeleteKamers = "DELETE FROM kamers WHERE pandID = :pandID";
@@ -177,19 +184,20 @@ function getPandenOverzicht($statusFilter)
     }
 }
 
-function getImagesByPandID($pandID) {
+function getImagesByPandID($pandID)
+{
     try {
         $database = new Database();
         $db = $database->getConnection();
-        
+
         $stmt = $db->prepare("SELECT * FROM afbeeldingen WHERE pandID = :pandID");
-        
+
         $stmt->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-        
+
         $stmt->execute();
-        
+
         $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         return $images;
     } catch (PDOException $e) {
         exit("Error: " . $e->getMessage());

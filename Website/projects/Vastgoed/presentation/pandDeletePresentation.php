@@ -20,7 +20,9 @@
                 echo "<p class='success'>" . $message . "</p>";
             } ?>
             <h2>Selecteer het pand om te verwijderen</h2>
-            <h3>De eerste 5 voorbeelden zijn nog niet te verwijderen</h3>
+            <!-- CONTROL STILL IN CODE!!!!!!!!!!!!!!!! -->
+            <h3 style="color: red">De eerste 5 voorbeelden zijn nog niet te verwijderen</h3>
+            <!-- CONTROL STILL IN CODE!!!!!!!!!!!!!!!! -->
             <form action="pandDelete.php" method="POST">
                 <label for="pandID">Selecteer een pand:</label>
                 <select id="pandID" name="pandID">

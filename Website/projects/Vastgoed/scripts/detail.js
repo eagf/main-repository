@@ -1,3 +1,5 @@
+// detail.js
+
 "use strict";
 
 let currentIndex = 0;
@@ -10,13 +12,28 @@ function moveToImage(index) {
     currentIndex = index;
 }
 
-// Add event listeners to your controls here (if you have arrows or dots for navigation)
-// Example: document.querySelector('.next-button').addEventListener('click', () => moveToImage(currentIndex + 1));
+// Left arrow click
+document.querySelector('.left-arrow').addEventListener('click', () => {
+    if (currentIndex > 0) {
+        moveToImage(currentIndex - 1);
+    } else {
+        moveToImage(totalImages - 1);
+    }
+});
 
-// Optional: Add auto-slide functionality
-setInterval(() => {
+// Right arrow click
+document.querySelector('.right-arrow').addEventListener('click', () => {
     moveToImage((currentIndex + 1) % totalImages);
-}, 3000); // Change image every 3000 milliseconds (3 seconds)
+});
 
+// Hide arrows
 
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
 
+function showArrows() {
+    leftArrow.style.display = 'block';
+    rightArrow.style.display = 'block';
+}
+
+carouselContainer.addEventListener('mouseover', showArrows);

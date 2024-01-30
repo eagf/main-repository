@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
     <link rel="icon" href="./assets/logo.ico">
     <title>Toevoegen</title>
-    <script src="scripts/pandInputForm.js" defer></script>
+    <script src="scripts/pandInput.js" defer></script>
 </head>
 
 <body>
@@ -21,13 +21,6 @@
         } ?>
 
         <div class="form-container">
-
-            <form action="pandDelete.php" method="POST">
-                <button type="submit">Pand verwijderen</button>
-            </form>
-            <form action="images.php" method="POST">
-                <button type="submit">Afbeeldingen</button>
-            </form>
 
             <h2>Nieuw Pand Toevoegen</h2>
             <form action="data/pandInputBackend.php" method="POST">

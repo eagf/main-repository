@@ -23,7 +23,7 @@ carousels.forEach(carousel => {
         if (!intervalId) { 
             intervalId = setInterval(() => {
                 moveToImage((currentIndex + 1) % totalImages);
-            }, 500); 
+            }, 1500); 
         }
     }
 
@@ -35,7 +35,7 @@ carousels.forEach(carousel => {
     }
 
     carousel.addEventListener('mouseover', startCarousel);
-    carousel.addEventListener('mouseout', stopCarousel);
+    carousel.addEventListener('mouseleave', stopCarousel);
 
     // Mobile devices
 

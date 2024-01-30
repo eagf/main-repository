@@ -9,4 +9,4 @@ if (isset($_GET["message"]) && $_GET["message"] == "added") {
     $message = "Nieuw pand en gerelateerde gegevens succesvol toegevoegd.";
 }
 
-include("presentation/pandInputFormPresentation.php");
+include("presentation/pandInputPresentation.php");

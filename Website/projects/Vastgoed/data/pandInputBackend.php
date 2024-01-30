@@ -141,7 +141,7 @@ VALUES (
         // Commit transaction
         $db->commit();
 
-        header("Location: ../pandInputForm.php?message=added");
+        header("Location: ../pandInput.php?message=added");
         
     } catch (PDOException $exception) {
         // Rollback transaction if any error occurs

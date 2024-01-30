@@ -4,6 +4,8 @@ require_once('DBConfig.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // ============ upload images ============
+
     if (isset($_POST['upload'])) {
         $pandID = (int)$_POST['pandID'] ?? '';
         $targetDir = "../assets/img/panden/";
@@ -15,9 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
             foreach ($_FILES['image']['name'] as $key => $imageName) {
-                $fileName = basename($imageName);
-                $targetFilePath = $targetDir . $fileName;
-                $targetFilePathForAanbod = $targetDirForAanbod . $fileName;
+                $originalFileName = basename($imageName);
+                $fileType = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION)); // Extract the file extension
+                $newFileName = 'image_' . time() . '_' . rand(1000, 9999) . '.' . $fileType;
+
+                $targetFilePath = $targetDir . $newFileName;
+                $targetFilePathForAanbod = $targetDirForAanbod . $newFileName;
+
                 $description = $_POST['description'][$key] ?? '';
 
                 $check = getimagesize($_FILES["image"]["tmp_name"][$key]);
@@ -44,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // ============ delete images ============
+
     if (isset($_POST['action']) && $_POST['action'] === 'delete_images' && !empty($_POST['imagesToDelete'])) {
         $pandID = $_POST['pandID'];
         $imagesToDelete = $_POST['imagesToDelete'];
@@ -54,12 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $db->beginTransaction();
 
             foreach ($imagesToDelete as $imageURL) {
-                $filePath = '../' . $imageURL; 
+                $filePath = '../' . $imageURL;
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
-
-                $stmt = $db->prepare("DELETE FROM afbeeldingen WHERE pandID = :pandID AND afbeeldingURL = :afbeeldingURL");
+                // CONTROL STILL IN CODE!!!!!!!!!!!!!!!!
+                $stmt = $db->prepare("DELETE FROM afbeeldingen 
+                WHERE pandID = :pandID 
+                AND afbeeldingURL = :afbeeldingURL 
+                AND afbeeldingID > 60"); // <==================
                 $stmt->bindParam(':pandID', $pandID);
                 $stmt->bindParam(':afbeeldingURL', $imageURL);
                 $stmt->execute();
@@ -67,6 +78,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $db->commit();
             header("Location: ../images.php?pandID=$pandID&message=removed");
+        } catch (PDOException $e) {
+            $db->rollBack();
+            exit("Error: " . $e->getMessage());
+        }
+    }
+
+    // ============ update descriptions ============
+
+    if ($_POST['action'] === 'update_descriptions' && isset($_POST['descriptions'])) {
+        $pandID = $_POST['pandID'];
+        $descriptions = $_POST['descriptions'];
+
+        try {
+            $database = new Database();
+            $db = $database->getConnection();
+            $db->beginTransaction();
+
+            foreach ($descriptions as $afbeeldingID => $description) {
+                $stmt = $db->prepare("UPDATE afbeeldingen 
+                SET beschrijving = :beschrijving 
+                WHERE afbeeldingID = :afbeeldingID 
+                AND pandID = :pandID");
+                $stmt->bindParam(':beschrijving', $description);
+                $stmt->bindParam(':afbeeldingID', $afbeeldingID);
+                $stmt->bindParam(':pandID', $pandID);
+                $stmt->execute();
+            }
+
+            $db->commit();
+            header("Location: ../images.php?pandID=$pandID&message=updated");
         } catch (PDOException $e) {
             $db->rollBack();
             exit("Error: " . $e->getMessage());

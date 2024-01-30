@@ -40,7 +40,7 @@
             </form>
 
             <?php if ($pandID) { ?>
-                <form action="./data/imageInputBackend.php" method="POST" enctype="multipart/form-data">
+                <form action="./data/imageBackend.php" method="POST" enctype="multipart/form-data">
                     <h3>Uploaden</h3>
 
                     <input type="hidden" name="pandID" value="<?php echo htmlspecialchars($pandID); ?>">
@@ -58,8 +58,11 @@
                     <button type="submit" name="upload">Voeg afbeeldingen toe</button>
                 </form>
 
-                <form action="./data/imageInputBackend.php" method="POST">
+                <form action="./data/imageBackend.php" method="POST">
                     <h3>Verwijderen</h3>
+                    <!-- CONTROL STILL IN CODE!!!!!!!!!!!!!!!! -->
+                    <h3 style="color: red">De eerste 6 zijn nog niet te verwijderen</h3>
+                    <!-- CONTROL STILL IN CODE!!!!!!!!!!!!!!!! -->
                     <input type="hidden" name="action" value="delete_images">
                     <input type="hidden" name="pandID" value="<?php echo htmlspecialchars($pandID); ?>">
 
@@ -77,6 +80,27 @@
                     </div>
 
                     <button type="submit">Verwijder afbeeldingen</button>
+                </form>
+
+                <form action="./data/imageBackend.php" method="POST">
+                    <h3>Bewerk beschrijvingen</h3>
+                    <input type="hidden" name="action" value="update_descriptions">
+                    <input type="hidden" name="pandID" value="<?php echo htmlspecialchars($pandID); ?>">
+
+                    <div class="image-update-container">
+                        <?php
+                        foreach ($images as $key => $image) : ?>
+                            <div class="image-update-block">
+                                <div class="image-preview">
+                                    <img src="<?php echo htmlspecialchars($image['afbeeldingURL']); ?>" alt="<?php echo htmlspecialchars($image['beschrijving']); ?>">
+                                </div>
+                                <div class="image-description">
+                                <textarea name="descriptions[<?php echo htmlspecialchars($image['afbeeldingID']); ?>]" rows="4"><?php echo htmlspecialchars($image['beschrijving']); ?></textarea>                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <button type="submit">Wijzigingen opslaan</button>
                 </form>
 
             <?php } ?>

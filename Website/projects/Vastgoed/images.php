@@ -12,9 +12,10 @@ if (isset($_GET["message"])) {
 
     if ($_GET["message"] == "added") {
         $message = "Nieuwe afbeeldingen succesvol toegevoegd.";
-    }
-    if ($_GET["message"] == "removed") {
+    } elseif ($_GET["message"] == "removed") {
         $message = "Afbeeldingen succesvol verwijderd.";
+    } elseif ($_GET["message"] == "updated") {
+        $message = "Beschrijvingen succesvol aangepast.";
     }
 }
 
@@ -26,4 +27,4 @@ if (isset($_GET["pandID"])) {
     $pandID = null;
 }
 
-include("presentation/imagesPresentation.php");
+include("presentation/pandImagesPresentation.php");

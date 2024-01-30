@@ -9,7 +9,7 @@ require_once('data/functions.php');
 $message = "";
 
 if (isset($_POST["pandID"])) {
-    deletePand((int) $_POST["pandID"]);
+    deletePand((int)$_POST["pandID"]);
     $message = "Pand en gerelateerde gegevens succesvol verwijderd.";
 }
 
