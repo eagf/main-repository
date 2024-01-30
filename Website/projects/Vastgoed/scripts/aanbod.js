@@ -23,7 +23,7 @@ carousels.forEach(carousel => {
         if (!intervalId) { 
             intervalId = setInterval(() => {
                 moveToImage((currentIndex + 1) % totalImages);
-            }, 1000); 
+            }, 500); 
         }
     }
 
@@ -36,4 +36,33 @@ carousels.forEach(carousel => {
 
     carousel.addEventListener('mouseover', startCarousel);
     carousel.addEventListener('mouseout', stopCarousel);
+
+    // Mobile devices
+
+   function initIntersectionObserver() {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startCarousel();
+                    } else {
+                        stopCarousel();
+                    }
+                });
+            }, { threshold: 0.8 }); // when 80% visible
+
+            observer.observe(carousel);
+        }
+
+        if (window.innerWidth < 768) {
+            initIntersectionObserver();
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 768) {
+                initIntersectionObserver();
+            } else {
+                stopCarousel();
+            }
+        });
+
 });

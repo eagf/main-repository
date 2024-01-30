@@ -3,53 +3,53 @@
 function deletePand($pandID)
 {
     try {
-        $database = new Database();
-        $db = $database->getConnection();
+        if ($pandID != 1 || $pandID != 2 || $pandID != 3 || $pandID != 4 || $pandID != 5) {
 
-        $db->beginTransaction();
+            $database = new Database();
+            $db = $database->getConnection();
 
-        // Step 1: Delete from kamers table (related to pand)
-        $queryDeleteKamers = "DELETE FROM kamers WHERE pandID = :pandID";
-        $stmtDeleteKamers = $db->prepare($queryDeleteKamers);
-        $stmtDeleteKamers->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-        $stmtDeleteKamers->execute();
+            $db->beginTransaction();
 
-        // Step 2: Delete from panden table
-        $queryDeletePanden = "DELETE FROM panden WHERE pandID = :pandID";
-        $stmtDeletePanden = $db->prepare($queryDeletePanden);
-        $stmtDeletePanden->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-        $stmtDeletePanden->execute();
+            // Step 1: Delete from kamers table (related to pand)
+            $queryDeleteKamers = "DELETE FROM kamers WHERE pandID = :pandID";
+            $stmtDeleteKamers = $db->prepare($queryDeleteKamers);
+            $stmtDeleteKamers->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+            $stmtDeleteKamers->execute();
 
-        // Step 3: Delete from panddetails table (related to pand)
-        $queryDeletePandDetails = "DELETE FROM panddetails WHERE pandDetailID = 
+            // Step 2: Delete from panden table
+            $queryDeletePanden = "DELETE FROM panden WHERE pandID = :pandID";
+            $stmtDeletePanden = $db->prepare($queryDeletePanden);
+            $stmtDeletePanden->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+            $stmtDeletePanden->execute();
+
+            // Step 3: Delete from panddetails table (related to pand)
+            $queryDeletePandDetails = "DELETE FROM panddetails WHERE pandDetailID = 
                 (SELECT pandDetailID FROM panden WHERE pandID = :pandID)";
-        $stmtDeletePandDetails = $db->prepare($queryDeletePandDetails);
-        $stmtDeletePandDetails->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-        $stmtDeletePandDetails->execute();
+            $stmtDeletePandDetails = $db->prepare($queryDeletePandDetails);
+            $stmtDeletePandDetails->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+            $stmtDeletePandDetails->execute();
 
-        // Step 4: Delete from wettelijkeinformatie table (related to pand)
-        $queryDeleteWettelijkeInfo = "DELETE FROM wettelijkeinformatie WHERE wettelijkeInfoID = 
+            // Step 4: Delete from wettelijkeinformatie table (related to pand)
+            $queryDeleteWettelijkeInfo = "DELETE FROM wettelijkeinformatie WHERE wettelijkeInfoID = 
                 (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
-        $stmtDeleteWettelijkeInfo = $db->prepare($queryDeleteWettelijkeInfo);
-        $stmtDeleteWettelijkeInfo->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-        $stmtDeleteWettelijkeInfo->execute();
+            $stmtDeleteWettelijkeInfo = $db->prepare($queryDeleteWettelijkeInfo);
+            $stmtDeleteWettelijkeInfo->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+            $stmtDeleteWettelijkeInfo->execute();
 
-        // Step 5: Delete from adressen table (related to pand)
-        $queryDeleteAdressen = "DELETE FROM adressen WHERE adresID = 
+            // Step 5: Delete from adressen table (related to pand)
+            $queryDeleteAdressen = "DELETE FROM adressen WHERE adresID = 
                 (SELECT adresID FROM panden WHERE pandID = :pandID)";
-        $stmtDeleteAdressen = $db->prepare($queryDeleteAdressen);
-        $stmtDeleteAdressen->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-        $stmtDeleteAdressen->execute();
+            $stmtDeleteAdressen = $db->prepare($queryDeleteAdressen);
+            $stmtDeleteAdressen->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+            $stmtDeleteAdressen->execute();
 
-        // Commit transaction
-        $db->commit();
+            $db->commit();
+        }
     } catch (PDOException $exception) {
-        // Rollback transaction if any error occurs
         $db->rollBack();
         exit("Error: " . $exception->getMessage());
     }
 }
-
 
 function getPandenSelect()
 {
@@ -57,12 +57,10 @@ function getPandenSelect()
         $database = new Database();
         $db = $database->getConnection();
 
-        // Query to retrieve "panden" data
         $query = "SELECT pandID, titel, status, type, prijs FROM panden";
         $stmt = $db->prepare($query);
         $stmt->execute();
 
-        // Fetch and display "panden" data as options
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $pandID = $row['pandID'];
             $titel = $row['titel'];
@@ -70,8 +68,31 @@ function getPandenSelect()
             $type = $row['type'];
             $prijs = $row['prijs'];
 
-            // Display the options with pandID as the value
             echo "<option value='$pandID'>$titel - $status - $type - $prijs</option>";
+        }
+    } catch (PDOException $exception) {
+        exit("Error: " . $exception->getMessage());
+    }
+}
+
+function getPandDetailsByPandID($pandID)
+{
+    try {
+        $database = new Database();
+        $db = $database->getConnection();
+
+        $query = "SELECT titel, status, type, prijs FROM panden WHERE pandID = :pandID";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmt->execute();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $titel = $row['titel'];
+            $status = $row['status'];
+            $type = $row['type'];
+            $prijs = $row['prijs'];
+
+            echo "<h2 class='images-title'>$titel - $status - $type - $prijs</h2>";
         }
     } catch (PDOException $exception) {
         exit("Error: " . $exception->getMessage());
@@ -83,7 +104,6 @@ function getPandDetails($pandID)
     $database = new Database();
     $db = $database->getConnection();
 
-    // Query to get pand details, address, pand details, legal information, images, and aggregated room details
     $queryPand = "SELECT p.*, a.*, pd.*, wi.*, 
                          GROUP_CONCAT(af.afbeeldingURL) as afbeeldingen,
                          (SELECT GROUP_CONCAT(CONCAT_WS('|', kamerNaam, kamerOppervlakte, kamerDetail) SEPARATOR '||') 
@@ -104,15 +124,12 @@ function getPandDetails($pandID)
         $stmtPand->execute();
         $pandData = $stmtPand->fetch(PDO::FETCH_ASSOC);
 
-
-        // Fetch room details separately
         $queryKamers = "SELECT * FROM kamers WHERE pandID = ?";
         $stmtKamers = $db->prepare($queryKamers);
         $stmtKamers->bindParam(1, $pandID);
         $stmtKamers->execute();
         $kamerData = $stmtKamers->fetchAll(PDO::FETCH_ASSOC);
 
-        // Group rooms by room type (kamerNaam)
         $groupedKamers = [];
         foreach ($kamerData as $kamer) {
             $groupedKamers[$kamer['kamerNaam']][] = $kamer;
@@ -157,5 +174,24 @@ function getPandenOverzicht($statusFilter)
         return $panden;
     } catch (PDOException $exception) {
         exit("Error: " . $exception->getMessage());
+    }
+}
+
+function getImagesByPandID($pandID) {
+    try {
+        $database = new Database();
+        $db = $database->getConnection();
+        
+        $stmt = $db->prepare("SELECT * FROM afbeeldingen WHERE pandID = :pandID");
+        
+        $stmt->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        
+        $stmt->execute();
+        
+        $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $images;
+    } catch (PDOException $e) {
+        exit("Error: " . $e->getMessage());
     }
 }
