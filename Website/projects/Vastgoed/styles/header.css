@@ -53,6 +53,7 @@ header {
     align-items: center;
     width: 100%;
     justify-content: space-evenly;
+    overflow: auto;
 }
 
 #header-nav ul {

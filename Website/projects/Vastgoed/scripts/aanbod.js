@@ -5,43 +5,35 @@ function submitForm() {
     window.location.href = '?status=' + status;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const carousels = document.querySelectorAll('.card-image-carousel');
+const carousels = document.querySelectorAll('.card-carousel');
 
-    carousels.forEach(carousel => {
-        let currentIndex = 0;
-        const images = carousel.querySelectorAll('.card-image');
-        const totalImages = images.length;
+carousels.forEach(carousel => {
+    let currentIndex = 0;
+    let intervalId = null;
+    const carouselContainer = carousel.querySelector('.card-image-container');
+    const images = carousel.querySelectorAll('.card-image');
+    const totalImages = images.length;
 
-        images.forEach((img, index) => {
-            if (index === currentIndex) {
-                img.style.transform = 'translateX(0)';
-                img.style.zIndex = '2'; // Make current image on top
-            } else {
-                img.style.transform = 'translateX(100%)';
-                img.style.zIndex = '1'; // Other images below
-            }
-        });
+    function moveToImage(index) {
+        carouselContainer.style.transform = `translateX(-${index * 100}%)`;
+        currentIndex = index;
+    }
 
-        setInterval(() => {
-            const nextIndex = (currentIndex + 1) % totalImages;
+    function startCarousel() {
+        if (!intervalId) { 
+            intervalId = setInterval(() => {
+                moveToImage((currentIndex + 1) % totalImages);
+            }, 1000); 
+        }
+    }
 
-            images[nextIndex].style.zIndex = '3'; // Bring the next image to the top
-            images[nextIndex].style.transform = 'translateX(0)'; // Slide in the next image
+    function stopCarousel() {
+        clearInterval(intervalId);
+        intervalId = null;
+        currentIndex = 0;
+        moveToImage(currentIndex);
+    }
 
-            setTimeout(() => {
-                // After a delay, reset all other images to the right and manage z-index
-                images.forEach((img, index) => {
-                    if (index !== nextIndex) {
-                        img.style.transform = 'translateX(100%)';
-                        img.style.zIndex = '1';
-                    }
-                });
-
-                images[currentIndex].style.zIndex = '2'; // Previous image goes below the current one
-            }, 500); // Delay in milliseconds (adjust as needed)
-
-            currentIndex = nextIndex;
-        }, 3000); // Interval time in milliseconds (adjust as needed)
-    });
+    carousel.addEventListener('mouseover', startCarousel);
+    carousel.addEventListener('mouseout', stopCarousel);
 });

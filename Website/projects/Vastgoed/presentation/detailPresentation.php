@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./styles/detail.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
-    <link rel="icon" href="./assets/logo.ico">    
+    <link rel="icon" href="./assets/logo.ico">
+    <script src="scripts/detail.js" defer></script>
     <title>Libeer vastgoed</title>
 </head>
 
@@ -18,13 +19,15 @@
 
         <div class="pand-details-container">
             <h1 class="detail-title"><?php echo htmlspecialchars($pandDetails['titel']); ?></h1>
-            <div class="detail-image-container">
-                <?php
-                $afbeeldingen = explode(',', $pandDetails['afbeeldingen']);
-                foreach ($afbeeldingen as $afbeelding) {
-                    echo '<img src="' . htmlspecialchars($afbeelding) . '" class="detail-image" />';
-                }
-                ?>
+            <div class="detail-carousel">
+                <div class="detail-image-container">
+                    <?php
+                    $afbeeldingen = explode(',', $pandDetails['afbeeldingen']);
+                    foreach ($afbeeldingen as $afbeelding) {
+                        echo '<div class="detail-image" style="background-image: url(' . htmlspecialchars($afbeelding) . ');"></div>';
+                    }
+                    ?>
+                </div>
             </div>
             <p class="detail-description"><?php echo nl2br(htmlspecialchars($pandDetails['tekst'])); ?></p>
             <div class="detail-info">

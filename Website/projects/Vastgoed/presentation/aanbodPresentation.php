@@ -7,8 +7,8 @@
     <link rel="stylesheet" type="text/css" href="./styles/aanbod.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
     <link rel="icon" href="./assets/logo.ico">
-    <title>Libeer vastgoed</title>
     <script src="scripts/aanbod.js" defer></script>
+    <title>Libeer vastgoed</title>
 </head>
 
 <body>
@@ -28,12 +28,15 @@
             <?php foreach ($pandenOverzicht as $pand) : ?>
                 <a href="detail.php?pandID=<?php echo htmlspecialchars((string)$pand['pandID']); ?>" class="card-link">
                     <div class="card">
-                        <div class="card-image-carousel">
-                            <?php
-                            $imageURLs = explode(',', $pand['afbeeldingen']);
-                            foreach ($imageURLs as $imageURL) : ?>
-                                <div class="card-image" style="background-image: url('<?php echo htmlspecialchars(trim($imageURL)); ?>');"></div>
-                            <?php endforeach; ?>
+                        <div class="card-carousel">
+                            <div class="card-image-container">
+                                <?php
+                                $afbeeldingen = explode(',', $pand['afbeeldingen']);
+                                foreach ($afbeeldingen as $afbeelding) {
+                                    echo '<div class="card-image" style="background-image: url(' . htmlspecialchars($afbeelding) . ');"></div>';
+                                }
+                                ?>
+                            </div>
                         </div>
                         <div class="card-info">
                             <h2 class="card-title"><?php echo htmlspecialchars($pand['titel']); ?></h2>
