@@ -34,6 +34,7 @@ function deletePand($pandID)
                     echo "The directory of this server is: " . __DIR__;
                 }
             }
+            
             // Step 0: Delete from afbeeldingen table (related to pand)
             $queryDeleteAfbeeldingen = "DELETE FROM afbeeldingen WHERE pandID = :pandID";
             $stmtDeleteAfbeeldingen = $db->prepare($queryDeleteAfbeeldingen);
