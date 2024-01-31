@@ -11,6 +11,29 @@ function deletePand($pandID)
 
             $db->beginTransaction();
 
+            // Step -1: Fetch all image URLs + delete images (related to pand)
+            $queryFetchUrls = "SELECT afbeeldingURL FROM afbeeldingen WHERE pandID = :pandID";
+            $stmtFetchUrls = $db->prepare($queryFetchUrls);
+            $stmtFetchUrls->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+            $stmtFetchUrls->execute();
+            $imageUrls = $stmtFetchUrls->fetchAll(PDO::FETCH_COLUMN);
+
+            // Determine base directory based environment
+            $isLocal = $_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1';
+            $basePath = $isLocal
+                ? 'c:/xampp/htdocs/main-repository/Website/projects/vastgoed/assets/img/panden/'
+                : '/data/sites/web/eliasferketcom/www/projects/vastgoed/assets/img/panden/';
+
+            foreach ($imageUrls as $imageUrl) {
+                $filePath = $basePath . basename($imageUrl);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+                else {
+                    echo "No images found in the path: " . $filePath . "<br>";
+                    echo "The directory of this server is: " . __DIR__;
+                }
+            }
             // Step 0: Delete from afbeeldingen table (related to pand)
             $queryDeleteAfbeeldingen = "DELETE FROM afbeeldingen WHERE pandID = :pandID";
             $stmtDeleteAfbeeldingen = $db->prepare($queryDeleteAfbeeldingen);
