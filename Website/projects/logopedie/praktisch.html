@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/praktisch.css">
     <script src="scripts.js" defer></script>
     <title>Praktisch</title>
 </head>
+
 <body>
-    <div class="container">
+    <div class="main-container">
         <div class="header-container">
             <header>
                 <div class="header-img-container">
-                    <a href="./index.html"><img class="header-img" src="./img/brain.png" alt="Isabelle Corneillie"></a>
+                    <a href="./index.html"><img class="header-img" src="./assets/img/brain.png"
+                            alt="Isabelle Corneillie"></a>
                 </div>
                 <ul class="header-list">
                     <li class="header-listitem">
-                        <a class="header-link" href="./index.html">Home</a>
-                    </li>
-                    <li class="header-listitem">
-                        <a class="header-link" href="./neurologischeStoornissen.html">Neurologische stoornissen</a>
+                        <a class="header-link" href="./stoornissen.html">Neurologische stoornissen</a>
                     </li>
                     <li class="header-listitem active">
                         <a class="header-link" href="./praktisch.html">Praktisch</a>
@@ -28,11 +29,103 @@
                         <a class="header-link" href="./documenten.php">Documenten</a>
                     </li>
                     <li class="header-listitem">
+                        <a class="header-link" href="./verhaal.html">Mijn verhaal</a>
+                    </li>
+                    <li class="header-listitem">
                         <a class="header-link" href="./contact.html">Contact</a>
                     </li>
                 </ul>
             </header>
         </div>
-    </div>
+        <div id="praktisch-container">
+            <h1>Praktisch</h1>
+            <p class="praktisch-intro">
+                Mijn praktijk ligt in de Lange Violettestraat te Gent, maar ik verzorg momenteel enkel huisbezoeken in
+                Gent en omstreken.
+            </p>
+            <p class="praktisch-intro">
+                Ik ben gespecialiseerd in neurologische spraak-, taal- en slikstoornissen, de ziekte van Parkinson en
+                perifere facialisparese (mimetherapie).
+            </p>
+
+            <div class="table-container">
+                <h2>Aanvangsbilan of evolutiebilan</h2>
+                <table class="praktisch-table">
+                    <tr>
+                        <th>Prestatie</th>
+                        <th>Honorarium</th>
+                        <th colspan="2">U bent gewoon verzekerd</th>
+                        <th colspan="2">U hebt verhoogde tegemoetkoming</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Terugbetaling</td>
+                        <td>Remgeld</td>
+                        <td>Terugbetaling</td>
+                        <td>Remgeld</td>
+                    </tr>
+                    <tr>
+                        <td>Bilanzitting (3x)</td>
+                        <td>42,75 (x3)</td>
+                        <td>35,25 (x3)</td>
+                        <td>7,5 (x3)</td>
+                        <td>39,75 (x3)</td>
+                        <td>3 (x3)</td>
+                    </tr>
+                    <tr>
+                        <td>Evolutiebilan (1x)</td>
+                        <td>51,50</td>
+                        <td>40,50</td>
+                        <td>11</td>
+                        <td>47</td>
+                        <td>4,50</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="table-container">
+                <h2>Therapiesessie</h2>
+                <table class="praktisch-table">
+                    <tr>
+                        <th>Prestatie</th>
+                        <th>Honorarium</th>
+                        <th colspan="2">U bent gewoon verzekerd</th>
+                        <th colspan="2">U hebt verhoogde tegemoetkoming</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Terugbetaling</td>
+                        <td>Remgeld</td>
+                        <td>Terugbetaling</td>
+                        <td>Remgeld</td>
+                    </tr>
+                    <tr>
+                        <td>Individuele zitting van maximaal 30 minuten</td>
+                        <td>36,14</td>
+                        <td>30,64</td>
+                        <td>5.5</td>
+                        <td>34,14</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Individuele zitting van maximaal 60 minuten</td>
+                        <td>72,59</td>
+                        <td>61,59</td>
+                        <td>11</td>
+                        <td>68,59</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="verplaatsingskosten">
+                <h2>Verplaatsingskosten</h2>
+                <p>Binnen de regio Gent wordt er 1 EUR verplaatsingskosten aangerekend per sessie.</p>
+                <p>Buiten de regio Gent wordt er 4 EUR verplaatsingskosten aangerekend per sessie.</p>
+            </div>
+        </div>
 </body>
+
 </html>

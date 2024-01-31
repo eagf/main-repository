@@ -1,0 +1,18 @@
+/* ================= Mijn verhaal ================= */
+
+#verhaal-container {
+    width: 80%;
+    background-color: var(--opacity);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
+}
+
+#verhaal-container h1 {
+    text-align: center;
+}
+
+p {
+    margin-top: 10px;
+}

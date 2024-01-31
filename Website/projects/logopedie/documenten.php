@@ -15,30 +15,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/documenten.css">
     <script src="scripts.js" defer></script>
     <title>Documenten</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="main-container">
         <div class="header-container">
             <header>
                 <div class="header-img-container">
-                    <a href="./index.html"><img class="header-img" src="./img/brain.png" alt="Isabelle Corneillie"></a>
+                    <a href="./index.html"><img class="header-img" src="./assets/img/brain.png" alt="Isabelle Corneillie"></a>
                 </div>
                 <ul class="header-list">
                     <li class="header-listitem">
-                        <a class="header-link" href="./index.html">Home</a>
-                    </li>
-                    <li class="header-listitem">
-                        <a class="header-link" href="./neurologischeStoornissen.html">Neurologische stoornissen</a>
+                        <a class="header-link" href="./stoornissen.html">Neurologische stoornissen</a>
                     </li>
                     <li class="header-listitem">
                         <a class="header-link" href="./praktisch.html">Praktisch</a>
                     </li>
                     <li class="header-listitem active">
                         <a class="header-link" href="./documenten.php">Documenten</a>
+                    </li>
+                    <li class="header-listitem">
+                        <a class="header-link" href="./verhaal.html">Mijn verhaal</a>
                     </li>
                     <li class="header-listitem">
                         <a class="header-link" href="./contact.html">Contact</a>

@@ -1,0 +1,228 @@
+/* ================= Index ================= */
+
+#index-container {
+    background-image: url('../assets/img/whiteBackground.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+}
+
+/* Index links */
+
+#left-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    /* height: 100vh; */
+    max-width: 50%;
+    padding-right: 1em;
+}
+
+@media screen and (min-width: 769px) {
+    #left-wrapper {
+        height: 100vh;
+    }
+}
+
+#left-wrapper .header-img-container {
+    display: flex;
+    filter: invert(1);
+    left: 0;
+    top: 0;
+    /* justify-self: flex-start; */
+}
+
+#left-wrapper .header-img-container a .header-img:hover {
+    height: 3em;
+    cursor: auto;
+}
+
+#left-wrapper #text-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 2em;
+    padding-top: 2vw;
+}
+
+#left-wrapper h1,
+#left-wrapper h3 {
+    /* text-transform: uppercase; */
+    /* color: #DCAF99;
+    text-shadow: 1px 1px 1px black; */
+}
+
+#left-wrapper h1 {
+    display: flex;
+    font-size: 6vh;
+    border-bottom: 0.5px solid #696969;
+}
+
+#left-wrapper h3 {
+    display: flex;
+    font-size: 4vh;
+    /* border-bottom: 0.5px solid #000000; */
+}
+
+/* Knoppen index links */
+
+#button-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vw;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+#button-container a {
+    margin-bottom: 0.5em;
+    padding: 1em;
+    font-size: 2vh;
+    width: 70%;
+    text-decoration: none;
+    background-color: var(--opacity);
+    color: #000000;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.2);
+    /* animation: growAndShrink 4s infinite; */
+    transition: 
+    background-color 0.2s, 
+    border-color 0.2s, 
+    border 0.2s, 
+    padding 0.2s, 
+    border-radius 0.2s,
+    font-size 0.2s,
+    transform 0.4s;
+}
+
+#button-container a:hover {
+    background-color: var(--main-color);
+    border-color: #ccc;
+    border: 2px solid #ddd;
+    padding: 1.2em;
+    border-radius: 6px;
+    font-size: 2.5vh;
+    /* animation: none; */
+}
+
+#button-container a:active {
+    animation: shrinkAndRestore 0.5s ease-out;
+}
+
+@keyframes shrinkAndRestore {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+/* @keyframes growAndShrink {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  } */
+
+  
+/* #button1 {
+    animation-delay: 0s;
+}
+#button2 {
+    animation-delay: 0.5s;
+}
+#button3 {
+    animation-delay: 1s;
+}
+#button4 {
+    animation-delay: 1.5s;
+} */
+
+/* Afbeeldingen index */
+
+#img-container {
+    display: flex;
+    flex-direction: row;
+    min-width: 40%;
+    max-width: 50%;
+    align-items: center;
+    padding-right: 1em;
+}
+
+#text-image-wrapper {
+    width: 40%;
+    padding-bottom: 2em;
+}
+
+#text-image {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: moveImg 0.5s linear forwards;
+    animation-delay: 1.5s;
+}
+
+#head-image-wrapper {
+    width: 60%;
+}
+
+#head-image {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(30px);
+    animation: moveImg 0.5s linear forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes moveImg {
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #index-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #left-wrapper {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    #index-container .header-img-container {
+       align-self: flex-start;
+       padding-left: 1em;
+    }
+
+    #img-container {
+        padding-top: 5vh;
+    }
+    #left-wrapper h1 {
+        font-size: 8vw;
+    }
+    #left-wrapper h3 {
+        font-size: 5vw;
+    }
+    #button-container a {
+        font-size: 4vw;
+    }
+
+}
