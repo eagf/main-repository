@@ -11,8 +11,8 @@
 }
 
 @media screen and (max-width: 768px) {
-    .form-container {
-        width: 80%;
+    #form-container {
+        width: 90%;
     }
 }
 
@@ -34,6 +34,7 @@
 
 #form-container textarea {
     height: 100px;
+    resize: vertical;
 }
 
 #form-container button {

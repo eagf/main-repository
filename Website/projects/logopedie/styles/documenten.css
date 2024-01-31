@@ -1,9 +1,13 @@
 /* ================= Documenten =================  */
 
 #documenten-container {
-    max-width: 1000px;
-    width: 100%;
-    padding: 0 20px;
+    width: 80%;
+    background-color: var(--opacity);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-bottom: 2em;
 }
 
 #documenten-container h1 {
@@ -17,9 +21,9 @@
 }
 
 #documenten-container form {
-    display: flex; 
+    display: flex;
     justify-content: center;
-    gap: 10px; 
+    gap: 10px;
     margin-bottom: 30px;
 }
 
@@ -33,7 +37,7 @@
 
 #documenten-container form button {
     padding: 0 20px;
-    background-color: #000000;
+    background-color: var(--main-color);
     color: white;
     border: none;
     border-radius: 5px;
@@ -41,55 +45,56 @@
     transition: 0.3s;
 }
 
-button:hover {
-    background-color: #818181;
+#documenten-container form button:hover {
+    background-color: var(--main-color-darkest);
 }
 
 #error {
-    color: #D8000C; 
-    background-color: #FFD2D2; 
+    color: #D8000C;
+    background-color: #FFD2D2;
     padding: 20px;
     margin: 20px 0;
     border-radius: 5px;
     text-align: center;
-    font-size: 1.1em; 
+    font-size: 1.1em;
 }
 
 #documenten-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    width: auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    width: 90%;
     gap: 10px;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .document-card {
-    display: block; 
+    display: block;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
     text-decoration: none;
-    color: #333; 
-    position: relative; 
+    color: #333;
+    position: relative;
 }
 
 .document-card:hover {
     transform: scale(1.05);
-    background-color: #e8e8e8; 
+    background-color: #e8e8e8;
 }
 
 .download-icon-container {
     position: absolute;
     right: 15px;
     bottom: 15px;
-    width: 32px; 
+    width: 32px;
 }
 
 .download-icon-container img {
-    width: 100%; 
+    width: 100%;
     height: auto;
     transition: 0.3s;
 }
@@ -99,11 +104,22 @@ button:hover {
 }
 
 .document-card div {
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 .document-card h3 {
     margin: 0 0 10px 0;
     font-size: 1.2em;
     font-weight: normal;
+}
+
+@media (max-width: 768px) {
+    #documenten-container {
+        width: 90%;
+    }
+
+    #documenten-grid-container {
+        width: 100%;
+        padding: 20px 0;
+    }
 }

@@ -16,3 +16,9 @@
 p {
     margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+    #verhaal-container {
+        width: 90%;
+    }
+}

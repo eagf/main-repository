@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="header-img-container">
                     <a href="./index.html"><img class="header-img" src="./assets/img/brain.png" alt="Isabelle Corneillie"></a>
                 </div>
-                <ul class="header-list">
+                <ul id="header-list">
                     <li class="header-listitem">
                         <a class="header-link" href="./stoornissen.html">Neurologische stoornissen</a>
                     </li>
@@ -45,6 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a class="header-link" href="./contact.html">Contact</a>
                     </li>
                 </ul>
+
+                <div id="hamburger-icon" onclick="toggleNav()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
             </header>
         </div>
         <div id="documenten-container">

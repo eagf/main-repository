@@ -62,8 +62,7 @@
 
 @media (max-width: 768px) {
     #praktisch-container {
-        width: 95%;
-        padding: 10px;
+        width: 90%;
     }
     
     .praktisch-table {
