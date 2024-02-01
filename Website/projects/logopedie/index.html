@@ -4,32 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="styles/header.css"> -->
+    <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/index.css">
     <script src="index.js" defer></script>
     <title>Logopedie - Isabelle Corneillie</title>
 </head>
 
 <body>
+        <div class="header-container">
+            <header>
+                <div class="header-img-container">
+                    <a href="./index.html"><img class="header-img" src="./assets/img/brain.png"
+                            alt="Isabelle Corneillie"></a>
+                </div>
+                <ul id="header-list">
+                    <li class="header-listitem">
+                        <a class="header-link" href="./stoornissen.html">Neurologische stoornissen</a>
+                    </li>
+                    <li class="header-listitem">
+                        <a class="header-link" href="./praktisch.html">Praktisch</a>
+                    </li>
+                    <li class="header-listitem">
+                        <a class="header-link" href="./documenten.php">Documenten</a>
+                    </li>
+                    <li class="header-listitem">
+                        <a class="header-link" href="./verhaal.html">Mijn verhaal</a>
+                    </li>
+                    <li class="header-listitem">
+                        <a class="header-link" href="./contact.html">Contact</a>
+                    </li>
+                </ul>
+
+                <div id="hamburger-icon" onclick="toggleNav()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </header>
+        </div>
+
     <div id="index-container">
-        <div id="logo-title-container">
-            <div id="header-img-container">
-                <a href="./index.html">
-                    <img id="header-img" src="./assets/img/brain.png" alt="Isabelle Corneillie">
-                </a>
-            </div>
-            <div id="titles-container">
-                <h1 class="main-title">Logopedie voor neurologische stoornissen</h1>
-                <h2 class="sub-title">Isabelle Corneillie</h2>
+
+        <div id="img-full-container">
+            <div id="img-container">
+                <div id="head-image-container">
+                    <img id="head-image" src="./assets/img/head.png" alt="head">
+                </div>
+                <div id="text-image-container">
+                    <img id="text-image" src="./assets/img/text.png" alt="text">
+                </div>
             </div>
         </div>
 
-        <div id="scroll-indicator" class="scroll-indicator">
-            <div class="arrow-down"></div>
+        <div id="titles-container">
+            <h1 class="main-title">Logopedie voor neurologische stoornissen</h1>
+            <h2 class="sub-title">Isabelle Corneillie</h2>
         </div>
 
         <div id="lower-text-container">
+
             <div id="welcome-navigation-container">
+
                 <div id="welcome-container">
                     <h3 class="section-title">Welkom</h3>
                     <p>
@@ -64,6 +100,7 @@
                         <a id="button4" href="./verhaal.html">Mijn verhaal</a>
                         <a id="button5" href="./contact.html">Contact</a>
                     </div>
+
                 </div>
 
             </div>
@@ -87,18 +124,11 @@
                 </p>
             </div>
 
-            <div id="img-container">
-                <div id="text-image-container">
-                    <img id="text-image" src="./assets/img/text.png" alt="text">
-                </div>
-                <div id="head-image-container">
-                    <img id="head-image" src="./assets/img/head.png" alt="head">
-                </div>
-            </div>
         </div>
+    </div>
 
-
-
+    <div id="scroll-indicator" class="scroll-indicator">
+        <div class="arrow-down"></div>
     </div>
 
 </body>

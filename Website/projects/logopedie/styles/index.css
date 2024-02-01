@@ -5,8 +5,6 @@
 :root {
     --background-color: rgb(255, 255, 255);
 
-    /* --main-color: #f36d6b; */
-
     --main-color: #DCAF99;
 
     --main-color-lighter: rgb(241, 152, 150);
@@ -31,26 +29,48 @@ body {
     background-attachment: fixed;
     background-color: rgba(255, 255, 255, 0);
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100%;
     min-height: 100vh;
     width: 100%;
     line-height: 1.6;
 }
 
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+
+/* ========================== Header content ========================== */
+
+#header-container {
+
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    padding: 20px;
-    background: #f9f9f9;
-} */
+header {
+    background-color: var(--opacity);
+    margin-bottom: 0;
+}
+
+.header-img {
+    filter: invert(0);
+}
+
+.header-link {
+    color: #000;
+}
+
+#hamburger-icon span {
+    background-color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        padding-bottom: 0;
+    }
+    .header-img-container {
+        display: none;
+    }
+}
 
 /* ========================== Index Container ========================== */
 
@@ -60,45 +80,58 @@ body {
     margin: 20px 0;
     padding: 0 20px;
 }
-/* 
-#index-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    overflow: hidden;
-} */
 
-/* ========================== Header ========================== */
+/* ========================== Moving images ========================== */
 
-#logo-title-container {
+#img-full-container {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+}
+
+#img-container {
+    display: flex;
+    min-width: 40%;
+    max-width: 80%;
     align-items: center;
+    padding-right: 1em;
 }
 
-#header-img-container {
-    margin-right: 40px;
+#text-image-container {
+    width: 40%;
 }
 
-#header-img-container a {
-    filter: invert(1);
+#text-image {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(30px);
+    animation: moveImg 1s linear forwards;
+    animation-delay: 1.5s;
 }
 
-#header-img {
-    height: 2.5em;
-    transition: 0.2s;
-    filter: invert(1);
+#head-image-container {
+    width: 60%;
 }
 
-#header-img:hover {
-    transform: scale(1.2);
-    cursor: pointer;
+#head-image {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: moveImg 0.5s linear forwards;
+    animation-delay: 0.5s;
 }
 
-#titles-container {}
+@keyframes moveImg {
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+/* ========================== Titles ========================== */
+
+#titles-container {
+    text-align: center;
+}
 
 h1 {
     border-bottom: 0.5px solid #696969;
@@ -113,34 +146,6 @@ h3 {
     margin-bottom: 1em;
 }
 
-/* #logo-title-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px; 
-}
-
-#header-img-container {
-    margin-right: 20px;
-}
-
-#header-img {
-    height: 60px; 
-}
-
-#titles-container {}
-
-.main-title {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.sub-title {
-    font-size: 1.5rem;
-    color: #555;
-    margin-bottom: 1rem;
-} */
-
 /* ========================== Content Area ========================== */
 
 #lower-text-container {
@@ -152,20 +157,6 @@ h3 {
     margin-top: 40px;
     align-items: center;
 }
-
-/* #lower-text-container {
-    background-color: #fff; 
-    padding: 20px;
-}
-
-.section-title {
-    font-size: 1.4rem;
-    color: #444;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee; 
-} */
-
 
 /* ================== Welcome and navigation ================== */
 
@@ -229,69 +220,10 @@ h3 {
     transform: scale(1.1);
 }
 
-/* #button-container a {
-    padding: 10px 15px;
-    width: auto; 
-    margin: 5px;
-    background-color: #007BFF; 
-    color: #ffffff;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#button-container a:hover {
-    background-color: #0056b3; 
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-} */
-
 /* ================== More info ================== */
 
 #more-info-container {
-    margin-top: 30px;
-}
-
-/* ================== Moving images ================== */
-
-#img-container {
-    display: flex;
-    flex-direction: row;
-    min-width: 40%;
-    max-width: 50%;
-    align-items: center;
-    padding-right: 1em;
-}
-
-#text-image-container {
-    width: 40%;
-    padding-bottom: 2em;
-}
-
-#text-image {
-    width: 100%;
-    opacity: 0;
-    transform: translateX(-30px);
-    animation: moveImg 0.5s linear forwards;
-    animation-delay: 1.5s;
-}
-
-#head-image-container {
-    width: 60%;
-}
-
-#head-image {
-    width: 100%;
-    opacity: 0;
-    transform: translateX(30px);
-    animation: moveImg 0.5s linear forwards;
-    animation-delay: 0.5s;
-}
-
-@keyframes moveImg {
-    100% {
-        opacity: 1;
-        transform: translateX(0px);
-    }
+    margin: 30px 0;
 }
 
 /* ========================== Responsiveness ========================== */
@@ -306,7 +238,10 @@ h3 {
     #index-container {
         width: 95%;
         padding: 10px;
-        margin: 10px 10px;
+    }
+
+    #header-img {
+        height: 2em;
     }
 
     #lower-text-container {
@@ -339,44 +274,15 @@ h3 {
     }
 }
 
-/* @media (max-width: 768px) {
-    #index-container {
-        padding: 20px;
-    }
-
-    #logo-title-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #header-img-container {
-        margin-bottom: 20px; 
-    }
-
-    .main-title, .sub-title {
-        text-align: left;
-    }
-
-    #welcome-navigation-container,
-    #more-info-container,
-    #img-container {
-        padding: 20px;
-    }
-
-    .scroll-indicator {
-        display: block;
-    }
-} */
-
 /* ================== Arrow down ================== */
 
 .scroll-indicator {
-    display: none; 
+    display: none;
     position: fixed;
     left: 50%;
     bottom: 20px;
     transform: translateX(-50%);
-    z-index: 10; 
+    z-index: 10;
 }
 
 .arrow-down {
@@ -384,7 +290,7 @@ h3 {
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 15px solid #000; 
+    border-top: 15px solid #000;
     animation: pulsate 1s infinite;
 }
 
@@ -393,10 +299,12 @@ h3 {
         transform: scale(0.5);
         opacity: 0.7;
     }
+
     50% {
         transform: scale(1);
         opacity: 1;
     }
+
     100% {
         transform: scale(0.5);
         opacity: 0.7;
