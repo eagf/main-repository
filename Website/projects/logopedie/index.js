@@ -6,7 +6,7 @@ var html = document.documentElement;
 var pageHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
 
 function toggleIndicator() {
-    if (window.scrollY > 50 || window.innerHeight >= pageHeight) {
+    if (window.scrollY > 50 || window.innerHeight + 100 >= pageHeight) {
         indicator.style.display = 'none';
     } else {
         indicator.style.display = 'block';

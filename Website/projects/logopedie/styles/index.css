@@ -1,23 +1,77 @@
 /* ========================== Index ========================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --background-color: rgb(255, 255, 255);
+
+    /* --main-color: #f36d6b; */
+
+    --main-color: #DCAF99;
+
+    --main-color-lighter: rgb(241, 152, 150);
+    --main-color-lightest: rgb(240, 188, 187);
+
+    --main-color-darker: rgb(242, 70, 67);
+    --main-color-darkest: rgb(238, 30, 26);
+
+    --opacity: #ffffff9a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-image: url('../assets/img/whiteBackground.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    line-height: 1.6;
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+    background: #f9f9f9;
+} */
+
+/* ========================== Index Container ========================== */
+
 #index-container {
     width: 80%;
     max-width: 1200px;
     margin: 20px 0;
     padding: 0 20px;
 }
-
-#lower-text-container {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--opacity);
+/* 
+#index-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
-    align-items: center;
-}
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    overflow: hidden;
+} */
 
-/* ================== Logo and titles ================== */
+/* ========================== Header ========================== */
 
 #logo-title-container {
     display: flex;
@@ -58,6 +112,60 @@ h3 {
     color: #777;
     margin-bottom: 1em;
 }
+
+/* #logo-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px; 
+}
+
+#header-img-container {
+    margin-right: 20px;
+}
+
+#header-img {
+    height: 60px; 
+}
+
+#titles-container {}
+
+.main-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.sub-title {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 1rem;
+} */
+
+/* ========================== Content Area ========================== */
+
+#lower-text-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--opacity);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    align-items: center;
+}
+
+/* #lower-text-container {
+    background-color: #fff; 
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    color: #444;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee; 
+} */
+
 
 /* ================== Welcome and navigation ================== */
 
@@ -121,6 +229,22 @@ h3 {
     transform: scale(1.1);
 }
 
+/* #button-container a {
+    padding: 10px 15px;
+    width: auto; 
+    margin: 5px;
+    background-color: #007BFF; 
+    color: #ffffff;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#button-container a:hover {
+    background-color: #0056b3; 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+} */
+
 /* ================== More info ================== */
 
 #more-info-container {
@@ -170,6 +294,8 @@ h3 {
     }
 }
 
+/* ========================== Responsiveness ========================== */
+
 #welcome-navigation-container,
 #more-info-container,
 #img-container {
@@ -212,6 +338,35 @@ h3 {
         padding: 0 20px;
     }
 }
+
+/* @media (max-width: 768px) {
+    #index-container {
+        padding: 20px;
+    }
+
+    #logo-title-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #header-img-container {
+        margin-bottom: 20px; 
+    }
+
+    .main-title, .sub-title {
+        text-align: left;
+    }
+
+    #welcome-navigation-container,
+    #more-info-container,
+    #img-container {
+        padding: 20px;
+    }
+
+    .scroll-indicator {
+        display: block;
+    }
+} */
 
 /* ================== Arrow down ================== */
 
