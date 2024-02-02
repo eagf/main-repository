@@ -8,6 +8,8 @@
     --main-color-light: #4570b0;
 
     --secundary-color: #F49A25;
+
+    --background-color: #f6f6f6;
 }
 
 html,
@@ -15,12 +17,12 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: rgb(246, 246, 246);
+    background-color: var(--background-color);
+    /* background-image: url(../assets/img/testImage.png); */
     font-family: "Roboto Condensed", sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow-x: hidden;
 }
 
 #wrapper {
@@ -60,7 +62,7 @@ header {
     align-items: center;
     width: 100%;
     justify-content: space-evenly;
-    overflow: auto;
+    overflow-x: auto;
 }
 
 #header-nav ul {
@@ -115,6 +117,8 @@ header {
     align-items: center;
 }
 
+/* Hamburger icon */
+
 #hamburger-icon {
     flex-direction: column;
     justify-content: space-between;
@@ -125,6 +129,7 @@ header {
     width: 30px; 
     height: 25px;
     display: none;
+    z-index: 10;
 }
 
 #hamburger-icon span {
@@ -146,6 +151,23 @@ header {
 
 #hamburger-icon.active span:nth-child(3) {
     transform: translateY(-11px) rotate(-45deg);
+}
+
+/* In case of scrolling: */
+
+#scroll-to-top {
+    display: none; 
+    position: fixed; 
+    right: 20px; 
+    top: 40px; 
+    z-index: 10; 
+    cursor: pointer; 
+}
+
+#scroll-to-top img {
+    opacity: 0.5;
+    width: 40px; 
+    height: 40px;
 }
 
 @media screen and (max-width: 768px) {

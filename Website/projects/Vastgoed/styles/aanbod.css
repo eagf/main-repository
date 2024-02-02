@@ -76,6 +76,8 @@ input:checked+.slider:before {
     transform: translateX(36px);
 }
 
+/* =============== Grid panden ===============*/
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -133,7 +135,7 @@ input:checked+.slider:before {
     padding-bottom: 66.66%;
 }
 
-/* ============= END images ============= */
+/* ============= card info ============= */
 
 .card-info {
     padding: 15px;
@@ -142,6 +144,8 @@ input:checked+.slider:before {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(5px); */
 }
 
 .card-title,
@@ -166,7 +170,7 @@ input:checked+.slider:before {
 
 .card-prijs {
     font-size: 18px;
-    color: #d35400;
+    color: var(--main-color);
     font-weight: bold;
     margin: 0;
 }

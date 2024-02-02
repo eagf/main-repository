@@ -5,6 +5,8 @@ function submitForm() {
     window.location.href = '?status=' + status;
 }
 
+// ============= Carousels =============
+
 const carousels = document.querySelectorAll('.card-carousel');
 
 carousels.forEach(carousel => {
@@ -20,10 +22,10 @@ carousels.forEach(carousel => {
     }
 
     function startCarousel() {
-        if (!intervalId) { 
+        if (!intervalId) {
             intervalId = setInterval(() => {
                 moveToImage((currentIndex + 1) % totalImages);
-            }, 1500); 
+            }, 1500);
         }
     }
 
@@ -39,30 +41,35 @@ carousels.forEach(carousel => {
 
     // Mobile devices
 
-   function initIntersectionObserver() {
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        startCarousel();
-                    } else {
-                        stopCarousel();
-                    }
-                });
-            }, { threshold: 0.8 }); // when 80% visible
+    function initIntersectionObserver() {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCarousel();
+                } else {
+                    stopCarousel();
+                }
+            });
+        }, { threshold: 0.8 }); // when 80% visible
 
-            observer.observe(carousel);
-        }
+        observer.observe(carousel);
+    }
 
+    if (window.innerWidth < 768) {
+        initIntersectionObserver();
+    }
+
+    window.addEventListener('resize', () => {
         if (window.innerWidth < 768) {
             initIntersectionObserver();
+        } else {
+            stopCarousel();
         }
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth < 768) {
-                initIntersectionObserver();
-            } else {
-                stopCarousel();
-            }
-        });
+    });
 
 });
+
+// ============= Display info on hover =============
+
+// const cards = document.querySelectorAll('.card');
+

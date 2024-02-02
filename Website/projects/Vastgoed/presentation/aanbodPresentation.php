@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./styles/aanbod.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
-    <link rel="icon" href="./assets/logo.ico">
+    <link rel="icon" href="./assets/img/logo.ico">
     <script src="scripts/aanbod.js" defer></script>
     <title>Libeer vastgoed</title>
 </head>

@@ -14,7 +14,8 @@ $currentPage = end($partsFileName);
             </a>
         </div>
 
-        <div id="hamburger-icon" onclick="toggleNav()">
+        <div id="hamburger-icon">
+            <!-- onclick="toggleNav()" -->
             <span></span>
             <span></span>
             <span></span>
@@ -55,4 +56,9 @@ $currentPage = end($partsFileName);
             </li>
         </ul>
     </nav>
+
+    <div id="scroll-to-top">
+        <img src="./assets/img/arrowUp.png" alt="Scroll to Top" />
+    </div>
+
 </header>
