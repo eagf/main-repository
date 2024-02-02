@@ -6,6 +6,8 @@
 :root {
     --main-color: #2E61B0;
     --main-color-light: #4570b0;
+
+    --secundary-color: #F49A25;
 }
 
 html,
@@ -18,6 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-x: hidden;
 }
 
 #wrapper {
@@ -45,7 +48,7 @@ header {
 }
 
 #logo {
-    height: 120px;
+    height: 100px;
     width: auto;
     margin: 10px;
     padding-left: 30px;

@@ -1,2 +1,66 @@
 /* CSS header.php */
 
+#logo {
+    height: 80px;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--main-color);
+}
+
+.title-container h1{
+    color: white;
+}
+
+#content-container {
+    width: 100%;
+    margin: 0;
+}
+
+
+.content-section {
+    width: 75%;
+    margin: 20px 0 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    border-radius: 0px; 
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    will-change: opacity, transform; 
+}
+
+.content-section:hover {
+    transform: translateY(10px);
+}
+
+.content-section.visible {
+    opacity: 1; 
+    transform: translateX(0px); 
+}
+
+.content-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.content-section p {
+    font-size: 1em;
+}
+
+@media screen and (max-width: 768px) {
+    #logo {
+        height: 100px;
+    }
+
+    .content-section {
+        width: 80%;
+    }
+
+}
