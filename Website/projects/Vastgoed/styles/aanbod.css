@@ -1,10 +1,5 @@
 /* CSS aanbod.php */
 
-:root {
-    --main-color: #2E61B0;
-    --main-color-light: #4570b0;
-}
-
 .filter-container {
     display: flex;
     align-items: center;

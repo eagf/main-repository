@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
         $stmtWettelijkeInfo->execute();
         $wettelijkeInfoID = $db->lastInsertId();
 
-        // Insert into panddetails table
+        // Prepare an INSERT statement for panddetails
         $queryPandDetails = "INSERT INTO panddetails (
     isNieuw, isOpbrengsteigendom, isExclusiefVastgoed, isBeleggingsvastgoed
 ) 

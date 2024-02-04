@@ -37,7 +37,7 @@
     background-size: cover;
     background-position: center;
     width: 100%; 
-    height: 500px; 
+    height: 600px; 
 }
 
 .arrow {
@@ -106,5 +106,11 @@
     .arrow:hover {
         width: 45px;
         height: 45px;
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    .detail-image {
+        height: 800px;
     }
 }

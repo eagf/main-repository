@@ -32,10 +32,8 @@ window.addEventListener('resize', function () {
 const scrollToTopIcon = document.getElementById('scroll-to-top');
 
 window.addEventListener('scroll', function () {
-    var currentHeight = window.scrollY;
     if (window.scrollY > 50) {
         scrollToTopIcon.style.display = 'block';
-        window.scrollTo({ top: currentHeight, behavior: 'smooth' });  
     } else {
         scrollToTopIcon.style.display = 'none'; 
     }

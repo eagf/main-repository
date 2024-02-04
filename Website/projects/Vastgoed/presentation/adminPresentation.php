@@ -20,6 +20,9 @@
             <form action="pandInput.php" method="POST">
                 <button type="submit">Pand toevoegen</button>
             </form>
+            <form action="pandUpdate.php" method="POST">
+                <button type="submit">Pand aanpassen</button>
+            </form>
             <form action="pandDelete.php" method="POST">
                 <button type="submit">Pand verwijderen</button>
             </form>
