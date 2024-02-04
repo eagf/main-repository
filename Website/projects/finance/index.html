@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/index.css">
     <title>Kenny Dieryck</title>
 </head>
@@ -11,13 +12,12 @@
 <body>
     <header>
         <a href="index.html">
-            <img src="assets/img/logo.png" alt="Kenny Dieryck Logo" id="logo">
+            <img src="assets/logo/mainLogo.png" alt="Kenny Dieryck Logo" id="logo">
         </a>
         <nav>
             <ul id="navbar">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -25,45 +25,71 @@
 
     <div id="index-container">
 
-        <div id="hexagon-tiles">
+        <div id="info-title-container">
+            <div id="info-container">
 
-            <div id="hexagon-left">
 
-                <div class="hexagon-tile">
+                <div id="hexagon-profile" class="hexagon-tile glass">
                     <div class="content">
-                        <h2>Title 1</h2>
-                        <p>This is some sample text for hexagon 1.</p>
+                        <img id="profile-picture" src="./assets/img/kenny.png" alt="">
                     </div>
                 </div>
-    
-                <div class="hexagon-tile">
+                <div id="hexagon-socials" class="hexagon-tile">
                     <div class="content">
-                        <h2>Title 3</h2>
-                        <p>This is some sample text for hexagon 3.</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div id="hexagon-right">
-
-                <div class="hexagon-tile glass">
-                    <div class="content">
-                        <h2>Title 2</h2>
-                        <p>This is some sample text for hexagon 2.</p>
+                        <h2>Socials</h2>
+                        <a id="link-linkedin" href="https://www.linkedin.com/in/kennydieryck/"><img
+                                src="./assets/logo/linkedin.svg" alt=""></a>
+                        <a id="link-twitterx" href="#" alt=""><img src="./assets/logo/twitterx.svg" alt=""></a>
+                        <a id="link-instagram" href="#"><img src="./assets/logo/instagram.svg" alt=""></a>
+                        <a id="link-facebook" href="#"><img src="./assets/logo/facebook.svg" alt=""></a>
                     </div>
                 </div>
 
-                <div class="hexagon-tile glass">
+                <div id="hexagon-vennootschap" class="hexagon-tile">
                     <div class="content">
-                        <h2>Title 4</h2>
-                        <p>This is some sample text for hexagon 4.</p>
+                        <p>Dieryck Consulting</p>
+                        <p>BE1004.160.034</p>
                     </div>
                 </div>
 
             </div>
 
+            <div id="title-container">
+                <h1>Kenny Dieryck</h1>
+                <h2>Senior Consultant in Financial Services</h2>
+            </div>
         </div>
+        
+        <div id="promo-banner">
+            <h2>Expert Financial Consulting</h2>
+            <p>Empower your business with tailor-made financial strategies that drive growth and stability.</p>
+            <h3>Why Choose Kenny Dieryck?</h3>
+            <ul>
+                <li>Over a decade of industry experience</li>
+                <li>Proven track record of successful financial management</li>
+                <li>Personalized solutions catering to your unique business needs</li>
+                <li>Committed to transparency and integrity</li>
+            </ul>
+        </div>
+
+        <div id="services-overview">
+            <h2>Our Services</h2>
+            <div class="service">
+                <h3>Investment Planning</h3>
+                <p>Create a solid investment strategy to maximize your returns and secure your future.</p>
+            </div>
+            <div class="service">
+                <h3>Risk Management</h3>
+                <p>Identify, assess, and prioritize risks to ensure the longevity and health of your business.</p>
+            </div>
+            <div class="service">
+                <h3>Retirement Planning</h3>
+                <p>Plan ahead for retirement with tailored solutions that meet your long-term financial goals.</p>
+            </div>
+        </div>
+        
+
+
 
     </div>
 

@@ -1,112 +1,122 @@
 /* Index.css */
 
-:root {
-    --primary-color: #00001B;
-    --secundary-color: #FAD5BB;
-
-    --hexagon-width: 400px;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    background-image: url('../assets/img/background.svg');
-    background-attachment: fixed;
-    background-size: cover;
-    width: 100%;
-}
-
-body,
-h1,
-h2,
-h3,
-p {
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--primary-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    z-index: 10;
-}
-
-#logo {
-    height: 50px;
-    margin: 10px 20px;
-    transition: 0.3s;
-}
-
-#logo:hover {
-    transform: scale(1.1);
-}
-
-/* Style for the nav and ul */
-
-nav {
-    display: flex;
-    margin-right: 2em;
-    overflow: hidden;
-}
-
-#navbar {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-#navbar li {
-    display: flex;
-    margin-right: 20px;
-}
-
-#navbar li a {
-    display: flex;
-    text-decoration: none;
-    color: var(--secundary-color);
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-#navbar li a:hover {
-    color: #fff;
-    transform: scale(1.1);
-}
-
-/* ============ index content ============*/
-
 #index-container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     width: 100%;
 }
 
-/* Hexagons */
+/* ================== info & titles ================== */
 
-#hexagon-tiles {
+#info-title-container {
     display: flex;
     flex-direction: row;
-    width: fit-content;
+    justify-content: center;
     margin-top: 2em;
+    gap: 3em;
 }
 
-#hexagon-left {
-    display: flex;
-    flex-direction: column;
-    transform: translateX(15%);
+.content h2 {
+    font-size: 1.5em;
+    margin-bottom: 1.2em;
 }
 
-#hexagon-right {
+/* =========== info content =========== */
+
+#info-container {
     display: flex;
     flex-direction: column;
-    transform: translateY(25%) translateX(-15%);
+    align-items: center;
+    margin-bottom: -15%;
 }
+
+/* Profile picture */
+
+#profile-picture {
+    width: 80%;
+    height: auto;
+}
+
+/* Links to socials */
+
+.content a {
+    filter: invert(1);
+}
+
+.content a img {
+    transition: 0.3s;
+}
+
+.content a img:hover {
+    transform: scale(1.1)
+}
+
+#hexagon-socials {
+    transform: translateX(50%) translateY(-23%);
+}
+
+/* Vennootschap */
+
+#hexagon-vennootschap {
+    transform: translateY(-46%);
+}
+
+#hexagon-vennootschap p {
+    font-size: 1.8em;
+}
+
+/* =========== title content =========== */
+
+#title-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 150px;
+    color: var(--primary-color); 
+    opacity: 0;
+    animation: slideFadeIn 1.5s forwards 0.5s;
+}
+
+#title-container h1 {
+    position: relative; 
+    margin-bottom: 20px; 
+    font-size: 3em; 
+    font-weight: 300; 
+    letter-spacing: 2px; 
+}
+
+#title-container h1::after {
+    content: ''; 
+    display: block; 
+    margin: 0 auto; 
+    width: 0; 
+    height: 2px;
+    background: var(--primary-color);
+    position: absolute; 
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    animation: growLine 1.5s ease-in 1s forwards;
+}
+
+@keyframes growLine {
+    from {
+        width: 0;
+    }
+    to {
+        width: 85%;
+    }
+}
+
+#title-container h2 {
+    font-size: 1.5em; 
+    font-weight: 300; 
+    letter-spacing: 1px; 
+    opacity: 0.8; 
+}
+
+/* Hexagon stylings */
 
 .hexagon-tile {
     background-color: #00001B;
@@ -116,38 +126,170 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40%;
     transition: 0.3s;
+    opacity: 0;
+    animation: slideFadeInNoTranslate 1s forwards 1.5s;
+}
+
+@keyframes slideFadeInNoTranslate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .hexagon-tile.glass {
     backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.1); 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    animation: slideFadeInNoTranslate 1.5s forwards 0.5s;
 }
 
-.hexagon-tile:hover {
-    transform: scale(1.05);
+@keyframes slideFadeIn {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.hexagon-tile.glass#hexagon-profile:hover {
+    transform: scale(1.03) translateY(0);
+}
+
+.hexagon-tile#hexagon-socials:hover {
+    transform: scale(1.03) translateX(50%) translateY(-23%);
+}
+
+.hexagon-tile#hexagon-vennootschap:hover {
+    transform: scale(1.03) translateY(-46%);
 }
 
 .content {
     padding: 20px; 
     text-align: center; 
+    color: #fff;
 }
 
-.content h2 {
-    color: #fff;
+/* =================== banner =================== */
+
+#promo-banner {
+    background-color: var(--primary-color); 
+    text-align: center; 
+    padding: 40px 20px; 
+    margin-top: 20px; 
+}
+
+#promo-banner h2, #promo-banner p, #promo-banner h3, #promo-banner li {
+    color: var(--secundary-color);
+}
+
+#promo-banner h2 {
+    font-size: 2em; 
+    margin-bottom: 10px;
+}
+
+#promo-banner p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#promo-banner h3 {
+    font-size: 1.5em; 
+    margin-top: 20px; 
     margin-bottom: 10px; 
 }
 
-.content p {
-    color: #fff;
-    font-size: 14px; 
+#promo-banner ul {
+    list-style: none;
+    text-align: center; 
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
 }
+
+#promo-banner li {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+/* =================== services =================== */
+
+#services-overview {
+    background-color: none;
+    color: var(--primary-color);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#services-overview h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.service {
+    margin-bottom: 20px;
+}
+
+.service h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.service p {
+    font-size: 1em;
+}
+
+
+/* =================== Mobile responsiveness ===================*/
 
 @media (max-width: 768px) {
     :root {
-        --hexagon-width : 180px ;
+        --hexagon-width : 220px ;
+    }
+    #info-title-container {
+        flex-direction: column-reverse;
+        margin-top: 1em;
+        gap: 2em;
+    }
+    #info-container {
+        transform: translateX(-13%);
+    }
+    #title-container {
+        margin-top: 8%;
+    }
+    .content h2 {
+        font-size: 1.3em;
+        margin-bottom: 0.8em;
+    }
+    #profile-picture {
+        width: 90%;
+    }
+    #hexagon-vennootschap p {
+        font-size: 1.2em;
+    }
+    #promo-banner h2, #promo-banner p, #promo-banner h3, #promo-banner li {
+        padding: 0 10px; 
+    }
+    #promo-banner ul {
+        max-width: 100%;
+    }
+    #services-overview h2 {
+        padding: 0 10px;
+    }
+    .service h3, .service p {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    :root {
+        --hexagon-width : 200px ;
     }
 }

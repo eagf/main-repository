@@ -1,0 +1,92 @@
+/* header.css + general stylings */
+
+:root {
+    --primary-color: #00001B;
+    --secundary-color: #FAD5BB;
+
+    --hexagon-width: 400px;
+    --hexagon-small-width: calc(var(--hexagon-width) / 2);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url('../assets/img/background.svg');
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    z-index: 10;
+}
+
+#logo {
+    height: 50px;
+    margin: 10px 20px;
+    transition: 0.3s;
+}
+
+#logo:hover {
+    transform: scale(1.1);
+}
+
+/* Style for the nav and ul */
+
+nav {
+    display: flex;
+    margin-right: 2em;
+    overflow: hidden;
+    text-align: center;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar li {
+    display: flex;
+    margin-right: 20px;
+
+}
+
+#navbar li a {
+    display: flex;
+    text-decoration: none;
+    color: var(--secundary-color);
+    font-weight: bold;
+    transition: 0.3s;
+
+}
+
+#navbar li a:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    nav {
+        margin-right: 1em;
+    }
+}
