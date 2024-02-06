@@ -11,7 +11,8 @@
 body {
     display: flex;
     flex-direction: column;
-    background-image: url('../assets/img/background.svg');
+    background-color: #fff;
+    background-image: url('../assets/img/background2.svg');
     background-attachment: fixed;
     background-size: cover;
     width: 100%;
