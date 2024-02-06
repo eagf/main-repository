@@ -1,27 +1,18 @@
 /* RecipeDetail.css */
 
-:root {
-    --primary-color: #8EC009;
-    --primary-color-hover: #218838;
-    --remove-color: #ff0000;
-    --remove-color-hover: #cc0000;
-    --background-color: #ffffff;
-    --text-color: #333333;
-    --border-color: #eeeeee;
-}
-
 .recipeDetail-div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .recipe-detail {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
     max-width: 600px;
-    margin: 20px;
+    margin: 20px auto;
     padding: 20px;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -71,16 +62,12 @@
     background-color: var(--remove-color-hover);
 }
 
-.save-button {
-    background-color: var(--primary-color);
-}
-
-.save-button:hover {
-    background-color: var(--primary-color-hover);
-}
-
 .edit-icon {
     font-size: 22px;
+}
+
+.close-icon {
+    font-size: 44px;
 }
 
 .return-icon {
@@ -88,15 +75,19 @@
 }
 
 .edit-icon,
-.return-icon {
+.return-icon,
+.close-icon {
     cursor: pointer;
     transition: transform 0.3s;
 }
 
 .edit-icon:hover,
-.return-icon:hover {
+.return-icon:hover,
+.close-icon:hover {
     transform: scale(1.4);
 }
+
+/* =========== Editing recipe =========== */
 
 .recipe-detail input[type="text"],
 .recipe-detail textarea {
@@ -106,12 +97,132 @@
     border: 1px solid var(--border-color);
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: #f9f9f9; 
+    color: var(--text-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.recipe-detail input[type="text"]:focus,
+.recipe-detail textarea:focus {
+    outline: none;
+    border-color: var(--primary-color); 
+    box-shadow: 0 0 5px rgba(142, 192, 9, 0.5); 
+}
+
+.recipe-detail input[type="text"] {
+
+}
+
+.recipe-detail textarea {
+    min-height: 150px; 
+    width: 100%;
+}
+
+.save-button {
+    font-size: large;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px; 
+}
+
+.save-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.ingredient-edit-container {
+    display: flex;
+    align-items: center;
+}
+
+.remove-ingredient-button,
+.add-ingredient-button {
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-ingredient-button {
+    background-color: var(--primary-color);
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.remove-ingredient-button {
+    background-color: var(--remove-color);
+    padding: 10px 15px;
+    margin-left: 15px;
+}
+
+.remove-ingredient-button:hover {
+    background-color: var(--remove-color-hover);
+}
+
+.add-ingredient-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+/* Recipe image */
+
+.recipe-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.remove-image-button {
+    background-color: var(--remove-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.remove-image-button:hover {
+    background-color: var(--remove-color-hover);
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+.recipe-preview-image {
+    max-width: 100%; 
+    height: auto; 
+    margin-top: 10px;
+    border-radius: 4px; 
+    border: 1px solid var(--border-color);
+}
+
+.remove-preview-button {
+    background-color: var(--remove-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.remove-preview-button:hover {
+    background-color: var(--remove-color-hover);
 }
 
 @media (max-width: 600px) {
     .recipe-detail {
-        margin: 10px;
-        padding: 10px;
+        padding: 20px;
     }
 
     .recipe-detail input[type="text"],
@@ -121,6 +232,6 @@
 
     .remove-button,
     .save-button {
-        padding: 6px 10px;
+        padding: 8px 16px;
     }
 }

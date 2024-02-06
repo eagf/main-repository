@@ -1,10 +1,5 @@
 /* RecipeSubmit.css */
 
-:root {
-    --primary-color: #8EC009;
-    --primary-color-hover: #218838;
-}
-
 .submit-div {
     display: flex;
     flex-direction: column;

@@ -1,16 +1,10 @@
 /* Navbar.css */
 
-:root {
-    --header-background: #f5f5f5;
-    --icon-hover-background: #dddddd;
-    --icon-size: 40px;
-}
-
 nav {
     display: flex;
     flex-direction: row;
     background-color: var(--header-background);
-    padding: 10px 20px;
+    padding: 10px 30px;
     align-items: center;
     justify-content: space-between;
 }
@@ -31,16 +25,16 @@ nav a:hover {
 
 .logo-main {
     display: block;
-    height: var(--icon-size);
-    width: var(--icon-size);
+    height: 60px;
+    width: auto;
     border-radius: 50%;
     object-fit: cover; 
 }
 
 .logo-user {
     display: block;
-    height: var(--icon-size);
-    width: var(--icon-size);
+    height: 40px;
+    width: auto;
     border-radius: 50%;
     object-fit: cover; 
     color: rgb(59, 59, 59);

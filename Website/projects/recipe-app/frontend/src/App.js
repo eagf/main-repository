@@ -12,13 +12,13 @@ import RecipeDetail from './components/RecipeDetail';
 import RemovedListUser from './components/RemovedListUser';
 
 import './styles/Navbar.css';
-import logo from './assets/img/logo.png';
+import logo from './assets/logo/logo.png';
 import { FiUser } from "react-icons/fi";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState("");
   const [buttonUserTo, setButtonUserTo] = useState("");
 
   useEffect(() => {

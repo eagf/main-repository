@@ -72,8 +72,8 @@ const RecipeListUser = () => {
                         recipes.map(recipe => (
                             <div onClick={() => navigate(`/recipes/${recipe.recipeID}`)} key={recipe.recipeID} className="recipe-grid-item">
                                 <img
-                                    src={recipe.imagePath || defaultImage}
-                                    alt={recipe.altText || 'Default image'}
+                                    src={recipe.imagePath ? (apiUrl + recipe.imagePath) : defaultImage}
+                                    alt={recipe.imagePath ? recipe.altText : "Default image"}
                                     className="recipe-image"
                                 />
                                 <h3>{recipe.recipeName}</h3>
