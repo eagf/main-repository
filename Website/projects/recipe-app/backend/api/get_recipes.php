@@ -66,5 +66,6 @@ try {
     // Send the response
     send_json(200, $formattedRecipes);
 } catch (Exception $e) {
+    var_dump('Constructed query: ' . $query);
     send_json(500, ['error' => $e->getMessage()]);
 }
