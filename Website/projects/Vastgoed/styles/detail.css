@@ -19,6 +19,7 @@
 /* Carousel */
 
 .detail-carousel {
+    width: 80%;
     max-width: 100%;
     height: auto;
     position: relative;
@@ -37,7 +38,7 @@
     background-size: cover;
     background-position: center;
     width: 100%; 
-    height: 600px; 
+    height: 500px; 
 }
 
 .arrow {
@@ -95,9 +96,18 @@
     color: #000;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1400px) {
     .detail-image {
-        height: 300px;
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .detail-carousel {
+        width: 100%;
+    }
+    .detail-image {
+        height: 200px;
     }
     .arrow {
         width: 40px;
@@ -106,11 +116,5 @@
     .arrow:hover {
         width: 45px;
         height: 45px;
-    }
-}
-
-@media screen and (min-width: 1281px) {
-    .detail-image {
-        height: 800px;
     }
 }

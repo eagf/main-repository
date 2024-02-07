@@ -14,7 +14,7 @@
     background-color: var(--main-color);
     transform: translateY(30px);
     opacity: 0;
-    animation: slideUp 0.5s ease forwards 0.3s; /* Animation delayed for effect */
+    animation: slideUp 0.5s ease forwards 0.3s;
 }
 
 @keyframes slideUp {
