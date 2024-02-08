@@ -1,0 +1,47 @@
+/* CSS admin */
+
+#admin-container {
+    width: 80%;
+    background-color: var(--opacity);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#message {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    color: green;
+}
+
+#admin-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+#admin-container ul li {
+    margin: 5px 0;
+    padding-left: 20px;
+    position: relative;
+}
+#admin-container ul li::before {
+    content: '— ';
+    position: absolute;
+    left: 0;
+}
+#admin-container ul li strong {
+    color: #FF0000;
+}
+#admin-container ul li a {
+    text-decoration: none;
+    color: #0000FF;
+}
+#admin-container ul li a:hover {
+    text-decoration: underline;
+}

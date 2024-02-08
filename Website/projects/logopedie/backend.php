@@ -17,7 +17,7 @@ function getMainFiles()
                     echo "<h3>" . htmlspecialchars($file) . "</h3>";
                     echo "</div>";
                     echo "<div class='download-icon-container'>";
-                    echo "<img src='assets/img/download.png' alt='Download' />"; 
+                    echo "<img src='assets/img/download.png' alt='Download' />";
                     echo "</div>";
                     echo "</a>";
                 }
@@ -45,7 +45,7 @@ function searchAndDisplayFiles($searchQuery)
                     echo "<h3>" . htmlspecialchars($file) . "</h3>";
                     echo "</div>";
                     echo "<div class='download-icon-container'>";
-                    echo "<img src='assets/img/download.png' alt='Download' />"; 
+                    echo "<img src='assets/img/download.png' alt='Download' />";
                     echo "</div>";
                     echo "</a>";
                 }
@@ -57,4 +57,29 @@ function searchAndDisplayFiles($searchQuery)
         echo "<p id='error'>De code bestaat niet of de code is verkeerd ingegeven. Probeer opnieuw.</p>";
         getMainFiles();
     }
+}
+
+// Function to scan the directory recursively
+function scanDirectory($dir, $rootLength)
+{
+    $files = array_diff(scandir($dir), array('..', '.'));
+    echo "<ul>";
+    foreach ($files as $file) {
+        $filePath = realpath($dir . DIRECTORY_SEPARATOR . $file);
+        $relativePath = substr($filePath, $rootLength);
+        $dataPath = htmlspecialchars(urlencode($relativePath)); // URL encode to ensure it's a safe string
+        $deleteLink = "delete.php?path=" . $dataPath;
+
+        echo "<li data-path='{$dataPath}'>";
+        if (is_dir($filePath)) {
+            echo "<strong>[Folder]</strong> ";
+        }
+        echo htmlspecialchars($relativePath);
+        echo " <span class='delete-icon' onclick='confirmDeletion(event, \"" . $dataPath . "\", " . (is_dir($filePath) ? "true" : "false") . ")'>&#10006;</span>";
+        if (is_dir($filePath)) {
+            scanDirectory($filePath, $rootLength); // Recursive call
+        }
+        echo "</li>";
+    }
+    echo "</ul>";
 }
