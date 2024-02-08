@@ -63,23 +63,39 @@ function searchAndDisplayFiles($searchQuery)
 function scanDirectory($dir, $rootLength)
 {
     $files = array_diff(scandir($dir), array('..', '.'));
-    echo "<ul>";
+    echo "<ul class='directory-list'>";
     foreach ($files as $file) {
         $filePath = realpath($dir . DIRECTORY_SEPARATOR . $file);
         $relativePath = substr($filePath, $rootLength);
         $dataPath = htmlspecialchars(urlencode($relativePath)); // URL encode to ensure it's a safe string
-        $deleteLink = "delete.php?path=" . $dataPath;
+        $isDir = is_dir($filePath);
 
-        echo "<li data-path='{$dataPath}'>";
-        if (is_dir($filePath)) {
-            echo "<strong>[Folder]</strong> ";
-        }
-        echo htmlspecialchars($relativePath);
-        echo " <span class='delete-icon' onclick='confirmDeletion(event, \"" . $dataPath . "\", " . (is_dir($filePath) ? "true" : "false") . ")'>&#10006;</span>";
-        if (is_dir($filePath)) {
+        if ($isDir) {
+            // Display the folder with a clickable area for toggling visibility
+            echo "<li data-path='{$dataPath}' class='folder-item'>";
+            echo "<div class='folder-name' onclick='toggleFolder(\"" . $dataPath . "\")'><strong><img class='folder-icon' src='assets/img/folder.svg'> " . htmlspecialchars($file) . "</strong></div>";
+            echo " <span class='delete-icon' onclick='confirmDeletion(event, \"" . $dataPath . "\", true)'>&#10006;</span>";
+            echo "<div id='folder_" . $dataPath . "' class='folder-contents'>"; // Container for folder contents
             scanDirectory($filePath, $rootLength); // Recursive call
+            echo "</div>";
+        } else {
+            // Display file and its delete icon
+            echo "<li data-path='{$dataPath}' class='file-item'>";
+            echo htmlspecialchars($file);
+            echo " <span class='delete-icon' onclick='confirmDeletion(event, \"" . $dataPath . "\", false)'>&#10006;</span>";
         }
         echo "</li>";
     }
     echo "</ul>";
+}
+
+function getFolderOptions($dir) {
+    $options = '';
+    $folders = array_diff(scandir($dir), array('..', '.'));
+    foreach ($folders as $folder) {
+        if (is_dir($dir . '/' . $folder)) {
+            $options .= '<option value="' . htmlspecialchars($folder) . '">' . htmlspecialchars($folder) . '</option>';
+        }
+    }
+    return $options;
 }

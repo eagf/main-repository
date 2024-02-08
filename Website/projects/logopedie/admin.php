@@ -8,10 +8,28 @@ $rootDir = "assets/documenten";
 $rootLength = strlen(getcwd()) + 1; // To calculate the relative path
 
 // Add message for admin
+
+$error = "";
+
+if (isset($_GET["error"])) {
+    if ($_GET["error"] == "exists") {
+        $message = "De map bestaat al.";
+    }
+    if ($_GET["error"] == "uploadError") {
+        $message = "Er is een fout opgetreden bij het uploaden van het bestand.";
+    }
+}
+
 $message = "";
 
-if (isset($_GET["message"]) && $_GET["message"] == "removed") {
-    $message = "Bestand(en) succesvol verwijderd.";
+if (isset($_GET["message"])) {
+    if ($_GET["message"] == "removed") {
+        $message = "Bestand(en) succesvol verwijderd.";
+    } elseif ($_GET["message"] == "folderAdded") {
+        $message = "Map succesvol toegevoegd.";
+    } elseif ($_GET["message"] == "fileAdded") {
+        $message = "Bestand succesvol toegevoegd.";
+    }
 };
 
 ?>
@@ -26,7 +44,7 @@ if (isset($_GET["message"]) && $_GET["message"] == "removed") {
     <link rel="stylesheet" href="styles/admin.css">
     <title>Admin Isabelle</title>
 
-    <script>
+    <script defer>
         function confirmDeletion(event, dataPath, isDir) {
             event.preventDefault(); // Prevent default action
 
@@ -50,6 +68,16 @@ if (isset($_GET["message"]) && $_GET["message"] == "removed") {
                 alert('Er was een probleem met het verwijderverzoek.');
             };
             xhr.send();
+        }
+
+
+        function toggleFolder(dataPath) {
+            var folderContents = document.getElementById('folder_' + dataPath);
+            if (folderContents.style.display === 'none') {
+                folderContents.style.display = 'block';
+            } else {
+                folderContents.style.display = 'none';
+            }
         }
     </script>
 
@@ -90,14 +118,48 @@ if (isset($_GET["message"]) && $_GET["message"] == "removed") {
         </div>
 
         <div id="admin-container">
+            <h1>Admin</h1>
+
             <p id="message">
                 <?php if (isset($message)) {
                     echo $message;
                 } ?>
             </p>
-            <h1>Admin</h1>
+
+            <p id="error">
+                <?php if (isset($error)) {
+                    echo $error;
+                } ?>
+            </p>
+
             <h2>Documenten structuur</h2>
             <?php scanDirectory($rootDir, $rootLength); ?>
+
+            <h2>Documenten uploaden</h2>
+            <!-- File Upload Form -->
+            <form action="upload.php" method="post" enctype="multipart/form-data" id="file-upload-form" class="admin-form">
+                <div class="form-group">
+                    <label for="folderSelect">Kies een map:</label>
+                    <select name="folder" id="folderSelect" class="form-control">
+                        <?php echo getFolderOptions('assets/documenten'); ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fileToUpload">Bestand uploaden:</label>
+                    <input type="file" name="fileToUpload" id="fileToUpload" class="form-control">
+                </div>
+                <input type="submit" value="Upload Bestand" name="submit" class="btn btn-primary">
+            </form>
+
+            <!-- New Folder Creation Form -->
+            <form action="createFolder.php" method="post" id="folder-creation-form" class="admin-form">
+                <div class="form-group">
+                    <label for="newFolderName">Nieuwe mapnaam:</label>
+                    <input type="text" name="newFolderName" id="newFolderName" class="form-control">
+                </div>
+                <input type="submit" value="Maak nieuwe map" name="createFolder" class="btn btn-success">
+            </form>
+
         </div>
 
     </div>
