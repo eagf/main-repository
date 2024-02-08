@@ -1,5 +1,13 @@
 <?php
 // admin.php
+session_set_cookie_params(0);
+session_start();
+
+// Redirect to login.php if not logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: login.php");
+    exit;
+}
 
 require_once('backend.php');
 
@@ -13,10 +21,10 @@ $error = "";
 
 if (isset($_GET["error"])) {
     if ($_GET["error"] == "exists") {
-        $message = "De map bestaat al.";
+        $error = "De map bestaat al.";
     }
     if ($_GET["error"] == "uploadError") {
-        $message = "Er is een fout opgetreden bij het uploaden van het bestand.";
+        $error = "Er is een fout opgetreden bij het uploaden van het bestand.";
     }
 }
 
@@ -42,13 +50,14 @@ if (isset($_GET["message"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/admin.css">
+    <script src="scripts.js" defer></script>
     <title>Admin Isabelle</title>
 
     <script defer>
         function confirmDeletion(event, dataPath, isDir) {
             event.preventDefault(); // Prevent default action
 
-            var message = isDir ? 'Weet u zeker dat u de gehele map wilt verwijderen? Dit kan niet ongedaan gemaakt worden.' : 'Weet u zeker dat u dit bestand wilt verwijderen? Dit kan niet ongedaan gemaakt worden.';
+            var message = isDir ? 'De hele map zal verwijderd worden. Doorgaan?' : 'Het bestand zal verwijderd worden. Doorgaan?';
             if (!confirm(message)) {
                 return; // User cancelled the action
             }
@@ -120,13 +129,13 @@ if (isset($_GET["message"])) {
         <div id="admin-container">
             <h1>Admin</h1>
 
-            <p id="message">
+            <p id="message" class="<?php echo isset($message) && $message !== '' ? 'active' : ''; ?>">
                 <?php if (isset($message)) {
                     echo $message;
                 } ?>
             </p>
 
-            <p id="error">
+            <p id="error" class="<?php echo isset($error) && $error !== '' ? 'active' : ''; ?>">
                 <?php if (isset($error)) {
                     echo $error;
                 } ?>
@@ -151,6 +160,7 @@ if (isset($_GET["message"])) {
                 <input type="submit" value="Upload Bestand" name="submit" class="btn btn-primary">
             </form>
 
+            <h2>Nieuwe map aanmaken</h2>
             <!-- New Folder Creation Form -->
             <form action="createFolder.php" method="post" id="folder-creation-form" class="admin-form">
                 <div class="form-group">

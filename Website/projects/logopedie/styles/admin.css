@@ -1,47 +1,63 @@
 /* CSS admin */
 
 #admin-container {
-    width: 80%;
-    background-color: #f9f9f9; 
+    width: 60%;
+    background-color: var(--opacity);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
     margin-bottom: 2em;
-    margin: 0 auto;
 }
 
-h1, h2 {
+h1,
+h2 {
     text-align: center;
     color: #333;
 }
 
-#message, #error {
+h2 {
+    margin-top: 20px;
+}
+
+#message,
+#error {
     width: 90%;
     text-align: center;
     font-weight: bold;
     font-size: large;
-    border: solid; 
-    /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
-#message {
-    color: #4CAF50; 
+#message.active,
+#error.active {
+    border: 2px solid;
+    padding: 10px 0;
+}
+#message.active {
+    color: #4CAF50;
+    border-color: #4CAF50;
 }
 
-#error {
-    color: #ff0000; 
+#error.active {
+    color: #ff0000;
+    border-color: #ff0000;
 }
 
 /* ============== Folder Structure Styling ============== */
 
 .directory-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 600px;
     list-style-type: none;
     padding: 0;
+    margin: 0 auto;
 }
 
-.folder-item, .file-item {
+.folder-item,
+.file-item {
     margin: 5px 0;
     position: relative;
 }
@@ -57,17 +73,19 @@ h1, h2 {
 
 .file-item {
     display: block;
+    text-align: left;
 }
 
 .folder-contents {
     display: none;
-    padding-left: 20px; /* Indentation for nested items */
+    padding-left: 20px;
+    /* Indentation for nested items */
 }
 
 .delete-icon {
     cursor: pointer;
     margin-left: 10px;
-    color: #FF5252; 
+    color: #FF5252;
     font-size: 1.2em;
 }
 
@@ -85,6 +103,12 @@ h1, h2 {
 }
 
 /* ==================== Form styling ==================== */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .admin-form {
     background-color: #fff;
     padding: 20px;
@@ -107,7 +131,8 @@ h1, h2 {
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Makes the input width include padding */
+    box-sizing: border-box;
+    /* Makes the input width include padding */
 }
 
 /* Button styling */
@@ -119,7 +144,8 @@ h1, h2 {
     font-size: 16px;
     text-align: center;
     display: inline-block;
-    text-decoration: none; /* In case you use <a> tags as buttons */
+    text-decoration: none;
+    /* In case you use <a> tags as buttons */
 }
 
 .btn-primary {
@@ -142,7 +168,7 @@ h1, h2 {
 
 @media screen and (max-width: 768px) {
     #admin-container {
-        width: 90%; 
+        width: 90%;
     }
 
     .folder-contents {
@@ -154,7 +180,8 @@ h1, h2 {
     }
 
     .btn {
-        width: 100%; /* Full-width buttons on smaller screens */
+        width: 100%;
+        /* Full-width buttons on smaller screens */
         margin-top: 10px;
     }
 }

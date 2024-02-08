@@ -29,7 +29,11 @@ if (isset($_GET['path'])) {
         }
         
         // Redirect or inform of success
+        
         echo "Het bestand of de map is succesvol verwijderd.";
+        // After deletion,redirect back to the admin page
+header('Location: admin.php?message=removed');
+exit;
     } else {
         // Attempted to access a file outside the allowed directory
         exit('Ongeautoriseerde actie.');
@@ -38,6 +42,3 @@ if (isset($_GET['path'])) {
     exit('Geen bestand of map gespecificeerd.');
 }
 
-// After deletion,redirect back to the admin page
-header('Location: admin.php?message=removed');
-exit;
