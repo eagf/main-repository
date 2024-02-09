@@ -19,7 +19,7 @@ toggleIndicator();
 
 indicator.addEventListener('click', function() {
     window.scrollBy({
-        top: 1180, 
+        top: 1300, 
         left: 0,
         behavior: 'smooth' 
     });

@@ -50,6 +50,7 @@ if (isset($_GET["message"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/admin.css">
+    <link rel="icon" href="assets/icon/icon.ico">
     <script src="scripts.js" defer></script>
     <title>Admin Isabelle</title>
 

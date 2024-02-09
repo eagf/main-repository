@@ -17,7 +17,7 @@ function getMainFiles()
                     echo "<h3>" . htmlspecialchars($file) . "</h3>";
                     echo "</div>";
                     echo "<div class='download-icon-container'>";
-                    echo "<img src='assets/img/download.png' alt='Download' />";
+                    echo "<img src='assets/icon/download.png' alt='Download' />";
                     echo "</div>";
                     echo "</a>";
                 }
@@ -29,8 +29,12 @@ function getMainFiles()
 }
 
 function searchAndDisplayFiles($searchQuery)
-{
+{    
+    // Convert search query to lowercase and remove spaces
+    $searchQuery = strtolower(trim($searchQuery)); 
     $dirPath = "assets/documenten/" . $searchQuery;
+
+    $dirPath = strtolower($dirPath);
 
     if (is_dir($dirPath)) {
         if ($dh = opendir($dirPath)) {
@@ -45,7 +49,7 @@ function searchAndDisplayFiles($searchQuery)
                     echo "<h3>" . htmlspecialchars($file) . "</h3>";
                     echo "</div>";
                     echo "<div class='download-icon-container'>";
-                    echo "<img src='assets/img/download.png' alt='Download' />";
+                    echo "<img src='assets/icon/download.png' alt='Download' />";
                     echo "</div>";
                     echo "</a>";
                 }
@@ -73,7 +77,7 @@ function scanDirectory($dir, $rootLength)
         if ($isDir) {
             // Display the folder with a clickable area for toggling visibility
             echo "<li data-path='{$dataPath}' class='folder-item'>";
-            echo "<div class='folder-name' onclick='toggleFolder(\"" . $dataPath . "\")'><strong><img class='folder-icon' src='assets/img/folder.svg'> " . htmlspecialchars($file) . "</strong></div>";
+            echo "<div class='folder-name' onclick='toggleFolder(\"" . $dataPath . "\")'><strong><img class='folder-icon' src='assets/icon/folder.svg'> " . htmlspecialchars($file) . "</strong></div>";
             echo " <span class='delete-icon' onclick='confirmDeletion(event, \"" . $dataPath . "\", true)'>&#10006;</span>";
             echo "<div id='folder_" . $dataPath . "' class='folder-contents'>"; // Container for folder contents
             scanDirectory($filePath, $rootLength); // Recursive call
