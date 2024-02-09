@@ -22,7 +22,7 @@
 }
 
 body {
-    background-image: url('../assets/img/whiteBackground.jpg');
+    background-image: url('../assets/img/background.svg');
     background-size: cover;
     background-attachment: fixed;
     background-color: rgba(255, 255, 255, 0);
