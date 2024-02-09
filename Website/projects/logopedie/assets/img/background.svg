@@ -4,7 +4,7 @@
 
   <linearGradient gradientTransform="rotate(165, 0.5, 0.5)" x1="50%" y1="0%" x2="50%" y2="100%" id="ffflux-gradient">
 
-    <stop stop-color="#DCAF99" stop-opacity="1" offset="0%">
+    <stop stop-color="#C8C8C2" stop-opacity="1" offset="0%">
     </stop>
     <stop stop-color="#ffffff" stop-opacity="1" offset="100%">
     </stop>
