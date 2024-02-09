@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="styles/verhaal.css">
     <script src="scripts.js" defer></script>
     <title>Mijn verhaal</title>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            var img = document.getElementById('profile-picture');
+            var clickCount = 0;
+
+            img.addEventListener('click', function () {
+                clickCount++;
+
+                if (clickCount === 5) {
+                    if (img.getAttribute('src') === "./assets/img/isabelle.png") {
+                        img.setAttribute('src', "./assets/img/isabelle_2.png");
+                    } else {
+                        img.setAttribute('src', "./assets/img/isabelle.png");
+                    }
+                    clickCount = 0;
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -44,45 +63,76 @@
 
             </header>
         </div>
-        <div id="verhaal-container">
+
+        <div id="verhaal-page-container">
             <h1>Mijn verhaal</h1>
-            <p>
-                Sinds de start van mijn opleiding logopedie aan de Artevelde hogeschool in 2011, had ik al een sterke
-                interesse voor neurologische stoornissen.
-            </p>
-            <p>
-                Na mijn stage op de neurologische afdelingen (Intensieve Unit, Acute neurologie, SP neuro en Geriatrie)
-                in
-                het AZ Damiaan te Oostende, besloot ik mij nog verder toe te spitsen op de neurologische stoornissen.
-            </p>
-            <p>
-                Ik besloot verder te studeren aan de Universiteit van Gent en behaalde mijn master in de logopedie, met
-                toespitsing op neurologie, in 2016.
-            </p>
-            <p>
-                Na mijn afstuderen, werkte ik in een logopedische praktijk en opnieuw richtte ik mijn energie op
-                patiënten
-                met afasie, apraxie, dysartrie, dysfagie en stemstoornissen. Eveneens volgde ik bijscholingen en vatte
-                ik de
-                opleiding “Parkinson zorgwijzer” aan, die ik voltooide in 2017.
-            </p>
-            <p>
-                In de jaren erop heb ik verschillende vervangingen verzorgt op de neurologische afdelingen in het AZ
-                Damiaan
-                te Oostende en het RZ Tienen.
-            </p>
-            <p>
-                Ik voltooide daarnaast mijn tweejarig postgraduaat Neurologische communicatiestoornissen en ik behaalde
-                mijn
-                certificaat als mimetherapeut (perifere facialisparese).
-            </p>
-            <p>In parallel bleef ik werkzaam als zelfstandige logopedist tot op heden.
-            </p>
-            <p>
-                Ondertussen heb ik al verschillende patiënten met uiteenlopende neurologische stoornissen intensief
-                mogen
-                begeleiden.
-            </p>
+
+            <div id="profile-picture-container">
+                <img src="./assets/img/isabelle.png" alt="Profile Picture" id="profile-picture">
+            </div>
+
+            <div id="verhaal-container">
+
+                <p>
+                    Sinds de start van mijn opleiding logopedie aan de Artevelde hogeschool in 2011, had ik al een
+                    sterke
+                    interesse voor neurologische stoornissen.
+                </p>
+                <p>
+                    Na mijn stage op de neurologische afdelingen (Intensieve Unit, Acute neurologie, SP neuro en
+                    Geriatrie)
+                    in
+                    het AZ Damiaan te Oostende, besloot ik mij nog verder toe te spitsen op de neurologische
+                    stoornissen.
+                </p>
+                <p>
+                    Ik besloot verder te studeren aan de Universiteit van Gent en behaalde mijn <b>master in de
+                        logopedie</b>,
+                    met
+                    toespitsing op neurologie, in 2016.
+                </p>
+                <p>
+                    Na mijn afstuderen, werkte ik in een logopedische praktijk en opnieuw richtte ik mijn energie op
+                    patiënten
+                    met afasie, apraxie, dysartrie, dysfagie en stemstoornissen. Eveneens volgde ik bijscholingen en
+                    vatte
+                    ik de
+                    opleiding <b>“Parkinson zorgwijzer”</b> aan, die ik voltooide in 2017.
+                </p>
+                <p>
+                    In de jaren erop heb ik verschillende vervangingen verzorgt op de neurologische afdelingen in het AZ
+                    Damiaan
+                    te Oostende en het RZ Tienen.
+                </p>
+                <p>
+                    Ik voltooide daarnaast mijn tweejarig <b>postgraduaat Neurologische communicatiestoornissen</b> en
+                    ik
+                    behaalde
+                    mijn
+                    certificaat als <b>mimetherapeut</b> (perifere facialisparese).
+                </p>
+                <p>In parallel bleef ik werkzaam als zelfstandige logopedist tot op heden.
+                </p>
+                <p>
+                    Ondertussen heb ik al verschillende patiënten met uiteenlopende neurologische stoornissen intensief
+                    mogen
+                    begeleiden.
+                </p>
+                <p>
+                    Ik werk ontzettend graag met mensen en ik vind het belangrijk om een correcte, wetenschappelijk
+                    onderbouwde en efficiënte therapie aan te bieden. Daarnaast leg ik graag de nadruk op educatie en
+                    het
+                    toereiken van <b>voldoende informatie</b>. Bijkomend vind ik het belangrijk om een <b>goede
+                        cliënt-therapeut
+                        relatie</b>
+                    op te bouwen, waarbij we <b>samenwerken naar een gewenst (en gemeenschappelijk) doel</b>.
+                </p>
+                <p>
+                    Kortom ben ik een logopediste met veel enthousiasme en passie voor het beroep.
+                </p>
+
+            </div>
+
         </div>
     </div>
 </body>
