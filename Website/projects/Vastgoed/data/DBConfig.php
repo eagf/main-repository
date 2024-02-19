@@ -2,7 +2,7 @@
 // DBConfig.php
 class Database {
     private $host = "localhost";
-    private $db_name = "libeer_vastgoed_db";
+    private $db_name = "libeer-vastgoed-db";
     private $username = "root";
     private $password = "";
     public $conn;

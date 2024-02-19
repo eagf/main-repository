@@ -17,8 +17,14 @@
 
         <?php include("includes/header.php"); ?>
 
-        <div class="pand-details-container">
-            <h1 class="detail-title"><?php echo htmlspecialchars($pandDetails['titel']); ?></h1>
+        <div id="pand-details-container">
+
+            <div id="titel-container">
+                <h1><?php echo htmlspecialchars($pandDetails['titel']); ?></h1>
+            </div>
+
+            <!-- ============== carousel ============== -->
+
             <div class="detail-carousel">
                 <div class="arrow left-arrow"></div>
                 <div class="detail-image-container">
@@ -31,41 +37,88 @@
                 </div>
                 <div class="arrow right-arrow"></div>
             </div>
-            <p class="detail-description"><?php echo nl2br(htmlspecialchars($pandDetails['tekst'])); ?></p>
-            <div class="detail-info">
-                <p><strong>Gemeente:</strong> <?php echo htmlspecialchars($pandDetails['gemeente']); ?></p>
-                <p><strong>Prijs:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['prijs'], 2, ',', '.')); ?></p>
+
+            <!-- ============== verdere info ============== -->
+
+            <div id="adres-type-container" class="detail-container">
+                <p><strong>Adres:</strong>
+                    <?php
+                    echo (
+                        htmlspecialchars($pandDetails['straat']) . " " .
+                        htmlspecialchars($pandDetails['nr']) .
+                        (!empty($pandDetails['bus']) ? " bus " . htmlspecialchars($pandDetails['bus']) : "") . " - " .
+                        htmlspecialchars($pandDetails['postcode']) . " " .
+                        htmlspecialchars($pandDetails['gemeente'])
+                    );
+                    ?>
+                </p>
                 <p><strong>Type:</strong> <?php echo htmlspecialchars($pandDetails['type']); ?></p>
-                <p><strong>Subtype:</strong> <?php echo htmlspecialchars($pandDetails['subtype']); ?></p>
-                <p><strong>Aanvulling Subtype:</strong> <?php echo htmlspecialchars($pandDetails['aanvullingSubtype']); ?></p>
-                <p><strong>Bouwjaar:</strong> <?php echo htmlspecialchars((string)$pandDetails['bouwjaar']); ?></p>
-                <p><strong>Bruto Vloeroppervlakte:</strong> <?php echo htmlspecialchars((string)$pandDetails['brutoVloeroppervlakte']); ?> m²</p>
-                <p><strong>Grondoppervlakte:</strong> <?php echo htmlspecialchars((string)$pandDetails['grondoppervlakte']); ?> m²</p>
-                <p><strong>Aantal Slaapkamers:</strong> <?php echo htmlspecialchars((string)$pandDetails['aantalSlaapkamers']); ?></p>
-                <p><strong>Kadastraal Inkomen:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['kadastraalInkomen'], 2, ',', '.')); ?></p>
+                <?php if ($pandDetails['subtype'] != "Standaard") : ?>
+                    <p><strong>Subtype:</strong> <?php echo htmlspecialchars($pandDetails['subtype']); ?></p>
+                    <p><strong>Aanvulling Subtype:</strong> <?php echo htmlspecialchars($pandDetails['aanvullingSubtype']); ?></p>
+                <?php endif; ?>
+                <div id="google-maps-link-container">
+                    <?php
+                    echo "<a href=\"{$googleMapsLink}\" target=\"_blank\">Bekijk op Google Maps</a>";
+                    ?>
+                </div>
+            </div>
+
+
+            <div id="beschrijving-container" class="detail-container">
+                <p><?php echo nl2br(htmlspecialchars($pandDetails['tekst'])); ?></p>
+            </div>
+
+            <div id="info1-container" class="detail-container">
+                <p><strong>Prijs:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['prijs'], 2, ',', '.')); ?></p>
                 <p><strong>Registratierechten of BTW:</strong> <?php echo htmlspecialchars($pandDetails['registratierechtenBTW']); ?></p>
                 <p><strong>Vrij Op:</strong> <?php echo htmlspecialchars($pandDetails['vrijOp']); ?></p>
+                <p><strong>Kadastraal Inkomen:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['kadastraalInkomen'], 2, ',', '.')); ?></p>
+            </div>
 
-                <?php if (!empty($pandDetails['kamers'])) : ?>
-                    <div class="rooms-container">
-                        <?php foreach ($pandDetails['kamers'] as $roomType => $rooms) : ?>
-                            <h3><?php echo htmlspecialchars($roomType); ?></h3>
-                            <ul>
-                                <?php foreach ($rooms as $room) : ?>
-                                    <li>
-                                        Naam: <?php echo htmlspecialchars($room['kamerNaam']); ?>,
-                                        Oppervlakte: <?php echo htmlspecialchars($room['kamerOppervlakte']); ?> m²,
-                                        Detail: <?php echo htmlspecialchars($room['kamerDetail']); ?>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+            <div id="info2-container" class="detail-container">
+                <p><strong>Bouwjaar:</strong> <?php echo htmlspecialchars((string)$pandDetails['bouwjaar']); ?></p>
+
+                <p><strong>Grondoppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['grondoppervlakte'], 0, ',', '.')); ?> m²</p>
+                <p><strong>Bruto Vloeroppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['brutoVloeroppervlakte'], 0, ',', '.')); ?> m²</p>
+                <!-- !!!!!!! Onleesbaar in geschreven overzicht -->
+                <p><strong>EPC Index:</strong> <?php echo htmlspecialchars(number_format($pandDetails['epcIndex']), 0); ?></p>
+            </div>
+
+            <!-- ============== kamers / indeling ============== -->
+
+            <?php if (!empty($pandDetails['kamers'])) : ?>
+                <div id="indeling-container" class="detail-container">
+                    <h3>Indeling</h3>
+                    <?php foreach ($pandDetails['kamers'] as $roomType => $rooms) : ?>
+                        <h4><?php echo htmlspecialchars($roomType); ?></h4>
+                        <ul>
+                            <?php
+                            $roomCounter = 1;
+                            $showCounter = count($rooms) >= 2;
+                            ?>
+                            <?php foreach ($rooms as $room) : ?>
+                                <li>
+                                    <?php
+                                    if ($showCounter) {
+                                        echo $roomCounter++ . ': ';
+                                    }
+                                    ?>
+                                    Oppervlakte: <?php echo htmlspecialchars(number_format($room['kamerOppervlakte'], 0, ',', '.')); ?> m²,
+                                    Detail: <?php echo htmlspecialchars($room['kamerDetail']); ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
 
+
+            <!-- ============== wettelijke informatie ============== -->
+
+            <div id="wettelijke-container" class="detail-container">
                 <h3>Wettelijke Informatie</h3>
-                <p><strong>EPC Index:</strong> <?php echo htmlspecialchars($pandDetails['epcIndex']); ?></p>
                 <p><strong>Energie Label:</strong> <?php echo htmlspecialchars($pandDetails['energieLabel']); ?></p>
                 <p><strong>Stedenbouwkundige Vergunning:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunning'] ? 'Ja' : 'Nee'); ?></p>
                 <p><strong>Verkavelingsvergunning:</strong> <?php echo htmlspecialchars($pandDetails['verkavelingsvergunning'] ? 'Ja' : 'Nee'); ?></p>
@@ -80,8 +133,12 @@
                 <p><strong>Overstromingskans Perceel (P-score):</strong> <?php echo htmlspecialchars((string)$pandDetails['overstromingskansPerceel']); ?></p>
                 <p><strong>Overstromingskans Gebouw (G-score):</strong> <?php echo htmlspecialchars((string)$pandDetails['overstromingskansGebouw']); ?></p>
                 <p><strong>Erfgoed:</strong> <?php echo htmlspecialchars($pandDetails['erfgoed'] ? 'Ja' : 'Nee'); ?></p>
-
             </div>
+
+            <!-- Ongebruikte gegevens -->
+            <!-- <p><strong>Gemeente:</strong> <?php echo htmlspecialchars($pandDetails['gemeente']); ?></p>
+                <p><strong>Aantal Slaapkamers:</strong> <?php echo htmlspecialchars((string)$pandDetails['aantalSlaapkamers']); ?></p> -->
+
         </div>
 
         <?php include('includes/footer.php'); ?>
