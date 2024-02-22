@@ -135,19 +135,21 @@ function getPandDetails($pandID)
     $database = new Database();
     $db = $database->getConnection();
 
-    $queryPand = "SELECT p.*, a.*, pd.*, wi.*, 
-                         GROUP_CONCAT(af.afbeeldingURL) as afbeeldingen,
-                         (SELECT GROUP_CONCAT(CONCAT_WS('|', kamerNaam, kamerOppervlakte, kamerDetail) SEPARATOR '||') 
-                          FROM kamers 
-                          WHERE pandID = p.pandID
-                         ) as kamers
-                  FROM panden p
-                  LEFT JOIN adressen a ON p.adresID = a.adresID
-                  LEFT JOIN panddetails pd ON p.pandDetailID = pd.pandDetailID
-                  LEFT JOIN wettelijkeinformatie wi ON p.wettelijkeInfoID = wi.wettelijkeInfoID
-                  LEFT JOIN afbeeldingen af ON p.pandID = af.pandID
-                  WHERE p.pandID = ?
-                  GROUP BY p.pandID";
+    $queryPand = "SELECT p.*, a.*, pd.*, wi.*,
+                     GROUP_CONCAT(DISTINCT af.afbeeldingURL ORDER BY af.afbeeldingID SEPARATOR '|') AS afbeeldingen,
+                     GROUP_CONCAT(DISTINCT af.beschrijving ORDER BY af.afbeeldingID SEPARATOR '|') AS beschrijvingen,
+                     (SELECT GROUP_CONCAT(CONCAT_WS('|', kamerNaam, kamerOppervlakte, kamerDetail) SEPARATOR '||') 
+                      FROM kamers 
+                      WHERE pandID = p.pandID
+                     ) AS kamers
+              FROM panden p
+              LEFT JOIN adressen a ON p.adresID = a.adresID
+              LEFT JOIN panddetails pd ON p.pandDetailID = pd.pandDetailID
+              LEFT JOIN wettelijkeinformatie wi ON p.wettelijkeInfoID = wi.wettelijkeInfoID
+              LEFT JOIN afbeeldingen af ON p.pandID = af.pandID
+              WHERE p.pandID = ?
+              GROUP BY p.pandID";
+
 
     try {
         $stmtPand = $db->prepare($queryPand);
