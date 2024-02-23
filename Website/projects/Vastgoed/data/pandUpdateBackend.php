@@ -42,22 +42,22 @@ if (isset($_POST['submit'])) {
 
             // Updating wettelijkeinformatie
             $queryUpdateWettelijkeInfo = "UPDATE wettelijkeinformatie SET
-epcIndex = :epcIndex,
-energieLabel = :energieLabel,
-stedenbouwkundigeVergunning = :stedenbouwkundigeVergunning,
-verkavelingsvergunning = :verkavelingsvergunning,
-voorkooprecht = :voorkooprecht,
-stedenbouwkundigeBestemming = :stedenbouwkundigeBestemming,
-dagvaardingEnHerstelvordering = :dagvaardingEnHerstelvordering,
-effectiefOverstromingsgevoelig = :effectiefOverstromingsgevoelig,
-mogelijkOverstromingsgevoelig = :mogelijkOverstromingsgevoelig,
-afgebakendOverstromingsgebied = :afgebakendOverstromingsgebied,
-afgebakendeOeverzone = :afgebakendeOeverzone,
-risicozoneVoorOverstromingen = :risicozoneVoorOverstromingen,
-overstromingskansPerceel = :overstromingskansPerceel,
-overstromingskansGebouw = :overstromingskansGebouw,
-erfgoed = :erfgoed
-WHERE wettelijkeInfoID = (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
+            epcIndex = :epcIndex,
+            energieLabel = :energieLabel,
+            stedenbouwkundigeVergunning = :stedenbouwkundigeVergunning,
+            verkavelingsvergunning = :verkavelingsvergunning,
+            voorkooprecht = :voorkooprecht,
+            stedenbouwkundigeBestemming = :stedenbouwkundigeBestemming,
+            dagvaardingEnHerstelvordering = :dagvaardingEnHerstelvordering,
+            effectiefOverstromingsgevoelig = :effectiefOverstromingsgevoelig,
+            mogelijkOverstromingsgevoelig = :mogelijkOverstromingsgevoelig,
+            afgebakendOverstromingsgebied = :afgebakendOverstromingsgebied,
+            afgebakendeOeverzone = :afgebakendeOeverzone,
+            risicozoneVoorOverstromingen = :risicozoneVoorOverstromingen,
+            overstromingskansPerceel = :overstromingskansPerceel,
+            overstromingskansGebouw = :overstromingskansGebouw,
+            erfgoed = :erfgoed
+            WHERE wettelijkeInfoID = (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
 
             $stmtUpdateWettelijkeInfo = $db->prepare($queryUpdateWettelijkeInfo);
 
@@ -123,21 +123,23 @@ WHERE wettelijkeInfoID = (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pa
 
             // Updating panden
             $queryUpdatePanden = "UPDATE panden SET
-        titel = :titel,
-        tekst = :tekst,
-        status = :status,
-        type = :type,
-        subtype = :subtype,
-        aanvullingSubtype = :aanvullingSubtype,
-        bouwjaar = :bouwjaar,
-        brutoVloeroppervlakte = :brutoVloeroppervlakte,
-        grondoppervlakte = :grondoppervlakte,
-        aantalSlaapkamers = :aantalSlaapkamers,
-        prijs = :prijs,
-        kadastraalInkomen = :kadastraalInkomen,
-        registratierechtenBTW = :registratierechtenBTW,
-        vrijOp = :vrijOp
-    WHERE pandID = :pandID";
+            titel = :titel,
+            tekst = :tekst,
+            status = :status,
+            type = :type,
+            subtype = :subtype,
+            aanvullingSubtype = :aanvullingSubtype,
+            bouwjaar = :bouwjaar,
+            brutoVloeroppervlakte = :brutoVloeroppervlakte,
+            grondoppervlakte = :grondoppervlakte,
+            aantalSlaapkamers = :aantalSlaapkamers,
+            prijs = :prijs,
+            kadastraalInkomen = :kadastraalInkomen,
+            registratierechtenBTW = :registratierechtenBTW,
+            vrijOp = :vrijOp,
+            homepage = :homepage
+            WHERE pandID = :pandID";    
+
             $stmtUpdatePanden = $db->prepare($queryUpdatePanden);
 
             $stmtUpdatePanden->bindParam(':titel', $_POST['titel']);
@@ -154,6 +156,7 @@ WHERE wettelijkeInfoID = (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pa
             $stmtUpdatePanden->bindParam(':kadastraalInkomen', $_POST['kadastraalInkomen']);
             $stmtUpdatePanden->bindParam(':registratierechtenBTW', $_POST['registratierechtenBTW']);
             $stmtUpdatePanden->bindParam(':vrijOp', $_POST['vrijOp']);
+            $stmtUpdatePanden->bindParam(':homepage', $_POST['homepage']);
             $stmtUpdatePanden->bindParam(':pandID', $_POST['pandID'], PDO::PARAM_INT);
 
             $stmtUpdatePanden->execute();

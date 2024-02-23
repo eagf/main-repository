@@ -35,6 +35,10 @@
                         <option value="Te huur">Te huur</option>
                     </select>
                 </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="homepage" name="homepage" value="1">
+                    <label for="homepage" class="checkbox-label">Op homepage</label>
+                </div>
                 <div><label for="type">Type:</label><input type="text" id="type" name="type" value="test" required></div>
                 <div><label for="subtype">Subtype:</label><input type="text" id="subtype" name="subtype" value="test" required></div>
                 <div><label for="aanvullingSubtype">Aanvulling Subtype:</label><input type="text" id="aanvullingSubtype" name="aanvullingSubtype" value="test" required></div>
@@ -94,36 +98,66 @@
                         <option value="G">G</option>
                     </select>
                 </div>
-                <div><label for="stedenbouwkundigeVergunning">Stedenbouwkundige Vergunning:</label><input type="checkbox" id="stedenbouwkundigeVergunning" name="stedenbouwkundigeVergunning" value="1"></div>
-                <div><label for="verkavelingsvergunning">Verkavelingsvergunning:</label><input type="checkbox" id="verkavelingsvergunning" name="verkavelingsvergunning" value="1"></div>
-                <div><label for="voorkooprecht">Voorkooprecht:</label><input type="checkbox" id="voorkooprecht" name="voorkooprecht" value="1"></div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="stedenbouwkundigeVergunning" name="stedenbouwkundigeVergunning" value="1">
+                    <label for="stedenbouwkundigeVergunning" class="checkbox-label">Stedenbouwkundige Vergunning</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="verkavelingsvergunning" name="verkavelingsvergunning" value="1">
+                    <label for="verkavelingsvergunning" class="checkbox-label">Verkavelingsvergunning</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="voorkooprecht" name="voorkooprecht" value="1">
+                    <label for="voorkooprecht" class="checkbox-label">Voorkooprecht</label>
+                </div>
                 <div><label for="stedenbouwkundigeBestemming">Stedenbouwkundige Bestemming:</label><input type="text" id="stedenbouwkundigeBestemming" name="stedenbouwkundigeBestemming" value="test" required></div>
-                <div><label for="dagvaardingEnHerstelvordering">Dagvaarding en Herstelvordering:</label><input type="checkbox" id="dagvaardingEnHerstelvordering" name="dagvaardingEnHerstelvordering" value="1"></div>
-                <div><label for="effectiefOverstromingsgevoelig">Effectief Overstromingsgevoelig:</label><input type="checkbox" id="effectiefOverstromingsgevoelig" name="effectiefOverstromingsgevoelig" value="1"></div>
-                <div><label for="mogelijkOverstromingsgevoelig">Mogelijk Overstromingsgevoelig:</label><input type="checkbox" id="mogelijkOverstromingsgevoelig" name="mogelijkOverstromingsgevoelig" value="1"></div>
-                <div><label for="afgebakendOverstromingsgebied">Afgebakend Overstromingsgebied:</label><input type="checkbox" id="afgebakendOverstromingsgebied" name="afgebakendOverstromingsgebied" value="1"></div>
-                <div><label for="afgebakendeOeverzone">Afgebakende Oeverzone:</label><input type="checkbox" id="afgebakendeOeverzone" name="afgebakendeOeverzone" value="1"></div>
-                <div><label for="risicozoneVoorOverstromingen">Risicozone voor Overstromingen:</label><input type="checkbox" id="risicozoneVoorOverstromingen" name="risicozoneVoorOverstromingen" value="1"></div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="dagvaardingEnHerstelvordering" name="dagvaardingEnHerstelvordering" value="1">
+                    <label for="dagvaardingEnHerstelvordering" class="checkbox-label">Dagvaarding en Herstelvordering</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="effectiefOverstromingsgevoelig" name="effectiefOverstromingsgevoelig" value="1">
+                    <label for="effectiefOverstromingsgevoelig" class="checkbox-label">Effectief Overstromingsgevoelig</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="mogelijkOverstromingsgevoelig" name="mogelijkOverstromingsgevoelig" value="1">
+                    <label for="mogelijkOverstromingsgevoelig" class="checkbox-label">Mogelijk Overstromingsgevoelig</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="afgebakendOverstromingsgebied" name="afgebakendOverstromingsgebied" value="1">
+                    <label for="afgebakendOverstromingsgebied" class="checkbox-label">Afgebakend Overstromingsgebied</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="afgebakendeOeverzone" name="afgebakendeOeverzone" value="1">
+                    <label for="afgebakendeOeverzone" class="checkbox-label">Afgebakende Oeverzone</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="risicozoneVoorOverstromingen" name="risicozoneVoorOverstromingen" value="1">
+                    <label for="risicozoneVoorOverstromingen" class="checkbox-label">Risicozone voor Overstromingen</label>
+                </div>
                 <div><label for="overstromingskansPerceel">Overstromingskans Perceel (P-score):</label><input type="number" step="0.01" id="overstromingskansPerceel" name="overstromingskansPerceel" value="45"></div>
                 <div><label for="overstromingskansGebouw">Overstromingskans Gebouw (G-score):</label><input type="number" step="0.01" id="overstromingskansGebouw" name="overstromingskansGebouw" value="28"></div>
-                <div><label for="erfgoed">Erfgoed:</label><input type="checkbox" id="erfgoed" name="erfgoed" value="1"></div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="erfgoed" name="erfgoed" value="1">
+                    <label for="erfgoed" class="checkbox-label">Erfgoed</label>
+                </div>
 
                 <!-- Fields for panddetails table -->
-                <div>
-                    <label for="isNieuw">Is Nieuw:</label>
+                <div class="checkbox-container">
                     <input type="checkbox" id="isNieuw" name="isNieuw" value="1">
+                    <label for="isNieuw" class="checkbox-label">Is Nieuw</label>
                 </div>
-                <div>
-                    <label for="isOpbrengsteigendom">Is Opbrengsteigendom:</label>
+                <div class="checkbox-container">
                     <input type="checkbox" id="isOpbrengsteigendom" name="isOpbrengsteigendom" value="1">
+                    <label for="isOpbrengsteigendom" class="checkbox-label">Is Opbrengsteigendom</label>
                 </div>
-                <div>
-                    <label for="isExclusiefVastgoed">Is Exclusief Vastgoed:</label>
+                <div class="checkbox-container">
                     <input type="checkbox" id="isExclusiefVastgoed" name="isExclusiefVastgoed" value="1">
+                    <label for="isExclusiefVastgoed" class="checkbox-label">Is Exclusief Vastgoed</label>
                 </div>
-                <div>
-                    <label for="isBeleggingsvastgoed">Is Beleggingsvastgoed:</label>
+                <div class="checkbox-container">
                     <input type="checkbox" id="isBeleggingsvastgoed" name="isBeleggingsvastgoed" value="1">
+                    <label for="isBeleggingsvastgoed" class="checkbox-label">Is Beleggingsvastgoed</label>
                 </div>
 
                 <!-- Add submit button -->

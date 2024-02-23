@@ -1,6 +1,7 @@
-/* CSS pandInputForm.php */
+/* CSS admin */
 
-h2, h3 {
+h2,
+h3 {
     color: #333;
     text-align: center;
     margin-top: 0;
@@ -9,8 +10,8 @@ h2, h3 {
 .form-container {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     width: 80%;
     max-width: 1200px;
 }
@@ -29,10 +30,6 @@ form {
     max-width: 800px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-/* 
-form div {
-    margin-bottom: 10px;
-} */
 
 label {
     display: block;
@@ -101,13 +98,65 @@ button:focus {
     color: green;
 }
 
-/* ============ START Images ============ */
+/* Checkboxes */
+
+.checkbox-container {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 15px;
+}
+
+.checkbox-label {
+    margin: 0; 
+    cursor: pointer; 
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.4em;
+    height: 1.4em;
+    border: 2px solid #00000098;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white"><path d="M6.002 12.414L2.293 8.707a1 1 0 0 1 1.414-1.414L6.002 9.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+}
+
+input[type="checkbox"]:hover {
+    border-color: var(--main-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--main-color);
+}
+
+
+/* ================= Images ================= */
 
 .images-title {
-    font-size: 28px; 
+    font-size: 28px;
     font-weight: bold;
-    text-align: center; 
-    padding: 10px; 
+    text-align: center;
+    padding: 10px;
     background: white;
     padding: 20px;
     margin: 20px 0;
@@ -117,18 +166,18 @@ button:focus {
 }
 
 .file-upload-block {
-    background-color: #f9f9f9; 
-    border: 1px solid #ddd; 
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
     padding: 20px;
-    border-radius: 5px; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
 .file-upload-block label {
-    display: block; 
+    display: block;
     margin-bottom: 5px;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 .file-upload-block input[type="file"],
@@ -140,13 +189,13 @@ button:focus {
 }
 
 .file-upload-block textarea {
-    height: 100px; 
-    resize: vertical; 
+    height: 100px;
+    resize: vertical;
 }
 
 .image-preview {
-    width: fit-content; 
-    height: auto; 
+    width: fit-content;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -159,9 +208,9 @@ button:focus {
 }
 
 #addMoreImages {
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px 20px;
     margin-bottom: 20px;
     background-color: #4CAF50;
@@ -169,7 +218,7 @@ button:focus {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
-    gap: 10px; 
+    gap: 10px;
     border-radius: 5px;
 }
 
@@ -189,7 +238,7 @@ button:focus {
 
 .image-checkboxes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -201,21 +250,21 @@ button:focus {
 }
 
 .image-checkbox {
-    display: none; 
+    display: none;
 }
 
 .image-label {
-    display: flex; 
+    display: flex;
     justify-content: center;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
 .image-label img {
-    display: block; 
+    display: block;
     max-width: 90%;
     height: auto;
-    border: 5px solid transparent; 
+    border: 5px solid transparent;
     border-radius: 4px;
     transition: border-color 0.3s ease;
 }
@@ -224,8 +273,8 @@ button:focus {
     transform: scale(1);
 }
 
-.image-checkbox:checked + .image-label img {
-    border-color: #ff0000; 
+.image-checkbox:checked+.image-label img {
+    border-color: #ff0000;
     transform: scale(1.05);
 }
 
@@ -248,13 +297,13 @@ button:focus {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%;    
+    width: 100%;
     gap: 10px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .image-preview img {
@@ -276,14 +325,11 @@ button:focus {
     resize: vertical;
 }
 
-
-/* ============ END Images ============ */
-
-
 @media screen and (max-width: 600px) {
     .image-update-block {
         flex-direction: column;
     }
+
     .image-preview img {
         width: 300px;
     }

@@ -4,17 +4,28 @@
     height: 80px;
 }
 
-/* Title */
+/* ============== Title ============== */
 
 .title-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    background-color: var(--main-color);
+    margin: 25px 0;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    border: 2px solid #eaeaea;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* border-radius: 8px; */
     transform: translateY(30px);
     opacity: 0;
     animation: slideUp 0.5s ease forwards 0.3s;
+}
+
+.title-container img {
+    width: 60%;
+    max-width: 800px;
 }
 
 @keyframes slideUp {
@@ -24,13 +35,40 @@
     }
 }
 
-.title-container h1 {
-    color: white;
-    font-size: 2.5rem;
-    font-weight: 700;
+@media (max-width: 768px) {
+    .title-container img {
+        width: 95%;
+    }
 }
 
-/* Content */
+/* ============== homepage carousel ============== */
+
+.index-carousel-container {
+    position: relative;
+    padding: 0 30px;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+}
+
+.carousel-card {
+    display: flex;
+    justify-content: center;
+    max-height: 300px;
+}
+
+.carousel-card img {
+    max-height: 300px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .carousel-card img {
+        max-height: 200px;
+    }
+}
+
+/* ============== Content ==============*/
 
 #content-container {
     width: 100%;
@@ -41,11 +79,11 @@
     width: 75%;
     padding: 20px;
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    border-radius: 0px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
     opacity: 0;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    will-change: opacity, transform; 
+    will-change: opacity, transform;
 }
 
 .content-section.right {
@@ -59,8 +97,8 @@
 }
 
 .content-section.visible {
-    opacity: 1; 
-    transform: translateX(0px); 
+    opacity: 1;
+    transform: translateX(0px);
 }
 
 .content-section h2 {

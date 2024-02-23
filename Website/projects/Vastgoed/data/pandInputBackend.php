@@ -29,18 +29,20 @@ if (isset($_POST['submit'])) {
 
         // Prepare an INSERT statement for wettelijkeinformatie
         $queryWettelijkeInfo = "INSERT INTO wettelijkeinformatie (
-    epcIndex, energieLabel, stedenbouwkundigeVergunning, verkavelingsvergunning, 
-    voorkooprecht, stedenbouwkundigeBestemming, dagvaardingEnHerstelvordering, 
-    effectiefOverstromingsgevoelig, mogelijkOverstromingsgevoelig, afgebakendOverstromingsgebied, 
-    afgebakendeOeverzone, risicozoneVoorOverstromingen, overstromingskansPerceel, 
-    overstromingskansGebouw, erfgoed
-) VALUES (
-    :epcIndex, :energieLabel, :stedenbouwkundigeVergunning, :verkavelingsvergunning, 
-    :voorkooprecht, :stedenbouwkundigeBestemming, :dagvaardingEnHerstelvordering, 
-    :effectiefOverstromingsgevoelig, :mogelijkOverstromingsgevoelig, :afgebakendOverstromingsgebied, 
-    :afgebakendeOeverzone, :risicozoneVoorOverstromingen, :overstromingskansPerceel, 
-    :overstromingskansGebouw, :erfgoed
-)";
+        epcIndex, energieLabel, stedenbouwkundigeVergunning, verkavelingsvergunning, 
+        voorkooprecht, stedenbouwkundigeBestemming, dagvaardingEnHerstelvordering, 
+        effectiefOverstromingsgevoelig, mogelijkOverstromingsgevoelig, afgebakendOverstromingsgebied, 
+        afgebakendeOeverzone, risicozoneVoorOverstromingen, overstromingskansPerceel, 
+        overstromingskansGebouw, erfgoed
+        ) 
+        VALUES (
+        :epcIndex, :energieLabel, :stedenbouwkundigeVergunning, :verkavelingsvergunning, 
+        :voorkooprecht, :stedenbouwkundigeBestemming, :dagvaardingEnHerstelvordering, 
+        :effectiefOverstromingsgevoelig, :mogelijkOverstromingsgevoelig, :afgebakendOverstromingsgebied, 
+        :afgebakendeOeverzone, :risicozoneVoorOverstromingen, :overstromingskansPerceel, 
+        :overstromingskansGebouw, :erfgoed
+        )";
+
         $stmtWettelijkeInfo = $db->prepare($queryWettelijkeInfo);
 
         // Bind parameters for wettelijkeinformatie
@@ -66,11 +68,11 @@ if (isset($_POST['submit'])) {
 
         // Prepare an INSERT statement for panddetails
         $queryPandDetails = "INSERT INTO panddetails (
-    isNieuw, isOpbrengsteigendom, isExclusiefVastgoed, isBeleggingsvastgoed
-) 
-VALUES (
-    :isNieuw, :isOpbrengsteigendom, :isExclusiefVastgoed, :isBeleggingsvastgoed
-)";
+        isNieuw, isOpbrengsteigendom, isExclusiefVastgoed, isBeleggingsvastgoed
+        ) 
+        VALUES (
+        :isNieuw, :isOpbrengsteigendom, :isExclusiefVastgoed, :isBeleggingsvastgoed
+        )";
         $stmtPandDetails = $db->prepare($queryPandDetails);
 
         $isNieuw = isset($_POST['isNieuw']) ? 1 : 0;
@@ -90,16 +92,16 @@ VALUES (
 
         // Insert into panden table
         $queryPanden = "INSERT INTO panden (
-    titel, tekst, status, type, subtype, aanvullingSubtype, bouwjaar, brutoVloeroppervlakte,
-    grondoppervlakte, aantalSlaapkamers, prijs, kadastraalInkomen, registratierechtenBTW,
-    vrijOp, adresID, pandDetailID, wettelijkeInfoID
-    ) 
-    VALUES 
-    (
-    :titel, :tekst, :status, :type, :subtype, :aanvullingSubtype, :bouwjaar, :brutoVloeroppervlakte,
-    :grondoppervlakte, :aantalSlaapkamers, :prijs, :kadastraalInkomen, :registratierechtenBTW,
-    :vrijOp, :adresID, :pandDetailID, :wettelijkeInfoID
-    )";
+        titel, tekst, status, type, subtype, aanvullingSubtype, bouwjaar, brutoVloeroppervlakte,
+        grondoppervlakte, aantalSlaapkamers, prijs, kadastraalInkomen, registratierechtenBTW,
+        vrijOp, homepage, adresID, pandDetailID, wettelijkeInfoID
+        ) 
+        VALUES 
+        (
+        :titel, :tekst, :status, :type, :subtype, :aanvullingSubtype, :bouwjaar, :brutoVloeroppervlakte,
+        :grondoppervlakte, :aantalSlaapkamers, :prijs, :kadastraalInkomen, :registratierechtenBTW,
+        :vrijOp, :homepage, :adresID, :pandDetailID, :wettelijkeInfoID
+        )";
         $stmtPanden = $db->prepare($queryPanden);
 
         // Bind parameters for panden
@@ -117,6 +119,7 @@ VALUES (
         $stmtPanden->bindParam(':kadastraalInkomen', $_POST['kadastraalInkomen']);
         $stmtPanden->bindParam(':registratierechtenBTW', $_POST['registratierechtenBTW']);
         $stmtPanden->bindParam(':vrijOp', $_POST['vrijOp']);
+        $stmtPanden->bindParam(':homepage', $_POST['homepage']);
         $stmtPanden->bindParam(':adresID', $adresID, PDO::PARAM_INT);
         $stmtPanden->bindParam(':pandDetailID', $pandDetailID, PDO::PARAM_INT);
         $stmtPanden->bindParam(':wettelijkeInfoID', $wettelijkeInfoID, PDO::PARAM_INT);
@@ -142,7 +145,6 @@ VALUES (
         $db->commit();
 
         header("Location: ../pandInput.php?message=added");
-        
     } catch (PDOException $exception) {
         // Rollback transaction if any error occurs
         $db->rollBack();

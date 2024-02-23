@@ -28,13 +28,12 @@ function deletePand($pandID)
                 $filePath = $basePath . basename($imageUrl);
                 if (file_exists($filePath)) {
                     unlink($filePath);
-                }
-                else {
+                } else {
                     echo "No images found in the path: " . $filePath . "<br>";
                     echo "The directory of this server is: " . __DIR__;
                 }
             }
-            
+
             // Step 0: Delete from afbeeldingen table (related to pand)
             $queryDeleteAfbeeldingen = "DELETE FROM afbeeldingen WHERE pandID = :pandID";
             $stmtDeleteAfbeeldingen = $db->prepare($queryDeleteAfbeeldingen);
@@ -228,4 +227,27 @@ function getImagesByPandID($pandID)
     } catch (PDOException $e) {
         exit("Error: " . $e->getMessage());
     }
+}
+
+
+function getPandenByHomepage()
+{
+    $database = new Database();
+    $db = $database->getConnection();
+
+    $query = "SELECT p.pandID, af.afbeeldingURL 
+              FROM afbeeldingen af 
+              INNER JOIN panden p ON af.pandID = p.pandID 
+              WHERE p.homepage = 1 
+              GROUP BY p.pandID";
+
+    try {
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (PDOException $e) {
+        exit("Error: " . $e->getMessage());
+    }
+
 }
