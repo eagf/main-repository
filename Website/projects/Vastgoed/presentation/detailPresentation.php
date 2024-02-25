@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="./styles/detail.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
     <link rel="icon" href="./assets/img/logo.ico">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="scripts/detail.js" defer></script>
     <title>Libeer vastgoed</title>
 
@@ -62,8 +64,6 @@
         });
     </script>
 
-
-
 </head>
 
 <body>
@@ -80,33 +80,29 @@
 
             <!-- ============== carousel ============== -->
 
-            <div class="slideshow-container">
-                <?php foreach ($afbeeldingenURLs as $index => $url) {
-                    $beschrijving = $beschrijvingen[$index] ?? ''; // Fallback if no description
-                    echo '<div class="mySlides fade">';
-                    echo '<div class="numbertext">' . ($index + 1) . ' / ' . $totalImages . '</div>';
-                    echo '<img src="' . htmlspecialchars($url) . '" style="width:100%">';
-                    if (!empty($beschrijving)) {
-                        echo '<div class="text">' . htmlspecialchars($beschrijving) . '</div>';
-                    }
-                    echo '</div>';
-                } ?>
+            <div class="slideshow-container swiper-container">
+                <div class="swiper-wrapper">
+                    <?php foreach ($afbeeldingenURLs as $index => $url) : ?>
+                        <?php $beschrijving = $beschrijvingen[$index] ?? ''; // Fallback if no description 
+                        ?>
+                        <div class="swiper-slide">
+                            <img src="<?php echo htmlspecialchars($url); ?>" alt="Image <?php echo $index + 1; ?>">
+                            <?php if (!empty($beschrijving)) : ?>
+                                <div class="text"><?php echo htmlspecialchars($beschrijving); ?></div>
+                            <?php endif; ?>
+                            <div class="numbertext"><?php echo $index + 1; ?> / <?php echo $totalImages; ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
 
-                <!-- Next and previous buttons -->
-                <a class="prev">&#10094;</a>
-                <a class="next">&#10095;</a>
+                <div class="swiper-button-prev swiper-button-hidden"></div>
+                <div class="swiper-button-next swiper-button-hidden"></div>
 
-                <!-- Close Button -->
                 <div class="close-btn">&times;</div>
-            </div>
 
-            <!-- The dots/circles -->
-            <div id="dot-container">
-                <?php foreach ($afbeeldingenURLs as $index => $afbeelding) : ?>
-                    <span class="dot" onclick="currentSlide(<?php echo $index + 1; ?>)"></span>
-                <?php endforeach; ?>
+                <div id="dot-container" class="swiper-pagination"></div>
+                <div id="numbertext" class="swiper-pagination-text"></div>
             </div>
-
 
             <!-- ============== verdere info ============== -->
 

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./styles/index.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
-    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="icon" href="./assets/img/logo.ico">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./scripts/index.js" defer></script>
     <title>Libeer vastgoed</title>
 </head>
@@ -19,57 +19,24 @@
         <?php include("includes/header.php"); ?>
 
         <div class="title-container">
-
             <img src="assets/img/title.png" alt="Libeer vastgoed titel">
-
         </div>
 
-        <div class="index-carousel-container">
-            <?php foreach ($pandenHomepage as $pand) : ?>
-                <div>
-                    <a class="carousel-card" href="detail.php?pandID=<?php echo htmlspecialchars($pand['pandID']); ?>">
-                        <img src="<?php echo htmlspecialchars($pand['afbeeldingURL']); ?>" alt="Carousel Image">
-                    </a>
-                </div>
-            <?php endforeach; ?>
+        <!-- ============= Index carousel ============= -->
+
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <?php foreach ($pandenHomepage as $pand) : ?>
+                    <div class="swiper-slide">
+                        <a class="carousel-card" href="detail.php?pandID=<?php echo htmlspecialchars($pand['pandID']); ?>">
+                            <img src="<?php echo htmlspecialchars($pand['afbeeldingURL']); ?>" alt="Carousel Image">
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
 
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script type="text/javascript" src="slick/slick.min.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('.index-carousel-container').slick({
-                    arrows: false,
-                    autoplay: true,
-                    autoplaySpeed: 3000,
-                    swipeToSlide: true,
-                    centerMode: true,
-                    centerPadding: '60px',
-                    slidesToShow: 3,
-                    responsive: [{
-                            breakpoint: 768,
-                            settings: {
-                                arrows: false,
-                                centerMode: true,
-                                centerPadding: '40px',
-                                slidesToShow: 3
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                arrows: false,
-                                centerMode: true,
-                                centerPadding: '40px',
-                                slidesToShow: 1
-                            }
-                        }
-                    ]
-                });
-            });
-        </script>
+        <!-- ============= Content under carousel ============= -->
 
         <div id="content-container">
 
