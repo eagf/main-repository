@@ -60,9 +60,9 @@ const RecipeDetail = () => {
 
         try {
             const response = await axios.post(`${apiUrl}/api/update_recipe.php`, formData, {
-                withCredentials: true
+                withCredentials: true,
             });
-
+            
             if (response.data.message) {
                 setIsEditing(false);
                 // Refresh the recipe data
@@ -123,19 +123,20 @@ const RecipeDetail = () => {
 
     const handleRemoveImage = async () => {
         try {
+            // Use recipeId from useParams() instead of undefined recipeID
             const formData = new FormData();
-            formData.append('id', recipe.recipeID);
-
+            formData.append('id', recipeId); // Corrected variable name
+    
             const response = await axios.post(`${apiUrl}/api/remove_recipe_image.php`, formData, {
-                withCredentials: true
+                withCredentials: true,
             });
-
+    
             if (response.data.message) {
                 // Update local state to reflect the removed image
                 setRecipe({
                     ...recipe,
                     imagePath: null,
-                    altText: null
+                    altText: null,
                 });
                 setRecipeImage(null);
             }
@@ -143,6 +144,7 @@ const RecipeDetail = () => {
             console.error('Error removing recipe image', error);
         }
     };
+    
 
     return (
         <div className='recipeDetail-div'>

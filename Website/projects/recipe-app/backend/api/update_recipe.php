@@ -78,41 +78,36 @@ try {
     }
 
     // Handling the image upload
-    if (isset($_FILES['recipeImage'])) {
-        if ($_FILES['recipeImage']['error'] == UPLOAD_ERR_OK) {
-            $targetDirectory = __DIR__ . '/../assets/ingredientImages/';            $targetFile = $targetDirectory . basename($_FILES['recipeImage']['name']);
-            // Check if file already exists
-            if (file_exists($targetFile)) {
-                send_json(400, ['error' => 'Sorry, file already exists.']);
-                exit;
-            }
-            // Move the uploaded file
-            if (move_uploaded_file($_FILES['recipeImage']['tmp_name'], $targetFile)) {            // Update the image record in the database
-                $imageURL = '/assets/ingredientImages/' . basename($_FILES['recipeImage']['name']);
-                $altText = 'Image for ' . $recipeName;
-
-                $stmt = $db->prepare('INSERT INTO images (recipeID, imageURL, altText) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE imageURL = ?, altText = ?');
-                $stmt->execute([$recipeID, $imageURL, $altText, $imageURL, $altText]);
-
-                // Include image information in the response
-                $response['imagePath'] = $imageURL;
-                $response['altText'] = $altText;
-            } else {
-                // File move failed
-                send_json(500, ['error' => 'Failed to move uploaded file.']);
-                exit;
-            }
-        } else {
-            // File upload error
-            send_json(400, ['error' => 'File upload error.']);
-            exit;
+    if (isset($_FILES['recipeImage']) && $_FILES['recipeImage']['error'] == UPLOAD_ERR_OK) {
+        $targetDirectory = __DIR__ . '/../assets/recipeImages/'; // Corrected directory path
+        if (!file_exists($targetDirectory)) {
+            mkdir($targetDirectory, 0777, true); // Ensure directory exists
         }
+        $fileName = basename($_FILES['recipeImage']['name']);
+        $targetFile = $targetDirectory . $fileName;
+    
+        if (move_uploaded_file($_FILES['recipeImage']['tmp_name'], $targetFile)) {
+            $imageURL = 'assets/recipeImages/' . $fileName; 
+            $altText = 'Image for ' . $recipeName;
+
+            $stmt = $db->prepare('INSERT INTO images (recipeID, imageURL, altText) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE imageURL = ?, altText = ?');
+            $stmt->execute([$recipeID, $imageURL, $altText, $imageURL, $altText]);
+
+            error_log("Image moved successfully");
+            send_json(200, ['message' => 'Recipe updated successfully', 'imagePath' => $imageURL, 'altText' => $altText]);
+        } else {
+            error_log("Failed to move uploaded file.");
+            send_json(500, ['error' => 'Failed to move uploaded file.']);
+        }
+    } else {
+        error_log("File upload error: " . $_FILES['recipeImage']['error']);
+        send_json(400, ['error' => 'File upload error.']);
     }
+
 
     // Commit transaction
     $db->commit();
     send_json(200, ['message' => 'Recipe updated successfully']);
-
 } catch (PDOException $e) {
     // Rollback transaction in case of error
     $db->rollBack();
