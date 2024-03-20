@@ -204,6 +204,18 @@ header {
     height: 40px;
 }
 
+@media screen and (min-width: 1800px) {
+    header {
+        height: 400px;
+    }
+    #logo {
+        height: 130px;
+        padding-left: 80px;
+    }
+
+}
+
+
 @media screen and (max-width: 768px) {
     header {
         flex-direction: column; 
@@ -252,6 +264,5 @@ header {
     #header-nav ul li {
         text-align: center;
     }
-
 
 }
