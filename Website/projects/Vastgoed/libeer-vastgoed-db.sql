@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Gegenereerd op: 22 feb 2024 om 16:19
--- Serverversie: 10.4.32-MariaDB
--- PHP-versie: 8.2.12
+-- Host: com-linweb816.srv.combell-ops.net:3306
+-- Gegenereerd op: 20 mrt 2024 om 13:24
+-- Serverversie: 5.7.42-46-log
+-- PHP-versie: 7.1.25-1+0~20181207224605.11+jessie~1.gbpf65b84
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `libeer-vastgoed-db`
+-- Database: `ID421970_vastgoed`
 --
 
 -- --------------------------------------------------------
@@ -35,8 +35,8 @@ CREATE TABLE `adressen` (
   `straat` varchar(100) DEFAULT NULL,
   `nr` varchar(10) DEFAULT NULL,
   `bus` varchar(10) DEFAULT NULL,
-  `adresOpAanvraag` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `adresOpAanvraag` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `adressen`
@@ -48,7 +48,43 @@ INSERT INTO `adressen` (`adresID`, `land`, `postcode`, `gemeente`, `straat`, `nr
 (3, 'België', '3000', 'Leuven', 'Markt', '10', '', 1),
 (4, 'België', '4000', 'Luik', 'Parklaan', '333', 'B', 0),
 (5, 'België', '5000', 'Namen', 'Kanaalweg', '58', '', 0),
-(46, 'test', 'test', 'test', 'test', 'test', 'test', 0);
+(7, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(8, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(9, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(10, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(11, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(12, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(13, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(14, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(15, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(18, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(19, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(20, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(21, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(22, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(24, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(26, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(27, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(28, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(29, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(30, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(31, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(32, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(33, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(34, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(35, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(36, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(37, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(38, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(39, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(40, 'testzegf', 'test', 'test', 'test', 'test', 'test', NULL),
+(41, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(42, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(43, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(44, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(45, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(46, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(47, 'test', 'test', 'test', 'test', 'test', 'test', 0);
 
 -- --------------------------------------------------------
 
@@ -60,8 +96,8 @@ CREATE TABLE `afbeeldingen` (
   `afbeeldingID` int(11) NOT NULL,
   `pandID` int(11) DEFAULT NULL,
   `afbeeldingURL` varchar(255) DEFAULT NULL,
-  `beschrijving` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `beschrijving` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `afbeeldingen`
@@ -97,10 +133,7 @@ INSERT INTO `afbeeldingen` (`afbeeldingID`, `pandID`, `afbeeldingURL`, `beschrij
 (32, 5, './assets/img/panden/landhuis3.png', 'Landhuis met een klassieke charme'),
 (33, 5, './assets/img/panden/landhuis4.png', 'Landhuis dicht bij het bos'),
 (34, 5, './assets/img/panden/landhuis5.png', 'Landhuis met een grote vijver'),
-(35, 5, './assets/img/panden/landhuis6.png', 'Landhuis met een ruim balkon'),
-(67, 47, './assets/img/panden/image_1708589025_4217.webp', ''),
-(68, 47, './assets/img/panden/image_1708589025_9974.png', ''),
-(69, 47, './assets/img/panden/image_1708589025_6148.png', '');
+(35, 5, './assets/img/panden/landhuis6.png', 'Landhuis met een ruim balkon');
 
 -- --------------------------------------------------------
 
@@ -113,25 +146,24 @@ CREATE TABLE `kamers` (
   `pandID` int(11) DEFAULT NULL,
   `kamerNaam` varchar(100) DEFAULT NULL,
   `kamerOppervlakte` decimal(10,2) DEFAULT NULL,
-  `kamerDetail` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `kamerDetail` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `kamers`
 --
 
 INSERT INTO `kamers` (`kamerID`, `pandID`, `kamerNaam`, `kamerOppervlakte`, `kamerDetail`) VALUES
-(1, 1, 'Woonkamer', 30.00, 'Ruime woonkamer met veel natuurlijk licht.'),
-(2, 1, 'Keuken', 15.00, 'Moderne keuken met inbouwapparatuur.'),
-(3, 1, 'Slaapkamer', 20.00, 'Hoofdslaapkamer met aangrenzende badkamer.'),
-(4, 2, 'Woonkamer', 25.00, 'Gezellige woonkamer met open haard.'),
-(5, 2, 'Keuken', 10.00, 'Compacte keuken met moderne voorzieningen.'),
-(6, 3, 'Slaapkamer', 18.00, 'Slaapkamer met balkon.'),
-(7, 3, 'Badkamer', 8.00, 'Badkamer met bad en aparte douche.'),
-(8, 4, 'Eetkamer', 20.00, 'Ruime eetkamer, ideaal voor diners.'),
-(9, 4, 'Bureau', 12.00, 'Kantoorruimte met ingebouwde boekenkasten.'),
-(10, 5, 'Garage', 35.00, 'Grote garage met ruimte voor twee auto\'s.'),
-(66, 47, 'test', 12.00, 'test: kamer details');
+(1, 1, 'Woonkamer', '30.00', 'Ruime woonkamer met veel natuurlijk licht.'),
+(2, 1, 'Keuken', '15.00', 'Moderne keuken met inbouwapparatuur.'),
+(3, 1, 'Slaapkamer', '20.00', 'Hoofdslaapkamer met aangrenzende badkamer.'),
+(4, 2, 'Woonkamer', '25.00', 'Gezellige woonkamer met open haard.'),
+(5, 2, 'Keuken', '10.00', 'Compacte keuken met moderne voorzieningen.'),
+(6, 3, 'Slaapkamer', '18.00', 'Slaapkamer met balkon.'),
+(7, 3, 'Badkamer', '8.00', 'Badkamer met bad en aparte douche.'),
+(8, 4, 'Eetkamer', '20.00', 'Ruime eetkamer, ideaal voor diners.'),
+(9, 4, 'Bureau', '12.00', 'Kantoorruimte met ingebouwde boekenkasten.'),
+(10, 5, 'Garage', '35.00', 'Grote garage met ruimte voor twee auto\'s.');
 
 -- --------------------------------------------------------
 
@@ -145,7 +177,7 @@ CREATE TABLE `panddetails` (
   `isOpbrengsteigendom` tinyint(1) DEFAULT NULL,
   `isExclusiefVastgoed` tinyint(1) DEFAULT NULL,
   `isBeleggingsvastgoed` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `panddetails`
@@ -192,7 +224,8 @@ INSERT INTO `panddetails` (`pandDetailID`, `isNieuw`, `isOpbrengsteigendom`, `is
 (39, 0, 0, 0, 0),
 (40, 0, 0, 0, 0),
 (41, 0, 0, 0, 0),
-(42, 0, 0, 0, 0);
+(42, 0, 0, 0, 0),
+(43, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -203,7 +236,7 @@ INSERT INTO `panddetails` (`pandDetailID`, `isNieuw`, `isOpbrengsteigendom`, `is
 CREATE TABLE `panden` (
   `pandID` int(11) NOT NULL,
   `titel` varchar(255) DEFAULT NULL,
-  `tekst` text DEFAULT NULL,
+  `tekst` text,
   `pandDetailID` int(11) DEFAULT NULL,
   `status` enum('Te koop','Te huur') DEFAULT NULL,
   `adresID` int(11) DEFAULT NULL,
@@ -218,20 +251,20 @@ CREATE TABLE `panden` (
   `kadastraalInkomen` decimal(10,2) DEFAULT NULL,
   `registratierechtenBTW` enum('21%','6%','Registratierechten') DEFAULT NULL,
   `vrijOp` date DEFAULT NULL,
-  `wettelijkeInfoID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `wettelijkeInfoID` int(11) DEFAULT NULL,
+  `homepage` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `panden`
 --
 
-INSERT INTO `panden` (`pandID`, `titel`, `tekst`, `pandDetailID`, `status`, `adresID`, `type`, `subtype`, `aanvullingSubtype`, `bouwjaar`, `brutoVloeroppervlakte`, `grondoppervlakte`, `aantalSlaapkamers`, `prijs`, `kadastraalInkomen`, `registratierechtenBTW`, `vrijOp`, `wettelijkeInfoID`) VALUES
-(1, 'Charmant appartement', 'Een gezellig appartement in het hart van de stad.', 1, 'Te koop', 1, 'Appartement', 'Standaard', 'Geen', '1990', 75.00, 0.00, 2, 250000.00, 500.00, '21%', '2024-06-01', 1),
-(2, 'Moderne villa', 'Ruime en moderne villa met een grote tuin.', 2, 'Te koop', 2, 'Villa', 'Luxe', 'Moderne villa', '2005', 200.00, 1500.00, 4, 750000.00, 2000.00, '21%', '2024-07-01', 2),
-(3, 'Gezellige bungalow', 'Een comfortabele bungalow in een rustige buurt.', 1, 'Te huur', 3, 'Bungalow', 'Standaard', 'Geen', '1985', 90.00, 500.00, 3, 1200.00, 300.00, '21%', '2024-08-01', 3),
-(4, 'Stadsloft', 'Moderne loft in een levendige buurt.', 2, 'Te huur', 4, 'Loft', 'Standaard', 'Geen', '2015', 100.00, 0.00, 1, 1500.00, 400.00, '21%', '2024-09-01', 4),
-(5, 'Landhuis', 'Prachtig landhuis omringd door natuur.', 1, 'Te koop', 5, 'Huis', 'Landhuis', 'Cottage style', '1970', 250.00, 3000.00, 5, 850000.00, 2500.00, '21%', '2024-10-01', 5),
-(47, 'test', 'test', 42, 'Te koop', 46, 'test', 'test', 'test', '1992', 87.00, 102.00, 3, 300000.00, 15000.00, '21%', '2024-08-13', 43);
+INSERT INTO `panden` (`pandID`, `titel`, `tekst`, `pandDetailID`, `status`, `adresID`, `type`, `subtype`, `aanvullingSubtype`, `bouwjaar`, `brutoVloeroppervlakte`, `grondoppervlakte`, `aantalSlaapkamers`, `prijs`, `kadastraalInkomen`, `registratierechtenBTW`, `vrijOp`, `wettelijkeInfoID`, `homepage`) VALUES
+(1, 'Charmant appartement', 'Een gezellig appartement in het hart van de stad.', 1, 'Te koop', 1, 'Appartement', 'Standaard', 'Geen', 1990, '75.00', '0.00', 2, '250000.00', '500.00', '21%', '2024-06-01', 1, 1),
+(2, 'Moderne villa', 'Ruime en moderne villa met een grote tuin.', 2, 'Te koop', 2, 'Villa', 'Luxe', 'Extra informatie', 2005, '200.00', '1500.00', 4, '750000.00', '2000.00', '21%', '2024-07-01', 2, 1),
+(3, 'Gezellige bungalow', 'Een comfortabele bungalow in een rustige buurt.', 1, 'Te huur', 3, 'Bungalow', 'Standaard', 'Geen', 1985, '90.00', '500.00', 3, '1200.00', '300.00', '21%', '2024-08-01', 3, 1),
+(4, 'Stadsloft', 'Moderne loft in een levendige buurt.', 2, 'Te huur', 4, 'Loft', 'Standaard', 'Geen', 2015, '100.00', '0.00', 1, '1500.00', '400.00', '21%', '2024-09-01', 4, 1),
+(5, 'Landhuis', 'Prachtig landhuis omringd door natuur.', 1, 'Te koop', 5, 'Huis', 'Landhuis', 'Extra informatie', 1970, '250.00', '3000.00', 5, '850000.00', '2500.00', '21%', '2024-10-01', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -256,19 +289,55 @@ CREATE TABLE `wettelijkeinformatie` (
   `overstromingskansPerceel` decimal(10,2) DEFAULT NULL,
   `overstromingskansGebouw` decimal(10,2) DEFAULT NULL,
   `erfgoed` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `wettelijkeinformatie`
 --
 
 INSERT INTO `wettelijkeinformatie` (`wettelijkeInfoID`, `epcIndex`, `energieLabel`, `stedenbouwkundigeVergunning`, `verkavelingsvergunning`, `voorkooprecht`, `stedenbouwkundigeBestemming`, `dagvaardingEnHerstelvordering`, `effectiefOverstromingsgevoelig`, `mogelijkOverstromingsgevoelig`, `afgebakendOverstromingsgebied`, `afgebakendeOeverzone`, `risicozoneVoorOverstromingen`, `overstromingskansPerceel`, `overstromingskansGebouw`, `erfgoed`) VALUES
-(1, 150.00, 'B', 1, 0, 0, 'Woongebied', 0, 1, 0, 0, 0, 1, 0.20, 0.10, 0),
-(2, 200.00, 'A', 1, 1, 0, 'Handelsgebied', 0, 0, 1, 0, 0, 0, 0.00, 0.00, 0),
-(3, 175.00, 'C', 0, 0, 1, 'Industriegebied', 1, 1, 1, 0, 0, 1, 0.50, 0.40, 0),
-(4, 100.00, 'A', 1, 0, 0, 'Gemengd gebied', 0, 0, 0, 1, 1, 0, 0.10, 0.20, 1),
-(5, 220.00, 'D', 0, 1, 1, 'Landbouwgebied', 1, 1, 0, 1, 1, 0, 0.30, 0.30, 0),
-(43, 120.00, 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, 45.00, 28.00, NULL);
+(1, '150.00', 'B', 1, 0, 0, 'Woongebied', 0, 1, 0, 0, 0, 1, '0.20', '0.10', 0),
+(2, '200.00', 'A', 1, 1, 0, 'Handelsgebied', 0, 0, 1, 0, 0, 0, '0.00', '0.00', 0),
+(3, '175.00', 'C', 0, 0, 1, 'Industriegebied', 1, 1, 1, 0, 0, 1, '0.50', '0.40', 0),
+(4, '100.00', 'A', 1, 0, 0, 'Gemengd gebied', 0, 0, 0, 1, 1, 0, '0.10', '0.20', 1),
+(5, '220.00', 'D', 0, 1, 1, 'Landbouwgebied', 1, 1, 0, 1, 1, 0, '0.30', '0.30', 0),
+(7, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(8, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(9, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(10, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(11, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(12, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(13, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(14, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(15, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(16, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(17, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, 1, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(18, '120.00', 'A', NULL, NULL, NULL, 'test', 1, 1, 1, 1, 1, 1, '45.00', '28.00', NULL),
+(19, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', 1),
+(20, '120.00', 'A', 1, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(22, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(23, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(24, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(25, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(26, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(27, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(28, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(29, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(30, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(31, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(32, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(33, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(34, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(35, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(36, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(37, '120.00', 'A', 0, 0, 0, 'test', 0, 0, 0, 1, 1, 0, '45.00', '28.00', 0),
+(38, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(39, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(40, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(41, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(42, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(43, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL),
+(44, '120.00', 'A', NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', '28.00', NULL);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -323,37 +392,37 @@ ALTER TABLE `wettelijkeinformatie`
 -- AUTO_INCREMENT voor een tabel `adressen`
 --
 ALTER TABLE `adressen`
-  MODIFY `adresID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `adresID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT voor een tabel `afbeeldingen`
 --
 ALTER TABLE `afbeeldingen`
-  MODIFY `afbeeldingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `afbeeldingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT voor een tabel `kamers`
 --
 ALTER TABLE `kamers`
-  MODIFY `kamerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `kamerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT voor een tabel `panddetails`
 --
 ALTER TABLE `panddetails`
-  MODIFY `pandDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `pandDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT voor een tabel `panden`
 --
 ALTER TABLE `panden`
-  MODIFY `pandID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `pandID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT voor een tabel `wettelijkeinformatie`
 --
 ALTER TABLE `wettelijkeinformatie`
-  MODIFY `wettelijkeInfoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `wettelijkeInfoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Beperkingen voor geëxporteerde tabellen

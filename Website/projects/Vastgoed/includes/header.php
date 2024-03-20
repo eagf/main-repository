@@ -13,6 +13,9 @@ $currentPage = end($partsFileName);
                 <img id="logo" src="./assets/img/logo.svg" alt="Logo Libeer">
             </a>
         </div>
+        <div id="banner-div">
+            <img src="./assets/img/banner1.png" alt="Libeer banner" id="banner">
+        </div>
 
         <div id="hamburger-icon">
             <!-- onclick="toggleNav()" -->

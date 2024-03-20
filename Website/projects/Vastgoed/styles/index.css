@@ -56,6 +56,22 @@
     width: 100%;
 }
 
+.swiper-slide::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 97, 176, 0.6);
+    z-index: 4;
+    transition: 0.3s;
+}
+
+.swiper-slide-active::before {
+    background-color: rgba(46, 97, 176, 0);
+}
+
 .carousel-card {
     display: flex;
     justify-content: center;
