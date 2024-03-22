@@ -104,7 +104,7 @@
                 <div id="numbertext" class="swiper-pagination-text"></div>
             </div>
 
-            <!-- ============== verdere info ============== -->
+            <!-- ============== verdere info =========== === -->
 
             <div id="left-right-container">
 
@@ -112,24 +112,24 @@
                     <p><strong>Adres:</strong>
                         <?php
                         echo (
+                            "<a href=\"{$googleMapsLink}\" target=\"_blank\">" .
                             htmlspecialchars($pandDetails['straat']) . " " .
                             htmlspecialchars($pandDetails['nr']) .
                             (!empty($pandDetails['bus']) ? " bus " . htmlspecialchars($pandDetails['bus']) : "") . " - " .
                             htmlspecialchars($pandDetails['postcode']) . " " .
-                            htmlspecialchars($pandDetails['gemeente'])
+                            htmlspecialchars($pandDetails['gemeente']) . "</a>"
                         );
                         ?>
                     </p>
+                    </a>
                     <p><strong>Type:</strong> <?php echo htmlspecialchars($pandDetails['type']); ?></p>
                     <?php if ($pandDetails['subtype'] != "Standaard") : ?>
                         <p><strong>Subtype:</strong> <?php echo htmlspecialchars($pandDetails['subtype']); ?></p>
                         <p><strong>Aanvulling Subtype:</strong> <?php echo htmlspecialchars($pandDetails['aanvullingSubtype']); ?></p>
                     <?php endif; ?>
-                    <div id="google-maps-link-container">
-                        <?php
-                        echo "<a href=\"{$googleMapsLink}\" target=\"_blank\">Bekijk op Google Maps</a>";
-                        ?>
-                    </div>
+                    <?php
+                    echo "<a href=\"{$googleMapsLink}\" target=\"_blank\"></a>";
+                    ?>
                 </div>
 
                 <div id="beschrijving-container" class="detail-container">
@@ -149,25 +149,29 @@
                     <p><strong>Grondoppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['grondoppervlakte'], 0, ',', '.')); ?> m²</p>
                     <p><strong>Bruto Vloeroppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['brutoVloeroppervlakte'], 0, ',', '.')); ?> m²</p>
                     <!-- !!!!!!! Onleesbaar in geschreven overzicht -->
-                    <p><strong>EPC Index:</strong> <?php echo htmlspecialchars(number_format($pandDetails['epcIndex']), 0); ?></p>
                 </div>
 
             </div>
 
             <!-- ============== EPC ============== -->
+            <div id="epc-container-container" class="detail-container">
+                <p><strong>Aantal Slaapkamers:</strong> <?php echo htmlspecialchars((string)$pandDetails['aantalSlaapkamers']); ?></p>
 
-            <div id="epc-container" class="detail-container">
-                <div id="epc-arrow-container">
-                    <img src="assets/img/arrow-down.png" alt="arrow-down">
-                </div>
-                <div id="epc-blocks-container">
-                    <img src="assets/img/f.png" alt="epc-f">
-                    <img src="assets/img/e.png" alt="epc-e">
-                    <img src="assets/img/d.png" alt="epc-d">
-                    <img src="assets/img/c.png" alt="epc-c">
-                    <img src="assets/img/b.png" alt="epc-b">
-                    <img src="assets/img/a.png" alt="epc-a">
-                    <img src="assets/img/a+.png" alt="epc-a+">
+                <p><strong>EPC Index:</strong> <?php echo htmlspecialchars(number_format($pandDetails['epcIndex']), 0); ?></p>
+
+                <div id="epc-container" class="detail-container">
+                    <div id="epc-arrow-container">
+                        <img src="assets/img/arrow-down.png" alt="arrow-down">
+                    </div>
+                    <div id="epc-blocks-container">
+                        <img src="assets/img/f.png" alt="epc-f">
+                        <img src="assets/img/e.png" alt="epc-e">
+                        <img src="assets/img/d.png" alt="epc-d">
+                        <img src="assets/img/c.png" alt="epc-c">
+                        <img src="assets/img/b.png" alt="epc-b">
+                        <img src="assets/img/a.png" alt="epc-a">
+                        <img src="assets/img/a+.png" alt="epc-a+">
+                    </div>
                 </div>
             </div>
 

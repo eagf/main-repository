@@ -1,2 +1,70 @@
-/* CSS verhuren.php */
+/* CSS for Verhuur Page */
 
+#main-wrapper {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.section-intro h1,
+.section-conclusion p,
+.section-content h2 {
+    font-weight: bold; 
+    color: var(--main-color);
+}
+
+.section-intro,
+.section-conclusion {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.section-intro ul {
+    list-style-position: inside;
+    padding-left: 0; 
+    margin-left: 0;
+}
+
+.section-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.content-image,
+.content-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.content-text {
+    background-color: var(--background-color);
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.content-image img {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: 400px;
+}
+
+.italic-text {
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .section-content {
+        flex-direction: column;
+    }
+
+    .content-image,
+    .content-text {
+        width: 100%;
+    }
+}

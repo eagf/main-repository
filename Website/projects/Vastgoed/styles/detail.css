@@ -141,6 +141,7 @@
     .slideshow-container.fullscreen .swiper-slide img {
         max-height: 80%;
     }
+
     .slideshow-container.fullscreen .next,
     .slideshow-container.fullscreen .prev {
         top: auto;
@@ -165,26 +166,6 @@
     border-radius: 0px;
     margin: 20px auto;
     box-sizing: border-box;
-}
-
-#google-maps-link-container {
-    margin-top: 20px;
-    text-align: center;
-}
-
-#google-maps-link-container a {
-    display: inline-block;
-    background-color: var(--main-color);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-#google-maps-link-container a:hover {
-    background-color: var(--main-color-light);
 }
 
 .detail-container h3 {
@@ -256,7 +237,7 @@
 /* =============== EPC =============== */
 
 #epc-container {
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: white;
     box-shadow: 0 0 0;
     max-width: 800px;
