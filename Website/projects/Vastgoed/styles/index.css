@@ -15,7 +15,7 @@
     width: 80%;
     max-width: 800px;
     background-color: #fff;
-    border: 2px solid #eaeaea;
+    border: 1px solid var(--secundary-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* border-radius: 8px; */
     transform: translateY(30px);
@@ -24,7 +24,7 @@
 }
 
 .title-container img {
-    width: 60%;
+    width: 100%;
     max-width: 800px;
 }
 
@@ -59,28 +59,28 @@
 .swiper-slide::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(46, 97, 176, 0.6);
+    background: var(--main-color);
+    opacity: 0.6;
     z-index: 4;
     transition: 0.3s;
 }
 
 .swiper-slide-active::before {
-    background-color: rgba(46, 97, 176, 0);
+    opacity: 0;
 }
 
 .carousel-card {
     display: flex;
     justify-content: center;
-    max-height: 300px;
+    max-height: 400px;
 }
 
 .carousel-card img {
     width: 100%;
     height: 250px;
+    opacity: 0.99;
 }
 
 .swiper-slide, .carousel-card img {

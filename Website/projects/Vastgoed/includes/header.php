@@ -14,7 +14,7 @@ $currentPage = end($partsFileName);
             </a>
         </div>
         <div id="banner-div">
-            <img src="./assets/img/banner1.png" alt="Libeer banner" id="banner">
+            <img src="./assets/img/banner3.jpg" alt="Libeer banner" id="banner">
         </div>
 
         <div id="hamburger-icon">

@@ -34,7 +34,7 @@
 
             <section class="section-content">
                 <div class="content-image">
-                    <img src="assets/img/logo.png" alt="">
+                    <img src="assets/img/panden/image4.png" alt="">
                 </div>
                 <div class="content-text">
                     <h2>
@@ -78,13 +78,13 @@
                     </p>
                 </div>
                 <div class="content-image">
-                    <img src="assets/img/logo.png" alt="">
+                    <img src="assets/img/panden/apartment2.png" alt="">
                 </div>
             </section>
 
             <section class="section-content">
                 <div class="content-image">
-                    <img src="assets/img/logo.png" alt="">
+                    <img src="assets/img/panden/image2.jpg" alt="">
                 </div>
                 <div class="content-text">
                     <p>
@@ -102,10 +102,10 @@
             </section>
 
             <section class="section-conclusion">
-                <p>
+                <h2>
                     Kortom Libeer Vastgoed staat voor de zorgeloze verkoop van uw
                     pand met het beste resultaat!
-                </p>
+</h2>
             </section>
         </div>
     </div>

@@ -3,7 +3,7 @@
 #main-wrapper {
     max-width: 1200px;
     margin: auto;
-    padding: 20px;
+    padding: 0px 40px;
 }
 
 .section-intro h1,
@@ -19,6 +19,11 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px 0;
+}
+
+.section-intro h1 {
+    font-weight: 1200; 
+    font-size: xx-large;
 }
 
 .section-intro ul {
