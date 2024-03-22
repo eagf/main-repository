@@ -9,7 +9,8 @@
 
     --secundary-color: #F49A25;
 
-    --background-color: #f6f6f6;
+    --background-color: #f0f0f0;
+
 }
 
 html,
@@ -17,7 +18,6 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: var(--background-color);
     font-family: "Roboto Condensed", sans-serif;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    /* background-color: #fff; */
     justify-content: space-between;
     height: 300px;
 }
