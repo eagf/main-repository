@@ -19,7 +19,7 @@
         <?php include("includes/header.php"); ?>
 
         <div class="title-container">
-            <img src="assets/img/title.png" alt="Libeer vastgoed titel">
+            <h1 class="main-title">Libeer Vastgoed</h1>
         </div>
 
         <!-- ============= Index carousel ============= -->

@@ -1,29 +1,35 @@
-/* CSS for Verhuur Page */
+/* CSS verhuren page */
 
 #main-wrapper {
     max-width: 1200px;
     margin: auto;
     padding: 0px 40px;
+    box-sizing: border-box;
 }
 
 .section-intro h1,
 .section-conclusion p,
 .section-content h2 {
-    font-weight: bold; 
-    color: var(--main-color);
-}
-
-.section-intro,
-.section-conclusion {
-    text-align: center;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 0;
+    font-weight: 600; 
+    color: #2E61B0; 
+    margin-bottom: 20px;
 }
 
 .section-intro h1 {
     font-weight: 1200; 
     font-size: xx-large;
+}
+
+.section-intro,
+.section-conclusion {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section-conclusion h2 {
+    color: var(--main-color);
 }
 
 .section-intro ul {
@@ -35,41 +41,49 @@
 .section-content {
     display: flex;
     justify-content: space-between;
+    align-items: center; 
+    gap: 20px;
     margin-bottom: 40px;
+    height: auto;
 }
 
 .content-image,
 .content-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50%;
+    flex: 1; 
 }
 
 .content-text {
-    background-color: var(--background-color);
-    padding: 40px;
-    box-sizing: border-box;
+    background-color: #f9f9f9; 
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(240, 123, 13, 0.2); 
 }
 
 .content-image img {
-    display: block;
-    margin: 0 auto;
-    width: auto;
+    max-width: 100%; 
     height: 400px;
 }
 
 .italic-text {
     font-style: italic;
+    color: var(--main-color);
 }
 
 @media (max-width: 768px) {
     .section-content {
         flex-direction: column;
     }
+    .section-intro {
+        margin: 0;
+        padding: 0;
+    }
 
     .content-image,
     .content-text {
-        width: 100%;
+        width: 100%; 
+        margin-bottom: 20px; 
+    }
+
+    .content-text, .content-image img {
+        border-radius: 0; 
     }
 }

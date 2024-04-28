@@ -15,6 +15,7 @@
         <?php include("includes/header.php"); ?>
 
         <div class="contact-container">
+            <h1 class="contact-title">Contactformulier</h1>
             <form class="contact-form" action="submit_contact_form.php" method="post">
                 <div class="form-field">
                     <label for="naam">Naam</label>
@@ -36,10 +37,21 @@
                     <label for="message">Bericht</label>
                     <textarea id="message" name="message" rows="4" required></textarea>
                 </div>
-                <div class="form-submit">
+                <div class="form-submit" onmouseover="changeImage()" onmouseout="resetImage()">
                     <p class="submit-text">Verstuur</p>
-                    <img src="./assets/img/Bereklauw.png" alt="Verstuur" class="submit-button">
+                    <img src="./assets/img/Bereklauw.png" alt="Verstuur" class="submit-button" id="submitImage">
                 </div>
+
+                <script>
+                    function changeImage() {
+                        document.getElementById('submitImage').src = './assets/img/Bereklauw-orange.png'; 
+                    }
+
+                    function resetImage() {
+                        document.getElementById('submitImage').src = './assets/img/Bereklauw.png'; 
+                    }
+                </script>
+
             </form>
         </div>
 

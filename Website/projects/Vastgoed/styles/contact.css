@@ -6,6 +6,16 @@
     box-sizing: border-box;
 }
 
+.contact-title {
+    font-weight: 600; 
+    color: #2E61B0; 
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 /* Form field styles */
 .contact-form {
     display: flex;
@@ -15,7 +25,6 @@
     margin: 40px auto;
     background-color: var(--main-color);
     padding: 20px;
-    /* border-radius: 8px; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -38,7 +47,9 @@
 
 .form-field textarea {
     resize: vertical; 
+    height: 150px;
 }
+
 
 /* Submit button container */
 .form-submit {
