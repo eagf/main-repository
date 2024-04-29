@@ -37,20 +37,26 @@
                     <label for="message">Bericht</label>
                     <textarea id="message" name="message" rows="4" required></textarea>
                 </div>
-                <div class="form-submit" onmouseover="changeImage()" onmouseout="resetImage()">
-                    <p class="submit-text">Verstuur</p>
-                    <img src="./assets/img/Bereklauw.png" alt="Verstuur" class="submit-button" id="submitImage">
+                <div class="form-submit-container">
+                    <div class="form-submit" onmouseover="changeImage()" onmouseout="resetImage()">
+                        <p class="submit-text">Verstuur</p>
+                        <img src="./assets/img/Bereklauw-orange.png" alt="Verstuur" class="submit-button" id="submitImage">
+                    </div>
+
+                    <script>
+                        function changeImage() {
+                            document.getElementById('submitImage').src = './assets/img/Bereklauw.png';
+                        }
+
+                        function resetImage() {
+                            document.getElementById('submitImage').src = './assets/img/Bereklauw-orange.png';
+                        }
+                    </script>
+
                 </div>
-
-                <script>
-                    function changeImage() {
-                        document.getElementById('submitImage').src = './assets/img/Bereklauw-orange.png'; 
-                    }
-
-                    function resetImage() {
-                        document.getElementById('submitImage').src = './assets/img/Bereklauw.png'; 
-                    }
-                </script>
+                <p class="policy-link">
+                    Door dit formulier te verzenden accepteert u onze <a href="policy.php">algemene gebruiksvoorwaarden</a>.
+                </p>
 
             </form>
         </div>

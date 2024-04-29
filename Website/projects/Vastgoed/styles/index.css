@@ -17,9 +17,13 @@
     background-color: #fff;
     border: 1px solid var(--secundary-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow:
+    -50px -50px 0 -45px var(--secundary-color),
+    50px 50px 0 -45px var(--secundary-color); */
     transform: translateY(30px);
     opacity: 0;
     animation: slideUp 0.5s ease forwards 0.3s;
+
 }
 
 .main-title {

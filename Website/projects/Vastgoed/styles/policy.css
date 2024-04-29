@@ -1,0 +1,65 @@
+/* CSS for policy */
+
+.policy-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.policy-title {
+    font-weight: 1200; 
+    font-size: xx-large;
+    color: var(--main-color); 
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 24px;
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+/* Sections */
+section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Text paragraphs */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Version information styling */
+.version-info {
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    #main-wrapper {
+        padding: 10px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    section {
+        padding: 10px;
+    }
+}
