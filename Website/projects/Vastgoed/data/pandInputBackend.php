@@ -29,18 +29,18 @@ if (isset($_POST['submit'])) {
 
         // Prepare an INSERT statement for wettelijkeinformatie
         $queryWettelijkeInfo = "INSERT INTO wettelijkeinformatie (
-        epcIndex, energieLabel, stedenbouwkundigeVergunning, verkavelingsvergunning, 
-        voorkooprecht, stedenbouwkundigeBestemming, dagvaardingEnHerstelvordering, 
+        epcIndex, energieLabel, stedenbouwkundigeVergunning, stedenbouwkundigeVergunningInfo, verkavelingsvergunning, verkavelingsvergunningInfo,
+        voorkooprecht, voorkooprechtInfo, stedenbouwkundigeBestemming, dagvaardingEnHerstelvordering, 
         effectiefOverstromingsgevoelig, mogelijkOverstromingsgevoelig, afgebakendOverstromingsgebied, 
         afgebakendeOeverzone, risicozoneVoorOverstromingen, overstromingskansPerceel, 
-        overstromingskansGebouw, erfgoed
+        overstromingskansGebouw, erfgoed, erfgoedInfo
         ) 
         VALUES (
-        :epcIndex, :energieLabel, :stedenbouwkundigeVergunning, :verkavelingsvergunning, 
-        :voorkooprecht, :stedenbouwkundigeBestemming, :dagvaardingEnHerstelvordering, 
+        :epcIndex, :energieLabel, :stedenbouwkundigeVergunning, :stedenbouwkundigeVergunningInfo, :verkavelingsvergunning, :verkavelingsvergunningInfo, 
+        :voorkooprecht, :voorkooprechtInfo, :stedenbouwkundigeBestemming, :dagvaardingEnHerstelvordering, 
         :effectiefOverstromingsgevoelig, :mogelijkOverstromingsgevoelig, :afgebakendOverstromingsgebied, 
         :afgebakendeOeverzone, :risicozoneVoorOverstromingen, :overstromingskansPerceel, 
-        :overstromingskansGebouw, :erfgoed
+        :overstromingskansGebouw, :erfgoed, :erfgoedInfo
         )";
 
         $stmtWettelijkeInfo = $db->prepare($queryWettelijkeInfo);
@@ -49,8 +49,11 @@ if (isset($_POST['submit'])) {
         $stmtWettelijkeInfo->bindParam(':epcIndex', $_POST['epcIndex']);
         $stmtWettelijkeInfo->bindParam(':energieLabel', $_POST['energieLabel']);
         $stmtWettelijkeInfo->bindParam(':stedenbouwkundigeVergunning', $_POST['stedenbouwkundigeVergunning'], PDO::PARAM_INT);
+        $stmtWettelijkeInfo->bindParam(':stedenbouwkundigeVergunningInfo', $_POST['stedenbouwkundigeVergunningInfo']);
         $stmtWettelijkeInfo->bindParam(':verkavelingsvergunning', $_POST['verkavelingsvergunning'], PDO::PARAM_INT);
+        $stmtWettelijkeInfo->bindParam(':verkavelingsvergunningInfo', $_POST['verkavelingsvergunningInfo']);
         $stmtWettelijkeInfo->bindParam(':voorkooprecht', $_POST['voorkooprecht'], PDO::PARAM_INT);
+        $stmtWettelijkeInfo->bindParam(':voorkooprechtInfo', $_POST['voorkooprechtInfo']);
         $stmtWettelijkeInfo->bindParam(':stedenbouwkundigeBestemming', $_POST['stedenbouwkundigeBestemming']);
         $stmtWettelijkeInfo->bindParam(':dagvaardingEnHerstelvordering', $_POST['dagvaardingEnHerstelvordering'], PDO::PARAM_INT);
         $stmtWettelijkeInfo->bindParam(':effectiefOverstromingsgevoelig', $_POST['effectiefOverstromingsgevoelig'], PDO::PARAM_INT);
@@ -61,6 +64,7 @@ if (isset($_POST['submit'])) {
         $stmtWettelijkeInfo->bindParam(':overstromingskansPerceel', $_POST['overstromingskansPerceel']);
         $stmtWettelijkeInfo->bindParam(':overstromingskansGebouw', $_POST['overstromingskansGebouw']);
         $stmtWettelijkeInfo->bindParam(':erfgoed', $_POST['erfgoed'], PDO::PARAM_INT);
+        $stmtWettelijkeInfo->bindParam(':erfgoedInfo', $_POST['erfgoedInfo']);
 
         // Execute the query for wettelijkeinformatie
         $stmtWettelijkeInfo->execute();
@@ -93,13 +97,13 @@ if (isset($_POST['submit'])) {
         // Insert into panden table
         $queryPanden = "INSERT INTO panden (
         titel, tekst, status, type, subtype, aanvullingSubtype, bouwjaar, brutoVloeroppervlakte,
-        grondoppervlakte, aantalSlaapkamers, prijs, kadastraalInkomen, registratierechtenBTW,
+        grondoppervlakte, aantalSlaapkamers, prijs, kadastraalInkomen, bezoekOp,
         vrijOp, homepage, adresID, pandDetailID, wettelijkeInfoID
         ) 
         VALUES 
         (
         :titel, :tekst, :status, :type, :subtype, :aanvullingSubtype, :bouwjaar, :brutoVloeroppervlakte,
-        :grondoppervlakte, :aantalSlaapkamers, :prijs, :kadastraalInkomen, :registratierechtenBTW,
+        :grondoppervlakte, :aantalSlaapkamers, :prijs, :kadastraalInkomen, :bezoekOp,
         :vrijOp, :homepage, :adresID, :pandDetailID, :wettelijkeInfoID
         )";
         $stmtPanden = $db->prepare($queryPanden);
@@ -117,7 +121,7 @@ if (isset($_POST['submit'])) {
         $stmtPanden->bindParam(':aantalSlaapkamers', $_POST['aantalSlaapkamers']);
         $stmtPanden->bindParam(':prijs', $_POST['prijs']);
         $stmtPanden->bindParam(':kadastraalInkomen', $_POST['kadastraalInkomen']);
-        $stmtPanden->bindParam(':registratierechtenBTW', $_POST['registratierechtenBTW']);
+        $stmtPanden->bindParam(':bezoekOp', $_POST['bezoekOp']);
         $stmtPanden->bindParam(':vrijOp', $_POST['vrijOp']);
         $stmtPanden->bindParam(':homepage', $_POST['homepage']);
         $stmtPanden->bindParam(':adresID', $adresID, PDO::PARAM_INT);

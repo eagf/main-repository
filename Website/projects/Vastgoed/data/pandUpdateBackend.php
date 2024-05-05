@@ -45,8 +45,11 @@ if (isset($_POST['submit'])) {
             epcIndex = :epcIndex,
             energieLabel = :energieLabel,
             stedenbouwkundigeVergunning = :stedenbouwkundigeVergunning,
+            stedenbouwkundigeVergunningInfo = :stedenbouwkundigeVergunningInfo,
             verkavelingsvergunning = :verkavelingsvergunning,
+            verkavelingsvergunningInfo = :verkavelingsvergunningInfo,
             voorkooprecht = :voorkooprecht,
+            voorkooprechtInfo = :voorkooprechtInfo,
             stedenbouwkundigeBestemming = :stedenbouwkundigeBestemming,
             dagvaardingEnHerstelvordering = :dagvaardingEnHerstelvordering,
             effectiefOverstromingsgevoelig = :effectiefOverstromingsgevoelig,
@@ -56,7 +59,8 @@ if (isset($_POST['submit'])) {
             risicozoneVoorOverstromingen = :risicozoneVoorOverstromingen,
             overstromingskansPerceel = :overstromingskansPerceel,
             overstromingskansGebouw = :overstromingskansGebouw,
-            erfgoed = :erfgoed
+            erfgoed = :erfgoed,
+            erfgoedInfo = :erfgoedInfo
             WHERE wettelijkeInfoID = (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
 
             $stmtUpdateWettelijkeInfo = $db->prepare($queryUpdateWettelijkeInfo);
@@ -66,10 +70,13 @@ if (isset($_POST['submit'])) {
             $stmtUpdateWettelijkeInfo->bindParam(':energieLabel', $_POST['energieLabel']);
             $stedenbouwkundigeVergunning = isset($_POST['stedenbouwkundigeVergunning']) ? 1 : 0;
             $stmtUpdateWettelijkeInfo->bindParam(':stedenbouwkundigeVergunning', $stedenbouwkundigeVergunning, PDO::PARAM_INT);
+            $stmtUpdateWettelijkeInfo->bindParam(':stedenbouwkundigeVergunningInfo', $_POST['stedenbouwkundigeVergunningInfo']);
             $verkavelingsvergunning = isset($_POST['verkavelingsvergunning']) ? 1 : 0;
             $stmtUpdateWettelijkeInfo->bindParam(':verkavelingsvergunning', $verkavelingsvergunning, PDO::PARAM_INT);
+            $stmtUpdateWettelijkeInfo->bindParam(':verkavelingsvergunningInfo', $_POST['verkavelingsvergunningInfo']);
             $voorkooprecht = isset($_POST['voorkooprecht']) ? 1 : 0;
             $stmtUpdateWettelijkeInfo->bindParam(':voorkooprecht', $voorkooprecht, PDO::PARAM_INT);
+            $stmtUpdateWettelijkeInfo->bindParam(':voorkooprechtInfo', $_POST['voorkooprechtInfo']);
             $stmtUpdateWettelijkeInfo->bindParam(':stedenbouwkundigeBestemming', $_POST['stedenbouwkundigeBestemming']);
             $dagvaardingEnHerstelvordering = isset($_POST['dagvaardingEnHerstelvordering']) ? 1 : 0;
             $stmtUpdateWettelijkeInfo->bindParam(':dagvaardingEnHerstelvordering', $dagvaardingEnHerstelvordering, PDO::PARAM_INT);
@@ -87,6 +94,7 @@ if (isset($_POST['submit'])) {
             $stmtUpdateWettelijkeInfo->bindParam(':overstromingskansGebouw', $_POST['overstromingskansGebouw']);
             $erfgoed = isset($_POST['erfgoed']) ? 1 : 0;
             $stmtUpdateWettelijkeInfo->bindParam(':erfgoed', $erfgoed, PDO::PARAM_INT);
+            $stmtUpdateWettelijkeInfo->bindParam(':erfgoedInfo', $_POST['erfgoedInfo']);
             $stmtUpdateWettelijkeInfo->bindParam(':pandID', $_POST['pandID'], PDO::PARAM_INT);
 
             // Execute the query for wettelijkeinformatie
@@ -135,7 +143,7 @@ if (isset($_POST['submit'])) {
             aantalSlaapkamers = :aantalSlaapkamers,
             prijs = :prijs,
             kadastraalInkomen = :kadastraalInkomen,
-            registratierechtenBTW = :registratierechtenBTW,
+            bezoekOp = :bezoekOp,
             vrijOp = :vrijOp,
             homepage = :homepage
             WHERE pandID = :pandID";    
@@ -154,7 +162,7 @@ if (isset($_POST['submit'])) {
             $stmtUpdatePanden->bindParam(':aantalSlaapkamers', $_POST['aantalSlaapkamers']);
             $stmtUpdatePanden->bindParam(':prijs', $_POST['prijs']);
             $stmtUpdatePanden->bindParam(':kadastraalInkomen', $_POST['kadastraalInkomen']);
-            $stmtUpdatePanden->bindParam(':registratierechtenBTW', $_POST['registratierechtenBTW']);
+            $stmtUpdatePanden->bindParam(':bezoekOp', $_POST['bezoekOp']);
             $stmtUpdatePanden->bindParam(':vrijOp', $_POST['vrijOp']);
             $stmtUpdatePanden->bindParam(':homepage', $_POST['homepage']);
             $stmtUpdatePanden->bindParam(':pandID', $_POST['pandID'], PDO::PARAM_INT);

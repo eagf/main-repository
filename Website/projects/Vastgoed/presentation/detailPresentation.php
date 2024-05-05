@@ -138,7 +138,7 @@
 
                 <div id="info1-container" class="detail-container">
                     <p><strong>Prijs:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['prijs'], 2, ',', '.')); ?></p>
-                    <p><strong>Registratierechten of BTW:</strong> <?php echo htmlspecialchars($pandDetails['registratierechtenBTW']); ?></p>
+                    <p><strong>Bezoek op:</strong> <?php echo htmlspecialchars($pandDetails['bezoekOp']); ?></p>
                     <p><strong>Vrij Op:</strong> <?php echo htmlspecialchars($pandDetails['vrijOp']); ?></p>
                     <p><strong>Kadastraal Inkomen:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['kadastraalInkomen'], 2, ',', '.')); ?></p>
                 </div>
@@ -187,23 +187,28 @@
                             $roomCounter = 1;
                             $showCounter = count($rooms) >= 2;
                             ?>
-                            <?php foreach ($rooms as $room) : ?>
-                                <li>
-                                    <?php
-                                    if ($showCounter) {
-                                        echo $roomCounter++ . ': ';
-                                    }
-                                    ?>
-                                    Oppervlakte: <?php echo htmlspecialchars(number_format($room['kamerOppervlakte'], 0, ',', '.')); ?> m²,
-                                    Detail: <?php echo htmlspecialchars($room['kamerDetail']); ?>
-                                </li>
-                            <?php endforeach; ?>
+                            <?php foreach ($rooms as $room) :
+                                if ($room['kamerOppervlakte'] != 0 && !empty($room['kamerDetail'])) {
+                            ?>
+                                    <li>
+                                        <?php
+                                        if ($showCounter) {
+                                            echo $roomCounter++ . ': ';
+                                        }
+                                        ?>
+                                        <?php if ($room['kamerOppervlakte'] != 0) { ?>
+                                            Oppervlakte: <?php echo htmlspecialchars(number_format($room['kamerOppervlakte'], 0, ',', '.')); ?> m² <br>
+                                        <?php }
+                                        if (!empty($room['kamerDetail'])) {
+                                            echo htmlspecialchars($room['kamerDetail']);
+                                        } ?>
+                                    </li>
+                            <?php }
+                            endforeach; ?>
                         </ul>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
-
-
 
             <!-- ============== wettelijke informatie ============== -->
 
@@ -211,21 +216,36 @@
                 <h3>Wettelijke Informatie</h3>
                 <p><strong>Energie Label:</strong> <?php echo htmlspecialchars($pandDetails['energieLabel']); ?></p>
                 <p><strong>Stedenbouwkundige Vergunning:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunning'] ? 'Ja' : 'Nee'); ?></p>
+                <?php if (!empty($pandDetails['stedenbouwkundigeVergunningInfo'])) { ?>
+                    <p><strong>Extra info:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunningInfo']); ?></p>
+                <?php } ?>
                 <p><strong>Verkavelingsvergunning:</strong> <?php echo htmlspecialchars($pandDetails['verkavelingsvergunning'] ? 'Ja' : 'Nee'); ?></p>
+                <?php if (!empty($pandDetails['verkavelingsvergunningInfo'])) { ?>
+                    <p><strong>Extra info:</strong> <?php echo htmlspecialchars($pandDetails['verkavelingsvergunningInfo']); ?></p>
+                <?php } ?>
                 <p><strong>Voorkooprecht:</strong> <?php echo htmlspecialchars($pandDetails['voorkooprecht'] ? 'Ja' : 'Nee'); ?></p>
+                <?php if (!empty($pandDetails['voorkooprechtInfo'])) { ?>
+                    <p><strong>Extra info:</strong> <?php echo htmlspecialchars($pandDetails['voorkooprechtInfo']); ?></p>
+                <?php } ?>
                 <p><strong>Stedenbouwkundige Bestemming:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeBestemming']); ?></p>
-                <p><strong>Dagvaarding en Herstelvordering:</strong> <?php echo htmlspecialchars($pandDetails['dagvaardingEnHerstelvordering'] ? 'Ja' : 'Nee'); ?></p>
-                <p><strong>Overstromingsgevoelig:</strong> <?php echo htmlspecialchars($pandDetails['effectiefOverstromingsgevoelig'] ? 'Effectief overstromingsgevoelig' : 'Niet effectief overstromingsgevoelig'); ?></p>
-                <p><strong>Mogelijk Overstromingsgevoelig:</strong> <?php echo htmlspecialchars($pandDetails['mogelijkOverstromingsgevoelig'] ? 'Ja' : 'Nee'); ?></p>
-                <p><strong>Afgebakend Overstromingsgebied:</strong> <?php echo htmlspecialchars($pandDetails['afgebakendOverstromingsgebied'] ? 'Ja' : 'Nee'); ?></p>
-                <p><strong>Afgebakende Oeverzone:</strong> <?php echo htmlspecialchars($pandDetails['afgebakendeOeverzone'] ? 'Ja' : 'Nee'); ?></p>
-                <p><strong>Risicozone voor Overstromingen:</strong> <?php echo htmlspecialchars($pandDetails['risicozoneVoorOverstromingen'] ? 'Ja' : 'Nee'); ?></p>
-                <p><strong>Overstromingskans Perceel (P-score):</strong> <?php echo htmlspecialchars((string)$pandDetails['overstromingskansPerceel']); ?></p>
-                <p><strong>Overstromingskans Gebouw (G-score):</strong> <?php echo htmlspecialchars((string)$pandDetails['overstromingskansGebouw']); ?></p>
+
+                <p><strong>Dagvaarding en Herstelvordering:</strong> <?php echo htmlspecialchars($pandDetails['dagvaardingEnHerstelvordering'] ? 'Van toepassing' : 'Niet van toepassing'); ?></p>
+                <p><strong>Overstromingsgevoelig:</strong> <?php echo htmlspecialchars($pandDetails['effectiefOverstromingsgevoelig'] ? 'Van toepassing' : 'Niet van toepassing'); ?></p>
+                <p><strong>Mogelijk Overstromingsgevoelig:</strong> <?php echo htmlspecialchars($pandDetails['mogelijkOverstromingsgevoelig'] ? 'Van toepassing' : 'Niet van toepassing'); ?></p>
+                <p><strong>Afgebakend Overstromingsgebied:</strong> <?php echo htmlspecialchars($pandDetails['afgebakendOverstromingsgebied'] ? 'Van toepassing' : 'Niet van toepassing'); ?></p>
+                <p><strong>Afgebakende Oeverzone:</strong> <?php echo htmlspecialchars($pandDetails['afgebakendeOeverzone'] ? 'Van toepassing' : 'Niet van toepassing'); ?></p>
+                <p><strong>Risicozone voor Overstromingen:</strong> <?php echo htmlspecialchars($pandDetails['risicozoneVoorOverstromingen'] ? 'Van toepassing' : 'Niet van toepassing'); ?></p>
+
+                <p><strong>Overstromingskans perceelscore:</strong> <?php echo htmlspecialchars((string)$pandDetails['overstromingskansPerceel']); ?></p>
+                <p><strong>Overstromingskans gebouwscore:</strong> <?php echo htmlspecialchars((string)$pandDetails['overstromingskansGebouw']); ?></p>
                 <p><strong>Erfgoed:</strong> <?php echo htmlspecialchars($pandDetails['erfgoed'] ? 'Ja' : 'Nee'); ?></p>
+                <?php if (!empty($pandDetails['erfgoedInfo'])) { ?>
+                    <p><strong>Extra info:</strong> <?php echo htmlspecialchars($pandDetails['erfgoedInfo']); ?></p>
+                <?php } ?>
             </div>
 
-            <!-- Ongebruikte gegevens -->
+            <!-- ================== UNUSED ================== -->
+
             <!-- <p><strong>Gemeente:</strong> <?php echo htmlspecialchars($pandDetails['gemeente']); ?></p>
                 <p><strong>Aantal Slaapkamers:</strong> <?php echo htmlspecialchars((string)$pandDetails['aantalSlaapkamers']); ?></p> -->
 
