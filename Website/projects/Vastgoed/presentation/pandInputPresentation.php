@@ -49,7 +49,20 @@
                 <div><label for="prijs">Prijs:</label><input type="number" step="0.01" id="prijs" name="prijs" value="300000" required></div>
                 <div><label for="kadastraalInkomen">Kadastraal Inkomen:</label><input type="number" step="0.01" id="kadastraalInkomen" name="kadastraalInkomen" value="15000" required></div>
                 <div><label for="bezoekOp">Bezoek op:</label><input type="text" id="bezoekOp" name="bezoekOp" value="bezoek op" required></div>
-                <div><label for="vrijOp">Vrij Op:</label><input type="date" id="vrijOp" name="vrijOp" value="2024-08-13" required></div>
+
+                <div>
+                    <label for="vrijOp">Vrij op:</label>
+                    <select id="vrijOp" name="vrijOp" onchange="handleVrijOpChange()">
+                        <option value="Onmiddelijk">Onmiddelijk</option>
+                        <option value="Bij akte">Bij akte</option>
+                        <option value="date">Datum</option>
+                    </select>
+                </div>
+
+                <div id="dateFieldContainer" style="display:none;">
+                    <label for="specificDate">Specifieke datum:</label>
+                    <input type="date" id="specificDate" name="specificDate" onchange="updateVrijOp()">
+                </div>
 
                 <div id="kamersForm">
                     <div id="kamerFields">
@@ -132,44 +145,31 @@
                     <label for="risicozoneVoorOverstromingen" class="checkbox-label">Risicozone voor Overstromingen</label>
                 </div>
 
-
-                <div><label for="overstromingskansPerceel">Overstromingskans perceelscore:</label><input type="number" step="0.01" id="overstromingskansPerceel" name="overstromingskansPerceel" value="45"></div>
-                
-                <!-- <div>
+                <div>
                     <label for="overstromingskansPerceel">Overstromingskans perceelscore:</label>
                     <select id="overstromingskansPerceel" name="overstromingskansPerceel" required>
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
                         <option value="D">D</option>
-                        <option value="E">E</option>
-                        <option value="F">F</option>
-                        <option value="G">G</option>
                     </select>
-                </div> -->
-                
-                
-                <div><label for="overstromingskansGebouw">Overstromingskans gebouwscore:</label><input type="number" step="0.01" id="overstromingskansGebouw" name="overstromingskansGebouw" value="28"></div>
-                
-                <!-- <div>
+                </div>
+                <div>
                     <label for="overstromingskansGebouw">Overstromingskans gebouwscore:</label>
                     <select id="overstromingskansGebouw" name="overstromingskansGebouw" required>
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
                         <option value="D">D</option>
-                        <option value="E">E</option>
-                        <option value="F">F</option>
-                        <option value="G">G</option>
                     </select>
-                </div> -->
-                
+                </div>
+
                 <div class="checkbox-container">
                     <input type="checkbox" id="erfgoed" name="erfgoed" value="1">
                     <label for="erfgoed" class="checkbox-label">Erfgoed</label>
                 </div>
                 <div><label for="erfgoedInfo">Extra info:</label><input type="text" id="erfgoedInfo" name="erfgoedInfo"></div>
-                
+
                 <!-- Fields for panddetails table -->
                 <div class="checkbox-container">
                     <input type="checkbox" id="isNieuw" name="isNieuw" value="1">

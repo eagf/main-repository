@@ -12,8 +12,17 @@ require_once('data/functions.php');
 $pandID = isset($_GET['pandID']) ? $_GET['pandID'] : null;
 $pandDetails = getPandDetails($pandID);
 
-$afbeeldingenURLs = explode('|', $pandDetails['afbeeldingen']);
-$beschrijvingen = explode('|', $pandDetails['beschrijvingen']);
+if (!empty($pandDetails['afbeeldingen'])) {
+    $afbeeldingenURLs = explode('|', $pandDetails['afbeeldingen']);
+} else {
+    $afbeeldingenURLs = [];
+}
+
+if (!empty($pandDetails['beschrijvingen'])) {
+    $beschrijvingen = explode('|', $pandDetails['beschrijvingen']);
+} else {
+    $beschrijvingen = [];
+}
 $totalImages = count($afbeeldingenURLs);
 
 // Set the google maps link
@@ -43,7 +52,8 @@ if ($epcIndex >= 500) {
 
 // EPC block
 
-function mapEpcIndexToImageIndex($epcIndex) {
+function mapEpcIndexToImageIndex($epcIndex)
+{
     if ($epcIndex <= 0) return 6; // A+
     if ($epcIndex <= 100) return 5; // A
     if ($epcIndex <= 200) return 4; // B
@@ -56,4 +66,3 @@ function mapEpcIndexToImageIndex($epcIndex) {
 $imageIndex = mapEpcIndexToImageIndex($pandDetails['epcIndex'] ?? 0);
 
 include("presentation/detailPresentation.php");
-

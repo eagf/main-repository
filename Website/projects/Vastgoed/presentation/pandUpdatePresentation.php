@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/admin.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
     <link rel="icon" href="./assets/img/logo.ico">
+    <script src="scripts/pandUpdate.js" defer></script>
     <title>Aanpassen</title>
 </head>
 
@@ -71,7 +72,16 @@
                     <div><label for="prijs">Prijs:</label><input type="number" id="prijs" name="prijs" value="<?php echo htmlspecialchars($pandDetails['prijs'] ?? ''); ?>" required></div>
                     <div><label for="kadastraalInkomen">Kadastraal Inkomen:</label><input type="number" id="kadastraalInkomen" name="kadastraalInkomen" value="<?php echo htmlspecialchars($pandDetails['kadastraalInkomen'] ?? ''); ?>" required></div>
                     <div><label for="bezoekOp">Bezoek op:</label><input type="text" id="bezoekOp" name="bezoekOp" value="<?php echo htmlspecialchars($pandDetails['bezoekOp'] ?? ''); ?>" required></div>
-                    <div><label for="vrijOp">Vrij Op:</label><input type="text" id="vrijOp" name="vrijOp" value="<?php echo htmlspecialchars($pandDetails['vrijOp'] ?? ''); ?>" required></div>
+
+                    <div>
+                        <label for="vrijOp">Vrij Op:</label>
+                        <select id="vrijOp" name="vrijOp" required onchange="toggleDateInput()">
+                            <option value="Onmiddellijk" <?php echo ($pandDetails['vrijOp'] == "Onmiddellijk" ? 'selected' : ''); ?>>Onmiddellijk</option>
+                            <option value="Bij akte" <?php echo ($pandDetails['vrijOp'] == "Bij akte" ? 'selected' : ''); ?>>Bij akte</option>
+                            <option value="date" <?php echo ($pandDetails['vrijOp']) ? 'selected' : ''; ?>>Datum</option>
+                        </select>
+                        <input type="date" id="vrijOpDate" name="vrijOpDate" value="<?php echo ($pandDetails['vrijOp']) ? htmlspecialchars($pandDetails['vrijOp']) : ''; ?>" style="display: <?php echo ($pandDetails['vrijOp']) ? 'block' : 'none'; ?>;">
+                    </div>
 
                     <!-- Adressen fields -->
                     <div><label for="land">Land:</label><input type="text" id="land" name="land" placeholder="Land" value="<?php echo htmlspecialchars($pandDetails['land'] ?? ''); ?>" required></div>
@@ -128,8 +138,27 @@
                         <input type="checkbox" id="risicozoneVoorOverstromingen" name="risicozoneVoorOverstromingen" value="1" <?php echo ($pandDetails['risicozoneVoorOverstromingen'] ?? 0) ? 'checked' : ''; ?>>
                         <label for="risicozoneVoorOverstromingen" class="checkbox-label">Risicozone voor Overstromingen</label>
                     </div>
-                    <div><label for="overstromingskansPerceel">Overstromingskans perceelscore:</label><input type="text" id="overstromingskansPerceel" name="overstromingskansPerceel" placeholder="Overstromingskans Perceel (P-score)" value="<?php echo htmlspecialchars($pandDetails['overstromingskansPerceel'] ?? ''); ?>" required></div>
-                    <div><label for="overstromingskansGebouw">Overstromingskans gebouwscore:</label><input type="text" id="overstromingskansGebouw" name="overstromingskansGebouw" placeholder="Overstromingskans Gebouw (G-score)" value="<?php echo htmlspecialchars($pandDetails['overstromingskansGebouw'] ?? ''); ?>" required></div>
+
+                    <div>
+                        <label for="overstromingskansPerceel">Overstromingskans perceelscore:</label>
+                        <select id="overstromingskansPerceel" name="overstromingskansPerceel" required>
+                            <option value="A" <?php echo (isset($pandDetails['overstromingskansPerceel']) && $pandDetails['overstromingskansPerceel'] == 'A') ? 'selected' : ''; ?>>A</option>
+                            <option value="B" <?php echo (isset($pandDetails['overstromingskansPerceel']) && $pandDetails['overstromingskansPerceel'] == 'B') ? 'selected' : ''; ?>>B</option>
+                            <option value="C" <?php echo (isset($pandDetails['overstromingskansPerceel']) && $pandDetails['overstromingskansPerceel'] == 'C') ? 'selected' : ''; ?>>C</option>
+                            <option value="D" <?php echo (isset($pandDetails['overstromingskansPerceel']) && $pandDetails['overstromingskansPerceel'] == 'D') ? 'selected' : ''; ?>>D</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="overstromingskansGebouw">Overstromingskans perceelscore:</label>
+                        <select id="overstromingskansGebouw" name="overstromingskansGebouw" required>
+                            <option value="A" <?php echo (isset($pandDetails['overstromingskansGebouw']) && $pandDetails['overstromingskansGebouw'] == 'A') ? 'selected' : ''; ?>>A</option>
+                            <option value="B" <?php echo (isset($pandDetails['overstromingskansGebouw']) && $pandDetails['overstromingskansGebouw'] == 'B') ? 'selected' : ''; ?>>B</option>
+                            <option value="C" <?php echo (isset($pandDetails['overstromingskansGebouw']) && $pandDetails['overstromingskansGebouw'] == 'C') ? 'selected' : ''; ?>>C</option>
+                            <option value="D" <?php echo (isset($pandDetails['overstromingskansGebouw']) && $pandDetails['overstromingskansGebouw'] == 'D') ? 'selected' : ''; ?>>D</option>
+                        </select>
+                    </div>
+
                     <div class="checkbox-container">
                         <input type="checkbox" id="erfgoed" name="erfgoed" value="1" <?php echo ($pandDetails['erfgoed'] ?? 0) ? 'checked' : ''; ?>>
                         <label for="erfgoed" class="checkbox-label">Erfgoed</label>

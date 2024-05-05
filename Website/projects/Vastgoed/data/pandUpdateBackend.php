@@ -163,7 +163,14 @@ if (isset($_POST['submit'])) {
             $stmtUpdatePanden->bindParam(':prijs', $_POST['prijs']);
             $stmtUpdatePanden->bindParam(':kadastraalInkomen', $_POST['kadastraalInkomen']);
             $stmtUpdatePanden->bindParam(':bezoekOp', $_POST['bezoekOp']);
-            $stmtUpdatePanden->bindParam(':vrijOp', $_POST['vrijOp']);
+
+            if (!empty($_POST['vrijOp']) && $_POST['vrijOp'] != 'date') {
+                $stmtUpdatePanden->bindParam(':vrijOp', $_POST['vrijOp']);
+            } 
+            else {
+                $stmtUpdatePanden->bindParam(':vrijOp', $_POST['vrijOpDate']);
+            }
+
             $stmtUpdatePanden->bindParam(':homepage', $_POST['homepage']);
             $stmtUpdatePanden->bindParam(':pandID', $_POST['pandID'], PDO::PARAM_INT);
 
