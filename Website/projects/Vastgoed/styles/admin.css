@@ -7,6 +7,28 @@ h3 {
     margin-top: 0;
 }
 
+/* "back to admin" button */
+
+.back-to-admin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--secundary-color);
+    cursor: pointer;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
@@ -41,6 +63,7 @@ input[type="text"],
 input[type="number"],
 input[type="date"],
 input[type="file"],
+input[type="password"],
 select,
 textarea {
     padding: 10px;

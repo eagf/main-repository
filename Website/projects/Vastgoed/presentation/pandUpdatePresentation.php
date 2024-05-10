@@ -16,6 +16,10 @@
 
         <?php include("includes/header.php"); ?>
 
+        <div class="back-to-admin">
+            <a href="admin.php" class="back-button">Back to Admin Page</a>
+        </div>
+
         <div class="form-container">
 
             <?php if (isset($message)) {

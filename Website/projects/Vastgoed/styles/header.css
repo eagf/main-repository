@@ -2,16 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 :root {
-
     --main-color: #2E61B0;
     --main-color-light: #4570b0;
-    
     --secundary-color: #F49A25;
-
     --background-color: #f0f0f0;
-
 }
 
 html,

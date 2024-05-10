@@ -112,3 +112,24 @@ const observer = new IntersectionObserver((entries, observer) => {
 
 observer.observe(arrowContainer);
 
+// =============== Changing color location symbol ===============
+
+function changeImage() {
+    document.getElementById('locationImg').src = './assets/img/locatieOranje.png'; 
+}
+
+function resetImage() {
+    document.getElementById('locationImg').src = './assets/img/locatieBlauw.png'; 
+}
+
+function clickedImage() {
+    var img = document.getElementById('locationImg');
+    img.src = './assets/img/locatieOranje.png'; 
+    img.classList.add('img-clicked'); 
+    setTimeout(function() {
+        resetImage();
+        img.classList.remove('img-clicked');
+    }, 1000);
+}
+
+

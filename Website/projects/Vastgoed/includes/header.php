@@ -42,19 +42,9 @@ $currentPage = end($partsFileName);
                     Verhuren
                 </a>
             </li>
-            <!-- <li class="<?php echo ($currentPage === 'rentmeesterschap.php') ? 'active' : ''; ?>">
-                <a href="rentmeesterschap.php" class="header-link">
-                    Rentmeesterschap
-                </a>
-            </li> -->
             <li class="<?php echo ($currentPage === 'contact.php') ? 'active' : ''; ?>">
                 <a href="contact.php" class="header-link">
                     Contact
-                </a>
-            </li>
-            <li class="<?php echo ($currentPage === 'pandInputForm.php') ? 'active' : ''; ?>">
-                <a href="admin.php" class="header-link">
-                    Admin
                 </a>
             </li>
         </ul>
