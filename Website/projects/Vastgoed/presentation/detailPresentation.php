@@ -134,7 +134,7 @@
                             <img id="locationImg" src="./assets/img/locatieBlauw.png" alt="locatie">
                         </a>
                     </div>
-                    
+
                 </div>
 
                 <div id="beschrijving-container" class="detail-container">
@@ -159,7 +159,7 @@
                         <p><strong>Bouwjaar:</strong> <?php echo htmlspecialchars((string)$pandDetails['bouwjaar']); ?></p>
                         <p><strong>Grondoppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['grondoppervlakte'], 0, ',', '.')); ?> m²</p>
                         <p><strong>Bruto Vloeroppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['brutoVloeroppervlakte'], 0, ',', '.')); ?> m²</p>
-                        <!-- !!!!!!! Onleesbaar in geschreven overzicht -->
+                        <p><strong>Aantal Slaapkamers:</strong> <?php echo htmlspecialchars((string)$pandDetails['aantalSlaapkamers']); ?></p>
                     </div>
                     <div class="detail-container-img">
                         <img src="./assets/img/bouwjaarBlauw.png" alt="bouwjaar">
@@ -170,11 +170,9 @@
 
             <!-- ============== EPC ============== -->
             <div id="epc-container-container" class="detail-container">
-
-                <div class="detail-container-text">
-                    <p><strong>Aantal Slaapkamers:</strong> <?php echo htmlspecialchars((string)$pandDetails['aantalSlaapkamers']); ?></p>
-                    <p><strong>EPC Index:</strong> <?php echo htmlspecialchars(number_format($pandDetails['epcIndex']), 0); ?></p>
-                </div>
+                <h3>EPC</h3>
+                <p><strong>EPC Index:</strong> <?php echo htmlspecialchars(number_format($pandDetails['epcIndex']), 0); ?></p>
+                <p><strong>Energie Label:</strong> <?php echo htmlspecialchars($pandDetails['energieLabel']); ?></p>
 
                 <div id="epc-container">
                     <div id="epc-arrow-container">
@@ -239,7 +237,6 @@
                 <div class="detail-container-text">
 
                     <h3>Wettelijke Informatie</h3>
-                    <p><strong>Energie Label:</strong> <?php echo htmlspecialchars($pandDetails['energieLabel']); ?></p>
                     <p><strong>Stedenbouwkundige Vergunning:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunning'] ? 'Ja' : 'Nee'); ?></p>
                     <?php if (!empty($pandDetails['stedenbouwkundigeVergunningInfo'])) { ?>
                         <p><strong>Extra info:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunningInfo']); ?></p>

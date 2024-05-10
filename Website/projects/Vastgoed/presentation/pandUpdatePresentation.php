@@ -82,6 +82,7 @@
                         <select id="vrijOp" name="vrijOp" required onchange="toggleDateInput()">
                             <option value="Onmiddellijk" <?php echo ($pandDetails['vrijOp'] == "Onmiddellijk" ? 'selected' : ''); ?>>Onmiddellijk</option>
                             <option value="Bij akte" <?php echo ($pandDetails['vrijOp'] == "Bij akte" ? 'selected' : ''); ?>>Bij akte</option>
+                            <option value="Na opzeg huurcontract">Na opzeg huurcontract</option>
                             <option value="date" <?php echo ($pandDetails['vrijOp']) ? 'selected' : ''; ?>>Datum</option>
                         </select>
                         <input type="date" id="vrijOpDate" name="vrijOpDate" value="<?php echo ($pandDetails['vrijOp']) ? htmlspecialchars($pandDetails['vrijOp']) : ''; ?>" style="display: <?php echo ($pandDetails['vrijOp']) ? 'block' : 'none'; ?>;">

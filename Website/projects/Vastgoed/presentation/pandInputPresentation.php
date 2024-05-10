@@ -59,6 +59,7 @@
                     <select id="vrijOp" name="vrijOp" onchange="handleVrijOpChange()">
                         <option value="Onmiddelijk">Onmiddelijk</option>
                         <option value="Bij akte">Bij akte</option>
+                        <option value="Na opzeg huurcontract">Na opzeg huurcontract</option>
                         <option value="date">Datum</option>
                     </select>
                 </div>

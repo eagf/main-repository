@@ -45,6 +45,23 @@
                 "Wat is een perfect huis? De plaats waar je nooit genoeg kastruimte hebt, maar toch altijd iets kwijt bent."
             </div>
 
+            <!-- ============= Mission statement ============= -->
+
+            <div class="mission-text">
+                <p>
+                    Bij Libeer Vastgoed streven wij ernaar om meer dan alleen een vastgoedkantoor te zijn; we willen een vertrouwde partner zijn in elke stap van uw vastgoedreis.
+                </p>
+                <p>
+                    Onze missie is om uitzonderlijke service te bieden die verder gaat dan alleen het kopen, verkopen of verhuren van vastgoed. We zijn toegewijd aan het ondersteunen van onze klanten met deskundig advies, diepgaande marktkennis en persoonlijke aandacht.
+                </p>
+                <p>
+                    Of u nu uw eerste huis koopt, investeert in vastgoed of uw droomwoning zoekt, wij zetten ons in om uw verwachtingen te overtreffen en u een naadloze en bevredigende ervaring te bieden. Bij Libeer Vastgoed is uw vastgoed onze prioriteit, vandaag en elke dag.
+
+                </p>
+                </p>
+                </p>
+            </div>
+
             <!-- ============= Client Quotes Section ============= -->
 
             <div class="content-section left">
@@ -93,7 +110,7 @@
     </div>
 
     <?php include('includes/footer.php'); ?>
-    
+
 </body>
 
 </html>

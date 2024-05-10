@@ -121,6 +121,11 @@ button:focus {
     color: green;
 }
 
+#kamersForm {
+    background-color: #ececec;
+    border-radius: 5px;
+}
+
 /* Checkboxes */
 
 .checkbox-container {

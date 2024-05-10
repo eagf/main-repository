@@ -92,12 +92,20 @@
                         Op dat moment gaan wij direct over tot het opstellen van de
                         verkoopovereenkomst in samenspraak met de notaris van beide partijen.
                     </p>
+                </div>
+            </section>
+
+            <section class="section-content">
+                <div class="content-text">
                     <p>
                         Ook bij de laatste stap in uw verkoopproces
                         ‘het tekenen van de akte bij de notaris’
                         zorgen wij voor een vlekkeloze eigendomsoverdracht
                         (overdracht van documenten, energie, sleutels, …).
                     </p>
+                </div>
+                <div class="content-image">
+                    <img src="assets/img/panden/image2.jpg" alt="">
                 </div>
             </section>
 
