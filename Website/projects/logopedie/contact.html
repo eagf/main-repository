@@ -46,20 +46,26 @@
         </div>
 
         <div id="form-container">
-            <form id="contact-form" class="contact-form" action="#" method="post">
+
+            <form id="contact-form" class="contact-form" action="send_mail.php" method="post">
                 <h1>Contact</h1>
                 <input type="text" name="name" placeholder="Jouw naam" required>
                 <input type="email" name="email" placeholder="Jouw e-mailadres" required>
                 <textarea name="message" placeholder="Jouw bericht" required></textarea>
                 <button type="submit">Verzend bericht</button>
             </form>
-            <div id="extra-contact-container">
-                <p>Telefoonnummer</p>
-                <p>0497/67 63 34</p><br>
-                <p>E-mailadres</p>
-                <p>isabellecorneillie@hotmail.com</p>
+
+            <div class="privacy-link-container">
+                <a href="privacyBeleid.html" class="privacy-link">Privacybeleid</a>
             </div>
-            
+
+            <div class="contact-info-container">
+                <p class="contact-info-title">Telefoonnummer</p>
+                <p class="contact-info">0497/67 63 34</p>
+                <p class="contact-info-title">E-mailadres</p>
+                <a href="mailto:isabellecorneillie@hotmail.com" class="contact-info email-link">isabellecorneillie@hotmail.com</a>
+            </div>
+
         </div>
     </div>
 </body>
