@@ -146,7 +146,9 @@
                         <p><strong>Prijs:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['prijs'], 2, ',', '.')); ?></p>
                         <p><strong>Bezoek op:</strong> <?php echo htmlspecialchars($pandDetails['bezoekOp']); ?></p>
                         <p><strong>Vrij Op:</strong> <?php echo htmlspecialchars($pandDetails['vrijOp']); ?></p>
-                        <p><strong>Kadastraal Inkomen:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['kadastraalInkomen'], 2, ',', '.')); ?></p>
+                        <?php if (!empty($pandDetails['kadastraalInkomen'])) { ?>
+                            <p><strong>Kadastraal Inkomen:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['kadastraalInkomen'], 2, ',', '.')); ?></p>
+                        <?php } ?>
                     </div>
                     <div class="detail-container-img">
                         <img src="./assets/img/prijsklasseBlauw.png" alt="prijsklasse">
@@ -155,11 +157,18 @@
 
                 <div id="info2-container" class="detail-container">
                     <div class="detail-container-text">
-
-                        <p><strong>Bouwjaar:</strong> <?php echo htmlspecialchars((string)$pandDetails['bouwjaar']); ?></p>
-                        <p><strong>Grondoppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['grondoppervlakte'], 0, ',', '.')); ?> m²</p>
-                        <p><strong>Bruto Vloeroppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['brutoVloeroppervlakte'], 0, ',', '.')); ?> m²</p>
-                        <p><strong>Aantal Slaapkamers:</strong> <?php echo htmlspecialchars((string)$pandDetails['aantalSlaapkamers']); ?></p>
+                        <?php if (!empty($pandDetails['bouwjaar'])) { ?>
+                            <p><strong>Bouwjaar:</strong> <?php echo htmlspecialchars((string)$pandDetails['bouwjaar']); ?></p>
+                        <?php }
+                        if (!empty($pandDetails['grondoppervlakte'])) { ?>
+                            <p><strong>Grondoppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['grondoppervlakte'], 0, ',', '.')); ?> m²</p>
+                        <?php }
+                        if (!empty($pandDetails['brutoVloeroppervlakte'])) { ?>
+                            <p><strong>Bruto Vloeroppervlakte:</strong> <?php echo htmlspecialchars(number_format((float)$pandDetails['brutoVloeroppervlakte'], 0, ',', '.')); ?> m²</p>
+                        <?php }
+                        if (!empty($pandDetails['aantalSlaapkamers'])) { ?>
+                            <p><strong>Aantal Slaapkamers:</strong> <?php echo htmlspecialchars((string)$pandDetails['aantalSlaapkamers']); ?></p>
+                        <?php } ?>
                     </div>
                     <div class="detail-container-img">
                         <img src="./assets/img/bouwjaarBlauw.png" alt="bouwjaar">
@@ -173,6 +182,7 @@
                 <h3>EPC</h3>
                 <p><strong>EPC Index:</strong> <?php echo htmlspecialchars(number_format($pandDetails['epcIndex']), 0); ?></p>
                 <p><strong>Energie Label:</strong> <?php echo htmlspecialchars($pandDetails['energieLabel']); ?></p>
+                <p><strong>Renovatieverplichting:</strong> <?php echo htmlspecialchars($pandDetails['renovatieverplichting'] ? 'Ja' : 'Nee'); ?></p>
 
                 <div id="epc-container">
                     <div id="epc-arrow-container">
@@ -204,24 +214,21 @@
                                 $roomCounter = 1;
                                 $showCounter = count($rooms) >= 2;
                                 ?>
-                                <?php foreach ($rooms as $room) :
-                                    if ($room['kamerOppervlakte'] != 0 && !empty($room['kamerDetail'])) {
-                                ?>
-                                        <li>
-                                            <?php
-                                            if ($showCounter) {
-                                                echo $roomCounter++ . ': ';
-                                            }
-                                            ?>
-                                            <?php if ($room['kamerOppervlakte'] != 0) { ?>
-                                                Oppervlakte: <?php echo htmlspecialchars(number_format($room['kamerOppervlakte'], 0, ',', '.')); ?> m² <br>
-                                            <?php }
-                                            if (!empty($room['kamerDetail'])) {
-                                                echo htmlspecialchars($room['kamerDetail']);
-                                            } ?>
-                                        </li>
-                                <?php }
-                                endforeach; ?>
+                                <?php foreach ($rooms as $room) : ?>
+                                    <li>
+                                        <?php
+                                        if ($showCounter) {
+                                            echo $roomCounter++ . ': ';
+                                        }
+                                        ?>
+                                        <?php if ($room['kamerOppervlakte'] != 0) { ?>
+                                            Oppervlakte: <?php echo htmlspecialchars(number_format($room['kamerOppervlakte'], 0, ',', '.')); ?> m² <br>
+                                        <?php }
+                                        if (!empty($room['kamerDetail'])) {
+                                            echo htmlspecialchars($room['kamerDetail']);
+                                        } ?>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         <?php endforeach; ?>
                     </div>
@@ -237,7 +244,7 @@
                 <div class="detail-container-text">
 
                     <h3>Wettelijke Informatie</h3>
-                    <p><strong>Stedenbouwkundige Vergunning:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunning'] ? 'Ja' : 'Nee'); ?></p>
+                    <p><strong>Stedenbouwkundige Vergunning:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunning']); ?></p>
                     <?php if (!empty($pandDetails['stedenbouwkundigeVergunningInfo'])) { ?>
                         <p><strong>Extra info:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunningInfo']); ?></p>
                     <?php } ?>

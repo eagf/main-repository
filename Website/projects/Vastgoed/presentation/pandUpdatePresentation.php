@@ -69,12 +69,12 @@
                     <div><label for="type">Type:</label><input type="text" id="type" name="type" value="<?php echo htmlspecialchars($pandDetails['type'] ?? ''); ?>" required></div>
                     <div><label for="subtype">Subtype:</label><input type="text" id="subtype" name="subtype" value="<?php echo htmlspecialchars($pandDetails['subtype'] ?? ''); ?>"></div>
                     <div><label for="aanvullingSubtype">Aanvulling Subtype:</label><input type="text" id="aanvullingSubtype" name="aanvullingSubtype" value="<?php echo htmlspecialchars($pandDetails['aanvullingSubtype'] ?? ''); ?>"></div>
-                    <div><label for="bouwjaar">Bouwjaar:</label><input type="number" id="bouwjaar" name="bouwjaar" value="<?php echo htmlspecialchars($pandDetails['bouwjaar'] ?? ''); ?>" required></div>
-                    <div><label for="brutoVloeroppervlakte">Bruto Vloeroppervlakte:</label><input type="number" id="brutoVloeroppervlakte" name="brutoVloeroppervlakte" value="<?php echo htmlspecialchars($pandDetails['brutoVloeroppervlakte'] ?? ''); ?>" required></div>
-                    <div><label for="grondoppervlakte">Grondoppervlakte:</label><input type="number" id="grondoppervlakte" name="grondoppervlakte" value="<?php echo htmlspecialchars($pandDetails['grondoppervlakte'] ?? ''); ?>" required></div>
-                    <div><label for="aantalSlaapkamers">Aantal Slaapkamers:</label><input type="number" id="aantalSlaapkamers" name="aantalSlaapkamers" value="<?php echo htmlspecialchars($pandDetails['aantalSlaapkamers'] ?? ''); ?>" required></div>
+                    <div><label for="bouwjaar">Bouwjaar:</label><input type="number" id="bouwjaar" name="bouwjaar" value="<?php echo htmlspecialchars($pandDetails['bouwjaar'] ?? ''); ?>"></div>
+                    <div><label for="brutoVloeroppervlakte">Bruto Vloeroppervlakte:</label><input type="number" id="brutoVloeroppervlakte" name="brutoVloeroppervlakte" value="<?php echo htmlspecialchars($pandDetails['brutoVloeroppervlakte'] ?? ''); ?>"></div>
+                    <div><label for="grondoppervlakte">Grondoppervlakte:</label><input type="number" id="grondoppervlakte" name="grondoppervlakte" value="<?php echo htmlspecialchars($pandDetails['grondoppervlakte'] ?? ''); ?>"></div>
+                    <div><label for="aantalSlaapkamers">Aantal Slaapkamers:</label><input type="number" id="aantalSlaapkamers" name="aantalSlaapkamers" value="<?php echo htmlspecialchars($pandDetails['aantalSlaapkamers'] ?? ''); ?>"></div>
                     <div><label for="prijs">Prijs:</label><input type="number" id="prijs" name="prijs" value="<?php echo htmlspecialchars($pandDetails['prijs'] ?? ''); ?>" required></div>
-                    <div><label for="kadastraalInkomen">Kadastraal Inkomen:</label><input type="number" id="kadastraalInkomen" name="kadastraalInkomen" value="<?php echo htmlspecialchars($pandDetails['kadastraalInkomen'] ?? ''); ?>" required></div>
+                    <div><label for="kadastraalInkomen">Kadastraal Inkomen:</label><input type="number" id="kadastraalInkomen" name="kadastraalInkomen" value="<?php echo htmlspecialchars($pandDetails['kadastraalInkomen'] ?? ''); ?>"></div>
                     <div><label for="bezoekOp">Bezoek op:</label><input type="text" id="bezoekOp" name="bezoekOp" value="<?php echo htmlspecialchars($pandDetails['bezoekOp'] ?? ''); ?>" required></div>
 
                     <div>
@@ -104,8 +104,15 @@
                     <div><label for="epcIndex">EPC Index:</label><input type="text" id="epcIndex" name="epcIndex" placeholder="EPC Index" value="<?php echo htmlspecialchars($pandDetails['epcIndex'] ?? ''); ?>" required></div>
                     <div><label for="energieLabel">Energie Label:</label><input type="text" id="energieLabel" name="energieLabel" placeholder="Energie Label" value="<?php echo htmlspecialchars($pandDetails['energieLabel'] ?? ''); ?>" required></div>
                     <div class="checkbox-container">
-                        <input type="checkbox" id="stedenbouwkundigeVergunning" name="stedenbouwkundigeVergunning" value="1" <?php echo ($pandDetails['stedenbouwkundigeVergunning'] ?? 0) ? 'checked' : ''; ?>>
-                        <label for="stedenbouwkundigeVergunning" class="checkbox-label">Stedenbouwkundige Vergunning</label>
+                        <input type="checkbox" id="renovatieverplichting" name="renovatieverplichting" value="1" <?php echo ($pandDetails['renovatieverplichting'] ?? 0) ? 'checked' : ''; ?>>
+                        <label for="renovatieverplichting" class="checkbox-label">Renovatieverplichting</label>
+                    </div>
+                    <div>
+                        <label for="stedenbouwkundigeVergunning">Stedenbouwkundige Vergunning:</label>
+                        <select id="stedenbouwkundigeVergunning" name="stedenbouwkundigeVergunning" required>
+                            <option value="Vergund" <?php echo (isset($pandDetails['stedenbouwkundigeVergunning']) && $pandDetails['stedenbouwkundigeVergunning'] == 'Vergund') ? 'selected' : ''; ?>>Vergund</option>
+                            <option value="Niet vergund" <?php echo (isset($pandDetails['stedenbouwkundigeVergunning']) && $pandDetails['stedenbouwkundigeVergunning'] == 'Niet vergund') ? 'selected' : ''; ?>>Niet vergund</option>
+                        </select>
                     </div>
                     <div><label for="stedenbouwkundigeVergunningInfo">Extra info:</label><input type="text" id="stedenbouwkundigeVergunningInfo" name="stedenbouwkundigeVergunningInfo" placeholder="stedenbouwkundigeVergunningInfo" value="<?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunningInfo'] ?? ''); ?>"></div>
                     <div class="checkbox-container">
@@ -151,6 +158,7 @@
                             <option value="B" <?php echo (isset($pandDetails['overstromingskansPerceel']) && $pandDetails['overstromingskansPerceel'] == 'B') ? 'selected' : ''; ?>>B</option>
                             <option value="C" <?php echo (isset($pandDetails['overstromingskansPerceel']) && $pandDetails['overstromingskansPerceel'] == 'C') ? 'selected' : ''; ?>>C</option>
                             <option value="D" <?php echo (isset($pandDetails['overstromingskansPerceel']) && $pandDetails['overstromingskansPerceel'] == 'D') ? 'selected' : ''; ?>>D</option>
+                            <option value="Niet van toepassing" <?php echo (isset($pandDetails['overstromingskansPerceel']) && $pandDetails['overstromingskansPerceel'] == 'Niet van toepassing') ? 'selected' : ''; ?>>Niet van toepassing</option>
                         </select>
                     </div>
 
@@ -161,6 +169,7 @@
                             <option value="B" <?php echo (isset($pandDetails['overstromingskansGebouw']) && $pandDetails['overstromingskansGebouw'] == 'B') ? 'selected' : ''; ?>>B</option>
                             <option value="C" <?php echo (isset($pandDetails['overstromingskansGebouw']) && $pandDetails['overstromingskansGebouw'] == 'C') ? 'selected' : ''; ?>>C</option>
                             <option value="D" <?php echo (isset($pandDetails['overstromingskansGebouw']) && $pandDetails['overstromingskansGebouw'] == 'D') ? 'selected' : ''; ?>>D</option>
+                            <option value="Niet van toepassing" <?php echo (isset($pandDetails['overstromingskansGebouw']) && $pandDetails['overstromingskansGebouw'] == 'Niet van toepassing') ? 'selected' : ''; ?>>Niet van toepassing</option>
                         </select>
                     </div>
 

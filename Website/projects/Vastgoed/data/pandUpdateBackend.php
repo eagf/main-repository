@@ -60,7 +60,8 @@ if (isset($_POST['submit'])) {
             overstromingskansPerceel = :overstromingskansPerceel,
             overstromingskansGebouw = :overstromingskansGebouw,
             erfgoed = :erfgoed,
-            erfgoedInfo = :erfgoedInfo
+            erfgoedInfo = :erfgoedInfo,
+            renovatieverplichting = :renovatieverplichting
             WHERE wettelijkeInfoID = (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
 
             $stmtUpdateWettelijkeInfo = $db->prepare($queryUpdateWettelijkeInfo);
@@ -68,8 +69,7 @@ if (isset($_POST['submit'])) {
             // Bind parameters for wettelijkeinformatie
             $stmtUpdateWettelijkeInfo->bindParam(':epcIndex', $_POST['epcIndex']);
             $stmtUpdateWettelijkeInfo->bindParam(':energieLabel', $_POST['energieLabel']);
-            $stedenbouwkundigeVergunning = isset($_POST['stedenbouwkundigeVergunning']) ? 1 : 0;
-            $stmtUpdateWettelijkeInfo->bindParam(':stedenbouwkundigeVergunning', $stedenbouwkundigeVergunning, PDO::PARAM_INT);
+            $stmtUpdateWettelijkeInfo->bindParam(':stedenbouwkundigeVergunning', $_POST['stedenbouwkundigeVergunning']);
             $stmtUpdateWettelijkeInfo->bindParam(':stedenbouwkundigeVergunningInfo', $_POST['stedenbouwkundigeVergunningInfo']);
             $verkavelingsvergunning = isset($_POST['verkavelingsvergunning']) ? 1 : 0;
             $stmtUpdateWettelijkeInfo->bindParam(':verkavelingsvergunning', $verkavelingsvergunning, PDO::PARAM_INT);
@@ -96,6 +96,8 @@ if (isset($_POST['submit'])) {
             $stmtUpdateWettelijkeInfo->bindParam(':erfgoed', $erfgoed, PDO::PARAM_INT);
             $stmtUpdateWettelijkeInfo->bindParam(':erfgoedInfo', $_POST['erfgoedInfo']);
             $stmtUpdateWettelijkeInfo->bindParam(':pandID', $_POST['pandID'], PDO::PARAM_INT);
+            $stmtUpdateWettelijkeInfo->bindParam(':renovatieverplichting', $_POST['renovatieverplichting'], PDO::PARAM_INT);
+
 
             // Execute the query for wettelijkeinformatie
             $stmtUpdateWettelijkeInfo->execute();

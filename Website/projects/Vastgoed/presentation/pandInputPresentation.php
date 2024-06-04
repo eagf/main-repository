@@ -46,12 +46,12 @@
                 <div><label for="type">Type:</label><input type="text" id="type" name="type" value="type" required></div>
                 <div><label for="subtype">Subtype:</label><input type="text" id="subtype" name="subtype"></div>
                 <div><label for="aanvullingSubtype">Aanvulling Subtype:</label><input type="text" id="aanvullingSubtype" name="aanvullingSubtype"></div>
-                <div><label for="bouwjaar">Bouwjaar:</label><input type="number" id="bouwjaar" name="bouwjaar" value="1992" required></div>
-                <div><label for="brutoVloeroppervlakte">Bruto Vloeroppervlakte:</label><input type="number" step="0.01" id="brutoVloeroppervlakte" name="brutoVloeroppervlakte" value="87" required></div>
-                <div><label for="grondoppervlakte">Grondoppervlakte:</label><input type="number" step="0.01" id="grondoppervlakte" name="grondoppervlakte" value="102" required></div>
-                <div><label for="aantalSlaapkamers">Aantal Slaapkamers:</label><input type="number" id="aantalSlaapkamers" name="aantalSlaapkamers" value="3" required></div>
+                <div><label for="bouwjaar">Bouwjaar:</label><input type="number" id="bouwjaar" name="bouwjaar" value="1992"></div>
+                <div><label for="brutoVloeroppervlakte">Bruto Vloeroppervlakte:</label><input type="number" step="0.01" id="brutoVloeroppervlakte" name="brutoVloeroppervlakte" value="87"></div>
+                <div><label for="grondoppervlakte">Grondoppervlakte:</label><input type="number" step="0.01" id="grondoppervlakte" name="grondoppervlakte" value="102"></div>
+                <div><label for="aantalSlaapkamers">Aantal Slaapkamers:</label><input type="number" id="aantalSlaapkamers" name="aantalSlaapkamers" value="3"></div>
                 <div><label for="prijs">Prijs:</label><input type="number" step="0.01" id="prijs" name="prijs" value="300000" required></div>
-                <div><label for="kadastraalInkomen">Kadastraal Inkomen:</label><input type="number" step="0.01" id="kadastraalInkomen" name="kadastraalInkomen" value="15000" required></div>
+                <div><label for="kadastraalInkomen">Kadastraal Inkomen:</label><input type="number" step="0.01" id="kadastraalInkomen" name="kadastraalInkomen" value="15000"></div>
                 <div><label for="bezoekOp">Bezoek op:</label><input type="text" id="bezoekOp" name="bezoekOp" value="bezoek op" required></div>
 
                 <div>
@@ -110,8 +110,15 @@
                     </select>
                 </div>
                 <div class="checkbox-container">
-                    <input type="checkbox" id="stedenbouwkundigeVergunning" name="stedenbouwkundigeVergunning" value="1">
-                    <label for="stedenbouwkundigeVergunning" class="checkbox-label">Stedenbouwkundige Vergunning</label>
+                    <input type="checkbox" id="renovatieverplichting" name="renovatieverplichting" value="1">
+                    <label for="renovatieverplichting" class="checkbox-label">Renovatieverplichting</label>
+                </div>
+                <div>
+                    <label for="stedenbouwkundigeVergunning">Stedenbouwkundige Vergunning</label>
+                    <select id="stedenbouwkundigeVergunning" name="stedenbouwkundigeVergunning" required>
+                        <option value="Vergund">Vergund</option>
+                        <option value="Niet vergund">Niet vergund</option>
+                    </select>
                 </div>
                 <div><label for="stedenbouwkundigeVergunningInfo">Extra info:</label><input type="text" id="stedenbouwkundigeVergunningInfo" name="stedenbouwkundigeVergunningInfo"></div>
                 <div class="checkbox-container">
@@ -157,6 +164,7 @@
                         <option value="B">B</option>
                         <option value="C">C</option>
                         <option value="D">D</option>
+                        <option value="Niet van toepassing">Niet van toepassing</option>
                     </select>
                 </div>
                 <div>
@@ -166,6 +174,7 @@
                         <option value="B">B</option>
                         <option value="C">C</option>
                         <option value="D">D</option>
+                        <option value="Niet van toepassing">Niet van toepassing</option>
                     </select>
                 </div>
 

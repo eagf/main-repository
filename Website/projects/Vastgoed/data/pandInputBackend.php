@@ -33,14 +33,14 @@ if (isset($_POST['submit'])) {
         voorkooprecht, voorkooprechtInfo, stedenbouwkundigeBestemming, dagvaardingEnHerstelvordering, 
         effectiefOverstromingsgevoelig, mogelijkOverstromingsgevoelig, afgebakendOverstromingsgebied, 
         afgebakendeOeverzone, risicozoneVoorOverstromingen, overstromingskansPerceel, 
-        overstromingskansGebouw, erfgoed, erfgoedInfo
+        overstromingskansGebouw, erfgoed, erfgoedInfo, renovatieverplichting
         ) 
         VALUES (
         :epcIndex, :energieLabel, :stedenbouwkundigeVergunning, :stedenbouwkundigeVergunningInfo, :verkavelingsvergunning, :verkavelingsvergunningInfo, 
         :voorkooprecht, :voorkooprechtInfo, :stedenbouwkundigeBestemming, :dagvaardingEnHerstelvordering, 
         :effectiefOverstromingsgevoelig, :mogelijkOverstromingsgevoelig, :afgebakendOverstromingsgebied, 
         :afgebakendeOeverzone, :risicozoneVoorOverstromingen, :overstromingskansPerceel, 
-        :overstromingskansGebouw, :erfgoed, :erfgoedInfo
+        :overstromingskansGebouw, :erfgoed, :erfgoedInfo, :renovatieverplichting
         )";
 
         $stmtWettelijkeInfo = $db->prepare($queryWettelijkeInfo);
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         // Bind parameters for wettelijkeinformatie
         $stmtWettelijkeInfo->bindParam(':epcIndex', $_POST['epcIndex']);
         $stmtWettelijkeInfo->bindParam(':energieLabel', $_POST['energieLabel']);
-        $stmtWettelijkeInfo->bindParam(':stedenbouwkundigeVergunning', $_POST['stedenbouwkundigeVergunning'], PDO::PARAM_INT);
+        $stmtWettelijkeInfo->bindParam(':stedenbouwkundigeVergunning', $_POST['stedenbouwkundigeVergunning']);
         $stmtWettelijkeInfo->bindParam(':stedenbouwkundigeVergunningInfo', $_POST['stedenbouwkundigeVergunningInfo']);
         $stmtWettelijkeInfo->bindParam(':verkavelingsvergunning', $_POST['verkavelingsvergunning'], PDO::PARAM_INT);
         $stmtWettelijkeInfo->bindParam(':verkavelingsvergunningInfo', $_POST['verkavelingsvergunningInfo']);
@@ -65,6 +65,7 @@ if (isset($_POST['submit'])) {
         $stmtWettelijkeInfo->bindParam(':overstromingskansGebouw', $_POST['overstromingskansGebouw']);
         $stmtWettelijkeInfo->bindParam(':erfgoed', $_POST['erfgoed'], PDO::PARAM_INT);
         $stmtWettelijkeInfo->bindParam(':erfgoedInfo', $_POST['erfgoedInfo']);
+        $stmtWettelijkeInfo->bindParam(':renovatieverplichting', $_POST['renovatieverplichting'], PDO::PARAM_INT);
 
         // Execute the query for wettelijkeinformatie
         $stmtWettelijkeInfo->execute();
