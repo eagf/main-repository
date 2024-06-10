@@ -37,7 +37,7 @@ document.getElementById('addMoreImages').addEventListener('click', function () {
             <textarea id="description${uploadCounter}" name="description[]"></textarea>
         `;
     const removeButton = document.createElement('button');
-    removeButton.innerText = 'Remove';
+    removeButton.innerText = 'Verwijder';
     removeButton.type = 'button';
     removeButton.className = 'remove-field-button';
     removeButton.onclick = function () {

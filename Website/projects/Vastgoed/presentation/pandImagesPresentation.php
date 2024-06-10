@@ -56,17 +56,14 @@
                             <textarea id="descriptionX" name="description[]"></textarea>
                         </div>
                     </div>
-                    <button type="button" id="addMoreImages">Voeg meer afbeeldingen toe</button>
-                    <button type="submit" name="upload">Voeg afbeeldingen toe</button>
+                    <button type="button" id="addMoreImages">+</button>
+                    <button type="submit" name="upload">Upload alle afbeeldingen</button>
                 </form>
 
                 <!-- Form for deleting images -->
 
                 <form action="./data/imageBackend.php" method="POST">
                     <h3>Verwijderen</h3>
-                    <!-- CONTROL STILL IN CODE!!!!!!!!!!!!!!!! -->
-                    <h3 style="color: red">De eerste 6 afbeeldingen van de 5 voorbeelden zijn nog niet te verwijderen</h3>
-                    <!-- CONTROL STILL IN CODE!!!!!!!!!!!!!!!! -->
                     <input type="hidden" name="action" value="delete_images">
                     <input type="hidden" name="pandID" value="<?php echo htmlspecialchars($pandID); ?>">
 

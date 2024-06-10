@@ -8,6 +8,7 @@
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    overflow: hidden;
 }
 
 #titel-container {
@@ -292,6 +293,7 @@ p {
 @media (max-width: 768px) {
     .detail-container-img {
         justify-content: center;
+        width: 100%;
     }
 
     .detail-container-img img {

@@ -27,11 +27,11 @@
         <div class="swiper">
             <div class="swiper-wrapper">
                 <?php foreach ($pandenHomepage as $pand) : ?>
-                    <div class="swiper-slide">
-                        <a class="carousel-card" href="detail.php?pandID=<?php echo htmlspecialchars($pand['pandID']); ?>">
+                    <a class="swiper-slide" href="detail.php?pandID=<?php echo htmlspecialchars($pand['pandID']); ?>">
+                        <div class="carousel-card">
                             <img src="<?php echo htmlspecialchars($pand['afbeeldingURL']); ?>" alt="Carousel Image">
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </div>

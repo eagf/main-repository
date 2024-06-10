@@ -174,7 +174,7 @@ function getPandenOverzicht($statusFilter)
     $database = new Database();
     $db = $database->getConnection();
 
-    $query = "SELECT p.pandID, p.titel, a.gemeente, p.prijs, p.isNieuw, p.isVerkochtVerhuurd,
+    $query = "SELECT p.pandID, p.status, p.titel, a.gemeente, p.prijs, p.isNieuw, p.isVerkochtVerhuurd,
             GROUP_CONCAT(af.afbeeldingURL) as afbeeldingen
             FROM panden p
             LEFT JOIN adressen a ON p.adresID = a.adresID
@@ -184,7 +184,8 @@ function getPandenOverzicht($statusFilter)
         $query .= " WHERE p.status = :statusFilter";
     }
 
-    $query .= " GROUP BY p.pandID";
+    $query .= " GROUP BY p.pandID, p.isVerkochtVerhuurd";
+    $query .= " ORDER BY p.isVerkochtVerhuurd ASC, p.pandID ASC";
 
     try {
         $stmt = $db->prepare($query);

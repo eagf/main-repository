@@ -66,11 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
-                // CONTROL STILL IN CODE!!!!!!!!!!!!!!!!
                 $stmt = $db->prepare("DELETE FROM afbeeldingen 
                 WHERE pandID = :pandID 
-                AND afbeeldingURL = :afbeeldingURL 
-                AND afbeeldingID > 60"); // <==================
+                AND afbeeldingURL = :afbeeldingURL");
                 $stmt->bindParam(':pandID', $pandID);
                 $stmt->bindParam(':afbeeldingURL', $imageURL);
                 $stmt->execute();

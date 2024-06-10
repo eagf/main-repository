@@ -5,7 +5,9 @@
 :root {
     --main-color: #2E61B0;
     --main-color-light: #4570b0;
+    --main-color-dark: #1e4072;
     --secundary-color: #F49A25;
+    --secundary-color-dark: #b3711b;
     --background-color: #f0f0f0;
 }
 

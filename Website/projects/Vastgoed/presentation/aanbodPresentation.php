@@ -28,6 +28,14 @@
             <?php foreach ($pandenOverzicht as $pand) : ?>
                 <a href="detail.php?pandID=<?php echo htmlspecialchars((string)$pand['pandID']); ?>" class="card-link">
                     <div class="card">
+                        <?php if ($pand['isVerkochtVerhuurd'] == 1) : ?>
+                            <?php
+                            $verkochtVerhuurdText = ($pand['status'] == "Te koop") ? "Verkocht" : "Verhuurd";
+                            ?>
+                            <div class="ribbon ribbon-sold ribbon-top-right"><span>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $verkochtVerhuurdText; ?></span></div>
+                        <?php elseif ($pand['isNieuw'] == 1) : ?>
+                            <div class="ribbon ribbon-new ribbon-top-right"><span>&nbsp;&nbsp;Nieuw</span></div>
+                        <?php endif; ?>
                         <div class="card-carousel">
                             <div class="card-image-container">
                                 <?php
@@ -50,6 +58,11 @@
                 </a>
             <?php endforeach; ?>
         </div>
+
+
+
+
+
 
     </div>
 

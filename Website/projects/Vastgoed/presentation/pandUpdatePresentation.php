@@ -46,9 +46,6 @@
                 <form action="./data/pandUpdateBackend.php" method="POST">
 
                     <h3>Gegevens aanpassen</h3>
-                    <!-- CONTROL STILL IN CODE!!!!!!!!!!!!!!!! -->
-                    <h3 style="color: red">De gegevens van de eerste 5 voorbeelden zijn nog niet aan te passen.</h3>
-                    <!-- CONTROL STILL IN CODE!!!!!!!!!!!!!!!! -->
 
                     <input type="hidden" name="pandID" value="<?php echo htmlspecialchars($pandID); ?>">
 
