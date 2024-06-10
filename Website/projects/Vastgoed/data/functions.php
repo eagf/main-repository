@@ -52,21 +52,14 @@ function deletePand($pandID)
             $stmtDeletePanden->bindParam(':pandID', $pandID, PDO::PARAM_INT);
             $stmtDeletePanden->execute();
 
-            // Step 3: Delete from panddetails table (related to pand)
-            $queryDeletePandDetails = "DELETE FROM panddetails WHERE pandDetailID = 
-                (SELECT pandDetailID FROM panden WHERE pandID = :pandID)";
-            $stmtDeletePandDetails = $db->prepare($queryDeletePandDetails);
-            $stmtDeletePandDetails->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-            $stmtDeletePandDetails->execute();
-
-            // Step 4: Delete from wettelijkeinformatie table (related to pand)
+            // Step 3: Delete from wettelijkeinformatie table (related to pand)
             $queryDeleteWettelijkeInfo = "DELETE FROM wettelijkeinformatie WHERE wettelijkeInfoID = 
                 (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
             $stmtDeleteWettelijkeInfo = $db->prepare($queryDeleteWettelijkeInfo);
             $stmtDeleteWettelijkeInfo->bindParam(':pandID', $pandID, PDO::PARAM_INT);
             $stmtDeleteWettelijkeInfo->execute();
 
-            // Step 5: Delete from adressen table (related to pand)
+            // Step 4: Delete from adressen table (related to pand)
             $queryDeleteAdressen = "DELETE FROM adressen WHERE adresID = 
                 (SELECT adresID FROM panden WHERE pandID = :pandID)";
             $stmtDeleteAdressen = $db->prepare($queryDeleteAdressen);
@@ -134,7 +127,7 @@ function getPandDetails($pandID)
     $database = new Database();
     $db = $database->getConnection();
 
-    $queryPand = "SELECT p.*, a.*, pd.*, wi.*,
+    $queryPand = "SELECT p.*, a.*, wi.*,
                      GROUP_CONCAT(DISTINCT af.afbeeldingURL ORDER BY af.afbeeldingID SEPARATOR '|') AS afbeeldingen,
                      GROUP_CONCAT(DISTINCT af.beschrijving ORDER BY af.afbeeldingID SEPARATOR '|') AS beschrijvingen,
                      (SELECT GROUP_CONCAT(CONCAT_WS('|', kamerNaam, kamerOppervlakte, kamerDetail) SEPARATOR '||') 
@@ -143,7 +136,6 @@ function getPandDetails($pandID)
                      ) AS kamers
               FROM panden p
               LEFT JOIN adressen a ON p.adresID = a.adresID
-              LEFT JOIN panddetails pd ON p.pandDetailID = pd.pandDetailID
               LEFT JOIN wettelijkeinformatie wi ON p.wettelijkeInfoID = wi.wettelijkeInfoID
               LEFT JOIN afbeeldingen af ON p.pandID = af.pandID
               WHERE p.pandID = ?
@@ -182,10 +174,11 @@ function getPandenOverzicht($statusFilter)
     $database = new Database();
     $db = $database->getConnection();
 
-    $query = "SELECT p.pandID, p.titel, a.gemeente, p.prijs, GROUP_CONCAT(af.afbeeldingURL) as afbeeldingen
-              FROM panden p
-              LEFT JOIN adressen a ON p.adresID = a.adresID
-              LEFT JOIN afbeeldingen af ON p.pandID = af.pandID";
+    $query = "SELECT p.pandID, p.titel, a.gemeente, p.prijs, p.isNieuw, p.isVerkochtVerhuurd,
+            GROUP_CONCAT(af.afbeeldingURL) as afbeeldingen
+            FROM panden p
+            LEFT JOIN adressen a ON p.adresID = a.adresID
+            LEFT JOIN afbeeldingen af ON p.pandID = af.pandID";
 
     if ($statusFilter !== 'all') {
         $query .= " WHERE p.status = :statusFilter";

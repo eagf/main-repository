@@ -43,6 +43,14 @@
                     <input type="checkbox" id="homepage" name="homepage" value="1">
                     <label for="homepage" class="checkbox-label">Op homepage</label>
                 </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="isNieuw" name="isNieuw" value="1">
+                    <label for="isNieuw" class="checkbox-label">Is Nieuw</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="isVerkochtVerhuurd" name="isVerkochtVerhuurd" value="1">
+                    <label for="isVerkochtVerhuurd" class="checkbox-label">Verkocht / verhuurd</label>
+                </div>
                 <div><label for="type">Type:</label><input type="text" id="type" name="type" value="type" required></div>
                 <div><label for="subtype">Subtype:</label><input type="text" id="subtype" name="subtype"></div>
                 <div><label for="aanvullingSubtype">Aanvulling Subtype:</label><input type="text" id="aanvullingSubtype" name="aanvullingSubtype"></div>
@@ -183,12 +191,6 @@
                     <label for="erfgoed" class="checkbox-label">Erfgoed</label>
                 </div>
                 <div><label for="erfgoedInfo">Extra info:</label><input type="text" id="erfgoedInfo" name="erfgoedInfo"></div>
-
-                <!-- Fields for panddetails table -->
-                <div class="checkbox-container">
-                    <input type="checkbox" id="isNieuw" name="isNieuw" value="1">
-                    <label for="isNieuw" class="checkbox-label">Is Nieuw</label>
-                </div>
                 <div class="checkbox-container">
                     <input type="checkbox" id="isOpbrengsteigendom" name="isOpbrengsteigendom" value="1">
                     <label for="isOpbrengsteigendom" class="checkbox-label">Is Opbrengsteigendom</label>

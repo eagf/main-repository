@@ -59,6 +59,14 @@
                         <input type="checkbox" id="homepage" name="homepage" value="1" <?php echo ($pandDetails['homepage'] ?? 0) ? 'checked' : ''; ?>>
                         <label for="homepage" class="checkbox-label">Op homepage</label>
                     </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="isNieuw" name="isNieuw" value="1" <?php echo ($pandDetails['isNieuw'] ?? 0) ? 'checked' : ''; ?>>
+                        <label for="isNieuw" class="checkbox-label">Is Nieuw</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="isVerkochtVerhuurd" name="isVerkochtVerhuurd" value="1" <?php echo ($pandDetails['isVerkochtVerhuurd'] ?? 0) ? 'checked' : ''; ?>>
+                        <label for="isVerkochtVerhuurd" class="checkbox-label">Verkocht / verhuurd</label>
+                    </div>
                     <div>
                         <label for="status">Status</label>
                         <select id="status" name="status" required>
@@ -178,12 +186,6 @@
                         <label for="erfgoed" class="checkbox-label">Erfgoed</label>
                     </div>
                     <div><label for="erfgoedInfo">Extra info:</label><input type="text" id="erfgoedInfo" name="erfgoedInfo" placeholder="erfgoedInfo" value="<?php echo htmlspecialchars($pandDetails['erfgoedInfo'] ?? ''); ?>"></div>
-
-                    <!-- Panddetails fields -->
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="isNieuw" name="isNieuw" value="1" <?php echo ($pandDetails['isNieuw'] ?? 0) ? 'checked' : ''; ?>>
-                        <label for="isNieuw" class="checkbox-label">Is Nieuw</label>
-                    </div>
                     <div class="checkbox-container">
                         <input type="checkbox" id="isOpbrengsteigendom" name="isOpbrengsteigendom" value="1" <?php echo ($pandDetails['isOpbrengsteigendom'] ?? 0) ? 'checked' : ''; ?>>
                         <label for="isOpbrengsteigendom" class="checkbox-label">Is Opbrengsteigendom</label>

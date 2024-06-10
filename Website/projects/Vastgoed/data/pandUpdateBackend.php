@@ -102,33 +102,6 @@ if (isset($_POST['submit'])) {
             // Execute the query for wettelijkeinformatie
             $stmtUpdateWettelijkeInfo->execute();
 
-            // ================== panddetails ==================
-
-            $isNieuw = isset($_POST['isNieuw']) ? 1 : 0;
-            $isOpbrengsteigendom = isset($_POST['isOpbrengsteigendom']) ? 1 : 0;
-            $isExclusiefVastgoed = isset($_POST['isExclusiefVastgoed']) ? 1 : 0;
-            $isBeleggingsvastgoed = isset($_POST['isBeleggingsvastgoed']) ? 1 : 0;
-
-            // Prepare an UPDATE statement for panddetails
-            $queryPandDetails = "UPDATE panddetails SET
-            isNieuw = :isNieuw,
-            isOpbrengsteigendom = :isOpbrengsteigendom,
-            isExclusiefVastgoed = :isExclusiefVastgoed,
-            isBeleggingsvastgoed = :isBeleggingsvastgoed
-            WHERE pandDetailID = (SELECT pandDetailID FROM panden WHERE pandID = :pandID)";
-
-            $stmtPandDetails = $db->prepare($queryPandDetails);
-
-            // Bind parameters for panddetails
-            $stmtPandDetails->bindParam(':isNieuw', $isNieuw, PDO::PARAM_INT);
-            $stmtPandDetails->bindParam(':isOpbrengsteigendom', $isOpbrengsteigendom, PDO::PARAM_INT);
-            $stmtPandDetails->bindParam(':isExclusiefVastgoed', $isExclusiefVastgoed, PDO::PARAM_INT);
-            $stmtPandDetails->bindParam(':isBeleggingsvastgoed', $isBeleggingsvastgoed, PDO::PARAM_INT);
-            $stmtPandDetails->bindParam(':pandID', $_POST['pandID'], PDO::PARAM_INT);
-
-            // Execute the query for panddetails
-            $stmtPandDetails->execute();
-
             // ================== panden ==================
 
             // Updating panden
@@ -147,8 +120,13 @@ if (isset($_POST['submit'])) {
             kadastraalInkomen = :kadastraalInkomen,
             bezoekOp = :bezoekOp,
             vrijOp = :vrijOp,
-            homepage = :homepage
-            WHERE pandID = :pandID";    
+            homepage = :homepage,
+            isNieuw = :isNieuw,
+            isVerkochtVerhuurd = :isVerkochtVerhuurd,
+            isOpbrengsteigendom = :isOpbrengsteigendom,
+            isExclusiefVastgoed = :isExclusiefVastgoed,
+            isBeleggingsvastgoed = :isBeleggingsvastgoed
+            WHERE pandID = :pandID";
 
             $stmtUpdatePanden = $db->prepare($queryUpdatePanden);
 
@@ -165,16 +143,19 @@ if (isset($_POST['submit'])) {
             $stmtUpdatePanden->bindParam(':prijs', $_POST['prijs']);
             $stmtUpdatePanden->bindParam(':kadastraalInkomen', $_POST['kadastraalInkomen']);
             $stmtUpdatePanden->bindParam(':bezoekOp', $_POST['bezoekOp']);
-
             if (!empty($_POST['vrijOp']) && $_POST['vrijOp'] != 'date') {
                 $stmtUpdatePanden->bindParam(':vrijOp', $_POST['vrijOp']);
             } 
             else {
                 $stmtUpdatePanden->bindParam(':vrijOp', $_POST['vrijOpDate']);
             }
-
             $stmtUpdatePanden->bindParam(':homepage', $_POST['homepage']);
             $stmtUpdatePanden->bindParam(':pandID', $_POST['pandID'], PDO::PARAM_INT);
+            $stmtUpdatePanden->bindParam(':isNieuw', $isNieuw, PDO::PARAM_INT);
+            $stmtUpdatePanden->bindParam(':isVerkochtVerhuurd', $isVerkochtVerhuurd, PDO::PARAM_INT);
+            $stmtUpdatePanden->bindParam(':isOpbrengsteigendom', $isOpbrengsteigendom, PDO::PARAM_INT);
+            $stmtUpdatePanden->bindParam(':isExclusiefVastgoed', $isExclusiefVastgoed, PDO::PARAM_INT);
+            $stmtUpdatePanden->bindParam(':isBeleggingsvastgoed', $isBeleggingsvastgoed, PDO::PARAM_INT);
 
             $stmtUpdatePanden->execute();
 

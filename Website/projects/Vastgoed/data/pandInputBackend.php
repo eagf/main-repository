@@ -22,10 +22,8 @@ if (isset($_POST['submit'])) {
         $stmtAdressen->bindParam(':bus', $_POST['bus']);
         $stmtAdressen->bindParam(':adresOpAanvraag', $_POST['adresOpAanvraag'], PDO::PARAM_INT);
 
-        // Execute the query for adressen
         $stmtAdressen->execute();
         $adresID = $db->lastInsertId();
-
 
         // Prepare an INSERT statement for wettelijkeinformatie
         $queryWettelijkeInfo = "INSERT INTO wettelijkeinformatie (
@@ -67,46 +65,23 @@ if (isset($_POST['submit'])) {
         $stmtWettelijkeInfo->bindParam(':erfgoedInfo', $_POST['erfgoedInfo']);
         $stmtWettelijkeInfo->bindParam(':renovatieverplichting', $_POST['renovatieverplichting'], PDO::PARAM_INT);
 
-        // Execute the query for wettelijkeinformatie
         $stmtWettelijkeInfo->execute();
         $wettelijkeInfoID = $db->lastInsertId();
 
-        // Prepare an INSERT statement for panddetails
-        $queryPandDetails = "INSERT INTO panddetails (
-        isNieuw, isOpbrengsteigendom, isExclusiefVastgoed, isBeleggingsvastgoed
-        ) 
-        VALUES (
-        :isNieuw, :isOpbrengsteigendom, :isExclusiefVastgoed, :isBeleggingsvastgoed
-        )";
-        $stmtPandDetails = $db->prepare($queryPandDetails);
-
-        $isNieuw = isset($_POST['isNieuw']) ? 1 : 0;
-        $isOpbrengsteigendom = isset($_POST['isOpbrengsteigendom']) ? 1 : 0;
-        $isExclusiefVastgoed = isset($_POST['isExclusiefVastgoed']) ? 1 : 0;
-        $isBeleggingsvastgoed = isset($_POST['isBeleggingsvastgoed']) ? 1 : 0;
-
-        // Later in your SQL statement binding
-        $stmtPandDetails->bindParam(':isNieuw', $isNieuw, PDO::PARAM_INT);
-        $stmtPandDetails->bindParam(':isOpbrengsteigendom', $isOpbrengsteigendom, PDO::PARAM_INT);
-        $stmtPandDetails->bindParam(':isExclusiefVastgoed', $isExclusiefVastgoed, PDO::PARAM_INT);
-        $stmtPandDetails->bindParam(':isBeleggingsvastgoed', $isBeleggingsvastgoed, PDO::PARAM_INT);
-
-        // Execute the query for panddetails
-        $stmtPandDetails->execute();
-        $pandDetailID = $db->lastInsertId();
-
         // Insert into panden table
         $queryPanden = "INSERT INTO panden (
-        titel, tekst, status, type, subtype, aanvullingSubtype, bouwjaar, brutoVloeroppervlakte,
-        grondoppervlakte, aantalSlaapkamers, prijs, kadastraalInkomen, bezoekOp,
-        vrijOp, homepage, adresID, pandDetailID, wettelijkeInfoID
-        ) 
-        VALUES 
-        (
-        :titel, :tekst, :status, :type, :subtype, :aanvullingSubtype, :bouwjaar, :brutoVloeroppervlakte,
-        :grondoppervlakte, :aantalSlaapkamers, :prijs, :kadastraalInkomen, :bezoekOp,
-        :vrijOp, :homepage, :adresID, :pandDetailID, :wettelijkeInfoID
+            titel, tekst, status, type, subtype, aanvullingSubtype, bouwjaar, 
+            brutoVloeroppervlakte, grondoppervlakte, aantalSlaapkamers, prijs, 
+            kadastraalInkomen, bezoekOp, vrijOp, homepage, adresID, wettelijkeInfoID,
+            isNieuw, isVerkochtVerhuurd, isOpbrengsteigendom, isExclusiefVastgoed, isBeleggingsvastgoed
+        ) VALUES (
+            :titel, :tekst, :status, :type, :subtype, :aanvullingSubtype, :bouwjaar,
+            :brutoVloeroppervlakte, :grondoppervlakte, :aantalSlaapkamers, :prijs,
+            :kadastraalInkomen, :bezoekOp, :vrijOp, :homepage, :adresID, 
+            :wettelijkeInfoID, :isNieuw, :isVerkochtVerhuurd, :isOpbrengsteigendom, :isExclusiefVastgoed, 
+            :isBeleggingsvastgoed
         )";
+
         $stmtPanden = $db->prepare($queryPanden);
 
         // Bind parameters for panden
@@ -123,18 +98,20 @@ if (isset($_POST['submit'])) {
         $stmtPanden->bindParam(':prijs', $_POST['prijs']);
         $stmtPanden->bindParam(':kadastraalInkomen', $_POST['kadastraalInkomen']);
         $stmtPanden->bindParam(':bezoekOp', $_POST['bezoekOp']);
-
         if (!empty($_POST['vrijOp']) && $_POST['vrijOp'] != 'date') {
             $stmtPanden->bindParam(':vrijOp', $_POST['vrijOp']);
         } 
         else {
             $stmtPanden->bindParam(':vrijOp', $_POST['specificDate']);
         }
-
         $stmtPanden->bindParam(':homepage', $_POST['homepage']);
         $stmtPanden->bindParam(':adresID', $adresID, PDO::PARAM_INT);
-        $stmtPanden->bindParam(':pandDetailID', $pandDetailID, PDO::PARAM_INT);
         $stmtPanden->bindParam(':wettelijkeInfoID', $wettelijkeInfoID, PDO::PARAM_INT);
+        $stmtPanden->bindParam(':isNieuw', $isNieuw, PDO::PARAM_INT);
+        $stmtPanden->bindParam(':isVerkochtVerhuurd', $isVerkochtVerhuurd, PDO::PARAM_INT);
+        $stmtPanden->bindParam(':isOpbrengsteigendom', $isOpbrengsteigendom, PDO::PARAM_INT);
+        $stmtPanden->bindParam(':isExclusiefVastgoed', $isExclusiefVastgoed, PDO::PARAM_INT);
+        $stmtPanden->bindParam(':isBeleggingsvastgoed', $isBeleggingsvastgoed, PDO::PARAM_INT);
 
         $stmtPanden->execute();
         $pandID = $db->lastInsertId();
