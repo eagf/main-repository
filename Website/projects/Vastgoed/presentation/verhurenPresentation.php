@@ -33,13 +33,13 @@
                     <p class="italic-text">Wenst u een vrijblijvend onderhoud klik <a href="contact.php">hier</a> voor het contactformulier.</p>
                 </div>
                 <div class="content-image">
-                    <img src="assets/img/panden/image2.jpg" alt="">
+                    <img src="assets/img/verhuur1.png" alt="">
                 </div>
             </section>
 
             <section class="section-content">
                 <div class="content-image">
-                    <img src="assets/img/panden/image3.jpg" alt="">
+                    <img src="assets/img/verhuur2.png" alt="">
                 </div>
 
                 <div class="content-text">

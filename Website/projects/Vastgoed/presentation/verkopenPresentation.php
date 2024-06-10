@@ -34,7 +34,7 @@
 
             <section class="section-content">
                 <div class="content-image">
-                    <img src="assets/img/panden/image4.png" alt="">
+                    <img src="assets/img/verkoop1.png" alt="">
                 </div>
                 <div class="content-text">
                     <h2>
@@ -78,13 +78,13 @@
                     </p>
                 </div>
                 <div class="content-image">
-                    <img src="assets/img/panden/apartment2.png" alt="">
+                    <img src="assets/img/verkoop2.jpg" alt="">
                 </div>
             </section>
 
             <section class="section-content">
                 <div class="content-image">
-                    <img src="assets/img/panden/image2.jpg" alt="">
+                    <img src="assets/img/verkoop3.png" alt="">
                 </div>
                 <div class="content-text">
                     <p>
@@ -105,7 +105,7 @@
                     </p>
                 </div>
                 <div class="content-image">
-                    <img src="assets/img/panden/image2.jpg" alt="">
+                    <img src="assets/img/verkoop4.jpg" alt="">
                 </div>
             </section>
 

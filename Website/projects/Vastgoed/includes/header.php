@@ -2,6 +2,36 @@
 $currentFile = $_SERVER["PHP_SELF"];
 $partsFileName = explode('/', $currentFile);
 $currentPage = end($partsFileName);
+
+// Get the current page name
+$pageName = basename($_SERVER['PHP_SELF'], ".php");
+
+// Define the banner image based on the page name
+$bannerImage = "";
+$bannerClass = "";
+switch ($pageName) {
+    case "index":
+        $bannerImage = "bannerIndexAanbod.jpg";
+        $bannerClass = "top-aligned";
+        break;
+    case "aanbod":
+        $bannerImage = "bannerIndexAanbod.jpg";
+        $bannerClass = "top-aligned";
+        break;
+    case "verkopen":
+        $bannerImage = "bannerVerkoop.png";
+        break;
+    case "verhuren":
+        $bannerImage = "bannerVerhuur.png";
+        break;
+    case "contact":
+        $bannerImage = "bannerContact.jpg";
+        break;
+    default:
+        $bannerImage = "bannerDefault.jpg";
+        break;
+}
+
 ?>
 
 <script src="./scripts/header.js" defer></script>
@@ -14,7 +44,7 @@ $currentPage = end($partsFileName);
             </a>
         </div>
         <div id="banner-div">
-            <img src="./assets/img/banner3.jpg" alt="Libeer banner" id="banner">
+            <img src="./assets/img/<?php echo $bannerImage; ?>" alt="Libeer banner" id="banner" class="<?php echo $bannerClass; ?>">
         </div>
 
         <div id="hamburger-icon">

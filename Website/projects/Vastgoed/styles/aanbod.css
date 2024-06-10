@@ -107,6 +107,13 @@ input:checked+.slider:before {
     color: inherit;
 }
 
+.disabled-link {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: inherit;
+}
+
 /* ============= START images ============= */
 
 .card-carousel {

@@ -104,7 +104,7 @@
                 <div id="numbertext" class="swiper-pagination-text"></div>
             </div>
 
-            <!-- ============== verdere info =========== === -->
+            <!-- ============== verdere info ============== -->
 
             <div id="left-right-container">
 
@@ -123,10 +123,13 @@
                             ?>
                         </p>
                         <p><strong>Type:</strong> <?php echo htmlspecialchars($pandDetails['type']); ?></p>
-                        <?php if ($pandDetails['subtype'] != "Standaard") : ?>
+                        <?php if (!empty($pandDetails['subtype']) && $pandDetails['subtype'] != "Standaard" && $pandDetails['subtype'] != "Geen") : ?>
                             <p><strong>Subtype:</strong> <?php echo htmlspecialchars($pandDetails['subtype']); ?></p>
+                        <?php endif; ?>
+                        <?php if (!empty($pandDetails['aanvullingSubtype']) && $pandDetails['aanvullingSubtype'] != "Standaard" && $pandDetails['aanvullingSubtype'] != "Geen") : ?>
                             <p><strong>Aanvulling Subtype:</strong> <?php echo htmlspecialchars($pandDetails['aanvullingSubtype']); ?></p>
                         <?php endif; ?>
+
                     </div>
 
                     <div class="detail-container-img">
@@ -143,7 +146,8 @@
 
                 <div id="info1-container" class="detail-container">
                     <div class="detail-container-text">
-                        <p><strong>Prijs:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['prijs'], 0, ',', '.')); if ($pandDetails['status'] == "Te huur") {?> / maand<?php }; ?></p>
+                        <p><strong>Prijs:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['prijs'], 0, ',', '.'));
+                                                        if ($pandDetails['status'] == "Te huur") { ?> / maand<?php }; ?></p>
                         <p><strong>Bezoek op:</strong> <?php echo htmlspecialchars($pandDetails['bezoekOp']); ?></p>
                         <p><strong>Vrij Op:</strong> <?php echo htmlspecialchars($pandDetails['vrijOp']); ?></p>
                         <?php if (!empty($pandDetails['kadastraalInkomen'])) { ?>

@@ -60,10 +60,6 @@
     height: fit-content;
 }
 
-.swiper-slide {
-    width: 100%;
-}
-
 .swiper-slide::before {
     content: "";
     position: absolute;
@@ -82,12 +78,12 @@
 .carousel-card {
     display: flex;
     justify-content: center;
-    max-height: 400px;
+    height: 15em;
 }
 
 .carousel-card img {
     width: 100%;
-    height: 250px;
+    height: auto;
 }
 
 .swiper-slide, .carousel-card img {
@@ -99,12 +95,18 @@
         width: 70%;
         height: 200px;
     }
+    .carousel-card {
+        height: 200px;
+    }
 }
 
 @media (min-width: 1300px) {
     .carousel-card img {
-        width: 70%;
-        height: 300px;
+        width: 100%;
+        height: 400px;
+    }
+    .carousel-card {
+        height: 25em;
     }
 }
 

@@ -26,7 +26,7 @@
         </div>
         <div class="grid-container">
             <?php foreach ($pandenOverzicht as $pand) : ?>
-                <a href="detail.php?pandID=<?php echo htmlspecialchars((string)$pand['pandID']); ?>" class="card-link">
+                <a href="<?php echo $pand['isVerkochtVerhuurd'] == 1 ? '#' : 'detail.php?pandID=' . htmlspecialchars((string)$pand['pandID']); ?>" class="card-link <?php echo $pand['isVerkochtVerhuurd'] == 1 ? 'disabled-link' : ''; ?>">
                     <div class="card">
                         <?php if ($pand['isVerkochtVerhuurd'] == 1) : ?>
                             <?php
@@ -58,6 +58,7 @@
                 </a>
             <?php endforeach; ?>
         </div>
+
 
 
 
