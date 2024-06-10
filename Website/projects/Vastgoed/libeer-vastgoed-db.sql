@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 04 jun 2024 om 15:39
+-- Gegenereerd op: 10 jun 2024 om 11:54
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -91,7 +91,9 @@ INSERT INTO `adressen` (`adresID`, `land`, `postcode`, `gemeente`, `straat`, `nr
 (54, 'test', 'test', 'test', 'test', 'test', 'test', 0),
 (55, 'test', 'test', 'test', 'test', 'test', 'test', 0),
 (56, 'test', 'test', 'test', 'test', 'test', 'test', 0),
-(57, 'test', 'test', 'test', 'test', 'test', 'test', 0);
+(57, 'test', 'test', 'test', 'test', 'test', 'test', 0),
+(59, 'test', 'test', 'test', 'test', 'test', 'test', NULL),
+(60, 'test', 'test', 'test', 'test', 'test', 'test', NULL);
 
 -- --------------------------------------------------------
 
@@ -171,76 +173,8 @@ INSERT INTO `kamers` (`kamerID`, `pandID`, `kamerNaam`, `kamerOppervlakte`, `kam
 (8, 4, 'Eetkamer', 20.00, 'Ruime eetkamer, ideaal voor diners.'),
 (9, 4, 'Bureau', 12.00, 'Kantoorruimte met ingebouwde boekenkasten.'),
 (10, 5, 'Garage', 35.00, 'Grote garage met ruimte voor twee auto\'s.'),
-(74, 55, 'test', 0.00, 'test: kamer details');
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `panddetails`
---
-
-CREATE TABLE `panddetails` (
-  `pandDetailID` int(11) NOT NULL,
-  `isNieuw` tinyint(1) DEFAULT NULL,
-  `isOpbrengsteigendom` tinyint(1) DEFAULT NULL,
-  `isExclusiefVastgoed` tinyint(1) DEFAULT NULL,
-  `isBeleggingsvastgoed` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Gegevens worden geëxporteerd voor tabel `panddetails`
---
-
-INSERT INTO `panddetails` (`pandDetailID`, `isNieuw`, `isOpbrengsteigendom`, `isExclusiefVastgoed`, `isBeleggingsvastgoed`) VALUES
-(1, 1, 0, 0, 1),
-(2, 0, 1, 0, 0),
-(3, 0, 0, 1, 0),
-(4, 1, 0, 0, 0),
-(5, 0, 0, 0, 1),
-(6, 0, 0, 0, 0),
-(7, 0, 0, 0, 0),
-(8, 0, 0, 0, 0),
-(9, 0, 0, 0, 0),
-(10, 0, 0, 0, 0),
-(11, 0, 0, 0, 0),
-(12, 0, 0, 0, 0),
-(13, 0, 0, 0, 0),
-(14, 0, 0, 0, 0),
-(15, 0, 0, 0, 0),
-(16, 0, 0, 0, 0),
-(17, 0, 0, 0, 0),
-(18, 0, 0, 0, 0),
-(19, 0, 0, 0, 0),
-(21, 0, 0, 0, 0),
-(22, 0, 0, 0, 0),
-(23, 0, 0, 0, 0),
-(24, 0, 0, 0, 0),
-(25, 0, 0, 0, 0),
-(26, 0, 0, 0, 0),
-(27, 0, 0, 0, 0),
-(28, 0, 0, 0, 0),
-(29, 0, 0, 0, 0),
-(30, 0, 0, 0, 0),
-(31, 0, 0, 0, 0),
-(32, 0, 0, 0, 0),
-(33, 0, 0, 0, 0),
-(34, 0, 0, 0, 0),
-(35, 0, 0, 0, 0),
-(36, 0, 1, 0, 0),
-(37, 0, 0, 0, 0),
-(38, 0, 0, 0, 0),
-(39, 0, 0, 0, 0),
-(40, 0, 0, 0, 0),
-(41, 0, 0, 0, 0),
-(42, 0, 0, 0, 0),
-(43, 0, 0, 0, 0),
-(44, 0, 0, 0, 0),
-(46, 0, 0, 0, 0),
-(47, 0, 0, 0, 0),
-(48, 0, 0, 0, 0),
-(49, 0, 0, 0, 0),
-(50, 0, 0, 0, 0),
-(51, 0, 0, 0, 0);
+(74, 55, 'test', 0.00, 'test: kamer details'),
+(76, 57, 'test', 0.00, 'test: kamer details');
 
 -- --------------------------------------------------------
 
@@ -252,7 +186,6 @@ CREATE TABLE `panden` (
   `pandID` int(11) NOT NULL,
   `titel` varchar(255) DEFAULT NULL,
   `tekst` text DEFAULT NULL,
-  `pandDetailID` int(11) DEFAULT NULL,
   `status` enum('Te koop','Te huur') DEFAULT NULL,
   `adresID` int(11) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
@@ -267,20 +200,26 @@ CREATE TABLE `panden` (
   `bezoekOp` varchar(255) DEFAULT NULL,
   `vrijOp` varchar(255) DEFAULT NULL,
   `wettelijkeInfoID` int(11) DEFAULT NULL,
-  `homepage` tinyint(1) DEFAULT NULL
+  `homepage` tinyint(1) DEFAULT NULL,
+  `isNieuw` tinyint(1) DEFAULT NULL,
+  `isVerkochtVerhuurd` tinyint(1) DEFAULT NULL,
+  `isOpbrengsteigendom` tinyint(1) DEFAULT NULL,
+  `isExclusiefVastgoed` tinyint(1) DEFAULT NULL,
+  `isBeleggingsvastgoed` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `panden`
 --
 
-INSERT INTO `panden` (`pandID`, `titel`, `tekst`, `pandDetailID`, `status`, `adresID`, `type`, `subtype`, `aanvullingSubtype`, `bouwjaar`, `brutoVloeroppervlakte`, `grondoppervlakte`, `aantalSlaapkamers`, `prijs`, `kadastraalInkomen`, `bezoekOp`, `vrijOp`, `wettelijkeInfoID`, `homepage`) VALUES
-(1, 'Charmant appartement', 'Een gezellig appartement in het hart van de stad.', 1, 'Te koop', 1, 'Appartement', 'Standaard', 'Geen', '1990', 75.00, 0.00, 2, 250000.00, 500.00, '21%', '2024-06-01', 1, 1),
-(2, 'Moderne villa', 'Ruime en moderne villa met een grote tuin.', 2, 'Te koop', 2, 'Villa', 'Luxe', 'Extra informatie', '2005', 200.00, 1500.00, 4, 750000.00, 2000.00, '21%', '2024-07-01', 2, 1),
-(3, 'Gezellige bungalow', 'Een comfortabele bungalow in een rustige buurt.', 1, 'Te huur', 3, 'Bungalow', 'Standaard', 'Geen', '1985', 90.00, 500.00, 3, 1200.00, 300.00, '21%', '2024-08-01', 3, 1),
-(4, 'Stadsloft', 'Moderne loft in een levendige buurt.', 2, 'Te huur', 4, 'Loft', 'Standaard', 'Geen', '2015', 100.00, 0.00, 1, 1500.00, 400.00, '21%', '2024-09-01', 4, 1),
-(5, 'Landhuis', 'Prachtig landhuis omringd door natuur.', 1, 'Te koop', 5, 'Huis', 'Landhuis', 'Extra informatie', '1970', 250.00, 3000.00, 5, 850000.00, 2500.00, '21%', '2024-10-01', 5, 1),
-(55, 'test', 'test', 51, 'Te koop', 57, 'type', '', '', '1992', 87.00, 102.00, 3, 300000.00, 15000.00, 'bezoek op', 'Onmiddelijk', 52, NULL);
+INSERT INTO `panden` (`pandID`, `titel`, `tekst`, `status`, `adresID`, `type`, `subtype`, `aanvullingSubtype`, `bouwjaar`, `brutoVloeroppervlakte`, `grondoppervlakte`, `aantalSlaapkamers`, `prijs`, `kadastraalInkomen`, `bezoekOp`, `vrijOp`, `wettelijkeInfoID`, `homepage`, `isNieuw`, `isVerkochtVerhuurd`, `isOpbrengsteigendom`, `isExclusiefVastgoed`, `isBeleggingsvastgoed`) VALUES
+(1, 'Charmant appartement', 'Een gezellig appartement in het hart van de stad.', 'Te koop', 1, 'Appartement', 'Standaard', 'Geen', '1990', 75.00, 0.00, 2, 250000.00, 500.00, '21%', '2024-06-01', 1, 1, NULL, NULL, NULL, NULL, NULL),
+(2, 'Moderne villa', 'Ruime en moderne villa met een grote tuin.', 'Te koop', 2, 'Villa', 'Luxe', 'Extra informatie', '2005', 200.00, 1500.00, 4, 750000.00, 2000.00, '21%', '2024-07-01', 2, 1, NULL, NULL, NULL, NULL, NULL),
+(3, 'Gezellige bungalow', 'Een comfortabele bungalow in een rustige buurt.', 'Te huur', 3, 'Bungalow', 'Standaard', 'Geen', '1985', 90.00, 500.00, 3, 1200.00, 300.00, '21%', '2024-08-01', 3, 1, NULL, NULL, NULL, NULL, NULL),
+(4, 'Stadsloft', 'Moderne loft in een levendige buurt.', 'Te huur', 4, 'Loft', 'Standaard', 'Geen', '2015', 100.00, 0.00, 1, 1500.00, 400.00, '21%', '2024-09-01', 4, 1, NULL, NULL, NULL, NULL, NULL),
+(5, 'Landhuis', 'Prachtig landhuis omringd door natuur.', 'Te koop', 5, 'Huis', 'Landhuis', 'Extra informatie', '1970', 250.00, 3000.00, 5, 850000.00, 2500.00, '21%', '2024-10-01', 5, 1, NULL, NULL, NULL, NULL, NULL),
+(55, 'test', 'test', 'Te koop', 57, 'type', '', '', '1992', 87.00, 102.00, 3, 300000.00, 15000.00, 'bezoek op', 'Onmiddelijk', 52, NULL, NULL, NULL, NULL, NULL, NULL),
+(57, 'test', 'test', 'Te koop', 60, 'type', '', '', '1992', 87.00, 102.00, 3, 300000.00, 15000.00, 'bezoek op', 'Onmiddellijk', 55, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -365,7 +304,9 @@ INSERT INTO `wettelijkeinformatie` (`wettelijkeInfoID`, `epcIndex`, `energieLabe
 (49, 120.00, 'A', NULL, '', NULL, '', NULL, '', 'test', NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, '', 1),
 (50, 120.00, 'A', NULL, '', NULL, '', NULL, '', 'test', NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, '', NULL),
 (51, 120.00, 'A', 'Vergund', '', NULL, '', NULL, '', 'test', NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, '', NULL),
-(52, 120.00, 'A', 'Niet vergund', '', NULL, '', NULL, '', 'test', NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, '', NULL);
+(52, 120.00, 'A', 'Niet vergund', '', NULL, '', NULL, '', 'test', NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, '', NULL),
+(54, 120.00, 'A', 'Vergund', '', 0, '', 0, '', 'test', 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, '', NULL),
+(55, 120.00, 'A', 'Vergund', '', 0, '', 0, '', 'test', 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, '', NULL);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -392,17 +333,10 @@ ALTER TABLE `kamers`
   ADD KEY `pandID` (`pandID`);
 
 --
--- Indexen voor tabel `panddetails`
---
-ALTER TABLE `panddetails`
-  ADD PRIMARY KEY (`pandDetailID`);
-
---
 -- Indexen voor tabel `panden`
 --
 ALTER TABLE `panden`
   ADD PRIMARY KEY (`pandID`),
-  ADD KEY `pandDetailID` (`pandDetailID`),
   ADD KEY `adresID` (`adresID`),
   ADD KEY `wettelijkeInfoID` (`wettelijkeInfoID`);
 
@@ -420,7 +354,7 @@ ALTER TABLE `wettelijkeinformatie`
 -- AUTO_INCREMENT voor een tabel `adressen`
 --
 ALTER TABLE `adressen`
-  MODIFY `adresID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `adresID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT voor een tabel `afbeeldingen`
@@ -432,25 +366,19 @@ ALTER TABLE `afbeeldingen`
 -- AUTO_INCREMENT voor een tabel `kamers`
 --
 ALTER TABLE `kamers`
-  MODIFY `kamerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
-
---
--- AUTO_INCREMENT voor een tabel `panddetails`
---
-ALTER TABLE `panddetails`
-  MODIFY `pandDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `kamerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT voor een tabel `panden`
 --
 ALTER TABLE `panden`
-  MODIFY `pandID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `pandID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT voor een tabel `wettelijkeinformatie`
 --
 ALTER TABLE `wettelijkeinformatie`
-  MODIFY `wettelijkeInfoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `wettelijkeInfoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
@@ -472,7 +400,6 @@ ALTER TABLE `kamers`
 -- Beperkingen voor tabel `panden`
 --
 ALTER TABLE `panden`
-  ADD CONSTRAINT `panden_ibfk_1` FOREIGN KEY (`pandDetailID`) REFERENCES `panddetails` (`pandDetailID`),
   ADD CONSTRAINT `panden_ibfk_2` FOREIGN KEY (`adresID`) REFERENCES `adressen` (`adresID`),
   ADD CONSTRAINT `panden_ibfk_3` FOREIGN KEY (`wettelijkeInfoID`) REFERENCES `wettelijkeinformatie` (`wettelijkeInfoID`);
 COMMIT;
