@@ -143,11 +143,11 @@
 
                 <div id="info1-container" class="detail-container">
                     <div class="detail-container-text">
-                        <p><strong>Prijs:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['prijs'], 2, ',', '.')); ?></p>
+                        <p><strong>Prijs:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['prijs'], 0, ',', '.')); if ($pandDetails['status'] == "Te huur") {?> / maand<?php }; ?></p>
                         <p><strong>Bezoek op:</strong> <?php echo htmlspecialchars($pandDetails['bezoekOp']); ?></p>
                         <p><strong>Vrij Op:</strong> <?php echo htmlspecialchars($pandDetails['vrijOp']); ?></p>
                         <?php if (!empty($pandDetails['kadastraalInkomen'])) { ?>
-                            <p><strong>Kadastraal Inkomen:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['kadastraalInkomen'], 2, ',', '.')); ?></p>
+                            <p><strong>Kadastraal Inkomen:</strong> € <?php echo htmlspecialchars(number_format((float)$pandDetails['kadastraalInkomen'], 0, ',', '.')); ?></p>
                         <?php } ?>
                     </div>
                     <div class="detail-container-img">

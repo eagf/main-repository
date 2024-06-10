@@ -56,17 +56,18 @@
                     <div><label for="titel">Titel:</label><input type="text" id="titel" name="titel" value="<?php echo htmlspecialchars($pandDetails['titel'] ?? ''); ?>" required></div>
                     <div><label for="tekst">Tekst:</label><textarea id="tekst" name="tekst" required><?php echo htmlspecialchars($pandDetails['tekst'] ?? ''); ?></textarea></div>
                     <div class="checkbox-container">
-                        <input type="checkbox" id="homepage" name="homepage" value="1" <?php echo ($pandDetails['homepage'] ?? 0) ? 'checked' : ''; ?>>
+                        <input type="checkbox" id="homepage" name="homepage" value="1" <?php echo ($pandDetails['homepage'] == 1) ? 'checked' : ''; ?>>
                         <label for="homepage" class="checkbox-label">Op homepage</label>
                     </div>
                     <div class="checkbox-container">
-                        <input type="checkbox" id="isNieuw" name="isNieuw" value="1" <?php echo ($pandDetails['isNieuw'] ?? 0) ? 'checked' : ''; ?>>
+                        <input type="checkbox" id="isNieuw" name="isNieuw" value="1" <?php echo ($pandDetails['isNieuw'] == 1) ? 'checked' : ''; ?>>
                         <label for="isNieuw" class="checkbox-label">Is Nieuw</label>
                     </div>
                     <div class="checkbox-container">
-                        <input type="checkbox" id="isVerkochtVerhuurd" name="isVerkochtVerhuurd" value="1" <?php echo ($pandDetails['isVerkochtVerhuurd'] ?? 0) ? 'checked' : ''; ?>>
+                        <input type="checkbox" id="isVerkochtVerhuurd" name="isVerkochtVerhuurd" value="1" <?php echo ($pandDetails['isVerkochtVerhuurd'] == 1) ? 'checked' : ''; ?>>
                         <label for="isVerkochtVerhuurd" class="checkbox-label">Verkocht / verhuurd</label>
                     </div>
+
                     <div>
                         <label for="status">Status</label>
                         <select id="status" name="status" required>
@@ -90,10 +91,10 @@
                         <select id="vrijOp" name="vrijOp" required onchange="toggleDateInput()">
                             <option value="Onmiddellijk" <?php echo ($pandDetails['vrijOp'] == "Onmiddellijk" ? 'selected' : ''); ?>>Onmiddellijk</option>
                             <option value="Bij akte" <?php echo ($pandDetails['vrijOp'] == "Bij akte" ? 'selected' : ''); ?>>Bij akte</option>
-                            <option value="Na opzeg huurcontract">Na opzeg huurcontract</option>
-                            <option value="date" <?php echo ($pandDetails['vrijOp']) ? 'selected' : ''; ?>>Datum</option>
+                            <option value="Na opzeg huurcontract" <?php echo ($pandDetails['vrijOp'] == "Na opzeg huurcontract" ? 'selected' : ''); ?>>Na opzeg huurcontract</option>
+                            <option value="date" <?php echo (!in_array($pandDetails['vrijOp'], ["Onmiddellijk", "Bij akte", "Na opzeg huurcontract"]) ? 'selected' : ''); ?>>Datum</option>
                         </select>
-                        <input type="date" id="vrijOpDate" name="vrijOpDate" value="<?php echo ($pandDetails['vrijOp']) ? htmlspecialchars($pandDetails['vrijOp']) : ''; ?>" style="display: <?php echo ($pandDetails['vrijOp']) ? 'block' : 'none'; ?>;">
+                        <input type="date" id="vrijOpDate" name="vrijOpDate" value="<?php echo ($pandDetails['vrijOp']) ? htmlspecialchars($pandDetails['vrijOp']) : ''; ?>">
                     </div>
 
                     <!-- Adressen fields -->

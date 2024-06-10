@@ -151,11 +151,11 @@ if (isset($_POST['submit'])) {
             }
             $stmtUpdatePanden->bindParam(':homepage', $_POST['homepage']);
             $stmtUpdatePanden->bindParam(':pandID', $_POST['pandID'], PDO::PARAM_INT);
-            $stmtUpdatePanden->bindParam(':isNieuw', $isNieuw, PDO::PARAM_INT);
-            $stmtUpdatePanden->bindParam(':isVerkochtVerhuurd', $isVerkochtVerhuurd, PDO::PARAM_INT);
-            $stmtUpdatePanden->bindParam(':isOpbrengsteigendom', $isOpbrengsteigendom, PDO::PARAM_INT);
-            $stmtUpdatePanden->bindParam(':isExclusiefVastgoed', $isExclusiefVastgoed, PDO::PARAM_INT);
-            $stmtUpdatePanden->bindParam(':isBeleggingsvastgoed', $isBeleggingsvastgoed, PDO::PARAM_INT);
+            $stmtUpdatePanden->bindParam(':isNieuw', $_POST['isNieuw']);
+            $stmtUpdatePanden->bindParam(':isVerkochtVerhuurd', $_POST['isVerkochtVerhuurd']);
+            $stmtUpdatePanden->bindParam(':isOpbrengsteigendom', $_POST['isOpbrengsteigendom']);
+            $stmtUpdatePanden->bindParam(':isExclusiefVastgoed', $_POST['isExclusiefVastgoed']);
+            $stmtUpdatePanden->bindParam(':isBeleggingsvastgoed', $_POST['isBeleggingsvastgoed']);
 
             $stmtUpdatePanden->execute();
 
@@ -170,10 +170,10 @@ if (isset($_POST['submit'])) {
 
                 foreach ($kamerIDs as $index => $kamerID) {
                     $queryUpdateKamer = "UPDATE kamers SET
-            kamerNaam = :kamerNaam,
-            kamerOppervlakte = :kamerOppervlakte,
-            kamerDetail = :kamerDetail
-        WHERE kamerID = :kamerID";
+                    kamerNaam = :kamerNaam,
+                    kamerOppervlakte = :kamerOppervlakte,
+                    kamerDetail = :kamerDetail
+                    WHERE kamerID = :kamerID";
                     $stmtUpdateKamer = $db->prepare($queryUpdateKamer);
 
                     $stmtUpdateKamer->bindParam(':kamerNaam', $kamerNamen[$index]);
