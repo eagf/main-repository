@@ -28,7 +28,7 @@ switch ($pageName) {
         $bannerImage = "bannerContact.jpg";
         break;
     default:
-        $bannerImage = "bannerDefault.jpg";
+        $bannerImage = "bannerDefault.png";
         break;
 }
 
