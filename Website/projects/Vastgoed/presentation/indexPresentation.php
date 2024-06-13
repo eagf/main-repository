@@ -18,6 +18,8 @@
 
         <?php include("includes/header.php"); ?>
 
+         <!-- ============= Title ============= -->
+
         <div class="title-container">
             <h1 class="main-title">Libeer Vastgoed</h1>
         </div>
@@ -41,6 +43,7 @@
         <div id="content-container">
 
             <!-- ============= Main Quote ============= -->
+
             <div class="quote-main">
                 "Wat is een perfect huis? De plaats waar je nooit genoeg kastruimte hebt, maar toch altijd iets kwijt bent."
             </div>
@@ -56,14 +59,24 @@
                 </p>
                 <p>
                     Of u nu uw eerste huis koopt, investeert in vastgoed of uw droomwoning zoekt, wij zetten ons in om uw verwachtingen te overtreffen en u een naadloze en bevredigende ervaring te bieden. Bij Libeer Vastgoed is uw vastgoed onze prioriteit, vandaag en elke dag.
+                </p>
+            </div>
 
-                </p>
-                </p>
-                </p>
+            <!-- ============= Realtor Information ============= -->
+
+            <div class="realtor-container">
+                <img src="./assets/img/MichaelLibeer.png" alt="Michaël Libeer" class="realtor-photo">
+                <div class="realtor-info">
+                    <h2>Michaël Libeer</h2>
+                    <p>BIV 514</p>
+                    <p>Erkend vastgoedmakelaar-bemiddelaar</p>
+                </div>
             </div>
 
             <!-- ============= Client Quotes Section ============= -->
 
+            <h2 class="client-quotes-title">Uw referenties</h2>
+            
             <div class="content-section left">
                 <div class="client-quote">
                     <p>"Wat een verademing om een immobiliënkantoor te vinden dat niet alleen kennis heeft van de markt, maar ook echt luistert naar wat de klant wil. Ze zijn meesters in het vinden van het perfecte pand binnen elk budget, zonder concessies te doen aan kwaliteit of service."</p>

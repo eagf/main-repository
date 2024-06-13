@@ -6,9 +6,20 @@ footer {
     color: #333;
     text-align: center;
     padding: 10px 0;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 footer p {
     margin: 5px 0;
     font-size: small;
+}
+
+.footer-email {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-email:hover {
+    color: var(--secundary-color);
 }
