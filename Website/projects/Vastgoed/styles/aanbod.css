@@ -119,6 +119,7 @@ input:checked+.slider:before {
 .card-carousel {
     width: 100%;
     height: auto;
+    
     position: relative;
     margin: auto;
     overflow: hidden;

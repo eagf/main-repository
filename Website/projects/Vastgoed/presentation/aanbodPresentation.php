@@ -39,9 +39,11 @@
                         <div class="card-carousel">
                             <div class="card-image-container">
                                 <?php
-                                $afbeeldingen = explode(',', $pand['afbeeldingen']);
-                                foreach ($afbeeldingen as $afbeelding) {
-                                    echo '<div class="card-image" style="background-image: url(' . htmlspecialchars($afbeelding) . ');"></div>';
+                                if (!is_null($pand['afbeeldingen'])) {
+                                    $afbeeldingen = explode(',', $pand['afbeeldingen']);
+                                    foreach ($afbeeldingen as $afbeelding) {
+                                        echo '<div class="card-image" style="background-image: url(' . htmlspecialchars($afbeelding) . ');"></div>';
+                                    }
                                 }
                                 ?>
                             </div>
