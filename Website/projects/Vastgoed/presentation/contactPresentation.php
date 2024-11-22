@@ -16,7 +16,7 @@
 
         <div class="contact-container">
             <h1 class="contact-title">Contactformulier</h1>
-            <form class="contact-form" action="submit_contact_form.php" method="post">
+            <form class="contact-form" action="submitContactForm.php" method="post">
                 <div class="form-field">
                     <label for="naam">Naam</label>
                     <input type="text" id="naam" name="naam" required>
