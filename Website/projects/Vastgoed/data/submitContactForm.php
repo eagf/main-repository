@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Set the email recipient and subject
-    $to = "eliasferket@gmail.com"; // Replace with your actual email
+    // Email settings
+    $to = "eliasferket@gmail.com"; // Replace with the recipient's email address
     $subject = "Nieuw contactformulierbericht: $onderwerp";
 
-    // Format the email content
+    // Email content
     $emailContent = "
         <html>
         <head>
@@ -38,17 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </html>
     ";
 
-    // Set the email headers
+    // Email headers
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= "From: $email" . "\r\n";
+    $headers .= "From: no-reply@libeervastgoed.be" . "\r\n";
 
-    // Attempt to send the email
+    // Send the email using PHP's mail function
     if (mail($to, $subject, $emailContent, $headers)) {
-        // Redirect to a thank-you page or display a success message
         echo "<p>Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.</p>";
     } else {
-        // Display an error message if the email could not be sent
         echo "<p>Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw.</p>";
     }
 } else {
