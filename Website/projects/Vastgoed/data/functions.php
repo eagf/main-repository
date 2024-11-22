@@ -3,71 +3,68 @@
 function deletePand($pandID)
 {
     try {
-        // CONTROL STILL IN CODE!!!!!!!!!!!!!!!!
-        if ($pandID > 5) {
+        $database = new Database();
+        $db = $database->getConnection();
 
-            $database = new Database();
-            $db = $database->getConnection();
+        $db->beginTransaction();
 
-            $db->beginTransaction();
+        // Step -1: Fetch all image URLs + delete images (related to pand)
+        $queryFetchUrls = "SELECT afbeeldingURL FROM afbeeldingen WHERE pandID = :pandID";
+        $stmtFetchUrls = $db->prepare($queryFetchUrls);
+        $stmtFetchUrls->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtFetchUrls->execute();
+        $imageUrls = $stmtFetchUrls->fetchAll(PDO::FETCH_COLUMN);
 
-            // Step -1: Fetch all image URLs + delete images (related to pand)
-            $queryFetchUrls = "SELECT afbeeldingURL FROM afbeeldingen WHERE pandID = :pandID";
-            $stmtFetchUrls = $db->prepare($queryFetchUrls);
-            $stmtFetchUrls->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-            $stmtFetchUrls->execute();
-            $imageUrls = $stmtFetchUrls->fetchAll(PDO::FETCH_COLUMN);
+        // Determine base directory based environment
+        $isLocal = $_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1';
+        $basePath = $isLocal
+            ? 'c:/xampp/htdocs/main-repository/Website/projects/vastgoed/assets/img/panden/'
+            : '/data/sites/web/eliasferketcom/www/projects/vastgoed/assets/img/panden/';
 
-            // Determine base directory based environment
-            $isLocal = $_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1';
-            $basePath = $isLocal
-                ? 'c:/xampp/htdocs/main-repository/Website/projects/vastgoed/assets/img/panden/'
-                : '/data/sites/web/eliasferketcom/www/projects/vastgoed/assets/img/panden/';
-
-            foreach ($imageUrls as $imageUrl) {
-                $filePath = $basePath . basename($imageUrl);
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                } else {
-                    echo "No images found in the path: " . $filePath . "<br>";
-                    echo "The directory of this server is: " . __DIR__;
-                }
+        foreach ($imageUrls as $imageUrl) {
+            $filePath = $basePath . basename($imageUrl);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            } else {
+                echo "No images found in the path: " . $filePath . "<br>";
+                echo "The directory of this server is: " . __DIR__;
             }
-
-            // Step 0: Delete from afbeeldingen table (related to pand)
-            $queryDeleteAfbeeldingen = "DELETE FROM afbeeldingen WHERE pandID = :pandID";
-            $stmtDeleteAfbeeldingen = $db->prepare($queryDeleteAfbeeldingen);
-            $stmtDeleteAfbeeldingen->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-            $stmtDeleteAfbeeldingen->execute();
-
-            // Step 1: Delete from kamers table (related to pand)
-            $queryDeleteKamers = "DELETE FROM kamers WHERE pandID = :pandID";
-            $stmtDeleteKamers = $db->prepare($queryDeleteKamers);
-            $stmtDeleteKamers->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-            $stmtDeleteKamers->execute();
-
-            // Step 2: Delete from panden table
-            $queryDeletePanden = "DELETE FROM panden WHERE pandID = :pandID";
-            $stmtDeletePanden = $db->prepare($queryDeletePanden);
-            $stmtDeletePanden->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-            $stmtDeletePanden->execute();
-
-            // Step 3: Delete from wettelijkeinformatie table (related to pand)
-            $queryDeleteWettelijkeInfo = "DELETE FROM wettelijkeinformatie WHERE wettelijkeInfoID = 
-                (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
-            $stmtDeleteWettelijkeInfo = $db->prepare($queryDeleteWettelijkeInfo);
-            $stmtDeleteWettelijkeInfo->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-            $stmtDeleteWettelijkeInfo->execute();
-
-            // Step 4: Delete from adressen table (related to pand)
-            $queryDeleteAdressen = "DELETE FROM adressen WHERE adresID = 
-                (SELECT adresID FROM panden WHERE pandID = :pandID)";
-            $stmtDeleteAdressen = $db->prepare($queryDeleteAdressen);
-            $stmtDeleteAdressen->bindParam(':pandID', $pandID, PDO::PARAM_INT);
-            $stmtDeleteAdressen->execute();
-
-            $db->commit();
         }
+
+        // Step 0: Delete from afbeeldingen table (related to pand)
+        $queryDeleteAfbeeldingen = "DELETE FROM afbeeldingen WHERE pandID = :pandID";
+        $stmtDeleteAfbeeldingen = $db->prepare($queryDeleteAfbeeldingen);
+        $stmtDeleteAfbeeldingen->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeleteAfbeeldingen->execute();
+
+        // Step 1: Delete from kamers table (related to pand)
+        $queryDeleteKamers = "DELETE FROM kamers WHERE pandID = :pandID";
+        $stmtDeleteKamers = $db->prepare($queryDeleteKamers);
+        $stmtDeleteKamers->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeleteKamers->execute();
+
+        // Step 2: Delete from panden table
+        $queryDeletePanden = "DELETE FROM panden WHERE pandID = :pandID";
+        $stmtDeletePanden = $db->prepare($queryDeletePanden);
+        $stmtDeletePanden->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeletePanden->execute();
+
+        // Step 3: Delete from wettelijkeinformatie table (related to pand)
+        $queryDeleteWettelijkeInfo = "DELETE FROM wettelijkeinformatie WHERE wettelijkeInfoID = 
+            (SELECT wettelijkeInfoID FROM panden WHERE pandID = :pandID)";
+        $stmtDeleteWettelijkeInfo = $db->prepare($queryDeleteWettelijkeInfo);
+        $stmtDeleteWettelijkeInfo->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeleteWettelijkeInfo->execute();
+
+        // Step 4: Delete from adressen table (related to pand)
+        $queryDeleteAdressen = "DELETE FROM adressen WHERE adresID = 
+            (SELECT adresID FROM panden WHERE pandID = :pandID)";
+        $stmtDeleteAdressen = $db->prepare($queryDeleteAdressen);
+        $stmtDeleteAdressen->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+        $stmtDeleteAdressen->execute();
+
+        $db->commit();
+        
     } catch (PDOException $exception) {
         $db->rollBack();
         exit("Error: " . $exception->getMessage());
