@@ -1,3 +1,4 @@
+<!-- contactPresentation.php -->
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -16,7 +17,30 @@
 
         <div class="contact-container">
             <h1 class="contact-title">Contactformulier</h1>
-            <form class="contact-form" action="submitContactForm.php" method="post">
+
+            <?php
+            if ($status === 'success') {
+                echo '<div class="alert success">Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.</div>';
+            } elseif ($status === 'error') {
+                $errorText = '';
+                switch ($message) {
+                    case 'invalid_email':
+                        $errorText = 'Ongeldig e-mailadres. Probeer het opnieuw.';
+                        break;
+                    case 'email_failure':
+                        $errorText = 'Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw.';
+                        break;
+                    case 'invalid_access':
+                        $errorText = 'Ongeldige toegang. Gebruik het contactformulier.';
+                        break;
+                    default:
+                        $errorText = 'Er is een fout opgetreden. Probeer het later opnieuw.';
+                }
+                echo '<div class="alert error">' . $errorText . '</div>';
+            }
+        ?>
+
+            <form class="contact-form" action="./data/submitContactForm.php" method="post">
                 <div class="form-field">
                     <label for="naam">Naam</label>
                     <input type="text" id="naam" name="naam" required>
@@ -38,10 +62,10 @@
                     <textarea id="message" name="message" rows="4" required></textarea>
                 </div>
                 <div class="form-submit-container">
-                    <div class="form-submit" onmouseover="changeImage()" onmouseout="resetImage()">
+                    <button class="form-submit" onmouseover="changeImage()" onmouseout="resetImage()" type="submit">
                         <p class="submit-text">Verstuur</p>
                         <img src="./assets/img/Bereklauw-orange.png" alt="Verstuur" class="submit-button" id="submitImage">
-                    </div>
+                    </button>
 
                     <script>
                         function changeImage() {

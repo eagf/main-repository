@@ -1,5 +1,5 @@
 <?php
-require_once 'DBConfig.php';
+//submitContactForm.php
 
 // Check if the form was submitted via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -12,12 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validate the email address
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<p>Ongeldig e-mailadres. Probeer opnieuw.</p>";
+        // Redirect back with an error
+        header('Location: ../presentation/contactPresentation.php?status=error&message=invalid_email');
         exit;
     }
 
     // Email settings
-    $to = "eliasferket@gmail.com"; // Replace with the recipient's email address
+    $to = "info@michaellibeer.be";
     $subject = "Nieuw contactformulierbericht: $onderwerp";
 
     // Email content
@@ -41,15 +42,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Email headers
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= "From: no-reply@libeervastgoed.be" . "\r\n";
+    $headers .= "From: $email" . "\r\n";
 
-    // Send the email using PHP's mail function
-    if (mail($to, $subject, $emailContent, $headers)) {
-        echo "<p>Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.</p>";
+    // Send the email
+    $mailToAdmin = mail($to, $subject, $emailContent, $headers);
+
+    if ($mailToAdmin) {
+        // Redirect back with success
+        header('Location: ../contact.php?status=success');
     } else {
-        echo "<p>Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw.</p>";
+        // Redirect back with error
+        header('Location: ../contact.php?status=error&message=email_failure');
     }
 } else {
-    // Redirect or display an error if the form is accessed directly
-    echo "<p>Ongeldige toegang. Gebruik het contactformulier.</p>";
+    // Redirect back with error if accessed directly
+    header('Location: ../contact.php?status=error&message=invalid_access');
 }
+
+exit;
