@@ -134,7 +134,7 @@ function getPandDetails($pandID)
               FROM panden p
               LEFT JOIN adressen a ON p.adresID = a.adresID
               LEFT JOIN wettelijkeinformatie wi ON p.wettelijkeInfoID = wi.wettelijkeInfoID
-              LEFT JOIN afbeeldingen af ON p.pandID = af.pandID
+              LEFT JOIN afbeeldingen af ON p.pandID = af.pandID AND af.klein = 0
               WHERE p.pandID = ?
               GROUP BY p.pandID";
 
@@ -175,7 +175,7 @@ function getPandenOverzicht($statusFilter)
             GROUP_CONCAT(af.afbeeldingURL) as afbeeldingen
             FROM panden p
             LEFT JOIN adressen a ON p.adresID = a.adresID
-            LEFT JOIN afbeeldingen af ON p.pandID = af.pandID";
+            LEFT JOIN afbeeldingen af ON p.pandID = af.pandID AND af.klein = 1";
 
     if ($statusFilter !== 'all') {
         $query .= " WHERE p.status = :statusFilter";
@@ -200,13 +200,14 @@ function getPandenOverzicht($statusFilter)
     }
 }
 
+
 function getImagesByPandID($pandID)
 {
     try {
         $database = new Database();
         $db = $database->getConnection();
 
-        $stmt = $db->prepare("SELECT * FROM afbeeldingen WHERE pandID = :pandID");
+        $stmt = $db->prepare("SELECT * FROM afbeeldingen WHERE pandID = :pandID AND klein = 0");
 
         $stmt->bindParam(':pandID', $pandID, PDO::PARAM_INT);
 
@@ -229,7 +230,7 @@ function getPandenByHomepage()
     $query = "SELECT p.pandID, af.afbeeldingURL 
               FROM afbeeldingen af 
               INNER JOIN panden p ON af.pandID = p.pandID 
-              WHERE p.homepage = 1 
+              WHERE p.homepage = 1 AND af.klein = 1
               GROUP BY p.pandID";
 
     try {
@@ -240,4 +241,61 @@ function getPandenByHomepage()
     } catch (PDOException $e) {
         exit("Error: " . $e->getMessage());
     }
+}
+
+function resizeImage($sourcePath, $destinationPath, $newWidth)
+{
+    // Get original image dimensions and type
+    $imageInfo = getimagesize($sourcePath);
+    $originalWidth = $imageInfo[0];
+    $originalHeight = $imageInfo[1];
+    $mimeType = $imageInfo['mime'];
+
+    // Calculate new dimensions while maintaining aspect ratio
+    $aspectRatio = $originalHeight / $originalWidth;
+    $newHeight = (int)($newWidth * $aspectRatio);
+
+    // Create a blank image with new dimensions
+    $resizedImage = imagecreatetruecolor($newWidth, $newHeight);
+
+    // Create the original image based on its type
+    switch ($mimeType) {
+        case 'image/jpeg':
+            $originalImage = imagecreatefromjpeg($sourcePath);
+            break;
+        case 'image/png':
+            $originalImage = imagecreatefrompng($sourcePath);
+            break;
+        case 'image/webp':
+            $originalImage = imagecreatefromwebp($sourcePath);
+            break;
+        default:
+            throw new Exception("Unsupported image type: " . $mimeType);
+    }
+
+    // Resize the original image
+    imagecopyresampled(
+        $resizedImage,
+        $originalImage,
+        0, 0, 0, 0,
+        $newWidth, $newHeight,
+        $originalWidth, $originalHeight
+    );
+
+    // Save the resized image
+    switch ($mimeType) {
+        case 'image/jpeg':
+            imagejpeg($resizedImage, $destinationPath, 90); // 90% quality
+            break;
+        case 'image/png':
+            imagepng($resizedImage, $destinationPath, 8); // Compression level 8
+            break;
+        case 'image/webp':
+            imagewebp($resizedImage, $destinationPath, 90); // 90% quality
+            break;
+    }
+
+    // Free up memory
+    imagedestroy($originalImage);
+    imagedestroy($resizedImage);
 }
