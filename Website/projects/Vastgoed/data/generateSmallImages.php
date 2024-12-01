@@ -1,5 +1,7 @@
 <?php
 require_once('DBConfig.php');
+ini_set('memory_limit', '256M');
+ini_set('max_execution_time', '400'); // 300 seconds
 
 /**
  * Resize an image to a specific width while maintaining aspect ratio.
@@ -46,9 +48,14 @@ function resizeImage($sourcePath, $destinationPath, $newWidth)
     imagecopyresampled(
         $resizedImage,
         $originalImage,
-        0, 0, 0, 0,
-        $newWidth, $newHeight,
-        $originalWidth, $originalHeight
+        0,
+        0,
+        0,
+        0,
+        $newWidth,
+        $newHeight,
+        $originalWidth,
+        $originalHeight
     );
 
     // Save the resized image
@@ -87,6 +94,7 @@ try {
         $afbeeldingID = $afbeelding['afbeeldingID'];
         $pandID = $afbeelding['pandID'];
         $originalPath = __DIR__ . '/../' . ltrim($afbeelding['afbeeldingURL'], './'); // Resolve original file path
+
         $fileInfo = pathinfo($afbeelding['afbeeldingURL']); // Get file name and extension
         $smallFileName = $fileInfo['filename'] . '_small.' . $fileInfo['extension']; // Add _small to the file name
         $smallFilePath = __DIR__ . '/../assets/img/panden/' . $smallFileName; // Path for the new small image
@@ -94,7 +102,15 @@ try {
 
         // Resize the image to 400px width
         try {
-            resizeImage($originalPath, $smallFilePath, 400);
+
+            //==================================
+            try {
+                resizeImage($originalPath, $smallFilePath, 400);
+                error_log("Small image created for afbeeldingID: $afbeeldingID" . "\n");
+            } catch (Exception $e) {
+                error_log("Error creating small image for afbeeldingID $afbeeldingID: " . $e->getMessage());
+            }
+            //==================================
 
             // Insert new small image into the database
             $insertQuery = "INSERT INTO afbeeldingen (pandID, afbeeldingURL, klein) 

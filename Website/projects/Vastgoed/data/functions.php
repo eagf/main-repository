@@ -1,4 +1,6 @@
 <?php
+ini_set('memory_limit', '256M');
+ini_set('max_execution_time', '400'); // 300 seconds
 
 function deletePand($pandID)
 {
@@ -15,11 +17,8 @@ function deletePand($pandID)
         $stmtFetchUrls->execute();
         $imageUrls = $stmtFetchUrls->fetchAll(PDO::FETCH_COLUMN);
 
-        // Determine base directory based environment
-        $isLocal = $_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1';
-        $basePath = $isLocal
-            ? 'c:/xampp/htdocs/main-repository/Website/projects/vastgoed/assets/img/panden/'
-            : '/data/sites/web/eliasferketcom/www/projects/vastgoed/assets/img/panden/';
+        // Determine the base directory dynamically
+        $basePath = realpath(__DIR__ . '/../assets/img/panden/') . '/';
 
         foreach ($imageUrls as $imageUrl) {
             $filePath = $basePath . basename($imageUrl);

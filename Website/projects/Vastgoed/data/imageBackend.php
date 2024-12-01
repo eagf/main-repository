@@ -1,4 +1,6 @@
 <?php
+ini_set('memory_limit', '256M');
+ini_set('max_execution_time', '400'); // 300 seconds
 
 require_once('DBConfig.php');
 require_once('functions.php');
@@ -19,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($_FILES['image']['name'] as $key => $imageName) {
                 $originalFileName = basename($imageName);
                 $fileType = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION)); // Extract the file extension
-                
+
                 $timestamp = time(); // Generate a single timestamp
                 $randomNumber = rand(1000, 9999); // Generate a single random number
 
@@ -34,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $description = $_POST['description'][$key] ?? '';
 
                 // Fetch the next available volgorde value for the pandID
-                $queryGetMaxVolgorde = "SELECT IFNULL(MAX(volgorde), 0) + 1 AS nextVolgorde FROM afbeeldingen WHERE pandID = :pandID";
+                $queryGetMaxVolgorde = "SELECT IFNULL(MAX(volgorde), 0) + 1 AS nextVolgorde FROM afbeeldingen WHERE pandID = :pandID AND klein = 0";
                 $stmtMaxVolgorde = $db->prepare($queryGetMaxVolgorde);
                 $stmtMaxVolgorde->bindParam(':pandID', $pandID, PDO::PARAM_INT);
                 $stmtMaxVolgorde->execute();
@@ -67,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $stmtSmall->bindParam(':afbeeldingURL', $targetFilePathSmallForAanbod, PDO::PARAM_STR);
                         $stmtSmall->bindParam(':beschrijving', $description, PDO::PARAM_STR);
                         $stmtSmall->bindValue(':klein', 1, PDO::PARAM_INT); // Mark as small image
-                        $stmtSmall->bindParam(':volgorde', $nextVolgorde, PDO::PARAM_INT); // Assign same volgorde
+                        $stmtSmall->bindValue(':volgorde', 0, PDO::PARAM_INT);
                         $stmtSmall->execute();
                     }
                 }
@@ -82,39 +84,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-
-
     // ============ delete images ============
+if (isset($_POST['action']) && $_POST['action'] === 'delete_images' && !empty($_POST['imagesToDelete'])) {
+    $pandID = $_POST['pandID'];
+    $imagesToDelete = $_POST['imagesToDelete'];
 
-    if (isset($_POST['action']) && $_POST['action'] === 'delete_images' && !empty($_POST['imagesToDelete'])) {
-        $pandID = $_POST['pandID'];
-        $imagesToDelete = $_POST['imagesToDelete'];
+    try {
+        $database = new Database();
+        $db = $database->getConnection();
+        $db->beginTransaction();
 
-        try {
-            $database = new Database();
-            $db = $database->getConnection();
-            $db->beginTransaction();
-
-            foreach ($imagesToDelete as $imageURL) {
-                $filePath = '../' . $imageURL;
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                }
-                $stmt = $db->prepare("DELETE FROM afbeeldingen 
-                WHERE pandID = :pandID 
-                AND afbeeldingURL = :afbeeldingURL");
-                $stmt->bindParam(':pandID', $pandID);
-                $stmt->bindParam(':afbeeldingURL', $imageURL);
-                $stmt->execute();
+        foreach ($imagesToDelete as $imageURL) {
+            // Delete the original image file
+            $filePath = '../' . ltrim($imageURL, './'); // Ensure correct path
+            if (file_exists($filePath)) {
+                unlink($filePath);
             }
 
-            $db->commit();
-            header("Location: ../images.php?pandID=$pandID&message=removed");
-        } catch (PDOException $e) {
-            $db->rollBack();
-            exit("Error: " . $e->getMessage());
+            // Generate the small image URL
+            $fileInfo = pathinfo($imageURL); // Get file info
+            $smallImageURL = $fileInfo['dirname'] . '/' . $fileInfo['filename'] . '_small.' . $fileInfo['extension'];
+            $smallFilePath = '../' . ltrim($smallImageURL, './'); // Ensure correct path
+
+            // Delete the small image file
+            if (file_exists($smallFilePath)) {
+                unlink($smallFilePath);
+            }
+
+            // Delete both original and small images from the database
+            $stmt = $db->prepare("DELETE FROM afbeeldingen 
+                WHERE pandID = :pandID 
+                AND (afbeeldingURL = :afbeeldingURL OR afbeeldingURL = :smallAfbeeldingURL)");
+            $stmt->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+            $stmt->bindParam(':afbeeldingURL', $imageURL, PDO::PARAM_STR);
+            $stmt->bindParam(':smallAfbeeldingURL', $smallImageURL, PDO::PARAM_STR);
+            $stmt->execute();
         }
+
+        // Commit the transaction
+        $db->commit();
+        header("Location: ../images.php?pandID=$pandID&message=removed");
+    } catch (PDOException $e) {
+        $db->rollBack();
+        exit("Error: " . $e->getMessage());
     }
+}
+
+
 
     // ============ update descriptions ============
 
