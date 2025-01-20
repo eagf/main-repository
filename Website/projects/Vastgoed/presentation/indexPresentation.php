@@ -18,7 +18,7 @@
 
         <?php include("includes/header.php"); ?>
 
-         <!-- ============= Title ============= -->
+        <!-- ============= Title ============= -->
 
         <div class="title-container">
             <h1 class="main-title">Libeer Vastgoed</h1>
@@ -29,12 +29,18 @@
         <div class="swiper">
             <div class="swiper-wrapper">
                 <?php foreach ($pandenHomepage as $pand) : ?>
-                    <a class="swiper-slide" href="detail.php?pandID=<?php echo htmlspecialchars($pand['pandID']); ?>">
-                        <div class="carousel-card">
-                            <img src="<?php echo htmlspecialchars($pand['afbeeldingURL']); ?>" alt="Carousel Image">
-                        </div>
-                    </a>
-                <?php endforeach; ?>
+                    <?php if ($pand['isVerkochtVerhuurd'] == 1 && $pand['status'] == 'Te koop') : ?>
+                        <a class="swiper-slide" href="aanbod.php?status=Te%20koop">
+                        <?php elseif ($pand['isVerkochtVerhuurd'] == 1 && $pand['status'] == 'Te huur') : ?>
+                            <a class="swiper-slide" href="aanbod.php?status=Te%20huur">
+                            <?php else : ?>
+                        <a class="swiper-slide" href="detail.php?pandID=<?php echo htmlspecialchars($pand['pandID']); ?>">
+                            <?php endif; ?>
+                            <div class="carousel-card">
+                                <img src="<?php echo htmlspecialchars($pand['afbeeldingURL']); ?>" alt="Carousel Image">
+                            </div>
+                        </a>
+                        <?php endforeach; ?>
             </div>
         </div>
 
@@ -76,7 +82,7 @@
             <!-- ============= Client Quotes Section ============= -->
 
             <h2 class="client-quotes-title">Uw referenties</h2>
-            
+
             <div class="content-section left">
                 <div class="client-quote">
                     <p>"Wat een verademing om een immobiliënkantoor te vinden dat niet alleen kennis heeft van de markt, maar ook echt luistert naar wat de klant wil. Ze zijn meesters in het vinden van het perfecte pand binnen elk budget, zonder concessies te doen aan kwaliteit of service."</p>

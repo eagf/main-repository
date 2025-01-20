@@ -226,11 +226,11 @@ function getPandenByHomepage()
     $database = new Database();
     $db = $database->getConnection();
 
-    $query = "SELECT p.pandID, af.afbeeldingURL 
-              FROM afbeeldingen af 
-              INNER JOIN panden p ON af.pandID = p.pandID 
-              WHERE p.homepage = 1 AND af.klein = 1
-              GROUP BY p.pandID";
+    $query = "SELECT p.pandID, p.status, p.isVerkochtVerhuurd, af.afbeeldingURL 
+                FROM afbeeldingen af 
+                INNER JOIN panden p ON af.pandID = p.pandID 
+                WHERE p.homepage = 1 AND af.klein = 1
+                GROUP BY p.pandID";
 
     try {
         $stmt = $db->prepare($query);
