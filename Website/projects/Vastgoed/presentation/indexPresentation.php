@@ -81,7 +81,7 @@
 
             <!-- ============= Client Quotes Section ============= -->
 
-            <h2 class="client-quotes-title">Uw referenties</h2>
+            <!-- <h2 class="client-quotes-title">Uw referenties</h2>
 
             <div class="content-section left">
                 <div class="client-quote">
@@ -122,7 +122,7 @@
                 <div class="client-quote">
                     <p>"Dit immokantoor vond de perfecte koper voor ons huis, waardoor we ons geen zorgen hoefden te maken. Ze namen alle administratieve rompslomp uit handen en maakten het verkoopproces moeiteloos en stressvrij."</p>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
