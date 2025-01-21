@@ -51,10 +51,12 @@
                         <div class="card-info">
                             <h2 class="card-title"><?php echo htmlspecialchars($pand['titel']); ?></h2>
                             <p class="card-gemeente"><?php echo htmlspecialchars($pand['gemeente']); ?></p>
-                            <p class="card-prijs">
-                                € <?php echo htmlspecialchars(number_format((int)$pand['prijs'], 0, ',', '.')); ?>
-                                <?php if ($statusFilter === 'Te huur') : ?> / maand<?php endif; ?>
-                            </p>
+                            <?php if ($pand['isVerkochtVerhuurd'] == 0 || is_null($pand['isVerkochtVerhuurd'])) : ?>
+                                <p class="card-prijs">
+                                    € <?php echo htmlspecialchars(number_format((int)$pand['prijs'], 0, ',', '.')); ?>
+                                    <?php if ($statusFilter === 'Te huur') : ?> / maand<?php endif; ?>
+                                </p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </a>
