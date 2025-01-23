@@ -63,7 +63,6 @@ function deletePand($pandID)
         $stmtDeleteAdressen->execute();
 
         $db->commit();
-        
     } catch (PDOException $exception) {
         $db->rollBack();
         exit("Error: " . $exception->getMessage());
@@ -113,6 +112,33 @@ function getPandDetailsByPandID($pandID)
 
             echo "<h2 class='images-title'>$titel - $status - $type - $prijs</h2>";
         }
+    } catch (PDOException $exception) {
+        exit("Error: " . $exception->getMessage());
+    }
+}
+
+function getPandDetailsMetaImage($pandID)
+{
+    $database = new Database();
+    $db = $database->getConnection();
+
+    $queryPand = "SELECT afbeeldingURL
+                  FROM afbeeldingen
+                  WHERE pandID = ? AND klein = 1
+                  LIMIT 1";
+
+    try {
+        $stmtPand = $db->prepare($queryPand);
+        $stmtPand->bindParam(1, $pandID, PDO::PARAM_INT);
+        $stmtPand->execute();
+        $pandData = $stmtPand->fetch(PDO::FETCH_ASSOC);
+
+        if ($pandData) {
+            $baseURL = 'https://www.libeervastgoed.be/';
+            $pandData['afbeeldingURL'] = $baseURL . ltrim($pandData['afbeeldingURL'], './');
+        }
+
+        return $pandData;
     } catch (PDOException $exception) {
         exit("Error: " . $exception->getMessage());
     }
@@ -220,6 +246,26 @@ function getImagesByPandID($pandID)
     }
 }
 
+function getFirstSmallImage($pandID)
+{
+    try {
+        $database = new Database();
+        $db = $database->getConnection();
+
+        $stmt = $db->prepare("SELECT top1 FROM afbeeldingen WHERE pandID = :pandID AND klein = 0");
+
+        $stmt->bindParam(':pandID', $pandID, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $images;
+    } catch (PDOException $e) {
+        exit("Error: " . $e->getMessage());
+    }
+}
+
 
 function getPandenByHomepage()
 {
@@ -276,9 +322,14 @@ function resizeImage($sourcePath, $destinationPath, $newWidth)
     imagecopyresampled(
         $resizedImage,
         $originalImage,
-        0, 0, 0, 0,
-        $newWidth, $newHeight,
-        $originalWidth, $originalHeight
+        0,
+        0,
+        0,
+        0,
+        $newWidth,
+        $newHeight,
+        $originalWidth,
+        $originalHeight
     );
 
     // Save the resized image

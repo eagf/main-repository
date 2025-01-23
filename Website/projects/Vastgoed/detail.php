@@ -11,6 +11,7 @@ require_once('data/functions.php');
 
 $pandID = isset($_GET['pandID']) ? $_GET['pandID'] : null;
 $pandDetails = getPandDetails($pandID);
+$metaImage = getPandDetailsMetaImage($pandID);
 
 if (!empty($pandDetails['afbeeldingen'])) {
     $afbeeldingenURLs = explode('|', $pandDetails['afbeeldingen']);

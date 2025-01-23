@@ -65,7 +65,7 @@
     </script>
 
     <?php if (!empty($afbeeldingenURLs)) : ?>
-        <meta property="og:image" content="<?php echo htmlspecialchars($afbeeldingenURLs[0]); ?>">
+        <meta property="og:image" content="<?php echo htmlspecialchars($metaImage['afbeeldingURL']); ?>">
     <?php endif; ?>
     <meta property="og:title" content="<?php echo htmlspecialchars($pandDetails['titel']); ?>">
 
