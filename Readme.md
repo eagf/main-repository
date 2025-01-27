@@ -6,7 +6,7 @@
 		<th>Additional release versions</th>
 		<th>Integration links</th>
 		<th>Last database version</th>
-		<th>Branch</th>
+		<th>Code branch</th>
 		<th>D365 version</th>
 	</tr>
 		<tr style="height:120px">
@@ -23,7 +23,7 @@
 		<td>ULD</td>
 		<td>Agile, IT1 hotfixes</td>
 		<td>StreamServe, ASCI</td>
-		<td></td>
+		<td>PROD -> UAT Upgrade<br>30/10/'24</td>
 		<td>Release branch</td>
 		<td>10.0.41</td>
 	</tr>
@@ -49,6 +49,37 @@
 <br>
 <br>
 
+----
+
 ## Timeline
 
-coming soon
+::: mermaid
+gantt
+    title Project Roadmap
+    dateFormat  YYYY-MM-DD
+    
+    %% Optionally exclude specific dates
+    excludes 2025-01-27,2025-01-28
+    
+    %% Define Sections & Tasks
+    section Project Initiation
+    Kickoff Meeting            :kickoff, 2025-02-01, 1d
+    Preliminary Scoping        :scoping, after kickoff, 3d
+
+    section Planning
+    Draft Requirements         :reqs, after scoping, 5d
+    Stakeholder Review         :review, after reqs, 3d
+    Finalize Requirements      :finalize, after review, 3d
+
+    section Development
+    Development Phase 1        :dev1, after finalize, 10d
+    QA / Testing Phase 1       :qa1, after dev1, 5d
+
+    section Pre-Production
+    User Acceptance Testing    :uat, after qa1, 5d
+    Final Bug Fixes            :fixes, after uat, 3d
+
+    section Release
+    Production Deployment      :release, after fixes, 2d
+    Post-Release Validation    :validation, after release, 3d
+:::
