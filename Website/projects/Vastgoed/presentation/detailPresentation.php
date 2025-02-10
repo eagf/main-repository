@@ -231,7 +231,7 @@
                                         }
                                         ?>
                                         <?php if ($room['kamerOppervlakte'] != 0) { ?>
-                                            Oppervlakte: <?php echo htmlspecialchars(number_format($room['kamerOppervlakte'], 0, ',', '.')); ?> m² <br>
+                                            <?php echo htmlspecialchars(number_format($room['kamerOppervlakte'], 0, ',', '.')); ?> m² <br>
                                         <?php }
                                         if (!empty($room['kamerDetail'])) {
                                             echo htmlspecialchars($room['kamerDetail']);

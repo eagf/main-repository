@@ -174,6 +174,7 @@
     display: flex;
     flex-direction: column;
     width: 80%;
+    align-self: center;
 }
 
 .detail-container-text h3, h3 {
@@ -201,7 +202,7 @@
 }
 
 p {
-    margin: 8px;
+    margin: 0px;
 }
 
 /* =============== Address =============== */
@@ -245,7 +246,7 @@ p {
     .detail-container {
         flex-direction: column;
         width: 100%;
-        margin: 20px auto;
+        margin: 5px auto;
     }
 
     #adres-type-container,
@@ -253,7 +254,7 @@ p {
     #info1-container,
     #info2-container {
         max-width: 100%;
-        width: 85%;
+        width: 95%;
     }
 
     #beschrijving-container,

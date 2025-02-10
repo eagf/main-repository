@@ -51,7 +51,7 @@
             <!-- ============= Main Quote ============= -->
 
             <div class="quote-main">
-                "Wat is een perfect huis? De plaats waar je nooit genoeg kastruimte hebt, maar toch altijd iets kwijt bent."
+                "Als een deur dicht gaat, zoek dan een andere en open hem zelf."
             </div>
 
             <!-- ============= Mission statement ============= -->
