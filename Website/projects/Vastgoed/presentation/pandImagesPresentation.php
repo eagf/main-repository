@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
     <link rel="icon" href="./assets/img/logo.ico">
     <script src="./scripts/images.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" defer></script>
     <title>Select Pand to Delete</title>
 </head>
 
@@ -40,6 +41,7 @@
 
             <?php if ($pandID) {
                 getPandDetailsByPandID($pandID);
+                $images = getImagesByPandID($pandID);
             ?>
 
                 <!-- Form for uploading images -->
@@ -58,6 +60,29 @@
                     </div>
                     <button type="button" id="addMoreImages">+</button>
                     <button type="submit" name="upload">Upload alle afbeeldingen</button>
+                </form>
+
+
+                <!-- Form for changing image order -->
+                <form action="./data/imageBackend.php" method="POST">
+                    <h3>Wijzig volgorde</h3>
+                    <input type="hidden" name="action" value="update_order">
+                    <input type="hidden" name="pandID" value="<?php echo htmlspecialchars($pandID); ?>">
+                    <div class="image-order-container" id="sortable">
+                        <?php foreach ($images as $key => $image) : ?>
+                            <div class="image-order-block" data-id="<?php echo htmlspecialchars($image['afbeeldingID']); ?>">
+                                <div class="image-preview">
+                                    <img src="<?php echo htmlspecialchars($image['afbeeldingURL']); ?>" alt="<?php echo htmlspecialchars($image['beschrijving']); ?>">
+                                </div>
+                                <div class="image-order">
+                                    <label for="order<?php echo $key; ?>">Volgorde:</label>
+                                    <span class="order-number"><?php echo htmlspecialchars($image['volgorde']); ?></span>
+                                    <input type="hidden" name="order[<?php echo htmlspecialchars($image['afbeeldingID']); ?>]" value="<?php echo htmlspecialchars($image['volgorde']); ?>">
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <button type="submit">Wijzig volgorde</button>
                 </form>
 
                 <!-- Form for deleting images -->

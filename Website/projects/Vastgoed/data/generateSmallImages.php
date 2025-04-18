@@ -102,15 +102,7 @@ try {
 
         // Resize the image to 400px width
         try {
-
-            //==================================
-            try {
-                resizeImage($originalPath, $smallFilePath, 400);
-                error_log("Small image created for afbeeldingID: $afbeeldingID" . "\n");
-            } catch (Exception $e) {
-                error_log("Error creating small image for afbeeldingID $afbeeldingID: " . $e->getMessage());
-            }
-            //==================================
+            resizeImage($originalPath, $smallFilePath, 400);
 
             // Insert new small image into the database
             $insertQuery = "INSERT INTO afbeeldingen (pandID, afbeeldingURL, klein) 

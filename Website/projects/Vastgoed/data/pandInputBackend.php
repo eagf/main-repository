@@ -95,8 +95,13 @@ if (isset($_POST['submit'])) {
         $stmtPanden->bindParam(':type', $_POST['type']);
         $stmtPanden->bindParam(':subtype', $_POST['subtype']);
         $stmtPanden->bindParam(':aanvullingSubtype', $_POST['aanvullingSubtype']);
-        $stmtPanden->bindParam(':bouwjaar', $_POST['bouwjaar']);
-        $stmtPanden->bindParam(':brutoVloeroppervlakte', $_POST['brutoVloeroppervlakte']);
+
+        $bouwjaar = !empty($_POST['bouwjaar']) ? $_POST['bouwjaar'] : null;
+        $stmtPanden->bindParam(':bouwjaar', $bouwjaar, PDO::PARAM_NULL);
+
+        $brutoVloeroppervlakte = !empty($_POST['brutoVloeroppervlakte']) ? $_POST['brutoVloeroppervlakte'] : null;
+        $stmtPanden->bindParam(':brutoVloeroppervlakte',$brutoVloeroppervlakte, PDO::PARAM_NULL);
+
         $stmtPanden->bindParam(':grondoppervlakte', $_POST['grondoppervlakte']);
         $stmtPanden->bindParam(':aantalSlaapkamers', $_POST['aantalSlaapkamers']);
         $stmtPanden->bindParam(':prijs', $_POST['prijs']);

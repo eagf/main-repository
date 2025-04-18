@@ -247,12 +247,12 @@
                 </div>
             <?php endif; ?>
 
-            <!-- ============== wettelijke informatie ============== -->
+            <!-- ============== wettelijke informatie  (Nu Ruimtelijke ordening in html) ============== -->
 
             <div id="wettelijke-container" class="detail-container">
                 <div class="detail-container-text">
 
-                    <h3>Wettelijke Informatie</h3>
+                    <h3>Ruimtelijke ordening</h3>
                     <p><strong>Stedenbouwkundige Vergunning:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunning']); ?></p>
                     <?php if (!empty($pandDetails['stedenbouwkundigeVergunningInfo'])) { ?>
                         <p><strong>Extra info:</strong> <?php echo htmlspecialchars($pandDetails['stedenbouwkundigeVergunningInfo']); ?></p>

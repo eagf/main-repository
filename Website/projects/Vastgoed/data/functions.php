@@ -125,6 +125,7 @@ function getPandDetailsMetaImage($pandID)
     $queryPand = "SELECT afbeeldingURL
                   FROM afbeeldingen
                   WHERE pandID = ? AND klein = 1
+                  ORDER BY volgorde ASC
                   LIMIT 1";
 
     try {
@@ -150,8 +151,8 @@ function getPandDetails($pandID)
     $db = $database->getConnection();
 
     $queryPand = "SELECT p.*, a.*, wi.*,
-                     GROUP_CONCAT(DISTINCT af.afbeeldingURL ORDER BY af.afbeeldingID SEPARATOR '|') AS afbeeldingen,
-                     GROUP_CONCAT(DISTINCT af.beschrijving ORDER BY af.afbeeldingID SEPARATOR '|') AS beschrijvingen,
+                     GROUP_CONCAT(DISTINCT af.afbeeldingURL ORDER BY af.volgorde SEPARATOR '|') AS afbeeldingen,
+                     GROUP_CONCAT(DISTINCT af.beschrijving ORDER BY af.volgorde SEPARATOR '|') AS beschrijvingen,
                      (SELECT GROUP_CONCAT(CONCAT_WS('|', kamerNaam, kamerOppervlakte, kamerDetail) SEPARATOR '||') 
                       FROM kamers 
                       WHERE pandID = p.pandID
@@ -162,7 +163,6 @@ function getPandDetails($pandID)
               LEFT JOIN afbeeldingen af ON p.pandID = af.pandID AND af.klein = 0
               WHERE p.pandID = ?
               GROUP BY p.pandID";
-
 
     try {
         $stmtPand = $db->prepare($queryPand);
@@ -183,12 +183,13 @@ function getPandDetails($pandID)
 
         $pandData['kamers'] = $groupedKamers;
 
-
         return $pandData;
     } catch (PDOException $exception) {
         exit("Error: " . $exception->getMessage());
     }
 }
+
+
 
 
 function getPandenOverzicht($statusFilter)
@@ -197,7 +198,7 @@ function getPandenOverzicht($statusFilter)
     $db = $database->getConnection();
 
     $query = "SELECT p.pandID, p.status, p.titel, a.gemeente, p.prijs, p.isNieuw, p.isVerkochtVerhuurd,
-            GROUP_CONCAT(af.afbeeldingURL) as afbeeldingen
+            GROUP_CONCAT(af.afbeeldingURL ORDER BY af.volgorde ASC) as afbeeldingen
             FROM panden p
             LEFT JOIN adressen a ON p.adresID = a.adresID
             LEFT JOIN afbeeldingen af ON p.pandID = af.pandID AND af.klein = 1";
@@ -226,13 +227,14 @@ function getPandenOverzicht($statusFilter)
 }
 
 
+
 function getImagesByPandID($pandID)
 {
     try {
         $database = new Database();
         $db = $database->getConnection();
 
-        $stmt = $db->prepare("SELECT * FROM afbeeldingen WHERE pandID = :pandID AND klein = 0");
+        $stmt = $db->prepare("SELECT * FROM afbeeldingen WHERE pandID = :pandID AND klein = 0 ORDER BY volgorde ASC");
 
         $stmt->bindParam(':pandID', $pandID, PDO::PARAM_INT);
 
@@ -252,7 +254,7 @@ function getFirstSmallImage($pandID)
         $database = new Database();
         $db = $database->getConnection();
 
-        $stmt = $db->prepare("SELECT top1 FROM afbeeldingen WHERE pandID = :pandID AND klein = 0");
+        $stmt = $db->prepare("SELECT top1 FROM afbeeldingen WHERE pandID = :pandID AND klein = 0 ORDER BY volgorde ASC");
 
         $stmt->bindParam(':pandID', $pandID, PDO::PARAM_INT);
 
@@ -275,7 +277,7 @@ function getPandenByHomepage()
     $query = "SELECT p.pandID, p.status, p.isVerkochtVerhuurd, af.afbeeldingURL 
                 FROM afbeeldingen af 
                 INNER JOIN panden p ON af.pandID = p.pandID 
-                WHERE p.homepage = 1 AND af.klein = 1
+                WHERE p.homepage = 1 AND af.klein = 1 AND af.volgorde = 1
                 GROUP BY p.pandID";
 
     try {

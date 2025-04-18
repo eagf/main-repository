@@ -46,3 +46,18 @@ document.getElementById('addMoreImages').addEventListener('click', function () {
     newFileUploadBlock.appendChild(removeButton);
     fileUploadContainer.appendChild(newFileUploadBlock);
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var sortable = new Sortable(document.getElementById('sortable'), {
+        animation: 150,
+        onEnd: function (evt) {
+            var orderBlocks = document.querySelectorAll('.image-order-block');
+            orderBlocks.forEach(function (block, index) {
+                var orderNumber = block.querySelector('.order-number');
+                var orderInput = block.querySelector('input[type="hidden"]');
+                orderNumber.textContent = index + 1;
+                orderInput.value = index + 1;
+            });
+        }
+    });
+});

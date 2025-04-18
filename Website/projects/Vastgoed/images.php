@@ -11,13 +11,14 @@ require_once('data/functions.php');
 $message = "";
 
 if (isset($_GET["message"])) {
-
     if ($_GET["message"] == "added") {
         $message = "Nieuwe afbeeldingen succesvol toegevoegd.";
     } elseif ($_GET["message"] == "removed") {
         $message = "Afbeeldingen succesvol verwijderd.";
     } elseif ($_GET["message"] == "updated") {
         $message = "Beschrijvingen succesvol aangepast.";
+    } elseif ($_GET["message"] == "order_updated") {
+        $message = "Volgorde succesvol aangepast.";
     }
 }
 
