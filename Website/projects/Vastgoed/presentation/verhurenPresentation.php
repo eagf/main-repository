@@ -48,6 +48,17 @@
                 </div>
             </section>
 
+            <section class="section-content ereloon-content">
+                <div class="content-text ereloon-text">
+                    <p>
+                        Ereloon
+                    </p>
+                    <p>
+                        Eén maand huur excl. BTW
+                    </p>
+                </div>
+            </section>
+
             <section class="section-conclusion">
                 <p>Kortom Libeer Vastgoed staat voor een correcte en zorgeloze verhuur van uw pand!</p>
             </section>
@@ -56,7 +67,5 @@
         <?php include('includes/footer.php'); ?>
     </div>
 </body>
-
-
 
 </html>

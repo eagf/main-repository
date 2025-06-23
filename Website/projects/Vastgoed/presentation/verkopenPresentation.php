@@ -109,18 +109,27 @@
                 </div>
             </section>
 
+            <section class="section-content ereloon-content">
+                <div class="content-text ereloon-text">
+                    <p>
+                        Ereloon
+                    </p>
+                    <p>
+                        3,63 % incl. BTW
+                    </p>
+                </div>
+            </section>
+
             <section class="section-conclusion">
                 <h2>
                     Kortom Libeer Vastgoed staat voor de zorgeloze verkoop van uw
                     pand met het beste resultaat!
-</h2>
+                </h2>
             </section>
         </div>
     </div>
 
     <?php include('includes/footer.php'); ?>
 </body>
-
-
 
 </html>

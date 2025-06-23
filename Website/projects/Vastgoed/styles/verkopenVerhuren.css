@@ -47,6 +47,13 @@
     height: auto;
 }
 
+.section-content .ereloon-content {
+    margin: auto;
+    align-self: center;
+    max-width: 200px;
+    text-align: center;
+}
+
 .content-image,
 .content-text {
     flex: 1; 

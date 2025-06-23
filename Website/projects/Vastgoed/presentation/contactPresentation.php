@@ -84,13 +84,12 @@
 
             </form>
 
-            <div class="contact-details">
+             <div class="contact-details">
                 <p class="contact-address">Libeer Vastgoed<br>Gouvernementstraat 32, 9000 Gent<br>BE0772.543.830<br>BA en borgstelling via NV AXA Belgium (polisnr. 30.390.160)</p>
                 <img src="./assets/img/MichaelLibeer.png" alt="Michaël Libeer" class="contact-photo">
                 <p class="contact-realtor">Michaël Libeer<br>BIV 514<br>Erkend vastgoedmakelaar-bemiddelaar</p>
-                <p class="contact-credentials">Erkend in België<br>Als erkend vastgoedmakelaar-bemiddelaar onderworpen aan de BIV-plichtenleer<br>Toezichthoudende autoriteit: Beroepsinstituut van Vastgoedmakelaars, Luxemburgstraat 16B, 1000 Brussel</p>
+                <p class="contact-credentials">Erkend in België<br>Als erkend vastgoedmakelaar-bemiddelaar onderworpen aan <a href="https://www.biv.be/vastgoedmakelaar-biv/deontologie-van-de-vastgoedmakelaar">de BIV-plichtenleer</a><br>Toezichthoudende autoriteit: Beroepsinstituut van Vastgoedmakelaars, Luxemburgstraat 16B, 1000 Brussel</p>
                 <p class="contact-info">0477/92.81.99<br><a href="mailto:info@michaellibeer.be" class="email-link">info@michaellibeer.be</a></p>
-
             </div>
 
         </div>
