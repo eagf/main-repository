@@ -149,6 +149,7 @@ function getPandDetails($pandID)
 {
     $database = new Database();
     $db = $database->getConnection();
+    $db->exec("SET SESSION group_concat_max_len = 1000000;");
 
     $queryPand = "SELECT p.*, a.*, wi.*,
                      GROUP_CONCAT(DISTINCT af.afbeeldingURL ORDER BY af.volgorde SEPARATOR '|') AS afbeeldingen,
